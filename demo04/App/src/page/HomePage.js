@@ -114,15 +114,13 @@ export default class Home extends Component {
               <Text style={{ textAlign: "center", padding: 10, color: "#666666", }}>
                 <Text style={{ textDecorationLine: 'line-through' }}>               </Text>
                 <Text>     </Text>
-                  一场旅行，一次成长。
+                  每一场旅行，都是一次成长。
                   <Text>     </Text>
                 <Text style={{ textDecorationLine: 'line-through' }}>               </Text>
               </Text>
             </View>
           </View>
-
         </ScrollView>
-
         <Bottom_nav />
       </View>
     )
@@ -145,8 +143,9 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 15 * biLi,
     backgroundColor: "#EFEFEF",
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
+    // borderTopRightRadius: 20,
+    // borderTopLeftRadius: 20,
+    borderRadius:20,
   },
   list: {
     width: "48%",
@@ -171,7 +170,7 @@ const styles = StyleSheet.create({
     width: "94%",
     marginLeft: "3%",
     height: "75%",
-    marginTop: "5%"
+    marginTop: "5%",
   },
   firstBox: {
     width: "100%",
