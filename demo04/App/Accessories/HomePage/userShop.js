@@ -7,8 +7,11 @@ import {
     Alert,
     Image,
     Text,
+    Dimensions,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+const { width, scale } = Dimensions.get("window");
+const biLi = width * scale / 1125;
 export default class UserShop extends Component {
     render() {
         return (
@@ -66,11 +69,10 @@ export default class UserShop extends Component {
 }
 const styles = StyleSheet.create({
     container: {
-        marginTop: 10,
-        width: '46%',
-        marginLeft: "2%",
+        marginTop: '2%',
+        width:185*biLi,
         backgroundColor: "#FFF",
-        borderBottomLeftRadius: 3,
-        borderBottomRightRadius: 3,
+        borderRadius:3,
+        // borderRadius:3,
     },
 });

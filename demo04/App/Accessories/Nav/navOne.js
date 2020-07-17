@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const { width, scale } = Dimensions.get("window");
-const biLi = width * scale / 1080;
+const biLi = width * scale / 1125;
 export default class Top_nav extends Component {
     render() {
         return (
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
         top: 0,
         height: (100) * biLi,
         width: "100%",
-        // backgroundColor: "#FFB16C",
         backgroundColor: "#FFB16C",
         borderBottomRightRadius: 20,
         borderBottomLeftRadius: 20,

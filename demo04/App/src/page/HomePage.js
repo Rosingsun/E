@@ -15,7 +15,7 @@ import Bottom_nav from '../../Accessories/Nav/bottom';
 import Top_nav from '../../Accessories/Nav/navOne';
 import UserShop from '../../Accessories/HomePage/userShop';
 const { width, scale } = Dimensions.get("window");
-const biLi = width * scale / 1080;
+const biLi = width * scale / 1125;
 
 export default class Home extends Component {
   constructor(props) {
@@ -32,16 +32,24 @@ export default class Home extends Component {
         <Top_nav> </Top_nav>
         {/* 中部自己写 */}
         <ScrollView style={[styles.mainBox]} showsVerticalScrollIndicator={false}>
-          {/* 上面的大框 */}
+          {/* 第一大框 */}
           <View style={[styles.firstBox]}>
             <View style={[styles.imgShow]}>
               <View style={[styles.imgShowBox]}>
-                {/* <Image style={{ height: 155, width: "94%", marginLeft: "3%", borderBottomLeftRadius:500,borderBottomRightRadius:500}} source={require('../../img/a.jpg')} /> */}
-                <Image style={{ height: 155, width: "94%", marginLeft: "3%" }} source={require('../../img/a.jpg')} />
+                <Image style={{ height: 123*biLi, width: "94%", marginLeft: "3%" }} source={require('../../img/a.jpg')} />
+                <View style={{width:"100%",flexDirection:"row",padding:6,justifyContent:"center"}}>
+                  <Text style={{fontSize:15,}}>今日热议：</Text>
+                  <TouchableWithoutFeedback 
+                    onPress={()=>{
+
+                    }}
+                  >
+                  <Text style={{fontSize:12,lineHeight:20,color:"#FFB16C"}}>#横看成岭侧成峰，远近高低各不同#</Text>
+                  </TouchableWithoutFeedback>
+                </View>
               </View>
               {/* 1-2排行框 */}
               <View style={{ width: "96%", flexDirection: "row", justifyContent: "space-around", alignItems: 'center', marginLeft: "2%" }}>
-
                 {/* firest View Box */}
                 <View style={[styles.list]}>
                   {/* 用户头像 */}
@@ -70,11 +78,13 @@ export default class Home extends Component {
             <View>
             </View>
           </View>
-          {/* 下面的大框 */}
+          {/* 第二个框 */}
           <View style={[styles.userShopBox]}>
             {/* 顶部三个选项 */}
-            <View style={{ flexDirection: "row", justifyContent: "space-between",borderBottomWidth:1,
-   borderBottomColor:'#CCC',borderBottomRightRadius:30,borderBottomStartRadius:30 }}>
+            <View style={{
+              flexDirection: "row", justifyContent: "space-between", borderBottomWidth: 1,
+              borderBottomColor: '#CCC', borderBottomRightRadius: 30, borderBottomStartRadius: 30
+            }}>
               <View style={{ flexDirection: "row" }}>
                 <TouchableWithoutFeedback >
                   <Text style={[styles.choice], [styles.fontSize]}>推荐</Text>
@@ -95,11 +105,20 @@ export default class Home extends Component {
                 </TouchableWithoutFeedback>
               </View>
             </View>
-                  <View style={{width:"94%",marginLeft:'3%',paddingTop:5,flexDirection:"row"}}>
-                    <UserShop/>
-                    <UserShop/>
-
-                  </View>
+            <View style={{ width: "94%", marginLeft: '3%', paddingTop: 5, flexDirection: "column", justifyContent: "space-between" }}>
+              <UserShop />
+              <UserShop />
+              <UserShop />
+            </View>
+            <View style={{ width: '100%' }}>
+              <Text style={{ textAlign: "center", padding: 10, color: "#666666", }}>
+                <Text style={{ textDecorationLine: 'line-through' }}>               </Text>
+                <Text>     </Text>
+                  一场旅行，一次成长。
+                  <Text>     </Text>
+                <Text style={{ textDecorationLine: 'line-through' }}>               </Text>
+              </Text>
+            </View>
           </View>
 
         </ScrollView>
@@ -124,7 +143,7 @@ const styles = StyleSheet.create({
   },
   userShopBox: {
     width: "100%",
-    marginTop: "8%",
+    marginTop: 15 * biLi,
     backgroundColor: "#EFEFEF",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
@@ -137,6 +156,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     padding: 10,
+    borderRadius:5,
   },
   imgShowBox: {
     width: '100%',
@@ -155,7 +175,7 @@ const styles = StyleSheet.create({
   },
   firstBox: {
     width: "100%",
-    marginTop: "8%",
+    marginTop: 45 * biLi,
     backgroundColor: "#EFEFEF",
     borderRadius: 5,
   },
