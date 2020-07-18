@@ -36,15 +36,15 @@ export default class Home extends Component {
           <View style={[styles.firstBox]}>
             <View style={[styles.imgShow]}>
               <View style={[styles.imgShowBox]}>
-                <Image style={{ height: 123*biLi, width: "94%", marginLeft: "3%" }} source={require('../../img/a.jpg')} />
-                <View style={{width:"100%",flexDirection:"row",padding:6,justifyContent:"center"}}>
-                  <Text style={{fontSize:15,}}>今日热议：</Text>
-                  <TouchableWithoutFeedback 
-                    onPress={()=>{
+                <Image style={{ height: 123 * biLi, width: "94%", marginLeft: "3%" }} source={require('../../img/a.jpg')} />
+                <View style={{ width: "100%", flexDirection: "row", padding: 6, justifyContent: "center" }}>
+                  <Text style={{ fontSize: 15, }}>今日热议：</Text>
+                  <TouchableWithoutFeedback
+                    onPress={() => {
 
                     }}
                   >
-                  <Text style={{fontSize:12,lineHeight:20,color:"#FFB16C"}}>#横看成岭侧成峰，远近高低各不同#</Text>
+                    <Text style={{ fontSize: 12, lineHeight: 20, color: "#FFB16C" }}>#横看成岭侧成峰，远近高低各不同#</Text>
                   </TouchableWithoutFeedback>
                 </View>
               </View>
@@ -105,10 +105,13 @@ export default class Home extends Component {
                 </TouchableWithoutFeedback>
               </View>
             </View>
-            <View style={{ width: "94%", marginLeft: '3%', paddingTop: 5, flexDirection: "column", justifyContent: "space-between" }}>
-              <UserShop />
-              <UserShop />
-              <UserShop />
+            <View style={{flexDirection:"row",width:"94%",marginLeft:'3%'}}>
+              <View style={{ width: "49%", paddingTop: 5, flexDirection: "column", }}>
+                <UserShop />
+              </View>
+              <View style={{ width: "49%", paddingTop: 5, flexDirection: "column",marginLeft:"2%" }}>
+                <UserShop />
+              </View>
             </View>
             <View style={{ width: '100%' }}>
               <Text style={{ textAlign: "center", padding: 10, color: "#666666", }}>
@@ -143,9 +146,7 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 15 * biLi,
     backgroundColor: "#EFEFEF",
-    // borderTopRightRadius: 20,
-    // borderTopLeftRadius: 20,
-    borderRadius:20,
+    borderRadius: 20,
   },
   list: {
     width: "48%",
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     padding: 10,
-    borderRadius:5,
+    borderRadius: 5,
   },
   imgShowBox: {
     width: '100%',

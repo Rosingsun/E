@@ -3,13 +3,14 @@ import { Dimensions } from 'react-native';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
-Global.styles = {
+const Global = {
         //第一套颜色定义
         blue: '#43949B',
         yellow: '#FFB16C',
         white: '#fff',
         gray: '#EFEFEF',
         red: '#FF0000',
+        black:"#000000",
         //第二套颜色定义
         ThickGray:"#6C6C6C",
         green:"#43949B",

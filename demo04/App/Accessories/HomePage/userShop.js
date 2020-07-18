@@ -10,6 +10,7 @@ import {
     Dimensions,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Globla from '../Global/global.js'
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 export default class UserShop extends Component {
@@ -69,10 +70,10 @@ export default class UserShop extends Component {
 }
 const styles = StyleSheet.create({
     container: {
-        marginTop: '2%',
         width:185*biLi,
+        backgroundColor:"blue",
         backgroundColor: "#FFF",
         borderRadius:3,
-        // borderRadius:3,
+        marginTop:5,
     },
 });
