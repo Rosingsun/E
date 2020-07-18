@@ -11,9 +11,10 @@ import {
   Alert
 } from 'react-native';
 import { Button } from 'react-native-paper';
-import Bottom_nav from '../../Accessories/Nav/bottom';
-import Top_nav from '../../Accessories/Nav/navOne';
-import UserShop from '../../Accessories/HomePage/userShop';
+import Bottom_nav from '../Accessories/Nav/bottom';
+import Top_nav from '../Accessories/Nav/navOne';
+import UserShop from '../Accessories/HomePage/userShop';
+import Global from'../global';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
@@ -36,7 +37,7 @@ export default class Home extends Component {
           <View style={[styles.firstBox]}>
             <View style={[styles.imgShow]}>
               <View style={[styles.imgShowBox]}>
-                <Image style={{ height: 123 * biLi, width: "94%", marginLeft: "3%" }} source={require('../../img/a.jpg')} />
+                <Image style={{ height: 123 * biLi, width: "94%", marginLeft: "3%" }} source={require('../img/a.jpg')} />
                 <View style={{ width: "100%", flexDirection: "row", padding: 6, justifyContent: "center" }}>
                   <Text style={{ fontSize: 15, }}>今日热议：</Text>
                   <TouchableWithoutFeedback
@@ -54,7 +55,7 @@ export default class Home extends Component {
                 <View style={[styles.list]}>
                   {/* 用户头像 */}
                   <View>
-                    <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../../img/a.png')} />
+                    <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../img/a.jpg')} />
                   </View>
                   <View style={{ alignItems: "center", marginHorizontal: 10 }}>
                     <Text>每周活跃用户</Text>
@@ -65,7 +66,7 @@ export default class Home extends Component {
                 <View style={[styles.list]}>
                   {/* 用户头像 */}
                   <View>
-                    <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../../img/a.png')} />
+                    <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../img/a.png')} />
                   </View>
                   <View style={{ alignItems: "center", marginHorizontal: 10 }}>
                     <Text>每周活跃用户</Text>

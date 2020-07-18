@@ -2,16 +2,18 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Home from './src/page/HomePage';
+// import Home from './src/page/HomePage';
+import Home from '../App/HomePage/HomePage';
 import loadDB from './src/page/readDB';
 import Setting from './src/page/SettingPage';
 import User from './src/page/UserPage';
 import onLoad from './src/page/onLoad';
-// const Stack = createBottomTabNavigator();
+//底部材料导航栏
 const Stack = createMaterialBottomTabNavigator();
 function MyStack() {
-    
+
     return (
         <Stack.Navigator
             //刚进入时候的第一个可见页面
@@ -28,10 +30,10 @@ function MyStack() {
                 borderBottomLeftRadius: 5,
                 borderBottomRightRadius: 5,
                 width: "102%",
-                marginLeft:"-1%",
-                padding:0,
-                margin:0,
-                position:"absolute"
+                marginLeft: "-1%",
+                padding: 0,
+                margin: 0,
+                position: "absolute"
             }}
         >
             <Stack.Screen name="Home" component={Home}
@@ -40,20 +42,20 @@ function MyStack() {
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'home'} size={25} color={color} />
                     ),
-
-                }}
-            />
+                }}>
+                {/* 页面内部小跳转 */}
+            </Stack.Screen>
             <Stack.Screen name="loadDB" component={loadDB}
                 options={{
                     tabBarLabel: '发现',
                     tabBarIcon: ({ color }) => (
-                        <FontAwesome name={'binoculars'} size={20} color={color}/>
+                        <FontAwesome name={'binoculars'} size={20} color={color} />
                     ),
                 }}
             />
             <Stack.Screen name="Setting" component={Setting}
                 options={{
-                    tabBarLabel: '发E个',
+                    tabBarLabel: '发一个',
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'plus'} size={25} color={color} />
                     ),
@@ -84,7 +86,7 @@ export default function App() {
     return (
 
         <NavigationContainer>
-            
+
             <MyStack />
         </NavigationContainer>
     );

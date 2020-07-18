@@ -10,7 +10,7 @@ import {
     Dimensions,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Globla from '../Global/global.js'
+import Globla from '../../global.js'
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 export default class UserShop extends Component {

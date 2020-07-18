@@ -7,7 +7,7 @@ const Global = {
         //第一套颜色定义
         blue: '#43949B',
         yellow: '#FFB16C',
-        white: '#fff',
+        white: '#ffffff',
         gray: '#EFEFEF',
         red: '#FF0000',
         black:"#000000",
@@ -32,4 +32,4 @@ const Global = {
         //定义比例
         biLi: biLi,
 };
-module.exports = Global;
+// module.exports = Global;

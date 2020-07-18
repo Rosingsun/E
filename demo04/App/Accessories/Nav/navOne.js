@@ -7,8 +7,11 @@ import {
     Text,
     TextInput,
     StatusBar,
+    TouchableWithoutFeedback,
+    Alert,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Global from'../../global';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 export default class Top_nav extends Component {
@@ -37,9 +40,14 @@ export default class Top_nav extends Component {
                             </TextInput>
                             <FontAwesome style={{lineHeight:35,marginLeft:5}} name={'search'} size={15} color={'#6C6C6C'} />
                         </View>
-                        <View>
+                        <TouchableWithoutFeedback
+                        onPress={()=>{
+                            Alert.alert("you presss me ")
+                            
+                        }}
+                        >
                             <FontAwesome name={'bell'} size={25} color={'#fff'} />
-                        </View>
+                        </TouchableWithoutFeedback>
                     </View>
                 </View>
             </View>
@@ -48,7 +56,7 @@ export default class Top_nav extends Component {
 }
 const styles = StyleSheet.create({
     inputBox: {
-        backgroundColor: "#fff",
+        backgroundColor: "#ffffff",
         width: 250 * biLi,
         borderRadius: 20,
         padding:0,
