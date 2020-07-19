@@ -16,7 +16,7 @@ const biLi = width * scale / 1125;
 export default class UserShop extends Component {
     render() {
         return (
-            <View style={[styles.container]}>
+            <View style={[styles.showContainer]}>
                 {/* 图片框 */}
                 <TouchableWithoutFeedback
                     onPress={() => {
@@ -69,10 +69,8 @@ export default class UserShop extends Component {
     }
 }
 const styles = StyleSheet.create({
-    container: {
+    showContainer: {
         width:185*biLi,
-        backgroundColor:"blue",
-        backgroundColor: "#FFF",
         borderRadius:3,
         marginTop:5,
     },
