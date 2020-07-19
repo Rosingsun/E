@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 // import Home from './src/page/HomePage';
 import Home from '../App/HomePage/HomePage';
@@ -10,8 +8,11 @@ import loadDB from './src/page/readDB';
 import Setting from './src/page/SettingPage';
 import User from './src/page/UserPage';
 import onLoad from './src/page/onLoad';
+//下面是页面之内需要跳转的
+//消息页面
 //底部材料导航栏
 const Stack = createMaterialBottomTabNavigator();
+
 function MyStack() {
 
     return (
@@ -43,7 +44,6 @@ function MyStack() {
                         <FontAwesome name={'home'} size={25} color={color} />
                     ),
                 }}>
-                {/* 页面内部小跳转 */}
             </Stack.Screen>
             <Stack.Screen name="loadDB" component={loadDB}
                 options={{
