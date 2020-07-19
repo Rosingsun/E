@@ -1,93 +1,189 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-// import Home from './src/page/HomePage';
-import Home from '../App/HomePage/HomePage';
-import loadDB from './src/page/readDB';
-import Setting from './src/page/SettingPage';
-import User from './src/page/UserPage';
-import onLoad from './src/page/onLoad';
-//下面是页面之内需要跳转的
-//消息页面
-//底部材料导航栏
-const Stack = createMaterialBottomTabNavigator();
+import React, { Component } from 'react';
+import {
+    View,
+    StyleSheet,
+    TouchableOpacity,
+    Alert,
+    Image,
+    Text,
+    TextInput,
+    Dimensions,
+    TouchableWithoutFeedback,
+    StatusBar,
 
-function MyStack() {
+} from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import AntDesign from 'react-native-vector-icons/AntDesign'
+// import { TextInput, Button } from 'react-native-paper';
+// import { text } from 'express';
+const { width, scale } = Dimensions.get("window");
+const biLi = width * scale / 1125;
+export default class Search extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchText: '',
+            searchPass: '',
+        }
+    };
 
-    return (
-        <Stack.Navigator
-            //刚进入时候的第一个可见页面
-            initialRouteName="home"
-            //激活状态的图标颜色
-            activeColor="#FFB16C"
-            //熄灭状态图标颜色
-            inactiveColor="#6d6d6d"
-            //底部导航栏样式设置
-            barStyle={{
-                backgroundColor: '#ffffff00',
-                borderTopRightRadius: 20,
-                borderTopLeftRadius: 20,
-                borderBottomLeftRadius: 5,
-                borderBottomRightRadius: 5,
-                width: "102%",
-                marginLeft: "-1%",
-                padding: 0,
-                margin: 0,
-                position: "absolute"
-            }}
-        >
-            <Stack.Screen name="Home" component={Home}
-                options={{
-                    tabBarLabel: '首页',
-                    tabBarIcon: ({ color }) => (
-                        <FontAwesome name={'home'} size={25} color={color} />
-                    ),
-                }}>
-            </Stack.Screen>
-            <Stack.Screen name="loadDB" component={loadDB}
-                options={{
-                    tabBarLabel: '发现',
-                    tabBarIcon: ({ color }) => (
-                        <FontAwesome name={'binoculars'} size={20} color={color} />
-                    ),
-                }}
-            />
-            <Stack.Screen name="Setting" component={Setting}
-                options={{
-                    tabBarLabel: '发一个',
-                    tabBarIcon: ({ color }) => (
-                        <FontAwesome name={'plus'} size={25} color={color} />
-                    ),
-                }}
-            />
-            <Stack.Screen name="User" component={User}
-                options={{
-                    tabBarLabel: '论坛',
-                    tabBarIcon: ({ color }) => (
-                        <FontAwesome name={'twitch'} size={25} color={color} />
-                    ),
-                }}
-            />
-            <Stack.Screen name="onLoad" component={onLoad}
-                options={{
-                    tabBarLabel: '我',
-                    tabBarIcon: ({ color }) => (
-                        <FontAwesome name={'user'} size={25} color={color} />
-                    ),
-                }}
-            />
-
-        </Stack.Navigator>
-    );
+    render() {
+        return (
+            <View style={[styles.container]}>
+                <StatusBar
+                    barStyle='light-content'
+                    backgroundColor='rgba(0,0,0,0)'
+                    translucent={true} />
+                <View style={[styles.top]}>
+                    <View style={[styles.nav_container]}>
+                        <View>
+                            <AntDesign name={'leftcircle'} size={30} color={'#fff'} onPress={() => {
+                                Alert.alert("返回")
+                            }} />
+                        </View>
+                        <Text style={{ color: "#fff", fontSize: 20 }}>登陆</Text>
+                        <View>
+                            <FontAwesome name={'home'} size={25} color={'#fff'} onPress={() => {
+                                Alert.alert("这是去主页的路")
+                            }} />
+                        </View>
+                    </View>
+                </View>
+                <View style={[styles.imgBox]}>
+                    <Image style={{ height: 151, width: 151 }} source={require('./img/LOGO.png')} />
+                    <Text style={{ color: "#fff", fontSize: 20, marginTop: 10 }}>E交换，E旅游，E起玩</Text>
+                </View>
+                {/* 登陆框 */}
+                <View style={[styles.userShopBox]}>
+                    <View style={{height:'100%',paddingVertical:10}}>
+                        <View style={[styles.inputBox]}>
+                            <View style={{ flexDirection: "row" }}>
+                                <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 15 }} name={'user'} size={25} color={'#999999'} />
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder='请输入账号'
+                                    placeholderTextColor='#999999'
+                                    onChangeText={(text) => {
+                                        this.setState({ searchText: text });
+                                    }} />
+                            </View>
+                        </View>
+                        <View style={[styles.inputBox]}>
+                            <View style={{ flexDirection: "row" }}>
+                                <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 20 }} name={'lock'} size={25} color={'#999999'} />
+                                <TextInput
+                                    style={styles.password}
+                                    placeholder='请输入密码'
+                                    placeholderTextColor='#999999'
+                                    onChangeText={(text) => {
+                                        this.setState({ searchPass: text });
+                                    }} />
+                            </View>
+                        </View>
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={() => {
+                                Alert.alert('登陆成功')
+                                fetch('http://10.0.2.2:3000/insert/', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        a: this.state.searchText,
+                                        b: this.state.searchPass
+                                    })
+                                })
+                                    .then((response) => {
+                                        console.log("/n" + response + "/n");
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                    });
+                            }}>
+                            <Text style={{ fontSize: 20, color: "#fff" }}>登陆</Text>
+                        </TouchableOpacity>
+                        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                            <Text style={{ color: "#999999", fontSize: 15, marginTop: 20, marginLeft: "5%" }}>忘记密码</Text>
+                            <Text style={{ color: "#999999", fontSize: 15, marginTop: 20, marginRight: "5%" }}>注册登陆</Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+        )
+    }
 }
+const styles = StyleSheet.create({
 
-export default function App() {
-    return (
+    container: {
+        flex: 1,
+        backgroundColor: "#43949B"
+    },
+    top: {
+        position: "absolute",
+        top: 0,
+        height: (90) * biLi,
+        width: "100%",
+        backgroundColor: "#FFB16C",
+        borderBottomRightRadius: 20,
+        borderBottomLeftRadius: 20,
+        elevation: 8,
+    },
+    nav_container: {
+        flex: 0.7,
+        marginTop: '11%',
+        flexDirection: "row",
+        width: "90%",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginLeft: "5%",
+    },
+    imgBox: {
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 130,
+    },
 
-        <NavigationContainer>
-
-            <MyStack />
-        </NavigationContainer>
-    );
-}
+    userShopBox: {
+        width: "90%",
+        marginTop: 10 * biLi,
+        backgroundColor: "#ffffff",
+        borderRadius: 15,
+        height: 325 * biLi,
+        justifyContent: "center",
+        alignItems: "center",
+        marginLeft: "5%"
+    },
+    password: {
+        width: "80%",
+        backgroundColor: "#EFEFEF",
+        marginTop: 10
+    },
+    input: {
+        width: "80%",
+        backgroundColor: "#EFEFEF",
+        height:"100%",
+        justifyContent:"center",
+        marginTop:3,
+        marginLeft:10,
+    },
+    button: {
+        height: 52 * biLi,
+        width: 312 * biLi,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#FFB16C",
+        padding: 10,
+        marginTop: 14,
+        borderRadius: 10,
+        marginLeft: "4%"
+    },
+    inputBox: {
+        height: 64 * biLi,
+        width: 346 * biLi,
+        backgroundColor: "#EFEFEF",
+        borderRadius: 40,
+        marginTop: 15
+    }
+})

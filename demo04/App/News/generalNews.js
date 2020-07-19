@@ -21,33 +21,44 @@ const biLi = width * scale / 1125;
 const Message = ({navigation}) => {
   return (
     <View style={[styles.container]}>
-      {/* 状态栏 */}
-      <StatusBar barStyle='light-content' backgroundColor='rgba(0,0,0,0)' translucent={true}></StatusBar>
       {/* 顶部输入框 */}
       <View style={[styles.top]}>
         <View style={[styles.nav_container]}>
           <View style={{ flexDirection: "row" }}>
             <AntDesign name={'leftcircle'} size={30} color={'#fff'} />
-            {/* <Text style={{ lineHeight: 30, marginLeft: 10, color: "#fff", fontWeight: "bold" }}>杭州</Text> */}
           </View>
           <View style={[styles.inputBox]}>
             <TextInput
               placeholder="abibas"
-              style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }}
-            >
+              style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }}>
             </TextInput>
             <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
           </View>
-          <TouchableWithoutFeedback
-            onPress={() => {
-              navigation.navigate('Message');
-
-            }}
-          >
+          <TouchableWithoutFeedback>
             <FontAwesome name={'bell'} size={25} color={'#fff'} />
           </TouchableWithoutFeedback>
+        </View>   
+        <View style={{marginTop:15,height:50,width:'100%',borderRadius:15}}>
+          <View>
+          <TouchableWithoutFeedback>
+            <View style={{flexDirection:"row"}}>
+              <View>
+              <AntDesign style={{ lineHeight: 35, marginLeft: 5 }} name={'like2'} size={15} color={'#6C6C6C'} />
+              </View>
+              <View>
+              <AntDesign style={{ lineHeight: 35, marginLeft: 5 }} name={'message1'} size={15} color={'#6C6C6C'} />
+              </View>
+              <View>
+              <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+          </View>
         </View>
       </View>
+{/* 中间的内容写在这里 */}
+
+    {/* 底部颜色 */}
       <Bottom_nav />
     </View>
   )
@@ -68,17 +79,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   top: {
-    // position: "absolute",
-    height: (90) * biLi,
+    height: (125) * biLi,
     width: "100%",
     backgroundColor: "#FFB16C",
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
     elevation: 8,
+    
   },
   nav_container: {
-    flex: 0.7,
-    marginTop: '10%',
+    backgroundColor:"red",
+    height:30,
+    marginTop: '6%',
     flexDirection: "row",
     width: "90%",
     justifyContent: "space-between",
