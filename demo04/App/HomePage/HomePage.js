@@ -61,7 +61,7 @@ const Main = ({ navigation }) => {
       <View style={[styles.top]}>
         <View style={[styles.nav_container]}>
           <View style={{ flexDirection: "row" }}>
-            <FontAwesome name={'map'} size={30} color={'#fff'} />
+            <FontAwesome name={'map-marker'} size={30} color={'#fff'} />
             <Text style={{ lineHeight: 30, marginLeft: 10, color: "#fff", fontWeight: "bold" }}>杭州</Text>
           </View>
           <View style={[styles.inputBox]}>
@@ -174,8 +174,18 @@ const Main = ({ navigation }) => {
                       countNum: '11',
                       showUserImg: '../img/b.png',
                     },
+                    {
+                      name: 'JK妹123213',
+                      userHead: "../img/a.png",
+                      userWords: '一袖青衣，晚风吹彼岸。',
+                      place: '杭州西湖风景区',
+                      countNum: '11',
+                      showUserImg: '../img/b.png',
+                    },
                   ]}
                   renderItem={({ item }) =>
+
+
 
                     <View style={[styles.showContainer]}>
                       {/* 图片框 */}
@@ -243,22 +253,6 @@ const Main = ({ navigation }) => {
                       countNum: '11',
                       showUserImg: '../img/b.png',
                     },
-                    {
-                      name: 'JK妹',
-                      userHead: "../img/a.png",
-                      userWords: '一袖青衣，晚风吹彼岸。',
-                      place: '杭州西湖风景区',
-                      countNum: '11',
-                      showUserImg: '../img/b.png',
-                    },
-                    {
-                      name: 'JK妹',
-                      userHead: "../img/a.png",
-                      userWords: '一袖青衣，晚风吹彼岸。',
-                      place: '杭州西湖风景区',
-                      countNum: '11',
-                      showUserImg: '../img/b.png',
-                    },
                   ]}
                   renderItem={({ item }) =>
 
@@ -299,6 +293,7 @@ const Main = ({ navigation }) => {
                           }}>
                           <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{item.name}</Text>
                         </TouchableWithoutFeedback>
+
                         <View style={{ position: "absolute", right: 10, bottom: 5 }}>
                           <TouchableWithoutFeedback
                             onPress={() => {
@@ -311,6 +306,8 @@ const Main = ({ navigation }) => {
                             </Text>
                           </TouchableWithoutFeedback>
                         </View>
+
+
                       </View>
                     </View>} />
               </View>
@@ -423,7 +420,7 @@ const styles = StyleSheet.create({
   },
   nav_container: {
     flex: 0.7,
-    marginTop: '5%',
+    marginTop: '8%',
     flexDirection: "row",
     width: "90%",
     justifyContent: "space-between",
