@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 // import Home from './src/page/HomePage';
 import Home from '../App/HomePage/HomePage';
@@ -8,15 +9,16 @@ import loadDB from './src/page/readDB';
 import Setting from './src/page/SettingPage';
 import User from './src/page/UserPage';
 import onLoad from './src/page/onLoad';
+import Message from './News/generalNews';
 //下面是页面之内需要跳转的
 //消息页面
 //底部材料导航栏
-const Stack = createMaterialBottomTabNavigator();
-
+const Tab = createMaterialBottomTabNavigator();
+const Stack = createStackNavigator();
 function MyStack() {
 
     return (
-        <Stack.Navigator
+        <Tab.Navigator
             //刚进入时候的第一个可见页面
             initialRouteName="home"
             //激活状态的图标颜色
@@ -37,15 +39,15 @@ function MyStack() {
                 position: "absolute"
             }}
         >
-            <Stack.Screen name="Home" component={Home}
+            <Tab.Screen name="Home" component={Home}
                 options={{
                     tabBarLabel: '首页',
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'home'} size={25} color={color} />
                     ),
                 }}>
-            </Stack.Screen>
-            <Stack.Screen name="loadDB" component={loadDB}
+            </Tab.Screen>
+            <Tab.Screen name="loadDB" component={loadDB}
                 options={{
                     tabBarLabel: '发现',
                     tabBarIcon: ({ color }) => (
@@ -53,7 +55,7 @@ function MyStack() {
                     ),
                 }}
             />
-            <Stack.Screen name="Setting" component={Setting}
+            <Tab.Screen name="Setting" component={Setting}
                 options={{
                     tabBarLabel: '发一个',
                     tabBarIcon: ({ color }) => (
@@ -61,7 +63,7 @@ function MyStack() {
                     ),
                 }}
             />
-            <Stack.Screen name="User" component={User}
+            <Tab.Screen name="Message" component={Message}
                 options={{
                     tabBarLabel: '论坛',
                     tabBarIcon: ({ color }) => (
@@ -69,7 +71,7 @@ function MyStack() {
                     ),
                 }}
             />
-            <Stack.Screen name="onLoad" component={onLoad}
+            <Tab.Screen name="onLoad" component={onLoad}
                 options={{
                     tabBarLabel: '我',
                     tabBarIcon: ({ color }) => (
@@ -78,15 +80,13 @@ function MyStack() {
                 }}
             />
 
-        </Stack.Navigator>
+        </Tab.Navigator>
     );
 }
 
 export default function App() {
     return (
-
         <NavigationContainer>
-
             <MyStack />
         </NavigationContainer>
     );

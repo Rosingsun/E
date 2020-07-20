@@ -7,9 +7,6 @@ import {
   Button,
   Alert
 } from 'react-native';
-
-
-
 export default class onLoad extends Component {
   constructor(props) {
     super(props);

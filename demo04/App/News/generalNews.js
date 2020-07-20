@@ -18,7 +18,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import Bottom_nav from '../Accessories/Nav/bottom';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
-const Message = ({ navigation }) => {
+const Message = () => {
   return (
     <View style={[styles.container]}>
       {/* 顶部输入框 */}
@@ -38,7 +38,7 @@ const Message = ({ navigation }) => {
             <FontAwesome name={'bell'} size={25} color={'#fff'} />
           </TouchableWithoutFeedback>
         </View>
-        <View style={{ marginTop: 7, height: 50, width: '100%', borderRadius: 15 }}>
+        <View style={{ marginTop: 7, height: 40, width: '100%', borderRadius: 15 }}>
           {/* <View> */}
           <View style={{ flexDirection: "row", width: '100%', height: '100%', borderRadius: 16 }}>
             {/* 点赞 */}
@@ -58,9 +58,11 @@ const Message = ({ navigation }) => {
         </View>
       </View>
       {/* flatlist渲染层从这开始 */}
-      <View style={{ paddingTop: 10, height: '76%', paddingBottom: 10 }}>
+      <View style={{ height: '80%', paddingBottom: 10 }}>
         <FlatList
           data={[
+            { name: 'JK&妹' },
+            { name: 'JK&妹' },
             { name: 'JK&妹' },
             { name: 'JK&妹' },
           ]}
@@ -80,13 +82,13 @@ const Message = ({ navigation }) => {
                 </View>
               </View>
               {/* 第二行消息详情框 */}
-              <View style={{  width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF", borderRadius: 15,flexDirection:"row"}}>
+              <View style={{ width: '90%', marginLeft: '5%', borderRadius: 15, flexDirection: "row" }}>
                 <Image style={{ height: '100%', width: 132, borderRadius: 3 }} source={require('../img/a.png')} />
-                <View style={{paddingVertical:5,backgroundColor:"#00000080",width:190,}}>
-                  <Text style={{fontSize:15,}}>CRUEL_JACK</Text>
+                <View style={{ paddingVertical: 5, backgroundColor: "#EFEFEF", width: 190, borderRadius: 3 }}>
+                  <Text style={{ fontSize: 15, }}>CRUEL_JACK</Text>
                   <View >
-                    <Text style={{fontSize:12,color:"#FFBE84",}}>#欲把西湖比西子#</Text>
-                    <Text style={{width:'100%',fontSize:15}}>1111111111111111111111111111111111111111111</Text>
+                    <Text style={{ fontSize: 12, color: "#FFBE84", }}>#欲把西湖比西子#</Text>
+                    <Text style={{ width: '100%', fontSize: 15 }}>1111111111111111111111111111111111111111111</Text>
                   </View>
                 </View>
               </View>
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   top: {
-    height: (125) * biLi,
+    height: (115) * biLi,
     width: "100%",
     backgroundColor: "#FFB16C",
     borderBottomRightRadius: 15,
