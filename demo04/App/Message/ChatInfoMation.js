@@ -23,91 +23,86 @@ const biLi = width * scale / 1125;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('light-content');
-
-
-export default class Search extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isEnabled: true,
-        }
-    };
-
-    render() {
-        return (
-            <View style={[styles.container]}>
-                <View style={[styles.top]}>
-                    <View style={[styles.nav_container]}>
-                        <View style={{ flexDirection: "row" }}>
-                            <AntDesign name={'leftcircle'} size={30} color={'#fff'} onPress={() => {
-                                Alert.alert("返回")
-                            }} />
-                        </View>
-                        <Text style={{ color: "#fff", fontSize: 20, marginRight: 20 }}>聊天信息</Text>
-                        <View>
-                        </View>
+// export default class Search extends Component {
+export default Search = () => {
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    // const [isEnabled, setIsEnabled] = useState(false);
+    return (
+        <View style={[styles.container]}>
+            <View style={[styles.top]}>
+                <View style={[styles.nav_container]}>
+                    <View style={{ flexDirection: "row" }}>
+                        <AntDesign name={'leftcircle'} size={30} color={'#fff'} onPress={() => {
+                            Alert.alert("返回")
+                        }} />
                     </View>
-                </View>
-                
-                <View style={styles.text}>
-                    <TouchableWithoutFeedback onPress={() => {
-                        Alert.alert("your press the text");
-                    }}>
-                        <View style={styles.button1}>
-                            <Image style={{ height: 55 * biLi, width: 55 * biLi, borderRadius: 30, marginLeft: 15 }} source={{
-                                uri: 'https://reactnative.dev/img/tiny_logo.png'
-                            }} />
-                            <View style={{ marginHorizontal: 10, height: '90%', paddingVertical: 10, }}>
-                                <Text style={{ fontSize: 15, color: "#000", paddingBottom: 5 }}>云生</Text>
-                                <Text style={{ fontSize: 10, color: "#999999" }}>简介：暂无介绍</Text>
-                            </View>
-
-                        </View>
-                    </TouchableWithoutFeedback>
-                    <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }} onPress={() => {
-                        Alert.alert("这是通往天堂的路")
-                    }} />
-                </View>
-                <View style={{marginTop:10}}>
-                <View style={styles.button}>
-                        <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>查找聊天记录</Text>
-                    <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }} onPress={() => {
-                        Alert.alert("这是通往查找聊天记录的路")
-                    }} />
-                </View>
-                 
-                <View style={styles.button}>
-                        <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>消息免打扰</Text>
-                    <Switch
-                        trackColor={{ false: "#999999", true: "#43949B" }}
-                        style={{
-                            transform: [{ scaleX: 1.2 },
-                            { scaleY: 1.2 }],
-                            position: "absolute",
-                            right: 13,
-
-                        }}
-                        // onValueChange={toggleSwitch}
-                        value={this.state.isEnabled}
-                    />
-                </View>
-                <View style={styles.button}>
-                        <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>清空聊天记录</Text>
-                    <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }} onPress={() => {
-                        Alert.alert("这是通往清空聊天记录的路")
-                    }} />
-                </View>
-                <View style={styles.button}>
-                        <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>投诉</Text>
-                    <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }} onPress={() => {
-                        Alert.alert("这是通往投诉的路")
-                    }} />
+                    <Text style={{ color: "#fff", fontSize: 20, marginRight: 20 }}>聊天信息</Text>
+                    <View>
                     </View>
                 </View>
             </View>
 
-        )
-    }
+            <View style={styles.text}>
+                <TouchableWithoutFeedback onPress={() => {
+                    Alert.alert("your press the text");
+                }}>
+                    <View style={styles.button1}>
+                        <Image style={{ height: 55 * biLi, width: 55 * biLi, borderRadius: 30, marginLeft: 15 }} source={{
+                            uri: 'https://reactnative.dev/img/tiny_logo.png'
+                        }} />
+                        <View style={{ marginHorizontal: 10, height: '90%', paddingVertical: 10, }}>
+                            <Text style={{ fontSize: 15, color: "#000", paddingBottom: 5 }}>云生</Text>
+                            <Text style={{ fontSize: 10, color: "#999999" }}>简介：暂无介绍</Text>
+                        </View>
+                    </View>
+                </TouchableWithoutFeedback>
+                <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }} onPress={() => {
+                    Alert.alert("这是通往天堂的路")
+                }} />
+            </View>
+            <View style={{ marginTop: 10 }}>
+                <View style={styles.button}>
+                    <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>查找聊天记录</Text>
+                    <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }} onPress={() => {
+                        Alert.alert("这是通往查找聊天记录的路")
+                    }} />
+                </View>
+                <View style={styles.button}>
+                    <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>消息免打扰</Text>
+                    <Switch
+                        trackColor={{ false: "#999999", true: "#43949B" }}
+                        style={{
+                            transform: [{ scale: 1.2 }],
+                            position: "absolute",
+                            right: 13,
+                            shadowColor:"#66666600"
+                        }}
+                        onValueChange={toggleSwitch}
+                        value={isEnabled}
+
+
+                    />
+                </View>
+                <View style={styles.button}>
+                    <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>清空聊天记录</Text>
+                    <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }}
+                        onPress={() => {
+                            Alert.alert("这是通往清空聊天记录的路")
+                        }}
+                    />
+                </View>
+                <View style={styles.button}>
+                    <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>投诉</Text>
+                    <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }}
+                        onPress={() => {
+                            Alert.alert("这是通往投诉的路")
+                        }} />
+                </View>
+            </View>
+        </View>
+
+    )
 }
 const styles = StyleSheet.create({
 
@@ -160,10 +155,10 @@ const styles = StyleSheet.create({
         marginTop: 110,
         flexDirection: "row",
         width: "90%",
-        justifyContent:"space-between",
+        justifyContent: "space-between",
         alignItems: "center",
         marginLeft: "5%",
         height: 80 * biLi,
-        borderRadius:15,
+        borderRadius: 15,
     }
 })
