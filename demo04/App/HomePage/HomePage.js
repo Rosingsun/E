@@ -16,8 +16,9 @@ import {
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+
+import Details from '../navigation/HomePageNavigation';
 import Bottom_nav from '../Accessories/Nav/bottom';
-import Global from '../global';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 StatusBar.setBackgroundColor("transparent");
@@ -72,14 +73,7 @@ const Main = ({ navigation }) => {
             </TextInput>
             <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
           </View>
-          <TouchableWithoutFeedback
-            onPress={() => {
-              navigation.navigate('Message');
-
-            }}
-          >
-            <FontAwesome name={'bell'} size={25} color={'#fff'} />
-          </TouchableWithoutFeedback>
+          <FontAwesome name={'bell'} size={25} color={'#fff'} />
         </View>
       </View>
 
@@ -93,13 +87,7 @@ const Main = ({ navigation }) => {
               <Image style={{ height: 123 * biLi, width: "94%", marginLeft: "3%" }} source={require('../img/a.jpg')} />
               <View style={{ width: "100%", flexDirection: "row", padding: 6, justifyContent: "center" }}>
                 <Text style={{ fontSize: 15, }}>今日热议：</Text>
-                <TouchableWithoutFeedback
-                  onPress={() => {
-
-                  }}
-                >
-                  <Text style={{ fontSize: 12, lineHeight: 20, color: "#FFB16C" }}>#横看成岭侧成峰，远近高低各不同#</Text>
-                </TouchableWithoutFeedback>
+                <Text style={{ fontSize: 12, lineHeight: 20, color: "#FFB16C" }}>#横看成岭侧成峰，远近高低各不同#</Text>
               </View>
             </View>
             {/* 1-2排行框 */}
@@ -132,199 +120,12 @@ const Main = ({ navigation }) => {
           <View>
           </View>
         </View>
+
         {/* 第二个框 */}
         <View style={[styles.userShopBox]}>
-          {/* 顶部三个选项 */}
-          <View style={{
-            flexDirection: "row", justifyContent: "space-between", borderBottomWidth: 1,
-            borderBottomColor: '#CCC', borderBottomRightRadius: 30, borderBottomStartRadius: 30
-          }}>
-            <View style={{ flexDirection: "row" }}>
-              <TouchableWithoutFeedback >
-                <Text style={[styles.choice], [styles.fontSize]}>推荐</Text>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback >
-                <Text style={[styles.choice]}>关注</Text>
-              </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback >
-                <Text style={[styles.choice]}>本地</Text>
-              </TouchableWithoutFeedback>
-            </View>
-            <View style={{ height: 30, width: 80, borderRadius: 20, backgroundColor: "#FFB16C", justifyContent: "center", marginTop: 8, marginRight: 10 }}>
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  Alert.alert("your press me")
-                }}>
-                <Text style={{ color: "#fff", fontWeight: "bold", textAlign: "center" }}>更多游记</Text>
-              </TouchableWithoutFeedback>
-            </View>
-          </View>
-          <View style={{ flexDirection: "row", width: "94%", marginLeft: '3%' }}>
-            {/* 左边这一侧的用户商品信息 */}
-            <View style={{ width: "49%", paddingTop: 5, flexDirection: "column", }}>
-              {/* 试一下用flatlist */}
-              <View style={styles.showUserlist}>
-              <FlatList
-                  data={[
-                    {
-                      name: 'JK妹',
-                      userHead: "../img/a.png",
-                      userWords: '一袖青衣，晚风吹彼岸。',
-                      place: '杭州西湖风景区',
-                      countNum: '11',
-                      showUserImg: '../img/b.png',
-                    },
-                    {
-                      name: 'JK妹123213',
-                      userHead: "../img/a.png",
-                      userWords: '一袖青衣，晚风吹彼岸。',
-                      place: '杭州西湖风景区',
-                      countNum: '11',
-                      showUserImg: '../img/b.png',
-                    },
-                  ]}
-                  renderItem={({ item }) =>
-
-
-
-                    <View style={[styles.showContainer]}>
-                      {/* 图片框 */}
-                      <TouchableWithoutFeedback
-                        onPress={() => {
-                          Alert.alert("YOU PRESS ME!");
-                        }}>
-                        <Image style={{ height: 240, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: item.showUserImg }} />
-                      </TouchableWithoutFeedback>
-                      {/* 定位 */}
-                      <TouchableWithoutFeedback
-                        onPress={() => {
-                          Alert.alert("your press the text");
-                        }}>
-                        <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
-                          <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
-                          {item.place}
-                        </Text>
-                      </TouchableWithoutFeedback>
-
-                      {/* 用户发言 */}
-                      <TouchableWithoutFeedback
-                        onPress={() => {
-                          Alert.alert("your press the text");
-                        }}>
-                        <Text style={{ fontSize: 16, color: "#000000", lineHeight: 20, paddingHorizontal: 5 }}>
-                          {item.userWords}
-                        </Text>
-                      </TouchableWithoutFeedback>
-                      {/* 用户信息框 */}
-                      <View style={{ flexDirection: "row", paddingHorizontal: 5, paddingVertical: 8 }}>
-                        <Image style={{ height: 20, width: 20, borderRadius: 25, }} source={{ uri: item.userHead }} />
-                        <TouchableWithoutFeedback
-                          onPress={() => {
-                            Alert.alert("your press the Name");
-                          }}>
-                          <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{item.name}</Text>
-                        </TouchableWithoutFeedback>
-                        <View style={{ position: "absolute", right: 10, bottom: 5 }}>
-                          <TouchableWithoutFeedback
-                            onPress={() => {
-                              changeIconColor();
-                            }}
-                          >
-                            <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>
-                              <AntDesign name={'like2'} size={12} color={Iconcolor} />
-                              {item.countNum}
-                            </Text>
-                          </TouchableWithoutFeedback>
-                        </View>
-                      </View>
-                    </View>} />
-              </View>
-            </View>
-            {/* 右边这一侧的用户信息 */}
-            <View style={{ width: "49%", paddingTop: 5, flexDirection: "column", marginLeft: "2%" }}>
-              <View style={styles.showUserlist}>
-                <FlatList
-                  data={[
-                    {
-                      name: 'JK妹',
-                      userHead: "../img/a.png",
-                      userWords: '一袖青衣，晚风吹彼岸。',
-                      place: '杭州西湖风景区',
-                      countNum: '11',
-                      showUserImg: '../img/b.png',
-                    },
-                  ]}
-                  renderItem={({ item }) =>
-
-                    <View style={[styles.showContainer]}>
-                      {/* 图片框 */}
-                      <TouchableWithoutFeedback
-                        onPress={() => {
-                          Alert.alert("YOU PRESS ME!");
-                        }}>
-                        <Image style={{ height: 240, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: item.showUserImg }} />
-                      </TouchableWithoutFeedback>
-                      {/* 定位 */}
-                      <TouchableWithoutFeedback
-                        onPress={() => {
-                          Alert.alert("your press the text");
-                        }}>
-                        <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
-                          <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
-                          {item.place}
-                        </Text>
-                      </TouchableWithoutFeedback>
-
-                      {/* 用户发言 */}
-                      <TouchableWithoutFeedback
-                        onPress={() => {
-                          Alert.alert("your press the text");
-                        }}>
-                        <Text style={{ fontSize: 16, color: "#000000", lineHeight: 20, paddingHorizontal: 5 }}>
-                          {item.userWords}
-                        </Text>
-                      </TouchableWithoutFeedback>
-                      {/* 用户信息框 */}
-                      <View style={{ flexDirection: "row", paddingHorizontal: 5, paddingVertical: 8 }}>
-                        <Image style={{ height: 20, width: 20, borderRadius: 25, }} source={{ uri: item.userHead }} />
-                        <TouchableWithoutFeedback
-                          onPress={() => {
-                            Alert.alert("your press the Name");
-                          }}>
-                          <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{item.name}</Text>
-                        </TouchableWithoutFeedback>
-
-                        <View style={{ position: "absolute", right: 10, bottom: 5 }}>
-                          <TouchableWithoutFeedback
-                            onPress={() => {
-                              changeIconColor();
-                            }}
-                          >
-                            <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>
-                              <AntDesign name={'like2'} size={12} color={Iconcolor} />
-                              {item.countNum}
-                            </Text>
-                          </TouchableWithoutFeedback>
-                        </View>
-
-
-                      </View>
-                    </View>} />
-              </View>
-            </View>
-          </View>
-
-          {/* 底部 */}
-          <View style={{ width: '100%' }}>
-            <Text style={{ textAlign: "center", padding: 10, color: "#666666", }}>
-              <Text style={{ textDecorationLine: 'line-through' }}>               </Text>
-              <Text>     </Text>
-                  每一场旅行，都是一次成长。
-                  <Text>     </Text>
-              <Text style={{ textDecorationLine: 'line-through' }}>               </Text>
-            </Text>
-          </View>
+        <Details/>
         </View>
+        {/* 第二部分完 */}
       </ScrollView>
       <Bottom_nav />
     </View>

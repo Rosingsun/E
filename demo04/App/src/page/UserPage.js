@@ -16,15 +16,14 @@ function SettingsScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Settings!
-        <View>
-          <TouchableWithoutFeedback 
-          
-          >
-          <Icon name="id-card" size={15} color="red" />
-          </TouchableWithoutFeedback>
-          <Icon name="id-card" size={25} color="yellow" />
-          <Icon name="database" size={35} color="black" />
-        </View>
+      </Text>
+    </View>
+  );
+}
+function SettingsScreen2() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Settings!
       </Text>
     </View>
   );
@@ -36,22 +35,21 @@ export default function User() {
   return (
     <NavigationContainer
       independent="true"
-      
     >
       <Tab.Navigator
         tabBarOptions={{
           labelStyle: { fontSize: 12 },
           tabStyle: { width: 100 },
           style: {
-            backgroundColor: 'powderblue', style: {
-              justifyContent: "center"
-            }
+            backgroundColor: 'skyblue', 
+            borderBottomRightRadius:20,
+            borderBottomLeftRadius:20,
           },
         }}
       >
-        <Tab.Screen name="Home" component={HomeScreen}
-        />
+        <Tab.Screen name="Home" component={HomeScreen}/>
         <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="Setting2" component={SettingsScreen2} />
       </Tab.Navigator>
     </NavigationContainer>
   );
