@@ -1,4 +1,4 @@
-import React,{Component,useState}from 'react';
+import React, { Component, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -28,7 +28,7 @@ export default function focus() {
   }
 
   return (
-    <View style={{ backgroundColor: "#EFEFEF",borderRadius:20, }}>
+    <View style={{ backgroundColor: "#EFEFEF", borderRadius: 20, }}>
       <View style={{ flexDirection: "row", width: "94%", marginLeft: '3%' }}>
         {/* 左边这一侧的用户商品信息 */}
         <View style={{ width: "49%", paddingTop: 5, flexDirection: "column", }}>

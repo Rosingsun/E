@@ -18,10 +18,12 @@ export default function Details() {
         tabBarOptions={{
           labelStyle: { 
             fontSize:20,
+            borderRadius:20,
           },
           tabStyle: {
              width: 80,
-             borderBottomColor:'red'
+             borderRadius:200,
+             borderBottomColor:"#000000",
           },
           style: {
             backgroundColor: '#EFEFEF',

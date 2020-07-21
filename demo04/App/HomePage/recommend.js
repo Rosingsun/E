@@ -14,18 +14,7 @@ const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
 export default function recommend() {
-  // set icon color
-  const [Iconcolor, setIconcolor] = useState('gray');
-  const [flag, setFlag] = useState(true);
-  function changeIconColor() {
-    if (flag) {
-      setIconcolor('red');
-      setFlag(!flag);
-    } else {
-      setFlag(!flag);
-      setIconcolor('gray')
-    }
-  }
+  const[Like,setLike]=useState('');
   return (
     <View style={{ backgroundColor: "#EFEFEF",borderRadius:200, paddingBottom:20}}>
       <View style={{ flexDirection: "row", width: "94%", marginLeft: '3%' }}>
@@ -34,6 +23,7 @@ export default function recommend() {
           {/* 试一下用flatlist */}
           <View style={styles.showUserlist}>
             <FlatList
+            numColumns={true}
               data={[
                 {
                   name: 'JK妹123213',
@@ -42,6 +32,7 @@ export default function recommend() {
                   place: '杭州西湖风景区',
                   countNum: '11',
                   showUserImg: 'https://reactnative.dev/img/tiny_logo.png',
+                  like:'gray'
                 },
                 {
                   name: 'JK妹123213',
@@ -50,6 +41,7 @@ export default function recommend() {
                   place: '杭州西湖风景区',
                   countNum: '11',
                   showUserImg: 'https://reactnative.dev/img/tiny_logo.png',
+                  like:'red',
                 },
               ]}
               renderItem={({ item }) =>
@@ -72,7 +64,7 @@ export default function recommend() {
                     <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{item.name}</Text>
                     <View style={{ position: "absolute", right: 10, bottom: 5 }}>
                       <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>
-                        <AntDesign name={'like2'} size={12} color={Iconcolor} />
+                        <AntDesign name={'like2'} size={12} color={item.like} />
                         {item.countNum}
                       </Text>
                     </View>
@@ -92,6 +84,7 @@ export default function recommend() {
                   place: '杭州西湖风景区',
                   countNum: '11',
                   showUserImg: 'https://reactnative.dev/img/tiny_logo.png',
+                  like:'red',
                 },
                 {
                   name: 'JK妹123213',
@@ -100,6 +93,7 @@ export default function recommend() {
                   place: '杭州西湖风景区',
                   countNum: '11',
                   showUserImg: 'https://reactnative.dev/img/tiny_logo.png',
+                  like:'gray',
                 },
               ]}
               renderItem={({ item }) =>
@@ -120,8 +114,12 @@ export default function recommend() {
                     <Image style={{ height: 20, width: 20, borderRadius: 25, }} source={{ uri: item.userHead }} />
                     <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{item.name}</Text>
                     <View style={{ position: "absolute", right: 10, bottom: 5 }}>
-                      <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>
-                        <AntDesign name={'like2'} size={12} color={Iconcolor} />
+                      <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
+                      onPress={()=>{
+                        this.item.like='red'
+                      }}
+                      >
+                        <AntDesign name={'like2'} size={12} color={item.like} />
                         {item.countNum}
                       </Text>
                     </View>
