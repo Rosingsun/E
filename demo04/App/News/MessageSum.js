@@ -23,18 +23,20 @@ const MessageSum = ({ navigation }) => {
       <View style={[styles.top]}>
         <View style={[styles.nav_container]}>
           <View style={{ flexDirection: "row" }}>
-            <AntDesign name={'leftcircle'} size={30} color={'#fff'} />
+            <FontAwesome name={'map-marker'} size={30} color={'#fff'} />
+            <Text style={{ lineHeight: 30, marginLeft: 10, color: "#fff", fontWeight: "bold" }}>杭州</Text>
           </View>
           <View style={[styles.inputBox]}>
             <TextInput
               placeholder="abibas"
-              style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }}>
+              style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }}
+            >
             </TextInput>
             <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
           </View>
-          <FontAwesome name={'bell'} size={25} color={'#fff'} />
+          <AntDesign name={'calendar'} size={25} color={'#fff'} />
         </View>
-        <View style={{height: '100%', width: '100%'}}>
+        <View style={{ height: '100%', width: '100%' }}>
           <MessageDetails />
         </View>
       </View>
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   top: {
-    flex:6,
+    flex: 6,
     backgroundColor: "#FFB16C",
     borderBottomRightRadius: 15,
     borderBottomLeftRadius: 15,
