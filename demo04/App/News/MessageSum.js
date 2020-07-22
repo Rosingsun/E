@@ -34,7 +34,7 @@ const MessageSum = ({ navigation }) => {
           </View>
           <FontAwesome name={'bell'} size={25} color={'#fff'} />
         </View>
-        <View style={{height: '100%', width: '100%',backgroundColor:"#ffffff00"}}>
+        <View style={{height: '100%', width: '100%'}}>
           <MessageDetails />
         </View>
       </View>

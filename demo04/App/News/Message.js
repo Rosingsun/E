@@ -44,7 +44,7 @@ const Message = ({ navigation }) => {
               {/* 第二行消息详情框 */}
               <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF", borderRadius: 15, flexDirection: "row" }}>
                 <Image style={{ height: '100%', width: 132, borderRadius: 3 }} source={require('../img/a.png')} />
-                <View style={{ paddingVertical: 5, backgroundColor: "#00000080", width: 190, }}>
+                <View style={{ paddingVertical: 5, width: 190, }}>
                   <Text style={{ fontSize: 15, }}>CRUEL_JACK</Text>
                   <View >
                     <Text style={{ fontSize: 12, color: "#FFBE84", }}>#欲把西湖比西子#</Text>

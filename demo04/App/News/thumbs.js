@@ -26,17 +26,35 @@ const thumbs = ({ navigation }) => {
       <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
         <FlatList
           data={[
-            { name: 'JK&妹' },
-            
+            {
+              username: 'JK&妹',
+              userSpeach: '加油加油加油加油加油加油加油加油',
+              userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/89/5d68d979acad4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+              userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/80/5d649e8a60248_610.jpg',
+            },
+            {
+              username: 'JK&妹',
+              userSpeach: '加油加油加油加油加油加油加油加油',
+              userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/89/5d68d979acad4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+              userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/80/5d649e8a60248_610.jpg',
+            }, {
+              username: 'JK&妹',
+              userSpeach: '加油加油加油加油加油加油加油加油',
+              userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/89/5d68d979acad4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+              userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/80/5d649e8a60248_610.jpg',
+            }, {
+              username: 'JK&妹',
+              userSpeach: '加油加油加油加油加油加油加油加油',
+              userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/89/5d68d979acad4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+              userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/80/5d649e8a60248_610.jpg',
+            },
           ]}
           renderItem={({ item }) =>
             <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#ffffff", borderRadius: 15, marginTop: 15, paddingBottom: 8 }}>
-              {/* 第一行用户信息框 */}
               <View style={{ padding: 10, flexDirection: "row" }}>
-                <Image style={{ height: 45, width: 45, borderRadius: 30 }} source={require('../img/a.png')} />
-                {/* 用户信息 */}
+                <Image style={{ height: 45, width: 45, borderRadius: 30 }} source={{ uri: item.userHead }} />
                 <View style={{ flexDirection: "column", marginLeft: 10 }}>
-                  <Text style={{ fontSize: 15 }}>{item.name}</Text>
+                  <Text style={{ fontSize: 15 }}>{item.username}</Text>
                   <Text style={{ color: "#999999" }}>20-07-01 22:00</Text>
                 </View>
                 <View style={{ position: "absolute", right: 10, top: 15, alignItems: "center" }}>
@@ -46,12 +64,12 @@ const thumbs = ({ navigation }) => {
               </View>
               {/* 第二行消息详情框 */}
               <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF", borderRadius: 15, flexDirection: "row" }}>
-                <Image style={{ height: '100%', width: 132, borderRadius: 3 }} source={require('../img/a.png')} />
-                <View style={{ paddingVertical: 5, backgroundColor: "#00000080", width: 190, }}>
+                <Image style={{ height: '100%', width: 132, borderRadius: 3 }} source={{ uri: item.userHead }} />
+                <View style={{ paddingVertical: 5, width: 190, }}>
                   <Text style={{ fontSize: 15, }}>CRUEL_JACK</Text>
                   <View >
                     <Text style={{ fontSize: 12, color: "#FFBE84", }}>#欲把西湖比西子#</Text>
-                    <Text style={{ width: '100%', fontSize: 15 }}>1111111111111111111111111111111111111111111</Text>
+                    <Text style={{ width: '100%', fontSize: 15 }}>{item.userSpeach}</Text>
                   </View>
                 </View>
               </View>
