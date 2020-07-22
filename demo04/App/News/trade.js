@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
@@ -26,36 +26,70 @@ const trade = ({ navigation }) => {
         <FlatList
           data={[
             { name: 'JK&妹' },
-            { name: 'JK&妹' },
-            { name: 'JK&妹' },
-            { name: 'JK&妹' },
           ]}
           renderItem={({ item }) =>
-            <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#ffffff", borderRadius: 15, marginTop: 15, paddingBottom: 8 }}>
-              {/* 第一行用户信息框 */}
-              <View style={{ padding: 10, flexDirection: "row" }}>
-                <Image style={{ height: 45, width: 45, borderRadius: 30 }} source={require('../img/a.png')} />
-                {/* 用户信息 */}
-                <View style={{ flexDirection: "column", marginLeft: 10 }}>
-                  <Text style={{ fontSize: 15 }}>{item.name}</Text>
-                  <Text style={{ color: "#999999" }}>20-07-01 22:00</Text>
+            <View style={[styles.tradeMainBox]}>
+              {/* 第一个用户信息框 */}
+              <View >
+                <View style={{ paddingHorizontal: 10, marginTop: 10, flexDirection: "row", justifyContent: "space-between" }}>
+                  <View style={{ flexDirection: "row" }}>
+                    <Image style={{ height: 40, width: 40, borderRadius: 30 }} source={require('../img/a.png')} />
+                    {/* 用户信息 */}
+                    <View style={{ marginLeft: 5, justifyContent: "flex-end" }}>
+                      <Text style={{ fontSize: 15 }}>{item.name}:</Text>
+                    </View>
+                  </View>
+                  <View style={{ alignItems: "center", flexDirection: "row", width: '30%', justifyContent: "flex-end" }}>
+                    <AntDesign name={'sync'} size={20} color={'#999999'} />
+                    <Text style={{ fontSize: 10, color: "#484848", paddingLeft: 10 }}>已完成</Text>
+                  </View>
                 </View>
-                <View style={{ position: "absolute", right: 10, top: 15, alignItems: "center" }}>
-                  <AntDesign name={'like1'} size={20} color={'#FFB16C'} />
-                  <Text style={{ fontSize: 10, color: "#484848" }}>赞了你</Text>
-                </View>
-              </View>
-              {/* 第二行消息详情框 */}
-              <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF", borderRadius: 15, flexDirection: "row" }}>
-                <Image style={{ height: '100%', width: 132, borderRadius: 3 }} source={require('../img/a.png')} />
-                <View style={{ paddingVertical: 5, width: 190, }}>
-                  <Text style={{ fontSize: 15, }}>CRUEL_JACK</Text>
-                  <View >
-                    <Text style={{ fontSize: 12, color: "#FFBE84", }}>#欲把西湖比西子#</Text>
-                    <Text style={{ width: '100%', fontSize: 15 }}>1111111111111111111111111111111111111111111</Text>
+                {/* 第二行消息详情框 */}
+                <View style={{ width: '100%', justifyContent: "space-between" }}>
+                  <View style={styles.dealD}>
+                    <View style={{ width: '75%', height: 40, backgroundColor: "#EFEFEF", justifyContent: "center" }}>
+                      <Text style={{ fontSize: 15, color: "#999999", marginLeft: 10, }}>杭州市西溪湿地风景区</Text>
+                    </View>
+                    <View style={{ alignItems: "center", flexDirection: "row", width: "25%", justifyContent: "flex-end" }}>
+                      <Text style={{ fontSize: 12, color: "#999999", paddingRight: 5, }}>已履约</Text>
+                      <AntDesign name={'checkcircleo'} size={12} color={'#999999'} />
+                    </View>
                   </View>
                 </View>
               </View>
+              {/* 将下面的符号旋转90度 */}
+              <View style={{ width: '100%', alignItems: "center", marginTop: 3 }}>
+                <View style={{ width: 20, transform: [{ rotate: "90deg" }] }}>
+                  <FontAwesome5 name={'exchange-alt'} size={15} color={'#999999'} />
+                </View>
+              </View>
+              {/* 第二个用户信息框 */}
+              <View >
+                {/* 成交详情 */}
+                <View style={[styles.dealD]}>
+                  <View style={{ alignItems: "center", flexDirection: "row", width: "25%" }}>
+                    <Text style={{ fontSize: 12, color: "#999999" }}>已履约</Text>
+                    <AntDesign name={'checkcircleo'} size={12} color={'#999999'} />
+                  </View>
+                  <View style={{ width: '75%', height: 40, backgroundColor: "#EFEFEF", justifyContent: "center", alignItems: "flex-end" }}>
+                    <Text style={{ fontSize: 15, color: "#999999", marginRight: 10 }}>杭州市宋城风景区</Text>
+                  </View>
+                </View>
+                {/* 用户信息 */}
+                <View style={{ paddingHorizontal: 10, flexDirection: "row", justifyContent: "space-between" }}>
+                  <View style={{ alignItems: "center", flexDirection: "row", width: '50%', backgroundColor: "red", justifyContent: "flex-start" }}>
+
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <View style={{ marginLeft: 5, justifyContent: "flex-start" }}>
+                      <Text style={{ fontSize: 15, }}>{item.name}</Text>
+                    </View>
+                    <Image style={{ height: 40, width: 40, borderRadius: 30 }} source={require('../img/a.png')} />
+                    {/* 用户信息 */}
+                  </View>
+                </View>
+              </View>
+
             </View>
           } />
       </View>
@@ -70,5 +104,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#43949B",
+  },
+  tradeMainBox: {
+    width: '90%',
+    marginLeft: '5%',
+    backgroundColor: "#ffffff",
+    borderRadius: 15,
+    marginTop: 15,
+    paddingBottom: 8
+  },
+  dealD: {
+    width: '100%',
+    paddingHorizontal: 10,
+    flexDirection: "row"
   },
 });

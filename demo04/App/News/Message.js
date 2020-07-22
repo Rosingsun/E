@@ -19,37 +19,33 @@ const Message = ({ navigation }) => {
     <View style={[styles.container]}>
       {/* 顶部输入框 */}
       {/* flatlist渲染层从这开始 */}
-      <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
+      <View style={{ paddingTop:0, height: '100%', paddingBottom: 10 }}>
         <FlatList
           data={[
             { name: 'JK&妹' },
             { name: 'JK&妹' },
             { name: 'JK&妹' },
+            { name: 'JK&妹' },
+            { name: 'JK&妹' },
+            { name: 'JK&妹' },
+            { name: 'JK&妹' },
+            { name: 'JK&妹' },
           ]}
           renderItem={({ item }) =>
-            <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#ffffff", borderRadius: 15, marginTop: 15, paddingBottom: 8 }}>
+            <View style={{ width: '94%', marginLeft: '3%', backgroundColor: "#ffffff", borderRadius: 500, marginTop: 15, }}>
               {/* 第一行用户信息框 */}
               <View style={{ padding: 10, flexDirection: "row" }}>
                 <Image style={{ height: 45, width: 45, borderRadius: 30 }} source={require('../img/a.png')} />
                 {/* 用户信息 */}
-                <View style={{ flexDirection: "column", marginLeft: 10 }}>
+                <View style={{ flexDirection: "column", marginLeft: 10,justifyContent:"space-between",width:'65%' }}>
                   <Text style={{ fontSize: 15 }}>{item.name}</Text>
-                  <Text style={{ color: "#999999" }}>20-07-01 22:00</Text>
+
+                  {/* 用户发送未读消息 */}
+                  <Text style={{ color: "#999999",width:'100%',fontSize:12 }}>你好</Text>
                 </View>
-                <View style={{ position: "absolute", right: 10, top: 15, alignItems: "center" }}>
-                  <AntDesign name={'like1'} size={20} color={'#FFB16C'} />
-                  <Text style={{ fontSize: 10, color: "#484848" }}>赞了你</Text>
-                </View>
-              </View>
-              {/* 第二行消息详情框 */}
-              <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF", borderRadius: 15, flexDirection: "row" }}>
-                <Image style={{ height: '100%', width: 132, borderRadius: 3 }} source={require('../img/a.png')} />
-                <View style={{ paddingVertical: 5, width: 190, }}>
-                  <Text style={{ fontSize: 15, }}>CRUEL_JACK</Text>
-                  <View >
-                    <Text style={{ fontSize: 12, color: "#FFBE84", }}>#欲把西湖比西子#</Text>
-                    <Text style={{ width: '100%', fontSize: 15 }}>1111111111111111111111111111111111111111111</Text>
-                  </View>
+                <View style={{ position: "absolute", right: 30, top: 15, alignItems:"flex-end" }}>
+                  <Text style={{ fontSize: 10, color: "#999999" }}>14分钟前</Text>
+                  <Text style={[styles.userSend]}>1</Text>
                 </View>
               </View>
             </View>
@@ -67,4 +63,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#43949B",
   },
+  userSend:{
+    fontSize: 12,marginTop:5,lineHeight:17,fontWeight:"900",textAlign:"center",height:17,borderRadius:10,width:17, color: "#ffffff",backgroundColor:"#FF0000"
+  }
 });

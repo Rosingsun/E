@@ -20,6 +20,10 @@ const leaveMessage = ({ navigation }) => {
       <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
         <FlatList
           data={[
+            { name: 'JK&妹',
+           },
+            { name: 'JK&妹' },
+            { name: 'JK&妹' },
             { name: 'JK&妹' },
             { name: 'JK&妹' },
           ]}
@@ -33,10 +37,15 @@ const leaveMessage = ({ navigation }) => {
                   <Text style={{ fontSize: 15 }}>{item.name}</Text>
                   <Text style={{ color: "#999999" }}>20-07-01 22:00</Text>
                 </View>
-                <View style={{ position: "absolute", right: 10, top: 15, alignItems: "center" }}>
-                  <AntDesign name={'like1'} size={20} color={'#FFB16C'} />
-                  <Text style={{ fontSize: 10, color: "#484848" }}>赞了你</Text>
+                <View style={{ position: "absolute",borderRadius:10, right: 10, top: 10, height:24,width:50,backgroundColor:"#FFB16C",alignItems: "center" }}>
+                  <Text style={{ fontSize: 15, color: "#ffffff" }}>回复</Text>
                 </View>
+              </View>
+              <View style={{ width: '90%', marginLeft: '5%',fontSize:15}}>
+                <Text>回复
+                  <Text style={{color:'#FFBE84'}}>{item.name}</Text>：
+                  <Text style={{color:'#000000'}}>{item.name}</Text>
+                  </Text>
               </View>
               {/* 第二行消息详情框 */}
               <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF", borderRadius: 15, flexDirection: "row" }}>
@@ -45,7 +54,7 @@ const leaveMessage = ({ navigation }) => {
                   <Text style={{ fontSize: 15, }}>CRUEL_JACK</Text>
                   <View >
                     <Text style={{ fontSize: 12, color: "#FFBE84", }}>#欲把西湖比西子#</Text>
-                    <Text style={{ width: '100%', fontSize: 15 }}>1111111111111111111111111111111111111111111</Text>
+                    <Text style={{ width: '100%', fontSize: 12 }}>2222222222222222222222222</Text>
                   </View>
                 </View>
               </View>

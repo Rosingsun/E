@@ -13,56 +13,56 @@ export default function Details() {
   return (
     <NavigationContainer
       independent="true"
-      animationEnabled ="false"
+      animationEnabled="false"
     >
       <Tab.Navigator
         tabBarOptions={{
-          labelStyle: { 
-            fontSize:20,
-            borderRadius:20,
+          labelStyle: {
+            fontSize: 20,
+            borderRadius: 20,
           },
           tabStyle: {
-             width: 80,
-             borderRadius:200,
-             borderBottomColor:"#000000",
+            width: 80,
+            borderRadius: 200,
+            borderBottomColor: "#000000",
           },
           style: {
             backgroundColor: '#EFEFEF',
             borderTopRightRadius: 15,
             borderTopLeftRadius: 15,
-            elevation:0,
+            elevation: 0,
 
             // 设置底部灰色色块
-            borderBottomColor:"#999999",
-            borderBottomWidth:1,
-            borderRadius:24,
+            borderBottomColor: "#999999",
+            borderBottomWidth: 1,
+            borderRadius: 24,
           },
           indicatorStyle: {
             backgroundColor: "#FFB16C",
             height: 3,
             width: 30,
             borderRadius: 111,
-            marginLeft:25,
+            marginLeft: 25,
           },
         }}
       >
         <Tab.Screen
           name="recommend"
           component={recommend}
-          options={{ 
+          options={{
             title: '推荐',
-          }}                
+          }}
         />
         <Tab.Screen
           name="focus"
           component={focus}
           options={{ title: '关注' }}
-          />
+        />
         <Tab.Screen
           name="local"
           component={local}
           options={{ title: '本地' }}
-          />
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
