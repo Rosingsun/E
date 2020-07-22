@@ -4,10 +4,11 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 // import Home from './src/page/HomePage';
 import Home from '../App/HomePage/HomePage';
-import loadDB from './src/page/readDB';
+import Discovery from './DiscoveryPage/Discovery';
 import Setting from './src/page/SettingPage';
-import User from './src/page/UserPage';
+// import User from './src/page/UserPage';
 import onLoad from './src/page/onLoad';
+import MessageSum from './News/MessageSum';
 //下面是页面之内需要跳转的
 //消息页面
 //底部材料导航栏
@@ -45,7 +46,7 @@ function MyStack() {
                     ),
                 }}>
             </Stack.Screen>
-            <Stack.Screen name="loadDB" component={loadDB}
+            <Stack.Screen name="Discovery" component={Discovery}
                 options={{
                     tabBarLabel: '发现',
                     tabBarIcon: ({ color }) => (
@@ -61,9 +62,9 @@ function MyStack() {
                     ),
                 }}
             />
-            <Stack.Screen name="User" component={User}
+            <Stack.Screen name="MessageSum" component={MessageSum}
                 options={{
-                    tabBarLabel: '论坛',
+                    tabBarLabel: '消息',
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'twitch'} size={25} color={color} />
                     ),

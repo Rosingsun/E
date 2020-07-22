@@ -21,7 +21,7 @@ const biLi = width * scale / 1125;
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Message from '../../News/generalNews';
+import Message from '../../News/Message';
 
 export default function Setting() {
   return (

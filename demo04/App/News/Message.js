@@ -22,41 +22,6 @@ const Message = ({ navigation }) => {
   return (
     <View style={[styles.container]}>
       {/* 顶部输入框 */}
-      <View style={[styles.top]}>
-        <View style={[styles.nav_container]}>
-          <View style={{ flexDirection: "row" }}>
-            <AntDesign name={'leftcircle'} size={30} color={'#fff'} />
-          </View>
-          <View style={[styles.inputBox]}>
-            <TextInput
-              placeholder="abibas"
-              style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }}>
-            </TextInput>
-            <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
-          </View>
-          <TouchableWithoutFeedback>
-            <FontAwesome name={'bell'} size={25} color={'#fff'} />
-          </TouchableWithoutFeedback>
-        </View>
-        <View style={{ marginTop: 7, height: 50, width: '100%', borderRadius: 15 }}>
-          {/* <View> */}
-          <View style={{ flexDirection: "row", width: '100%', height: '100%', borderRadius: 16 }}>
-            {/* 点赞 */}
-            <View style={{ width: '33%', justifyContent: "center", alignItems: "center", backgroundColor: '#FFF', borderBottomLeftRadius: 15 }}>
-              <AntDesign style={{ lineHeight: 35, marginLeft: 5 }} name={'like2'} size={28} color={'#FFB16C'} />
-            </View>
-            {/* 消息 */}
-            <View style={{ width: '33%', justifyContent: "center", alignItems: "center" }}>
-              <AntDesign style={{ lineHeight: 35, marginLeft: 5 }} name={'message1'} size={28} color={'#ffffff'} />
-            </View>
-            {/* 邮件 */}
-            <View style={{ width: '33%', justifyContent: "center", alignItems: "center" }}>
-              <Fontisto style={{ lineHeight: 35, marginLeft: 5 }} name={'email'} size={28} color={'#ffffff'} />
-            </View>
-          </View>
-          {/* </View> */}
-        </View>
-      </View>
       {/* flatlist渲染层从这开始 */}
       <View style={{ paddingTop: 10, height: '76%', paddingBottom: 10 }}>
         <FlatList
@@ -80,24 +45,22 @@ const Message = ({ navigation }) => {
                 </View>
               </View>
               {/* 第二行消息详情框 */}
-              <View style={{  width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF", borderRadius: 15,flexDirection:"row"}}>
+              <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF", borderRadius: 15, flexDirection: "row" }}>
                 <Image style={{ height: '100%', width: 132, borderRadius: 3 }} source={require('../img/a.png')} />
-                <View style={{paddingVertical:5,backgroundColor:"#00000080",width:190,}}>
-                  <Text style={{fontSize:15,}}>CRUEL_JACK</Text>
+                <View style={{ paddingVertical: 5, backgroundColor: "#00000080", width: 190, }}>
+                  <Text style={{ fontSize: 15, }}>CRUEL_JACK</Text>
                   <View >
-                    <Text style={{fontSize:12,color:"#FFBE84",}}>#欲把西湖比西子#</Text>
-                    <Text style={{width:'100%',fontSize:15}}>1111111111111111111111111111111111111111111</Text>
+                    <Text style={{ fontSize: 12, color: "#FFBE84", }}>#欲把西湖比西子#</Text>
+                    <Text style={{ width: '100%', fontSize: 15 }}>1111111111111111111111111111111111111111111</Text>
                   </View>
                 </View>
               </View>
             </View>
           } />
       </View>
-
       {/* 中间的内容写在这里 */}
 
       {/* 底部颜色 */}
-      <Bottom_nav />
     </View>
   )
 }

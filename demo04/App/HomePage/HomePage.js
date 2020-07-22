@@ -26,7 +26,7 @@ StatusBar.setBarStyle('light-content');
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Message from '../News/generalNews';
+import Message from '../News/Message';
 export default function Home() {
   return (
     <NavigationContainer independent="true">
