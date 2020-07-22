@@ -23,11 +23,11 @@ const thumbs = ({ navigation }) => {
     <View style={[styles.container]}>
       {/* 顶部输入框 */}
       {/* flatlist渲染层从这开始 */}
-      <View style={{ paddingTop: 10, height: '76%', paddingBottom: 10 }}>
+      <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
         <FlatList
           data={[
             { name: 'JK&妹' },
-            { name: 'JK&妹' },
+            
           ]}
           renderItem={({ item }) =>
             <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#ffffff", borderRadius: 15, marginTop: 15, paddingBottom: 8 }}>
@@ -70,31 +70,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#43949B",
-  },
-  inputBox: {
-    backgroundColor: "#ffffff",
-    width: 250 * biLi,
-    borderRadius: 20,
-    padding: 0,
-    height: 35 * biLi,
-    fontSize: 12,
-    flexDirection: "row",
-  },
-  top: {
-    height: (125) * biLi,
-    width: "100%",
-    backgroundColor: "#FFB16C",
-    borderBottomRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    elevation: 8,
-  },
-  nav_container: {
-    height: 30,
-    marginTop: '8%',
-    flexDirection: "row",
-    width: "90%",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginLeft: "5%",
   },
 });

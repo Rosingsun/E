@@ -9,24 +9,15 @@ import {
   Text,
   Image,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
-
-import Bottom_nav from '../Accessories/Nav/bottom';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 const leaveMessage = ({ navigation }) => {
   return (
     <View style={[styles.container]}>
-      {/* 顶部输入框 */}
-
-
-
-      {/* flatlist渲染层从这开始 */}
-      <View style={{ paddingTop: 10, height: '76%', paddingBottom: 10 }}>
+      <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
         <FlatList
           data={[
             { name: 'JK&妹' },
@@ -72,31 +63,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#43949B",
-  },
-  inputBox: {
-    backgroundColor: "#ffffff",
-    width: 250 * biLi,
-    borderRadius: 20,
-    padding: 0,
-    height: 35 * biLi,
-    fontSize: 12,
-    flexDirection: "row",
-  },
-  top: {
-    height: (125) * biLi,
-    width: "100%",
-    backgroundColor: "#FFB16C",
-    borderBottomRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    elevation: 8,
-  },
-  nav_container: {
-    height: 30,
-    marginTop: '8%',
-    flexDirection: "row",
-    width: "90%",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginLeft: "5%",
   },
 });

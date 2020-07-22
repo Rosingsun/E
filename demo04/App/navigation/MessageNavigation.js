@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, StatusBar, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import thumbs from '../News/thumbs';
 import leaveMessage from '../News/leaveMessage';
@@ -18,17 +18,19 @@ export default function MessageDetails() {
         tabBarOptions={{
           labelStyle: {
             fontSize: 18,
-
+            width:'100%',
           },
           tabStyle: {
-            width: 80,
-            borderBottomColor: "#000000",
+            borderBottomRightRadius: 20,
+            borderBottomLeftRadius: 20,
           },
           style: {
             backgroundColor: '#FFB16C',
             borderBottomRightRadius: 20,
             borderBottomLeftRadius: 20,
             height: 50,
+            elevation:10,
+            marginTop:10,
           },
 
 
@@ -42,7 +44,12 @@ export default function MessageDetails() {
         <Tab.Screen
           name="leaveMessage"
           component={leaveMessage}
-          options={{ title: '留言消息' }}
+          options={{ 
+            tabBarLabel: '首页',
+                    tabBarIcon: ({ color }) => (
+                        <FontAwesome name={'home'} size={25} color={color} />
+                    ),
+           }}
         />
         <Tab.Screen
           name="Message"

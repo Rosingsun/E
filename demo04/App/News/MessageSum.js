@@ -34,7 +34,7 @@ const MessageSum = ({ navigation }) => {
           </View>
           <FontAwesome name={'bell'} size={25} color={'#fff'} />
         </View>
-        <View style={{ marginTop: 7, backgroundColor:"#00000000",height: '100%', width: '100%', borderRadius: 20 }}>
+        <View style={{height: '100%', width: '100%',backgroundColor:"#ffffff00"}}>
           <MessageDetails />
         </View>
       </View>
@@ -58,8 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   top: {
-    height: '80%',
-    width: "100%",
+    flex:6,
     backgroundColor: "#FFB16C",
     borderBottomRightRadius: 15,
     borderBottomLeftRadius: 15,
@@ -72,6 +71,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginLeft: "5%",
-    borderRadius:15,
   },
 });
