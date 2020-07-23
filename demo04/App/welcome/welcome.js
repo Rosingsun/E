@@ -1,6 +1,17 @@
 import React from 'react';
-import { Animated, Text, View, Easing, InteractionManager, Image, TouchableOpacity, StatusBar } from 'react-native';
+import {
+    Animated,
+    Text,
+    View,
+    Easing,
+    InteractionManager,
+    Image,
+    TouchableOpacity,
+    StatusBar,
+    TouchableNativeFeedback
+} from 'react-native';
 import Splash from './daojishi';
+
 class FadeView extends React.Component {
     state = {
         //二维坐标
@@ -40,12 +51,20 @@ export default class MainFadeView extends React.Component {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <StatusBar barStyle='light-content' backgroundColor='rgba(0,0,0,0)' translucent={true}></StatusBar>
-                
+
                 <FadeView style={{ width: 800, height: 1000 }}>
                     <Image source={{ uri: 'http://pic.51yuansu.com/backgd/cover/00/56/75/5d64fe67cab35.jpg!/fw/780/quality/90/unsharp/true/compress/true' }}
                         style={{ width: 800, height: 1000 }} />
                 </FadeView>
-                <Splash/>
+                <TouchableNativeFeedback
+                    style={{ backgroundColor: "red", height: 20, width: 20, }}
+                    onPress={
+                        setTimeout(()=>{
+                        this.props.navigation.navigate('dengru')
+                    },3000)
+                    }>
+                    <Splash />
+                </TouchableNativeFeedback >
             </View>
         );
     }

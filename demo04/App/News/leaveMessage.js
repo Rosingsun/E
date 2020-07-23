@@ -3,15 +3,11 @@ import {
   View,
   StyleSheet,
   Dimensions,
-  TouchableWithoutFeedback,
-  TextInput,
   FlatList,
   Text,
   Image,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import Fontisto from 'react-native-vector-icons/Fontisto';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 const leaveMessage = ({ navigation }) => {

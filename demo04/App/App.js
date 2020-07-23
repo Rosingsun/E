@@ -9,6 +9,7 @@ import Setting from './src/page/SettingPage';
 // import User from './src/page/UserPage';
 import onLoad from './src/page/onLoad';
 import MessageSum from './News/MessageSum';
+import welcom from'./welcome/welcome';
 //下面是页面之内需要跳转的
 //消息页面
 //底部材料导航栏
@@ -86,7 +87,9 @@ function MyStack() {
 export default function App() {
     return (
 
-        <NavigationContainer>
+        <NavigationContainer
+        independent="true"
+        >
 
             <MyStack />
         </NavigationContainer>

@@ -14,8 +14,6 @@ import {
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-// import { TextInput, Button } from 'react-native-paper';
-// import { text } from 'express';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 export default class Search extends Component {
@@ -30,10 +28,6 @@ export default class Search extends Component {
     render() {
         return (
             <View style={[styles.container]}>
-
-                {/* <StatusBar
-                  hidden={false}
-                  backgroundColor={'#FFB16C'} /> */}
                 <StatusBar
                     barStyle='light-content'
                     backgroundColor='rgba(0,0,0,0)'
@@ -42,7 +36,7 @@ export default class Search extends Component {
                     <View style={[styles.nav_container]}>
                         <View style={{ flexDirection: "row" }}>
                             <AntDesign name={'leftcircle'} size={30} color={'#fff'} onPress={() => {
-                                Alert.alert("返回")
+                                this.props.navigation.goBack()
                             }} />
                         </View>
                         <Text style={{ color: "#fff", fontSize: 20 }}>登陆</Text>
@@ -54,7 +48,7 @@ export default class Search extends Component {
                     </View>
                 </View>
                 <View style={[styles.imgBox]}>
-                    <Image style={{ height: 151, width: 151 }} source={require('./img/LOGO.png')} />
+                    <Image style={{ height: 151, width: 151 }} source={require('../img/LOGO.png')} />
                     <Text style={{ color: "#fff", fontSize: 20, marginTop: 10 }}>E交换，E旅游，E起玩</Text>
                 </View>
                 {/* 登陆框 */}
@@ -87,7 +81,7 @@ export default class Search extends Component {
                         <TouchableOpacity
                             style={styles.button}
                             onPress={() => {
-                                Alert.alert('登陆成功')
+                                this.props.navigation.navigate('App')
                                 fetch('http://10.0.2.2:3000/insert/', {
                                     method: 'POST',
                                     headers: {
@@ -100,7 +94,6 @@ export default class Search extends Component {
                                     })
                                 })
                                     .then((response) => {
-                                        console.log("/n" + response + "/n");
                                     })
                                     .catch((error) => {
                                         console.log(error);
@@ -161,7 +154,7 @@ const styles = StyleSheet.create({
         width: "80%",
         backgroundColor: "#EFEFEF",
         marginTop: 5,
-        marginLeft:10,
+        marginLeft: 10,
     },
     input: {
         width: "80%",

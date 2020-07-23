@@ -11,8 +11,7 @@ StatusBar.setBarStyle('light-content');
 const { width, scale } = Dimensions.get('window');
 const biLi = width * scale / 1125;
 
-export default class App extends Component {
-    render() {
+export default function dengru({navigation}) {
         return (
             <View style={styles.container}>
 
@@ -22,7 +21,7 @@ export default class App extends Component {
                     <View style={{ paddingTop: 60, width: 40 }}>
                             <FontAwesome name='angle-left' size={30} color="white" backgroundColor=" #43949B00 "
                             onPress={()=>{
-                                Alert.alert("write something")
+                                navigation.navigate('MainFadeView')
                             }}
                             />
                     </View>
@@ -37,7 +36,11 @@ export default class App extends Component {
                         <View>
                             <TouchableHighlight activeOpacity={0.5}
                                 style={[styles.touchButtonup]}
-                                onPress={() => { alert('什么时候才会写onpress的跳转界面啊') }}>
+                                onPress={() => { 
+                                    navigation.navigate('Search')
+                                 }}
+                                
+                                >
                                 <Text style={{ fontSize: 20, color: 'white', textAlign: 'center' }}>登入</Text>
                             </TouchableHighlight>
                         </View>
@@ -60,7 +63,6 @@ export default class App extends Component {
 
             </View>
         )
-    };
 }
 
 const styles = StyleSheet.create({
