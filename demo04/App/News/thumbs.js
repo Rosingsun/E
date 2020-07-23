@@ -27,23 +27,19 @@ const thumbs = ({ navigation }) => {
             {
               username: 'JK&妹',
               userSpeach: '加油加油加油加油加油加油加油加油',
-              userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/89/5d68d979acad4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
               userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/80/5d649e8a60248_610.jpg',
             },
             {
               username: 'JK&妹',
               userSpeach: '加油加油加油加油加油加油加油加油',
-              userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/89/5d68d979acad4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
               userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/80/5d649e8a60248_610.jpg',
             }, {
               username: 'JK&妹',
               userSpeach: '加油加油加油加油加油加油加油加油',
-              userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/89/5d68d979acad4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
               userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/80/5d649e8a60248_610.jpg',
             }, {
               username: 'JK&妹',
               userSpeach: '加油加油加油加油加油加油加油加油',
-              userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/89/5d68d979acad4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
               userHead: 'http://pic.51yuansu.com/pic3/cover/03/95/80/5d649e8a60248_610.jpg',
             },
           ]}

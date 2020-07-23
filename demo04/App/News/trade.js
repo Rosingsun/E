@@ -9,8 +9,6 @@ import {
   Text,
   Image,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
@@ -26,12 +24,14 @@ const trade = ({ navigation }) => {
         <FlatList
           data={[
             { name: 'JK&妹' },
+            { name: 'JK&妹' },
+            { name: 'JK&妹' },
           ]}
           renderItem={({ item }) =>
             <View style={[styles.tradeMainBox]}>
               {/* 第一个用户信息框 */}
               <View >
-                <View style={{ paddingHorizontal: 10, marginTop: 10, flexDirection: "row", justifyContent: "space-between" }}>
+                <View style={{ paddingHorizontal: 10, marginTop: 5, flexDirection: "row", justifyContent: "space-between" }}>
                   <View style={{ flexDirection: "row" }}>
                     <Image style={{ height: 40, width: 40, borderRadius: 30 }} source={require('../img/a.png')} />
                     {/* 用户信息 */}
@@ -45,7 +45,7 @@ const trade = ({ navigation }) => {
                   </View>
                 </View>
                 {/* 第二行消息详情框 */}
-                <View style={{ width: '100%', justifyContent: "space-between" }}>
+                <View style={{ width: '100%', justifyContent: "space-between", marginTop: 5 }}>
                   <View style={styles.dealD}>
                     <View style={{ width: '75%', height: 40, backgroundColor: "#EFEFEF", justifyContent: "center" }}>
                       <Text style={{ fontSize: 15, color: "#999999", marginLeft: 10, }}>杭州市西溪湿地风景区</Text>
@@ -76,9 +76,11 @@ const trade = ({ navigation }) => {
                   </View>
                 </View>
                 {/* 用户信息 */}
-                <View style={{ paddingHorizontal: 10, flexDirection: "row", justifyContent: "space-between" }}>
-                  <View style={{ alignItems: "center", flexDirection: "row", width: '50%', backgroundColor: "red", justifyContent: "flex-start" }}>
-
+                <View style={{ paddingHorizontal: 10, flexDirection: "row", justifyContent: "space-between", marginTop: 5 }}>
+                  <View style={{ alignItems: "center", flexDirection: "row", width: '50%', justifyContent: "space-around" }}>
+                    <Text style={{width: "30%",fontSize: 10,textAlign: "center",borderWidth: 1,paddingTop: 2,borderRadius: 3, color: "#484848", borderColor: "#484848"}}>取消订单</Text>
+                    <Text style={[styles.dealEndChoice]}>投诉</Text>
+                    <Text style={[styles.dealEndChoice]}>申述</Text>
                   </View>
                   <View style={{ flexDirection: "row" }}>
                     <View style={{ marginLeft: 5, justifyContent: "flex-start" }}>
@@ -111,11 +113,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     borderRadius: 15,
     marginTop: 15,
-    paddingBottom: 8
+    paddingBottom: 5
   },
   dealD: {
     width: '100%',
     paddingHorizontal: 10,
     flexDirection: "row"
+  },
+  dealEndChoice: {
+    width: "20%",
+    color: "#999999",
+    fontSize: 10,
+    textAlign: "center",
+    borderWidth: 1,
+    paddingTop: 2,
+    borderRadius: 3,
+    borderColor: "#999999",
   },
 });
