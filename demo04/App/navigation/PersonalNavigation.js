@@ -19,15 +19,23 @@ export default function PersonalCenterNavigation() {
         >
             <Tab.Navigator
                 tabBarOptions={{
+                    //底部横线样式
                     indicatorStyle: {
                         height: 2,
                         backgroundColor: "#FFB16C",
                         width: '10%',
-                        marginLeft:'5%',
+                        marginLeft: '5%',
+                        marginBottom:5,
                     },
+                    labelStyle: {
+                        fontSize: 20,
+                        borderRadius: 20,
+                        // backgroundColor: "red"
+                    },
+
                     tabStyle: {
-                        // backgroundColor: "#FFB16C",
-                        // width:'100%'
+                        // backgroundColor: "#6d6d6d",
+                        height:45,
                     },
                 }}
 

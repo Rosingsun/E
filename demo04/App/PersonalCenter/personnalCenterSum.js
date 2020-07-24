@@ -6,13 +6,14 @@ import {
     StatusBar,
     Image,
     StyleSheet,
+    ScrollView,
 } from 'react-native';
 import Bottom_nav from '../Accessories/Nav/bottom';
 import PersonalCenterNavigation from '../navigation/PersonalNavigation';
+// import { ScrollView } from 'react-native-gesture-handler';
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('light-content');
-
 
 export default class PersonalCenterSum extends Component {
     constructor(props) {
@@ -23,7 +24,8 @@ export default class PersonalCenterSum extends Component {
     }
     render() {
         return (
-            <View style={{ flex: 1, backgroundColor: "#43949B", }}>
+            <View style={{ flex: 1, backgroundColor: "red", }}>
+                {/* <ScrollView> */}
                 <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
                     {/*返回与设置 */}
                     <View style={{ width: '100%', position: "absolute", backgroundColor: "#00000090", height: '100%', }}>
@@ -31,8 +33,8 @@ export default class PersonalCenterSum extends Component {
                     {/* 用户信息 */}
                     <View style={[styles.userBox]}>
                         <View style={{ width: '40%', alignItems: "center" }}>
-                            <Image style={{ width: 100, height: 100, borderRadius: 50, marginTop: -50 }} source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} />
-                            <Text style={{ padding: 5, fontSize: 20 }}>aboutJOY</Text>
+                            <Image style={{ width: 100, height: 100, borderRadius: 50, marginTop: -50, borderWidth: 2, borderColor: "#fff" }} source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} />
+                            <Text style={{ fontSize: 20 }}>aboutJOY</Text>
                             <Text style={{ color: '#999999', fontSize: 15, }}>人无利，不可交也</Text>
                         </View>
                         <View style={{ width: '60%', alignItems: "flex-end", paddingRight: 20, }}>
@@ -45,11 +47,11 @@ export default class PersonalCenterSum extends Component {
                             </View>
                         </View>
                     </View>
-                    <Text style={{ color: "red" }}>HomeScreen</Text>
                 </ImageBackground>
-                <View style={{ width: '100%', height:'50%',backgroundColor:"red" }}>
+                <View style={{ width: '100%', height: '100%', backgroundColor: "red" }}>
                     <PersonalCenterNavigation />
                 </View>
+                {/* </ScrollView> */}
             </View>
         )
     }
