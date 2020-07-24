@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Details from '../navigation/HomePageNavigation';
 import Bottom_nav from '../Accessories/Nav/bottom';
 const { width, scale } = Dimensions.get("window");
@@ -48,7 +48,8 @@ const Main = ({ navigation }) => {
       <View style={[styles.top]}>
         <View style={[styles.nav_container]}>
           <View style={{ flexDirection: "row" }}>
-            <FontAwesome name={'map-marker'} size={30} color={'#fff'} />
+            <Ionicons name={'md-location-sharp'} size={30} color={'#fff'} />
+            
             <Text style={{ lineHeight: 30, marginLeft: 10, color: "#fff", fontWeight: "bold" }}>杭州</Text>
           </View>
           <View style={[styles.inputBox]}>

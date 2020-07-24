@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Fontisto from 'react-native-vector-icons/Fontisto';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import MessageDetails from '../navigation/MessageNavigation';
 import Bottom_nav from '../Accessories/Nav/bottom';
 const { width, scale } = Dimensions.get("window");
@@ -23,7 +23,7 @@ const MessageSum = ({ navigation }) => {
       <View style={[styles.top]}>
         <View style={[styles.nav_container]}>
           <View style={{ flexDirection: "row" }}>
-            <FontAwesome name={'map-marker'} size={30} color={'#fff'} />
+          <Ionicons name={'md-location-sharp'} size={30} color={'#fff'} />
             <Text style={{ lineHeight: 30, marginLeft: 10, color: "#fff", fontWeight: "bold" }}>杭州</Text>
           </View>
           <View style={[styles.inputBox]}>
@@ -36,7 +36,9 @@ const MessageSum = ({ navigation }) => {
           </View>
           <AntDesign name={'calendar'} size={25} color={'#fff'} />
         </View>
-        <View style={{ height: '100%', width: '100%' }}>
+
+
+        <View style={{ height: '100%', width: '100%' ,borderBottomRightRadius:20,borderBottomRightRadius:20,}}>
           <MessageDetails />
         </View>
       </View>
@@ -62,11 +64,11 @@ const styles = StyleSheet.create({
   top: {
     flex: 6,
     backgroundColor: "#FFB16C",
-    borderBottomRightRadius: 15,
-    borderBottomLeftRadius: 15,
+    // backgroundColor: "red",
+    // borderBottomRightRadius: 15,
+    // borderBottomLeftRadius: 15,
   },
   nav_container: {
-    height: 30,
     marginTop: '8%',
     flexDirection: "row",
     width: "90%",

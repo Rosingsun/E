@@ -2,13 +2,11 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-// import Home from './src/page/HomePage';
 import Home from '../App/HomePage/HomePage';
 import Discovery from './DiscoveryPage/Discovery';
 import Setting from './src/page/SettingPage';
-// import User from './src/page/UserPage';
-import onLoad from './src/page/onLoad';
 import MessageSum from './News/MessageSum';
+import PersonalCenterSum from './PersonalCenter/personnalCenterSum';
 import welcom from'./welcome/welcome';
 //下面是页面之内需要跳转的
 //消息页面
@@ -71,7 +69,7 @@ function MyStack() {
                     ),
                 }}
             />
-            <Stack.Screen name="onLoad" component={onLoad}
+            <Stack.Screen name="PersonalCenterSum" component={PersonalCenterSum}
                 options={{
                     tabBarLabel: '我',
                     tabBarIcon: ({ color }) => (

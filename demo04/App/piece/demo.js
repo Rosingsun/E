@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
         marginLeft: "5%",
     },
     text2: {
-        paddingBottom:20
+        paddingBottom: 20
     },
 })
 

@@ -14,6 +14,8 @@ import {
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import Entypo from 'react-native-vector-icons/Entypo'
+
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 export default class Search extends Component {
@@ -28,10 +30,10 @@ export default class Search extends Component {
     render() {
         return (
             <View style={[styles.container]}>
-                <StatusBar
+                {/* <StatusBar
                     barStyle='light-content'
                     backgroundColor='rgba(0,0,0,0)'
-                    translucent={true} />
+                    translucent={true} /> */}
                 <View style={[styles.top]}>
                     <View style={[styles.nav_container]}>
                         <View style={{ flexDirection: "row" }}>
@@ -41,7 +43,7 @@ export default class Search extends Component {
                         </View>
                         <Text style={{ color: "#fff", fontSize: 20 }}>登陆</Text>
                         <View>
-                            <FontAwesome name={'home'} size={25} color={'#fff'} onPress={() => {
+                            <Entypo name={'home'} size={25} color={'#fff'} onPress={() => {
                                 Alert.alert("这是去主页的路")
                             }} />
                         </View>
@@ -128,7 +130,7 @@ const styles = StyleSheet.create({
     },
     nav_container: {
         flex: 0.7,
-        marginTop: '11%',
+        marginTop: '5%',
         flexDirection: "row",
         width: "90%",
         justifyContent: "space-between",

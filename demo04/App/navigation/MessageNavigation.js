@@ -17,17 +17,15 @@ export default function MessageDetails() {
   return (
     <NavigationContainer
       independent="true"
+
     >
       <Tab.Navigator
         tabBarOptions={{
           labelStyle: {
-            fontSize: 18,
-            width: '120%',
-
           },
           //选中状态的选项卡的文本颜色
-          // activeTintColor: "#FFB16C",
-          activeTintColor: "#43949B",
+          activeTintColor: "#FFB16C",
+          // activeTintColor: "#43949B",
           // 未选中的选项卡的颜色
           inactiveTintColor: "#fff",
           // 选中状态的背景颜色
@@ -38,10 +36,14 @@ export default function MessageDetails() {
           // 导航栏状态
           tabStyle: {
             backgroundColor: "#FFB16C",
+            // backgroundColor: "red",
+            borderRadius: 20,
           },
           // 样式设置
           style: {
             backgroundColor: "#FFB16C",
+            // backgroundColor: "#ffffff",
+            overflow: "hidden",
             borderBottomRightRadius: 20,
             borderBottomLeftRadius: 20,
             height: 50,
@@ -54,9 +56,7 @@ export default function MessageDetails() {
             height: 0,
           },
           iconStyle: {
-
             width: '100%',
-
           },
           //显示标签和显示icon
           showLabel: false,
