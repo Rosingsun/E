@@ -49,7 +49,7 @@ const Main = ({ navigation }) => {
         <View style={[styles.nav_container]}>
           <View style={{ flexDirection: "row" }}>
             <Ionicons name={'md-location-sharp'} size={30} color={'#fff'} />
-            
+
             <Text style={{ lineHeight: 30, marginLeft: 10, color: "#fff", fontWeight: "bold" }}>杭州</Text>
           </View>
           <View style={[styles.inputBox]}>
@@ -114,7 +114,6 @@ const Main = ({ navigation }) => {
         </View>
         {/* 第二部分完 */}
       </ScrollView>
-      <Bottom_nav />
     </View>
   )
 }

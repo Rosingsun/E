@@ -13,7 +13,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MessageDetails from '../navigation/MessageNavigation';
-import Bottom_nav from '../Accessories/Nav/bottom';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 const MessageSum = ({ navigation }) => {
@@ -23,7 +22,7 @@ const MessageSum = ({ navigation }) => {
       <View style={[styles.top]}>
         <View style={[styles.nav_container]}>
           <View style={{ flexDirection: "row" }}>
-          <Ionicons name={'md-location-sharp'} size={30} color={'#fff'} />
+            <Ionicons name={'md-location-sharp'} size={30} color={'#fff'} />
             <Text style={{ lineHeight: 30, marginLeft: 10, color: "#fff", fontWeight: "bold" }}>杭州</Text>
           </View>
           <View style={[styles.inputBox]}>
@@ -38,11 +37,10 @@ const MessageSum = ({ navigation }) => {
         </View>
 
 
-        <View style={{ height: '100%', width: '100%' ,borderBottomRightRadius:20,borderBottomRightRadius:20,}}>
+        <View style={{ height: '100%', width: '100%', borderBottomRightRadius: 20, borderBottomRightRadius: 20, }}>
           <MessageDetails />
         </View>
       </View>
-      <Bottom_nav />
     </View>
   )
 }

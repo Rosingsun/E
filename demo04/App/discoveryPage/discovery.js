@@ -14,11 +14,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 //底部颜色
-import Bottom_nav from '../Accessories/Nav/bottom';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 function _showActive(pic, num, titleContain, newsTitle, newsTitleTow) {
-    num=num+5;
+  num = num + 5;
   return (
     <View style={{ height: 158, width: 300, backgroundColor: "#fff", marginLeft: 10, borderRadius: 3, }}>
       <View style={{ height: '70%' }}>
@@ -89,7 +88,6 @@ export default class discovery extends Component {
               } />
           </View>
         </ScrollView>
-        <Bottom_nav />
       </View>
     )
   }

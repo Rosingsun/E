@@ -47,10 +47,9 @@ export default class PersonalCenterSum extends Component {
                     </View>
                     <Text style={{ color: "red" }}>HomeScreen</Text>
                 </ImageBackground>
-                <View style={{ width: '100%', height: "100%" }}>
+                <View style={{ width: '100%', height:'50%',backgroundColor:"red" }}>
                     <PersonalCenterNavigation />
                 </View>
-                <Bottom_nav />
             </View>
         )
     }

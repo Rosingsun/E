@@ -25,7 +25,7 @@ function MyStack() {
             inactiveColor="#6d6d6d"
             //底部导航栏样式设置
             barStyle={{
-                backgroundColor: '#ffffff00',
+                backgroundColor: '#ffffff',
                 borderTopRightRadius: 20,
                 borderTopLeftRadius: 20,
                 borderBottomLeftRadius: 5,

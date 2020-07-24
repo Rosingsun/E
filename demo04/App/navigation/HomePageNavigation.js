@@ -31,7 +31,6 @@ export default function Details() {
             borderTopRightRadius: 15,
             borderTopLeftRadius: 15,
             elevation: 0,
-
             // 设置底部灰色色块
             borderBottomColor: "#999999",
             borderBottomWidth: 1,
