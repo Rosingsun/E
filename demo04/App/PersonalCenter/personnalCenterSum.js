@@ -8,7 +8,7 @@ import {
     StyleSheet,
 } from 'react-native';
 import Bottom_nav from '../Accessories/Nav/bottom';
-
+import PersonalCenterNavigation from '../navigation/PersonalNavigation';
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('light-content');
@@ -26,9 +26,7 @@ export default class PersonalCenterSum extends Component {
             <View style={{ flex: 1, backgroundColor: "#43949B", }}>
                 <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
                     {/*返回与设置 */}
-
                     <View style={{ width: '100%', position: "absolute", backgroundColor: "#00000090", height: '100%', }}>
-
                     </View>
                     {/* 用户信息 */}
                     <View style={[styles.userBox]}>
@@ -49,6 +47,9 @@ export default class PersonalCenterSum extends Component {
                     </View>
                     <Text style={{ color: "red" }}>HomeScreen</Text>
                 </ImageBackground>
+                <View style={{ width: '100%', height: "100%" }}>
+                    <PersonalCenterNavigation />
+                </View>
                 <Bottom_nav />
             </View>
         )
