@@ -2,13 +2,12 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-// import Home from './src/page/HomePage';
 import Home from '../App/HomePage/HomePage';
 import Discovery from './DiscoveryPage/Discovery';
 import Setting from './src/page/SettingPage';
-// import User from './src/page/UserPage';
-import onLoad from './src/page/onLoad';
 import MessageSum from './News/MessageSum';
+import PersonalCenterSum from './PersonalCenter/personnalCenterSum';
+import welcom from './welcome/welcome';
 //下面是页面之内需要跳转的
 //消息页面
 //底部材料导航栏
@@ -26,16 +25,32 @@ function MyStack() {
             inactiveColor="#6d6d6d"
             //底部导航栏样式设置
             barStyle={{
-                backgroundColor: '#ffffff00',
+                backgroundColor: '#ffffff',
                 borderTopRightRadius: 20,
                 borderTopLeftRadius: 20,
-                borderBottomLeftRadius: 5,
-                borderBottomRightRadius: 5,
                 width: "102%",
                 marginLeft: "-1%",
                 padding: 0,
                 margin: 0,
-                position: "absolute"
+                // elevation:10,
+            }}
+            tabBarOptions={{
+                style: {
+                    backgroundColor: "#FFB16C",
+                    // backgroundColor: "#ffffff",
+                    overflow: "hidden",
+                    borderBottomRightRadius: 20,
+                    borderBottomLeftRadius: 20,
+                    height: 50,
+                    elevation: 10,
+                    marginTop: 10,
+                    elevation: 0,
+                  },
+                  
+          // 选中状态的背景颜色
+          activeBackgroundColor: "blue",
+          // 未选中状态的颜色
+          inactiveBackgroundColor: "green",
             }}
         >
             <Stack.Screen name="Home" component={Home}
@@ -70,7 +85,7 @@ function MyStack() {
                     ),
                 }}
             />
-            <Stack.Screen name="onLoad" component={onLoad}
+            <Stack.Screen name="PersonalCenterSum" component={PersonalCenterSum}
                 options={{
                     tabBarLabel: '我',
                     tabBarIcon: ({ color }) => (
@@ -86,8 +101,9 @@ function MyStack() {
 export default function App() {
     return (
 
-        <NavigationContainer>
-
+        <NavigationContainer
+            independent="true"
+        >
             <MyStack />
         </NavigationContainer>
     );

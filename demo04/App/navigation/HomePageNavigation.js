@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, StatusBar, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import focus from '../HomePage/focus';
 import local from '../HomePage/local';

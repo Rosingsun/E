@@ -28,12 +28,12 @@ export default class PersonalCenterSum extends Component {
                 {/* <ScrollView> */}
                 <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
                     {/*返回与设置 */}
-                    <View style={{ width: '100%', position: "absolute", backgroundColor: "#00000090", height: '100%', }}>
+                    <View style={{ width: '100%', position: "absolute", backgroundColor: "#00000095", height: '100%', }}>
                     </View>
                     {/* 用户信息 */}
                     <View style={[styles.userBox]}>
                         <View style={{ width: '40%', alignItems: "center" }}>
-                            <Image style={{ width: 100, height: 100, borderRadius: 50, marginTop: -50, borderWidth: 2, borderColor: "#fff" }} source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} />
+                            <Image style={[styles.userHead]} source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} />
                             <Text style={{ fontSize: 20 }}>aboutJOY</Text>
                             <Text style={{ color: '#999999', fontSize: 15, }}>人无利，不可交也</Text>
                         </View>
@@ -57,6 +57,14 @@ export default class PersonalCenterSum extends Component {
     }
 }
 const styles = StyleSheet.create({
+    userHead: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        marginTop: -50,
+        borderWidth: 2,
+        borderColor: "#fff"
+    },
     userBox: {
         backgroundColor: "#fff",
         bottom: 0,

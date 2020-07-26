@@ -47,7 +47,7 @@ export default function dengru({navigation}) {
                         <View>
                             <TouchableHighlight activeOpacity={0.5}
                                 style={[styles.touchButtonnew]}
-                                onPress={() => { alert('什么时候才会写onpress的跳转界面啊') }}>
+                                onPress={() => {navigation.navigate('Register') }}>
                                 <Text style={{ fontSize: 20, color: 'white', textAlign: 'center' }}>注册</Text>
                             </TouchableHighlight>
                         </View>
