@@ -10,7 +10,7 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
-const leaveMessage = ({ navigation }) => {
+export default function leaveMessage({ navigation }){
   return (
     <View style={[styles.container]}>
       <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
@@ -34,7 +34,11 @@ const leaveMessage = ({ navigation }) => {
                   <Text style={{ color: "#999999" }}>20-07-01 22:00</Text>
                 </View>
                 <View style={{ position: "absolute",borderRadius:10, right: 10, top: 10, height:24,width:50,backgroundColor:"#FFB16C",alignItems: "center" }}>
-                  <Text style={{ fontSize: 15, color: "#ffffff" }}>回复</Text>
+                  <Text style={{ fontSize: 15, color: "#ffffff" }}
+                  onPress={()=>{
+                    navigation.navigate('MainText');
+                  }}
+                  >回复</Text>
                 </View>
               </View>
               <View style={{ width: '90%', marginLeft: '5%',fontSize:15}}>
@@ -63,7 +67,6 @@ const leaveMessage = ({ navigation }) => {
     </View>
   )
 }
-export default leaveMessage;
 const styles = StyleSheet.create({
   container: {
     flex: 1,

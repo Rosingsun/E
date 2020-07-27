@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Text, View, StatusBar, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
@@ -12,13 +13,15 @@ import thumbs from '../News/thumbs';
 import leaveMessage from '../News/leaveMessage';
 import Message from '../News/Message';
 import trade from '../News/trade';
+import MainText from '../News/NewsDetails/MainText';
+
 const Tab = createMaterialTopTabNavigator();
+const Stack = createStackNavigator();
+
 export default function MessageDetails() {
   return (
     <NavigationContainer
-      independent="true"
-
-    >
+      independent="true">
       <Tab.Navigator
         tabBarOptions={{
           labelStyle: {
@@ -80,7 +83,13 @@ export default function MessageDetails() {
               <AntDesign name={'message1'} size={28} color={color} />
             ),
           }}
-        />
+        >
+          {/* {() => {
+            <Stack.Navigator>
+              <Stack.Screen name="MainText" component={MainText} />
+            </Stack.Navigator>
+          }} */}
+        </Tab.Screen>
         <Tab.Screen
           name="Message"
           component={Message}
