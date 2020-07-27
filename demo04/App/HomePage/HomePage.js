@@ -27,6 +27,7 @@ StatusBar.setBarStyle('light-content');
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Message from '../News/Message';
+const Stack = createStackNavigator();
 export default function Home() {
   return (
     <NavigationContainer independent="true">
@@ -35,10 +36,9 @@ export default function Home() {
         <Stack.Screen name="Message" component={Message} />
       </Stack.Navigator>
     </NavigationContainer>
-
   );
 }
-const Stack = createStackNavigator();
+
 // export default class Home extends Component {
 const Main = ({ navigation }) => {
   return (
@@ -48,7 +48,8 @@ const Main = ({ navigation }) => {
       <View style={[styles.top]}>
         <View style={[styles.nav_container]}>
           <View style={{ flexDirection: "row" }}>
-            <Ionicons name={'md-location-sharp'} size={30} color={'#fff'} />
+            <Ionicons name={'md-location-sharp'} size={30} color={'#fff'}
+            />
 
             <Text style={{ lineHeight: 30, marginLeft: 10, color: "#fff", fontWeight: "bold" }}>杭州</Text>
           </View>

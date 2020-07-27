@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Bottom_nav from '../Accessories/Nav/bottom';
 import PersonalCenterNavigation from '../navigation/PersonalNavigation';
+import { SceneView } from 'react-navigation';
 // import { ScrollView } from 'react-native-gesture-handler';
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
@@ -19,11 +20,11 @@ export default class PersonalCenterSum extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
         }
     }
     render() {
         return (
+            <ScrollView style={{height:'100%'}}>
             <View style={{ flex: 1, backgroundColor: "red", }}>
                 {/* <ScrollView> */}
                 <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
@@ -48,11 +49,12 @@ export default class PersonalCenterSum extends Component {
                         </View>
                     </View>
                 </ImageBackground>
-                <View style={{ width: '100%', height: '100%', backgroundColor: "red" }}>
+                <View style={{ width: '100%', height: '80%', backgroundColor: "red" }}>
                     <PersonalCenterNavigation />
                 </View>
                 {/* </ScrollView> */}
             </View>
+            </ScrollView>
         )
     }
 }

@@ -8,20 +8,31 @@ import {
   Image,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MainText from './NewsDetails/MainText';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
-export default function leaveMessage({ navigation }){
+const Stack = createStackNavigator();
+export default function Home() {
+  return (
+    <NavigationContainer independent="true">
+      <Stack.Navigator mode="modal" headerMode="none">
+        <Stack.Screen name="leaveMessage" component={leaveMessage} />
+        <Stack.Screen name="MainText" component={MainText} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+function leaveMessage({ navigation }) {
   return (
     <View style={[styles.container]}>
       <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
         <FlatList
           data={[
-            { name: 'JK&妹',
-           },
-            { name: 'JK&妹' },
-            { name: 'JK&妹' },
-            { name: 'JK&妹' },
-            { name: 'JK&妹' },
+            { name: 'JK&妹', },
           ]}
           renderItem={({ item }) =>
             <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#ffffff", borderRadius: 15, marginTop: 15, paddingBottom: 8 }}>
@@ -33,19 +44,19 @@ export default function leaveMessage({ navigation }){
                   <Text style={{ fontSize: 15 }}>{item.name}</Text>
                   <Text style={{ color: "#999999" }}>20-07-01 22:00</Text>
                 </View>
-                <View style={{ position: "absolute",borderRadius:10, right: 10, top: 10, height:24,width:50,backgroundColor:"#FFB16C",alignItems: "center" }}>
+                <View style={{ position: "absolute", borderRadius: 10, right: 10, top: 10, height: 24, width: 50, backgroundColor: "#FFB16C", alignItems: "center" }}>
                   <Text style={{ fontSize: 15, color: "#ffffff" }}
-                  onPress={()=>{
-                    navigation.navigate('MainText');
-                  }}
+                    onPress={() => {
+                      navigation.navigate('MainText');
+                    }}
                   >回复</Text>
                 </View>
               </View>
-              <View style={{ width: '90%', marginLeft: '5%',fontSize:15}}>
+              <View style={{ width: '90%', marginLeft: '5%', fontSize: 15 }}>
                 <Text>回复
-                  <Text style={{color:'#FFBE84'}}>{item.name}</Text>：
-                  <Text style={{color:'#000000'}}>{item.name}</Text>
-                  </Text>
+                  <Text style={{ color: '#FFBE84' }}>{item.name}</Text>：
+                  <Text style={{ color: '#000000' }}>{item.name}</Text>
+                </Text>
               </View>
               {/* 第二行消息详情框 */}
               <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF", borderRadius: 15, flexDirection: "row" }}>
