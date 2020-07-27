@@ -18,6 +18,10 @@ function bottomLine() {
     </View>
   );
 };
+
+
+
+
 export default class MainText extends Component {
   constructor(props) {
     super(props);
@@ -132,18 +136,21 @@ export default class MainText extends Component {
                       id: "桥本环奈",
                       time: '2020.7.20.16.14',
                       word: "这是我发表的评论",
+                      ddttaa:[
+                        { idd: "user01" ,wordd: "这是小评论01"},
+                        {idd: "user02" ,wordd: "这是小评论02" },
+                      ]
                     },
                     {
                       head: '../../img/1.jpg',
                       id: "桥本环奈",
-                      time: '2020.7.20.16.15',
-                      word: "这是我发表的评论"
-                    },
-                    {
-                      head: '../../img/1.jpg',
-                      id: "桥本环奈",
-                      time: '2020.7.20.16.16',
-                      word: "这是我发表的评论"
+                      time: '2020.7.20.16.14',
+                      word: "这是我发表的评论",
+                      ddttaa:[
+                        { idd: "user03" ,wordd: "这是小评论03"},
+                        {idd: "user04" ,wordd: "这是小评论04" },
+                        {idd: "user05" ,wordd: "这是小评论05" },
+                      ]
                     },
                   ]}
                   ItemSeparatorComponent={bottomLine}
@@ -156,27 +163,13 @@ export default class MainText extends Component {
                           <Text style={{ fontSize: 12, color: '#4F4F4F' }}>{item.id}</Text>
                           <Text style={{ fontSize: 15 }}>{item.word}</Text>
 
-                          {/* 评论下的评论 */}
-                          {/* <View style={{width:"85%",backgroundColor:'red',height:100}}> */}
-                          <FlatList
-                            data={[
-                              {
-                                idd: '新垣结衣',
-                                wordd: '好的呢！'
-                              },
-                              {
-                                idd: '新垣结衣',
-                                wordd: '好的呢！'
-                              },
-                            ]}
-                            renderItem={({ item }) =>
-                              <View style={{ width: "92%", backgroundColor: '#EFEFEF', flexDirection: 'row', borderRadius: 5 }}>
-                                <Text style={{ marginLeft: '5%', color: '#FFB16C', fontSize: 10 }}>{item.idd}:</Text>
-                                <Text style={{ color: '#000000', fontSize: 10 }}>{item.wordd}</Text>
-                              </View>
-
-                            }
-                          />
+                          {item.ddttaa.map((item) => {
+                            return(
+                            <View style={{ width: "92%", backgroundColor: '#EFEFEF', flexDirection: 'row', borderRadius: 5 }}>
+                              <Text style={{ marginLeft: '5%', color: '#FFB16C', fontSize: 10 }}>{item.idd}:</Text>
+                              <Text style={{ color: '#000000', fontSize: 10 }}>{item.wordd}</Text>
+                            </View>
+                          )})}
                           <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', width: "100%", marginBottom: 5 }}>
                             <Text style={{ fontSize: 10, color: '#999999' }}>{item.time}</Text>
                             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', }}>
