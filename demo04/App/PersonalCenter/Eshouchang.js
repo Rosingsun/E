@@ -9,7 +9,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 var userDate = [
   {
     key: "日落的色彩给向日葵镀上了一层金色，相间的小道日落的色彩给向日葵镀上了一层金色，相间的小道日落的色彩给向日葵镀上了一层金色，相间的小道日落的色彩给向日葵镀上了一层金色，相间的小道",
-
   },
   { key: "日落的色彩给向日葵镀上了一层金色，相间的小道02" },
   { key: "日落的色彩给向日葵镀上了一层金色，相间的小道03" },
@@ -59,17 +58,19 @@ function SwiperMainContainer(item) {
           <Text style={[styles.userWord]}>{item.key}</Text>
           <View style={{ width: '100%', flexDirection: "row", paddingBottom: 10, }}>
             <Text style={[styles.activeSign]}>#种豆南山下</Text>
+            <Text style={[styles.activeSign]}>#种豆南山下</Text>
+            <Text style={[styles.activeSign]}>#种豆南山下</Text>
           </View>
           <View style={{ width: '100%', height: 30, flexDirection: "row", justifyContent: "space-between" }}>
             <View>
               <MaterialCommunityIcons name={'share-circle'} size={30} color={'#484848'} />
             </View>
-            <View style={{ flexDirection: "row" }}>
-              <Ionicons name={'md-location-sharp'} size={30} color={'#484848'} />
-              <Ionicons name={'md-location-sharp'} size={30} color={'#484848'} />
-              <View style={{flexDirection:"row",alignItems:"center",borderWidth:1,borderColor:"#000000",borderRadius:20,paddingHorizontal:5}}>
+            <View style={{ flexDirection: "row" ,width:130,justifyContent:"space-between"}}>
+              <AntDesign name={'staro'} size={30} color={'#484848'} />
+              <AntDesign name={'message1'} size={30} color={'#484848'} />
+              <View style={{ flexDirection: "row", alignItems: "center", borderWidth: 1, borderColor: "#000000", borderRadius: 20, paddingHorizontal: 5 }}>
                 <AntDesign name={'like2'} size={20} color={'#484848'} />
-                <Text style={{fontSize:12}}>123</Text>
+                <Text style={{ fontSize: 12 }}>123</Text>
               </View>
             </View>
           </View>
@@ -128,5 +129,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#43949B28",
     fontSize: 12,
     color: "#197178",
+    marginRight: 10,
   },
 })

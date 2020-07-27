@@ -18,10 +18,6 @@ function bottomLine() {
     </View>
   );
 };
-
-
-
-
 export default class MainText extends Component {
   constructor(props) {
     super(props);
@@ -68,7 +64,6 @@ export default class MainText extends Component {
                     }}
                   />
                 </View>
-
               </View>
               {/* 九宫格下面的用户文字 */}
               <View style={styles.word}>
@@ -147,6 +142,9 @@ export default class MainText extends Component {
                       time: '2020.7.20.16.14',
                       word: "这是我发表的评论",
                       ddttaa:[
+                        { idd: "user03" ,wordd: "这是小评论03"},
+                        {idd: "user04" ,wordd: "这是小评论04" },
+                        {idd: "user05" ,wordd: "这是小评论05" },
                         { idd: "user03" ,wordd: "这是小评论03"},
                         {idd: "user04" ,wordd: "这是小评论04" },
                         {idd: "user05" ,wordd: "这是小评论05" },

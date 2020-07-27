@@ -25,7 +25,7 @@ function MyStack() {
             inactiveColor="#6d6d6d"
             //底部导航栏样式设置
             barStyle={{
-                backgroundColor: '#ffffff',
+                backgroundColor: '#fff',
                 borderTopRightRadius: 20,
                 borderTopLeftRadius: 20,
                 width: "102%",
@@ -36,8 +36,6 @@ function MyStack() {
             }}
             tabBarOptions={{
                 style: {
-                    backgroundColor: "#FFB16C",
-                    // backgroundColor: "#ffffff",
                     overflow: "hidden",
                     borderBottomRightRadius: 20,
                     borderBottomLeftRadius: 20,
@@ -45,10 +43,11 @@ function MyStack() {
                     elevation: 10,
                     marginTop: 10,
                     elevation: 0,
+                    activeBackgroundColor:"red"
                   },
                   
           // 选中状态的背景颜色
-          activeBackgroundColor: "blue",
+          activeBackgroundColor: "black",
           // 未选中状态的颜色
           inactiveBackgroundColor: "green",
             }}

@@ -23,20 +23,19 @@ export default function PersonalCenterNavigation() {
                     indicatorStyle: {
                         height: 2,
                         backgroundColor: "#FFB16C",
-                        width: '10%',
-                        marginLeft: '5%',
-                        marginBottom:5,
+                        width: 20,
+                        marginLeft: 40,
+                        marginBottom: 5,
                     },
                     labelStyle: {
                         fontSize: 20,
                         borderRadius: 20,
-                        // backgroundColor: "red"
                     },
 
                     tabStyle: {
-                        // backgroundColor: "#6d6d6d",
-                        height:45,
+                        height: 45,
                     },
+                    activeBackgroundColor: "red"
                 }}
 
             >
