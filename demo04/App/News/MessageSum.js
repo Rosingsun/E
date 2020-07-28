@@ -20,24 +20,26 @@ const MessageSum = ({ navigation }) => {
     <View style={[styles.container]}>
       {/* 顶部输入框 */}
       <View style={[styles.top]}>
-        <View style={[styles.nav_container]}>
-          <View style={{ flexDirection: "row" }}>
-            <Ionicons name={'md-location-sharp'} size={30} color={'#fff'} />
-            <Text style={{ lineHeight: 30, marginLeft: 10, color: "#fff", fontWeight: "bold" }}>杭州</Text>
+        <View style={{ width: '100%', backgroundColor: "#fff", }}>
+          <View style={[styles.nav_container]}>
+            <View style={{ flexDirection: "row" }}>
+              <Ionicons name={'md-location-sharp'} size={30} color={'#000000'} />
+              <Text style={{ lineHeight: 30, marginLeft: 10, color: "#000000", fontWeight: "bold" }}>杭州</Text>
+            </View>
+            <View style={[styles.inputBox]}>
+              <TextInput
+                placeholder="abibas"
+                style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }}
+              >
+              </TextInput>
+              <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
+            </View>
+            <AntDesign name={'calendar'} size={25} color={'#000000'} />
           </View>
-          <View style={[styles.inputBox]}>
-            <TextInput
-              placeholder="abibas"
-              style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }}
-            >
-            </TextInput>
-            <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
-          </View>
-          <AntDesign name={'calendar'} size={25} color={'#fff'} />
         </View>
 
 
-        <View style={{ height: '100%', width: '100%', borderBottomRightRadius: 20, borderBottomRightRadius: 20, }}>
+        <View style={{ height: '90%', width: '100%', borderBottomRightRadius: 20, borderBottomRightRadius: 20, }}>
           <MessageDetails />
         </View>
       </View>
@@ -48,10 +50,10 @@ export default MessageSum;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#43949B",
+    backgroundColor: "#EFEFEF",
   },
   inputBox: {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#EFEFEF",
     width: 250 * biLi,
     borderRadius: 20,
     padding: 0,
@@ -60,11 +62,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   top: {
-    flex: 6,
-    backgroundColor: "#FFB16C",
-    // backgroundColor: "red",
-    // borderBottomRightRadius: 15,
-    // borderBottomLeftRadius: 15,
+    backgroundColor: "#00000000",
   },
   nav_container: {
     marginTop: '8%',

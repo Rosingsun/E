@@ -1,4 +1,4 @@
-import React,{Component,useState}from 'react';
+import React, { Component, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -14,16 +14,16 @@ const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
 export default function recommend() {
-  const[Like,setLike]=useState('');
+  const [Like, setLike] = useState('');
   return (
-    <View style={{ backgroundColor: "#EFEFEF",borderRadius:200, paddingBottom:20}}>
+    <View style={{ backgroundColor: "#EFEFEF", borderRadius: 200, paddingBottom: 20 }}>
       <View style={{ flexDirection: "row", width: "94%", marginLeft: '3%' }}>
         {/* 左边这一侧的用户商品信息 */}
-        <View style={{ width: "49%", paddingTop: 5, flexDirection: "column", }}>
+        <View style={{ width: "50%", flexDirection: "column", }}>
           {/* 试一下用flatlist */}
           <View style={styles.showUserlist}>
             <FlatList
-            numColumns={true}
+              numColumns={true}
               data={[
                 {
                   name: 'JK妹123213',
@@ -31,8 +31,8 @@ export default function recommend() {
                   userWords: '一袖青衣，晚风吹彼岸。',
                   place: '杭州西湖风景区',
                   countNum: '11',
-                  showUserImg: 'https://reactnative.dev/img/tiny_logo.png',
-                  like:'gray'
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/99/33/5f05958b37792_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  like: 'gray'
                 },
                 {
                   name: 'JK妹123213',
@@ -40,8 +40,17 @@ export default function recommend() {
                   userWords: '一袖青衣，晚风吹彼岸。',
                   place: '杭州西湖风景区',
                   countNum: '11',
-                  showUserImg: 'https://reactnative.dev/img/tiny_logo.png',
-                  like:'red',
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/94/80/5ce3cfc9a3d52_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  like: 'red',
+                },
+                {
+                  name: 'JK妹123213',
+                  userHead: "../img/a.png",
+                  userWords: '一袖青衣，晚风吹彼岸。',
+                  place: '杭州西湖风景区',
+                  countNum: '11',
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/99/33/5f05958b37792_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  like: 'gray'
                 },
               ]}
               renderItem={({ item }) =>
@@ -73,7 +82,7 @@ export default function recommend() {
           </View>
         </View>
         {/* 右边这一侧的用户信息 */}
-        <View style={{ width: "49%", paddingTop: 5, flexDirection: "column", marginLeft: "2%" }}>
+        <View style={{ width: "50%", flexDirection: "column", marginLeft: "2%" }}>
           <View style={styles.showUserlist}>
             <FlatList
               data={[
@@ -83,8 +92,8 @@ export default function recommend() {
                   userWords: '一袖青衣，晚风吹彼岸。',
                   place: '杭州西湖风景区',
                   countNum: '11',
-                  showUserImg: 'https://reactnative.dev/img/tiny_logo.png',
-                  like:'red',
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/99/29/5efda46aa675b_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  like: 'red',
                 },
                 {
                   name: 'JK妹123213',
@@ -92,8 +101,8 @@ export default function recommend() {
                   userWords: '一袖青衣，晚风吹彼岸。',
                   place: '杭州西湖风景区',
                   countNum: '11',
-                  showUserImg: 'https://reactnative.dev/img/tiny_logo.png',
-                  like:'gray',
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/98/90/5ec62c32e30b4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  like: 'gray',
                 },
               ]}
               renderItem={({ item }) =>
@@ -115,9 +124,9 @@ export default function recommend() {
                     <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{item.name}</Text>
                     <View style={{ position: "absolute", right: 10, bottom: 5 }}>
                       <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
-                      onPress={()=>{
-                        this.item.like='red'
-                      }}
+                        onPress={() => {
+                          this.item.like = 'red'
+                        }}
                       >
                         <AntDesign name={'like2'} size={12} color={item.like} />
                         {item.countNum}
@@ -138,10 +147,11 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   showContainer: {
-    width: 185 * biLi,
+    width: '100%',
     borderRadius: 3,
     marginTop: 10,
     backgroundColor: "#fff",
+    elevation: 4,
   },
   item: {
     padding: 0,

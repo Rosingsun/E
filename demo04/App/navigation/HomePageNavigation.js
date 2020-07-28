@@ -19,27 +19,27 @@ export default function Details() {
         tabBarOptions={{
           labelStyle: {
             fontSize: 20,
-            padding: 0,
-            height: '100%',
+            padding:0,
+            height:'100%',
           },
           tabStyle: {
             width: 80,
-            padding: 0,
-            // borderRadius: 200,
+            padding:0,
             borderBottomColor: "#000000",
-            height: 30,
+            height:30,
+
           },
           style: {
             backgroundColor: '#EFEFEF',
-            height: 30,
-            padding: 0,
+            height:30,
+            padding:0,
             elevation: 0,
           },
           indicatorStyle: {
+            backgroundColor: "#FFB16C",
             height: 3,
             width: 30,
             borderRadius: 111,
-            backgroundColor: "#FAAF3D",
             marginLeft: 25,
           },
         }}

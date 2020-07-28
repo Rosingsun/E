@@ -80,10 +80,10 @@ const Main = ({ navigation }) => {
             </View>
             {/* 1-2排行框 */}
             <View style={{ flexDirection: "row", width: '100%' }}>
-              <View style={{ width: '49%', height: '100%',overflow:"hidden" }}>
-                <ImageBackground style={{ height: 110, marginTop: 10, width: '100%', borderRadius: 3,overflow:"hidden" }} source={require('../img/Photo/hangzhou.jpg')} />
-                
-                <View style={{position:"absolute",width:'100%',height:'100%',marginBottom:'-40%',marginLeft:0,borderRadius:400,backgroundColor:"#fff",bottom:0,}}></View>
+              <View style={{ width: '49%', height: '100%', overflow: "hidden" }}>
+                <ImageBackground style={{ height: 110, marginTop: 10, width: '100%', borderRadius: 3, overflow: "hidden" }} source={require('../img/Photo/hangzhou.jpg')} />
+
+                <View style={{ position: "absolute", width: '100%', height: '100%', marginBottom: '-40%', marginLeft: 0, borderRadius: 400, backgroundColor: "#fff", bottom: 0, }}></View>
                 {/* <Text>1111</Text> */}
               </View>
               <View style={{ width: "49%", flexDirection: "column", justifyContent: "space-around", alignItems: 'center', marginLeft: '2%' }}>
@@ -115,6 +115,9 @@ const Main = ({ navigation }) => {
 
         {/* 第二个框 */}
         <View style={[styles.userShopBox]}>
+          {/* <View style={{ width: 50, height: 20, borderRadius: 20, }}>
+
+          </View> */}
           <Details />
         </View>
         {/* 第二部分完 */}
@@ -152,7 +155,6 @@ const styles = StyleSheet.create({
   },
   userShopBox: {
     width: "100%",
-    marginTop: 15 * biLi,
     backgroundColor: "#EFEFEF",
     borderRadius: 20,
   },
@@ -191,7 +193,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#EFEFEF",
   },
   inputBox: {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#EFEFEF",
     width: 250 * biLi,
     borderRadius: 20,
     padding: 0,
@@ -200,12 +202,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   top: {
-    // position: "absolut0",
     height: (80) * biLi,
     width: "100%",
     backgroundColor: "#fff",
     borderRadius: 0,
-    elevation: 8,
+    elevation: 1,
   },
   nav_container: {
     flex: 0.7,

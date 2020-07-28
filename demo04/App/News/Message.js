@@ -19,7 +19,7 @@ const Message = ({ navigation }) => {
     <View style={[styles.container]}>
       {/* 顶部输入框 */}
       {/* flatlist渲染层从这开始 */}
-      <View style={{ paddingTop:0, height: '100%', paddingBottom: 10 }}>
+      <View style={{ paddingTop: 0, height: '100%', paddingBottom: 10 }}>
         <FlatList
           data={[
             { name: 'JK&妹' },
@@ -37,13 +37,13 @@ const Message = ({ navigation }) => {
               <View style={{ padding: 10, flexDirection: "row" }}>
                 <Image style={{ height: 45, width: 45, borderRadius: 30 }} source={require('../img/a.png')} />
                 {/* 用户信息 */}
-                <View style={{ flexDirection: "column", marginLeft: 10,justifyContent:"space-between",width:'65%' }}>
+                <View style={{ flexDirection: "column", marginLeft: 10, justifyContent: "space-between", width: '65%' }}>
                   <Text style={{ fontSize: 15 }}>{item.name}</Text>
 
                   {/* 用户发送未读消息 */}
-                  <Text style={{ color: "#999999",width:'100%',fontSize:12 }}>你好</Text>
+                  <Text style={{ color: "#999999", width: '100%', fontSize: 12 }}>你好</Text>
                 </View>
-                <View style={{ position: "absolute", right: 30, top: 15, alignItems:"flex-end" }}>
+                <View style={{ position: "absolute", right: 30, top: 15, alignItems: "flex-end" }}>
                   <Text style={{ fontSize: 10, color: "#999999" }}>14分钟前</Text>
                   <Text style={[styles.userSend]}>1</Text>
                 </View>
@@ -61,9 +61,9 @@ export default Message;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#43949B",
+    backgroundColor: "#EFEFEF",
   },
-  userSend:{
-    fontSize: 12,marginTop:5,lineHeight:17,fontWeight:"900",textAlign:"center",height:17,borderRadius:10,width:17, color: "#ffffff",backgroundColor:"#FF0000"
+  userSend: {
+    fontSize: 12, marginTop: 5, lineHeight: 17, fontWeight: "900", textAlign: "center", height: 17, borderRadius: 10, width: 17, color: "#ffffff", backgroundColor: "#FF0000"
   }
 });

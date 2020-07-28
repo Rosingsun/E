@@ -41,14 +41,14 @@ export default function dengru({navigation}) {
                                     navigation.navigate('Search')
                                  }}
                                 >
-                                <Text style={{ fontSize: 20, color: 'white', textAlign: 'center' }}>登入</Text>
+                                <Text style={{ fontSize: 20, color: '#2F3843', textAlign: 'center' }}>登入</Text>
                             </TouchableHighlight>
                         </View>
                         <View>
                             <TouchableHighlight activeOpacity={0.5}
                                 style={[styles.touchButtonnew]}
                                 onPress={() => {navigation.navigate('Register') }}>
-                                <Text style={{ fontSize: 20, color: 'white', textAlign: 'center' }}>注册</Text>
+                                <Text style={{ fontSize: 20, color: '#2F3843', textAlign: 'center' }}>注册</Text>
                             </TouchableHighlight>
                         </View>
                     </View>
@@ -80,7 +80,9 @@ const styles = StyleSheet.create({
         height: 35 * biLi,
         width: 90 * biLi,
         borderRadius: 3,
-        backgroundColor: "#2F3843",
+        backgroundColor: "#fff",
+        borderWidth:3,
+        borderColor:"#2F3843",
         justifyContent: 'center',
 
     },
@@ -88,7 +90,9 @@ const styles = StyleSheet.create({
         height: 35 * biLi,
         width: 90 * biLi,
         borderRadius: 3,
-        backgroundColor: '#2F3843',
+        backgroundColor: "#fff",
+        borderWidth:3,
+        borderColor:"#2F3843",
         justifyContent: 'center'
     },
     topText: {

@@ -78,7 +78,7 @@ const trade = ({ navigation }) => {
                 {/* 用户信息 */}
                 <View style={{ paddingHorizontal: 10, flexDirection: "row", justifyContent: "space-between", marginTop: 5 }}>
                   <View style={{ alignItems: "center", flexDirection: "row", width: '50%', justifyContent: "space-around" }}>
-                    <Text style={{width: "30%",fontSize: 10,textAlign: "center",borderWidth: 1,paddingTop: 2,borderRadius: 3, color: "#484848", borderColor: "#484848"}}>取消订单</Text>
+                    <Text style={[styles.sealCost]}>取消订单</Text>
                     <Text style={[styles.dealEndChoice]}>投诉</Text>
                     <Text style={[styles.dealEndChoice]}>申述</Text>
                   </View>
@@ -105,7 +105,7 @@ export default trade;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#43949B",
+    backgroundColor: "#EFEFEF",
   },
   tradeMainBox: {
     width: '90%',
@@ -130,4 +130,13 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     borderColor: "#999999",
   },
+  sealCost: {
+    width: "30%",
+    fontSize: 10,
+    textAlign: "center",
+    paddingTop: 2,
+    borderRadius: 10,
+    color: "#fff",
+    backgroundColor: "#6C9575",
+  }
 });

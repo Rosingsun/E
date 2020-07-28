@@ -32,7 +32,18 @@ function leaveMessage({ navigation }) {
       <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
         <FlatList
           data={[
-            { name: 'JK&妹', },
+            {
+              key: "1",
+              name: 'JK&妹'
+            },
+            {
+              key: "1",
+              name: 'JK&妹'
+            },
+            {
+              key: "1",
+              name: 'JK&妹'
+            },
           ]}
           renderItem={({ item }) =>
             <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#ffffff", borderRadius: 15, marginTop: 15, paddingBottom: 8 }}>
@@ -44,7 +55,7 @@ function leaveMessage({ navigation }) {
                   <Text style={{ fontSize: 15 }}>{item.name}</Text>
                   <Text style={{ color: "#999999" }}>20-07-01 22:00</Text>
                 </View>
-                <View style={{ position: "absolute", borderRadius: 10, right: 10, top: 10, height: 24, width: 50, backgroundColor: "#FFB16C", alignItems: "center" }}>
+                <View style={{ position: "absolute", borderRadius: 10, right: 10, top: 10, height: 24, width: 50, backgroundColor: "#6C9575", alignItems: "center" }}>
                   <Text style={{ fontSize: 15, color: "#ffffff" }}
                     onPress={() => {
                       navigation.navigate('MainText');
@@ -59,7 +70,7 @@ function leaveMessage({ navigation }) {
                 </Text>
               </View>
               {/* 第二行消息详情框 */}
-              <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF", borderRadius: 15, flexDirection: "row" }}>
+              <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF50", borderRadius: 15, flexDirection: "row" }}>
                 <Image style={{ height: '100%', width: 132, borderRadius: 3 }} source={require('../img/a.png')} />
                 <View style={{ paddingVertical: 5, width: 190, }}>
                   <Text style={{ fontSize: 15, }}>CRUEL_JACK</Text>
@@ -81,6 +92,6 @@ function leaveMessage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#43949B",
+    backgroundColor: "#EFEFEF",
   },
 });

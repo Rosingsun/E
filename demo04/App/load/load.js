@@ -117,17 +117,17 @@ export default class Search extends Component {
                         <Text style={{ marginTop: -7 }}>__________</Text>
                     </View>
                     <View style={{ marginTop: 20, width: '60%', marginLeft: '20%', flexDirection: "row", justifyContent: "space-between" }}>
-                    <View style={{alignItems:"center"}}>
+                        <View style={{ alignItems: "center" }}>
                             <AntDesign name={'wechat'} size={50} color={'#46BB36'} />
-                            <Text style={{ fontSize: 12, color: "#6C6C6C",marginTop:2 }}>微信登录</Text>
+                            <Text style={{ fontSize: 12, color: "#6C6C6C", marginTop: 2 }}>微信登录</Text>
                         </View>
-                        <View style={{alignItems:"center"}}>
+                        <View style={{ alignItems: "center" }}>
                             <AntDesign name={'weibo-circle'} size={50} color={'#EA5D5C'} />
-                            <Text style={{ fontSize: 12, color: "#6C6C6C",marginTop:2 }}>微博登录</Text>
+                            <Text style={{ fontSize: 12, color: "#6C6C6C", marginTop: 2 }}>微博登录</Text>
                         </View>
-                        <View style={{alignItems:"center"}}>
+                        <View style={{ alignItems: "center" }}>
                             <Entypo name={'qq-with-circle'} size={50} color={'#5EAADE'} />
-                            <Text style={{ fontSize: 12, color: "#6C6C6C",marginTop:2 }}>QQ登录</Text>
+                            <Text style={{ fontSize: 12, color: "#6C6C6C", marginTop: 2 }}>QQ登录</Text>
                         </View>
                     </View>
                 </View>

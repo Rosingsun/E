@@ -23,6 +23,7 @@ const thumbs = ({ navigation }) => {
       {/* flatlist渲染层从这开始 */}
       <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
         <FlatList
+
           data={[
             {
               username: 'JK&妹',
@@ -52,12 +53,12 @@ const thumbs = ({ navigation }) => {
                   <Text style={{ color: "#999999" }}>20-07-01 22:00</Text>
                 </View>
                 <View style={{ position: "absolute", right: 10, top: 15, alignItems: "center" }}>
-                  <AntDesign name={'like1'} size={20} color={'#FFB16C'} />
+                  <AntDesign name={'like1'} size={20} color={'#2F3843'} />
                   <Text style={{ fontSize: 10, color: "#484848" }}>赞了你</Text>
                 </View>
               </View>
               {/* 第二行消息详情框 */}
-              <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF", borderRadius: 15, flexDirection: "row" }}>
+              <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF50", borderRadius: 15, flexDirection: "row" }}>
                 <Image style={{ height: '100%', width: 132, borderRadius: 3 }} source={{ uri: item.userHead }} />
                 <View style={{ paddingVertical: 5, width: 190, }}>
                   <Text style={{ fontSize: 15, }}>CRUEL_JACK</Text>
@@ -81,6 +82,6 @@ export default thumbs;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#43949B",
+    backgroundColor: "#EFEFEF",
   },
 });
