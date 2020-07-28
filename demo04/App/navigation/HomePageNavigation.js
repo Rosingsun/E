@@ -19,28 +19,27 @@ export default function Details() {
         tabBarOptions={{
           labelStyle: {
             fontSize: 20,
-            borderRadius: 20,
+            padding: 0,
+            height: '100%',
           },
           tabStyle: {
             width: 80,
-            borderRadius: 200,
+            padding: 0,
+            // borderRadius: 200,
             borderBottomColor: "#000000",
+            height: 30,
           },
           style: {
             backgroundColor: '#EFEFEF',
-            borderTopRightRadius: 15,
-            borderTopLeftRadius: 15,
+            height: 30,
+            padding: 0,
             elevation: 0,
-            // 设置底部灰色色块
-            borderBottomColor: "#999999",
-            borderBottomWidth: 1,
-            borderRadius: 24,
           },
           indicatorStyle: {
-            backgroundColor: "#FFB16C",
             height: 3,
             width: 30,
             borderRadius: 111,
+            backgroundColor: "#FAAF3D",
             marginLeft: 25,
           },
         }}

@@ -20,12 +20,12 @@ function MyStack() {
             //刚进入时候的第一个可见页面
             initialRouteName="home"
             //激活状态的图标颜色
-            activeColor="#FFB16C"
+            activeColor="#6C9575"
             //熄灭状态图标颜色
-            inactiveColor="#6d6d6d"
+            inactiveColor="#fff"
             //底部导航栏样式设置
             barStyle={{
-                backgroundColor: '#fff',
+                backgroundColor: '#2F3843',
                 borderTopRightRadius: 20,
                 borderTopLeftRadius: 20,
                 width: "102%",

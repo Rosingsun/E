@@ -11,7 +11,7 @@ import {
   KeyboardAvoidingView,
   TextInput,
   StatusBar,
-
+  ImageBackground,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -22,7 +22,7 @@ const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
-StatusBar.setBarStyle('light-content');
+StatusBar.setBarStyle('dark-content');
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -48,10 +48,10 @@ const Main = ({ navigation }) => {
       <View style={[styles.top]}>
         <View style={[styles.nav_container]}>
           <View style={{ flexDirection: "row" }}>
-            <Ionicons name={'md-location-sharp'} size={30} color={'#fff'}
+            <Ionicons name={'md-location-sharp'} size={30} color={'#000'}
             />
 
-            <Text style={{ lineHeight: 30, marginLeft: 10, color: "#fff", fontWeight: "bold" }}>杭州</Text>
+            <Text style={{ lineHeight: 30, marginLeft: 10, color: "#000", fontWeight: "bold" }}>杭州</Text>
           </View>
           <View style={[styles.inputBox]}>
             <TextInput
@@ -61,7 +61,7 @@ const Main = ({ navigation }) => {
             </TextInput>
             <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
           </View>
-          <AntDesign name={'calendar'} size={25} color={'#fff'} />
+          <AntDesign name={'calendar'} size={25} color={'#000'} />
         </View>
       </View>
 
@@ -72,37 +72,41 @@ const Main = ({ navigation }) => {
         <View style={[styles.firstBox]}>
           <View style={[styles.imgShow]}>
             <View style={[styles.imgShowBox]}>
-              <Image style={{ height: 123 * biLi, width: "94%", marginLeft: "3%" }} source={require('../img/a.jpg')} />
+              <Image style={{ height: 140 * biLi, width: "94%", marginLeft: "3%" }} source={require('../img/a.jpg')} />
               <View style={{ width: "100%", flexDirection: "row", padding: 6, justifyContent: "center" }}>
                 <Text style={{ fontSize: 15, }}>今日热议：</Text>
                 <Text style={{ fontSize: 12, lineHeight: 20, color: "#FFB16C" }}>#横看成岭侧成峰，远近高低各不同#</Text>
               </View>
             </View>
             {/* 1-2排行框 */}
-            <View style={{ width: "96%", flexDirection: "row", justifyContent: "space-around", alignItems: 'center', marginLeft: "2%" }}>
-              {/* firest View Box */}
-              <View style={[styles.list]}>
-                {/* 用户头像 */}
-                <View>
+            <View style={{ flexDirection: "row", width: '100%' }}>
+              <View style={{ width: '49%', height: '100%',overflow:"hidden" }}>
+                <ImageBackground style={{ height: 110, marginTop: 10, width: '100%', borderRadius: 3,overflow:"hidden" }} source={require('../img/Photo/hangzhou.jpg')} />
+                
+                <View style={{position:"absolute",width:'100%',height:'100%',marginBottom:'-40%',marginLeft:0,borderRadius:400,backgroundColor:"#fff",bottom:0,}}></View>
+                {/* <Text>1111</Text> */}
+              </View>
+              <View style={{ width: "49%", flexDirection: "column", justifyContent: "space-around", alignItems: 'center', marginLeft: '2%' }}>
+                {/* firest View Box */}
+                <View style={[styles.list]}>
+                  {/* 用户头像 */}
                   <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../img/a.jpg')} />
+                  <View style={{ alignItems: "center", marginHorizontal: 10 }}>
+                    <Text>每周活跃用户</Text>
+                    <Text>排行榜</Text>
+                  </View>
                 </View>
-                <View style={{ alignItems: "center", marginHorizontal: 10 }}>
-                  <Text>每周活跃用户</Text>
-                  <Text>排行榜</Text>
-                </View>
-              </View>
-              {/* Second View Box */}
-              <View style={[styles.list]}>
-                {/* 用户头像 */}
-                <View>
+                {/* Second View Box */}
+                <View style={[styles.list]}>
+                  {/* 用户头像 */}
                   <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../img/a.png')} />
+                  <View style={{ alignItems: "center", marginHorizontal: 10 }}>
+                    <Text>每周活跃用户</Text>
+                    <Text>排行榜</Text>
+                  </View>
                 </View>
-                <View style={{ alignItems: "center", marginHorizontal: 10 }}>
-                  <Text>每周活跃用户</Text>
-                  <Text>排行榜</Text>
-                </View>
+                {/* The Second Box End */}
               </View>
-              {/* The Second Box End */}
             </View>
           </View>
           <View>
@@ -153,7 +157,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   list: {
-    width: "48%",
+    width: "100%",
     flexDirection: "row",
     backgroundColor: "#FFFFFF",
     marginTop: 8,
@@ -165,28 +169,26 @@ const styles = StyleSheet.create({
   imgShowBox: {
     width: '100%',
     padding: 0,
+    backgroundColor: "#fff",
   },
   imgShow: {
-    height: 233 * biLi,
+    height: 290 * biLi,
     width: '100%',
-    marginTop: 20
   },
   mainBox: {
-    width: "94%",
-    marginLeft: "3%",
+    width: "100%",
     height: "73%",
-    marginTop: -20,
-    borderRadius: 20,
+    borderRadius: 3,
   },
   firstBox: {
     width: "100%",
-    marginTop: 45 * biLi,
-    backgroundColor: "#EFEFEF",
-    borderRadius: 5,
+    backgroundColor: "#6C9575",
+    padding: 13,
+    borderRadius: 0,
   },
   container: {
     flex: 1,
-    backgroundColor: "#43949B",
+    backgroundColor: "#EFEFEF",
   },
   inputBox: {
     backgroundColor: "#ffffff",
@@ -198,12 +200,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   top: {
-    // position: "absolute",
-    height: (90) * biLi,
+    // position: "absolut0",
+    height: (80) * biLi,
     width: "100%",
-    backgroundColor: "#FFB16C",
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
+    backgroundColor: "#fff",
+    borderRadius: 0,
     elevation: 8,
   },
   nav_container: {
