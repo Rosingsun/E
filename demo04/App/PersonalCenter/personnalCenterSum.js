@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import Bottom_nav from '../Accessories/Nav/bottom';
 import PersonalCenterNavigation from '../navigation/PersonalNavigation';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
 import { SceneView } from 'react-navigation';
 // import { ScrollView } from 'react-native-gesture-handler';
 StatusBar.setBackgroundColor("transparent");
@@ -29,6 +31,10 @@ export default class PersonalCenterSum extends Component {
                 {/* <ScrollView> */}
                 <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
                     {/*返回与设置 */}
+                    <View style={{position:"absolute",width:"85%",marginLeft:'8%',zIndex:1,marginTop:30,flexDirection:"row",justifyContent:"space-between"}}>
+                        <FontAwesome name='angle-left' size={30} color="white"/>
+                        <Feather name='more-horizontal' size={25} color="white" />
+                    </View>
                     <View style={{ width: '100%', position: "absolute", backgroundColor: "#00000095", height: '100%', }}>
                     </View>
                     {/* 用户信息 */}
@@ -79,7 +85,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         backgroundColor: "#999999",
         paddingVertical: 8,
-        width: 90,
+        width: 80,
         fontSize: 10,
         borderRadius: 100,
         textAlign: "center",

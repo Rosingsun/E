@@ -10,7 +10,7 @@ export default class DefineCon extends Component {
   constructor(props) {
     super(props);
     this.state={
-      AlertName:DefineCon02,
+      
     }
   }
 
@@ -37,7 +37,7 @@ export default class DefineCon extends Component {
           onPress={this.funAlert.bind(this)}>
           <Text >阿巴阿巴阿八八八</Text>
         </TouchableHighlight>
-        <CommonDialog types={'alert'} components={<this.state.AlertName/>} ref="dAlert" />
+        <CommonDialog types={'alert'} components={<DefineCon01 />} ref="dAlert" />
       </View>
     )
   }
@@ -50,36 +50,8 @@ class DefineCon01 extends Component {
     return (
       <View style={[styles.conMid]}>
         <AntDesign name="exclamationcircle" size={60} color="#F36A6A" style={{ marginTop: '10%' }} />
-        <Text style={{ fontSize: 15, color: '#484848', marginTop: 11 * biLi, }}>温馨提示</Text>
-        <Text style={{ fontSize: 15, color: '#484848', marginTop: 30 * biLi }}>您的聊天记录将会被删除！1</Text>
-      </View>
-    )
-  }
-}
-class DefineCon02 extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <View style={[styles.conMid]}>
-        <AntDesign name="exclamationcircle" size={60} color="#F36A6A" style={{ marginTop: '10%' }} />
-        <Text style={{ fontSize: 15, color: '#484848', marginTop: 11 * biLi, }}>温馨提示</Text>
-        <Text style={{ fontSize: 15, color: '#484848', marginTop: 30 * biLi }}>您的聊天记录将会被删除！2</Text>
-      </View>
-    )
-  }
-}
-class DefineCon03 extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <View style={[styles.conMid]}>
-        <AntDesign name="exclamationcircle" size={60} color="#F36A6A" style={{ marginTop: '10%' }} />
-        <Text style={{ fontSize: 15, color: '#484848', marginTop: 11 * biLi, }}>温馨提示</Text>
-        <Text style={{ fontSize: 15, color: '#484848', marginTop: 30 * biLi }}>您的聊天记录将会被删除！3</Text>
+        <Text style={{ fontSize: 15, color: '##484848', marginTop: 11 * biLi, }}>温馨提示</Text>
+        <Text style={{ fontSize: 15, color: '##484848', marginTop: 30 * biLi }}>您的聊天记录将会被删除！</Text>
       </View>
     )
   }

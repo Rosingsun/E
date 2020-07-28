@@ -43,26 +43,30 @@ export default class Register extends Component {
                         </View>
                         <Text style={{ color: "#fff", fontSize: 20 }}>注册</Text>
                         <View>
-                            <Entypo name={'home'} size={30} color={'#fff'}/>
+                            <Entypo name={'home'} size={30} color={'#fff'}
+                                onPress={() => {
+                                    this.props.navigation.navigate("dengru");
+                                }}
+                            />
                         </View>
                     </View>
                 </View>
                 <View style={[styles.imgBox]}>
-                     <View style={{alignItems:'center'}}>
-                     <Image style={{ height:100, width:100 }} source={require('../img/login/theboy.png')}/>
-                     <Text style={{fontSize:20,color:"#FFFFFF",marginTop:5}}>男孩</Text>
-                     </View>
-                     <View style={{alignItems:'center'}}>
-                    <Image style={{ height:100, width: 100 }} source={require('../img/login/thegirl.png')}/>
-                    <Text style={{fontSize:20,color:"#FFFFFF",marginTop:5}}>女孩</Text>
+                    <View style={{ alignItems: 'center' }}>
+                        <Image style={{ height: 100, width: 100 }} source={require('../img/login/theboy.png')} />
+                        <Text style={{ fontSize: 20, color: "#FFFFFF", marginTop: 5 }}>男孩</Text>
                     </View>
-                  
-                   
+                    <View style={{ alignItems: 'center' }}>
+                        <Image style={{ height: 100, width: 100 }} source={require('../img/login/thegirl.png')} />
+                        <Text style={{ fontSize: 20, color: "#FFFFFF", marginTop: 5 }}>女孩</Text>
+                    </View>
+
+
                 </View>
                 {/* 登陆框 */}
                 <View style={[styles.userShopBox]}>
                     <View style={{}}>
-                        <View style={[styles.inputBox ,{marginTop:20}]}>
+                        <View style={[styles.inputBox, { marginTop: 20 }]}>
                             <View style={{ flexDirection: "row" }}>
                                 <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 15 }} name={'user'} size={25} color={'#999999'} />
                                 <TextInput
@@ -98,36 +102,36 @@ export default class Register extends Component {
                                     }} />
                             </View>
                         </View>
-                        <View style={{justifyContent:'center',alignItems:'center'}}>
-                        <View style={{width:250,height:25,backgroundColor:"#999999",alignItems:'center',justifyContent:'center',borderRadius:3,marginTop:10}}>
-                        <Text style={{color:'#FFFFFF'}}>两次密码请保持一致</Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ width: 250, height: 25, backgroundColor: "#999999", alignItems: 'center', justifyContent: 'center', borderRadius: 3, marginTop: 10 }}>
+                                <Text style={{ color: '#FFFFFF' }}>两次密码请保持一致</Text>
+                            </View>
+                            <View style={styles.arrow}></View>
+                            <TouchableOpacity
+                                style={styles.button}
+                                onPress={() => {
+                                    this.props.navigation.navigate('App')
+
+                                    fetch('http://10.0.2.2:3000/insert/', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Accept': 'application/json',
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                            a: this.state.searchText,
+                                            b: this.state.searchPass
+                                        })
+                                    })
+                                        .then((response) => {
+                                        })
+                                        .catch((error) => {
+                                            console.log(error);
+                                        });
+                                }}>
+                                <Text style={{ fontSize: 20, color: "#fff" }}>确认</Text>
+                            </TouchableOpacity>
                         </View>
-                        <View style={styles.arrow}></View>
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={() => {
-                                this.props.navigation.navigate('App')
-                                
-                                fetch('http://10.0.2.2:3000/insert/', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Accept': 'application/json',
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({
-                                        a: this.state.searchText,
-                                        b: this.state.searchPass
-                                    })
-                                })
-                                    .then((response) => {
-                                    })
-                                    .catch((error) => {
-                                        console.log(error);
-                                    });
-                            }}>
-                            <Text style={{ fontSize: 20, color: "#fff"}}>确认</Text>
-                        </TouchableOpacity>
-                     </View>
                     </View>
                 </View>
             </View>
@@ -159,16 +163,16 @@ const styles = StyleSheet.create({
         marginLeft: "5%",
     },
     imgBox: {
-        flexDirection:'row',
+        flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: "center",
         marginTop: 130,
-        flexDirection:'row',
+        flexDirection: 'row',
     },
     userShopBox: {
-        width:"90%",
-        marginTop:40*biLi,
-        backgroundColor:"#ffffff",
+        width: "90%",
+        marginTop: 40 * biLi,
+        backgroundColor: "#ffffff",
         borderRadius: 15,
         height: 350 * biLi,
         // justifyContent: "center",
@@ -194,7 +198,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: "#FFB16C",
         borderRadius: 10,
-    marginTop:-10
+        marginTop: -10
     },
     inputBox: {
         height: 64 * biLi,
@@ -203,17 +207,17 @@ const styles = StyleSheet.create({
         borderRadius: 32,
         marginTop: 13
     },
-    arrow:{
-        marginLeft:180,
-        width:10,
-        height:10,
-        borderStyle:'solid',
-        borderWidth:10,
-        marginTop:-2,
-        
-        borderTopColor:"#999999",//下箭头颜色
-        borderBottomColor:"#FFFFFF00",
-        borderRightColor:"#FFFFFF00",
-        borderLeftColor:"#FFFFFF00",
+    arrow: {
+        marginLeft: 180,
+        width: 10,
+        height: 10,
+        borderStyle: 'solid',
+        borderWidth: 10,
+        marginTop: -2,
+
+        borderTopColor: "#999999",//下箭头颜色
+        borderBottomColor: "#FFFFFF00",
+        borderRightColor: "#FFFFFF00",
+        borderLeftColor: "#FFFFFF00",
     },
 })

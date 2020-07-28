@@ -44,7 +44,7 @@ export default class Search extends Component {
                         <Text style={{ color: "#fff", fontSize: 20 }}>登陆</Text>
                         <View>
                             <Entypo name={'home'} size={25} color={'#fff'} onPress={() => {
-                                Alert.alert("这是去主页的路")
+                                this.props.navigation.navigate("dengru");
                             }} />
                         </View>
                     </View>
@@ -105,7 +105,12 @@ export default class Search extends Component {
                         </TouchableOpacity>
                         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                             <Text style={{ color: "#999999", fontSize: 15, marginTop: 20, marginLeft: "5%" }}>忘记密码</Text>
-                            <Text style={{ color: "#999999", fontSize: 15, marginTop: 20, marginRight: "5%" }}>注册登陆</Text>
+                            <Text style={{ color: "#999999", fontSize: 15, marginTop: 20, marginRight: "5%" }}
+                            onPress={()=>{
+                                this.props.navigation.navigate("Register");
+                            }}
+                            
+                            >注册账号</Text>
                         </View>
                     </View>
                 </View>

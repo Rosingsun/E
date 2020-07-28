@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     backgroundColor: "#000",
+    borderRadius:10,
   },
   userWord: {
     letterSpacing: 1,
@@ -130,5 +131,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#197178",
     marginRight: 10,
+    borderRadius:3,
   },
 })
