@@ -6022,6 +6022,11 @@ react-native-animatable@^1.2.4:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-baidu-map@^1.0.37:
+  version "1.0.37"
+  resolved "https://registry.npm.taobao.org/react-native-baidu-map/download/react-native-baidu-map-1.0.37.tgz#04a8aeed07b228995cbbe7f9d7805432f4b31c7f"
+  integrity sha1-BKiu7QeyKJlcu+f514BUMvSzHH8=
+
 react-native-button@^2.3.0:
   version "2.4.0"
   resolved "https://registry.npm.taobao.org/react-native-button/download/react-native-button-2.4.0.tgz#42b487073a7ce7c54ab503f77c6ced1ab95742bf"
