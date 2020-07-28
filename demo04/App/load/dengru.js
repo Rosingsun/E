@@ -4,7 +4,6 @@ import {
     Dimensions, TouchableWithoutFeedback, StatusBar, Alert
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('light-content');
@@ -14,7 +13,9 @@ const biLi = width * scale / 1125;
 export default function dengru({navigation}) {
         return (
             <View style={styles.container}>
-
+<View style={{height:150,width:150,borderRadius:100,top:-60,left:-60,backgroundColor:"#FAAF3D",position:"absolute"}}></View>
+<View style={{height:123,width:123,borderRadius:100,top:'40%',right:60,backgroundColor:"#2F3843",position:"absolute"}}></View>
+<View style={{height:300,width:300,borderRadius:300,top:'45%',left:-150,backgroundColor:"#6C9575",position:"absolute"}}></View>
                 {/* 文字 欢迎词 名字 */}
                 <View style={styles.topText}>
                     {/* 标签按钮 */}
@@ -26,8 +27,8 @@ export default function dengru({navigation}) {
                             />
                     </View>
                     <View>
-                        <Text style={{ fontSize: 50, color: '#FFFFFF', paddingTop: 20 }}>欢迎来E</Text>
-                        <Text style={{ fontSize: 15, color: '#FFFFFF', paddingTop: 6 }}>阿巴，阿巴，阿巴阿巴</Text>
+                        <Text style={{ fontSize: 50, color: '#000000', paddingTop: 20 }}>欢迎来E</Text>
+                        <Text style={{ fontSize: 15, color: '#000000', paddingTop: 6 }}>E交换，E旅行，E起玩</Text>
                     </View>
                 </View>
                 {/* 按钮打包 */}
@@ -39,7 +40,6 @@ export default function dengru({navigation}) {
                                 onPress={() => { 
                                     navigation.navigate('Search')
                                  }}
-                                
                                 >
                                 <Text style={{ fontSize: 20, color: 'white', textAlign: 'center' }}>登入</Text>
                             </TouchableHighlight>
@@ -55,9 +55,9 @@ export default function dengru({navigation}) {
                 </View>
                 {/* 底部文字 */}
                 <View style={styles.downText}>
-                    <Text style={{ fontSize: 15, color: 'white', width: 65 * biLi, height: 40 * biLi }}>_________</Text>
-                    <Text style={{ fontSize: 15, color: 'white' }}>E起旅行让终点更温暖</Text>
-                    <Text style={{ fontSize: 15, color: 'white', width: 65 * biLi, height: 40 * biLi }}>_________</Text>
+                    <Text style={{ fontSize: 15, color: '#000000', width: 65 * biLi, height: 40 * biLi }}>_________</Text>
+                    <Text style={{ fontSize: 15, color: '#000000' }}>E起旅行让终点更温暖</Text>
+                    <Text style={{ fontSize: 15, color: '#000000', width: 65 * biLi, height: 40 * biLi }}>_________</Text>
                 </View>
 
 
@@ -68,7 +68,7 @@ export default function dengru({navigation}) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#43949B",
+        backgroundColor:"#fff",
     },
 
     word: {
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         height: 35 * biLi,
         width: 90 * biLi,
         borderRadius: 3,
-        backgroundColor: '#FFB16C',
+        backgroundColor: "#2F3843",
         justifyContent: 'center',
 
     },
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         height: 35 * biLi,
         width: 90 * biLi,
         borderRadius: 3,
-        backgroundColor: '#FFB16C',
+        backgroundColor: '#2F3843',
         justifyContent: 'center'
     },
     topText: {

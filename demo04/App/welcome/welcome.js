@@ -50,6 +50,10 @@ export default class MainFadeView extends React.Component {
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <StatusBar
+                    barStyle='dark-content'
+                    backgroundColor='rgba(0,0,0,0)'
+                    translucent={true} />
                 <StatusBar barStyle='light-content' backgroundColor='rgba(0,0,0,0)' translucent={true}></StatusBar>
 
                 <FadeView style={{ width: 800, height: 1000 }}>

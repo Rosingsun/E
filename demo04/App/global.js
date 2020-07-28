@@ -4,21 +4,11 @@ const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
 const Global = {
-        //第一套颜色定义
-        blue: '#43949B',
-        yellow: '#FFB16C',
-        white: '#ffffff',
-        gray: '#EFEFEF',
-        red: '#FF0000',
-        black:"#000000",
-        //第二套颜色定义
-        ThickGray:"#6C6C6C",
-        green:"#43949B",
-        signRed:"#FF0000",
-        warningRed:"#FF0000",
-        midGray:"#999999",
-        lightGray:"#EFEFEF",
-        orange:"#FFB16C",
+        //背景颜色
+        backWhite:"#ffffff",
+        backPurpor:"#2F3843",
+        backGreen:"#6C9575",
+        backYellow:"#FAAF3D",
         //定义圆角样式
         bigCircular: 15,
         midCircular: 15,

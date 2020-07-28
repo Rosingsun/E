@@ -30,33 +30,27 @@ export default class Search extends Component {
     render() {
         return (
             <View style={[styles.container]}>
-                {/* <StatusBar
-                    barStyle='light-content'
-                    backgroundColor='rgba(0,0,0,0)'
-                    translucent={true} /> */}
                 <View style={[styles.top]}>
                     <View style={[styles.nav_container]}>
                         <View style={{ flexDirection: "row" }}>
-                            <AntDesign name={'leftcircle'} size={30} color={'#fff'} onPress={() => {
+                            <AntDesign name={'left'} size={25} color={'#000'} onPress={() => {
                                 this.props.navigation.goBack()
                             }} />
                         </View>
-                        <Text style={{ color: "#fff", fontSize: 20 }}>登陆</Text>
+                        <Text style={{ color: "#000", fontSize: 20 }}>登陆</Text>
                         <View>
-                            <Entypo name={'home'} size={25} color={'#fff'} onPress={() => {
+                            <Entypo name={'home'} size={25} color={'#000'} onPress={() => {
                                 this.props.navigation.navigate("dengru");
                             }} />
                         </View>
                     </View>
                 </View>
-                <View style={[styles.imgBox]}>
-                    <Image style={{ height: 151, width: 151 }} source={require('../img/LOGO.png')} />
-                    <Text style={{ color: "#fff", fontSize: 20, marginTop: 10 }}>E交换，E旅游，E起玩</Text>
-                </View>
                 {/* 登陆框 */}
                 <View style={[styles.userShopBox]}>
                     <View style={{}}>
+
                         <View style={[styles.inputBox]}>
+                            <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>用户名</Text>
                             <View style={{ flexDirection: "row" }}>
                                 <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 15 }} name={'user'} size={25} color={'#999999'} />
                                 <TextInput
@@ -68,7 +62,9 @@ export default class Search extends Component {
                                     }} />
                             </View>
                         </View>
+
                         <View style={[styles.inputBox]}>
+                            <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>密码</Text>
                             <View style={{ flexDirection: "row" }}>
                                 <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 18 }} name={'lock'} size={25} color={'#999999'} />
                                 <TextInput
@@ -101,16 +97,37 @@ export default class Search extends Component {
                                         console.log(error);
                                     });
                             }}>
-                            <Text style={{ fontSize: 20, color: "#fff" }}>登陆</Text>
+                            <Text style={{ fontSize: 20, color: "#fff" }}>登录</Text>
                         </TouchableOpacity>
                         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                            <Text style={{ color: "#999999", fontSize: 15, marginTop: 20, marginLeft: "5%" }}>忘记密码</Text>
-                            <Text style={{ color: "#999999", fontSize: 15, marginTop: 20, marginRight: "5%" }}
-                            onPress={()=>{
-                                this.props.navigation.navigate("Register");
-                            }}
-                            
+                            <Text style={{ color: "#000", fontSize: 15, marginTop: 20, marginLeft: "5%" }}>忘记密码</Text>
+                            <Text style={{ color: "#000", fontSize: 15, marginTop: 20, marginRight: "5%" }}
+                                onPress={() => {
+                                    this.props.navigation.navigate("Register");
+                                }}
+
                             >注册账号</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={{ width: '100%', height: 100, position: "absolute", bottom: 30 }}>
+                    <View style={{ flexDirection: "row", width: '60%', marginLeft: '20%', backgroundColor: "#fff", justifyContent: "space-between" }}>
+                        <Text style={{ marginTop: -7 }}>__________</Text>
+                        <Text style={{ fontSize: 15, }}>其他方式登录</Text>
+                        <Text style={{ marginTop: -7 }}>__________</Text>
+                    </View>
+                    <View style={{ marginTop: 20, width: '60%', marginLeft: '20%', flexDirection: "row", justifyContent: "space-between" }}>
+                    <View style={{alignItems:"center"}}>
+                            <AntDesign name={'wechat'} size={50} color={'#46BB36'} />
+                            <Text style={{ fontSize: 12, color: "#6C6C6C",marginTop:2 }}>微信登录</Text>
+                        </View>
+                        <View style={{alignItems:"center"}}>
+                            <AntDesign name={'weibo-circle'} size={50} color={'#EA5D5C'} />
+                            <Text style={{ fontSize: 12, color: "#6C6C6C",marginTop:2 }}>微博登录</Text>
+                        </View>
+                        <View style={{alignItems:"center"}}>
+                            <Entypo name={'qq-with-circle'} size={50} color={'#5EAADE'} />
+                            <Text style={{ fontSize: 12, color: "#6C6C6C",marginTop:2 }}>QQ登录</Text>
                         </View>
                     </View>
                 </View>
@@ -121,16 +138,16 @@ export default class Search extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#43949B"
+        backgroundColor: "#fff"
     },
     top: {
-        position: "absolute",
-        top: 0,
-        height: (90) * biLi,
+        // position: "absolute",
+
+        height: (78) * biLi,
         width: "100%",
-        backgroundColor: "#FFB16C",
-        borderBottomRightRadius: 20,
-        borderBottomLeftRadius: 20,
+        backgroundColor: "#FFFFFF",
+        borderBottomRightRadius: 15,
+        borderBottomLeftRadius: 15,
         elevation: 8,
     },
     nav_container: {
@@ -149,7 +166,7 @@ const styles = StyleSheet.create({
     },
     userShopBox: {
         width: "90%",
-        marginTop: 10 * biLi,
+        marginTop: 20 * biLi,
         backgroundColor: "#ffffff",
         borderRadius: 15,
         height: 325 * biLi,
@@ -174,9 +191,9 @@ const styles = StyleSheet.create({
         width: 312 * biLi,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#FFB16C",
+        backgroundColor: "#6C9575",
         padding: 10,
-        marginTop: 14,
+        marginTop: 20,
         borderRadius: 10,
         marginLeft: "4%"
     },
@@ -184,7 +201,7 @@ const styles = StyleSheet.create({
         height: 64 * biLi,
         width: 346 * biLi,
         backgroundColor: "#EFEFEF",
-        borderRadius: 32,
-        marginTop: 15
+        borderRadius: 3,
+        marginTop: 40,
     }
 })

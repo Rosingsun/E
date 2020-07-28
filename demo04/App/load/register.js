@@ -31,23 +31,21 @@ export default class Register extends Component {
         return (
             <View style={[styles.container]}>
                 <StatusBar
-                    barStyle='light-content'
+                    barStyle='dark-content'
                     backgroundColor='rgba(0,0,0,0)'
                     translucent={true} />
                 <View style={[styles.top]}>
                     <View style={[styles.nav_container]}>
                         <View style={{ flexDirection: "row" }}>
-                            <AntDesign name={'leftcircle'} size={30} color={'#fff'} onPress={() => {
+                            <AntDesign name={'left'} size={25} color={'#000'} onPress={() => {
                                 this.props.navigation.goBack()
                             }} />
                         </View>
-                        <Text style={{ color: "#fff", fontSize: 20 }}>注册</Text>
+                        <Text style={{ color: "#000", fontSize: 20 }}>注册</Text>
                         <View>
-                            <Entypo name={'home'} size={30} color={'#fff'}
-                                onPress={() => {
-                                    this.props.navigation.navigate("dengru");
-                                }}
-                            />
+                            <Entypo name={'home'} size={25} color={'#000'} onPress={() => {
+                                this.props.navigation.navigate("dengru");
+                            }} />
                         </View>
                     </View>
                 </View>
@@ -67,6 +65,7 @@ export default class Register extends Component {
                 <View style={[styles.userShopBox]}>
                     <View style={{}}>
                         <View style={[styles.inputBox, { marginTop: 20 }]}>
+                        <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>用户名</Text>
                             <View style={{ flexDirection: "row" }}>
                                 <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 15 }} name={'user'} size={25} color={'#999999'} />
                                 <TextInput
@@ -79,6 +78,7 @@ export default class Register extends Component {
                             </View>
                         </View>
                         <View style={[styles.inputBox]}>
+                        <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>密码</Text>
                             <View style={{ flexDirection: "row" }}>
                                 <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 18 }} name={'lock'} size={25} color={'#999999'} />
                                 <TextInput
@@ -91,6 +91,7 @@ export default class Register extends Component {
                             </View>
                         </View>
                         <View style={[styles.inputBox]}>
+                        <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>密码</Text>
                             <View style={{ flexDirection: "row" }}>
                                 <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 18 }} name={'lock'} size={25} color={'#999999'} />
                                 <TextInput
@@ -141,17 +142,15 @@ export default class Register extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#43949B"
+        backgroundColor: "#fff"
     },
     top: {
-        position: "absolute",
-        top: 0,
-        height: (90) * biLi,
+        height: (78) * biLi,
         width: "100%",
-        backgroundColor: "#FFB16C",
-        borderBottomRightRadius: 20,
-        borderBottomLeftRadius: 20,
-        elevation: 10,
+        backgroundColor: "#FFFFFF",
+        borderBottomRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        elevation: 8,
     },
     nav_container: {
         flex: 0.7,
@@ -166,12 +165,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: "center",
-        marginTop: 130,
+        marginTop:20 ,
         flexDirection: 'row',
     },
     userShopBox: {
         width: "90%",
-        marginTop: 40 * biLi,
+        marginTop: 20 * biLi,
         backgroundColor: "#ffffff",
         borderRadius: 15,
         height: 350 * biLi,
@@ -196,7 +195,7 @@ const styles = StyleSheet.create({
         width: 312 * biLi,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#FFB16C",
+        backgroundColor: "#6C9575",
         borderRadius: 10,
         marginTop: -10
     },
@@ -204,8 +203,8 @@ const styles = StyleSheet.create({
         height: 64 * biLi,
         width: 346 * biLi,
         backgroundColor: "#EFEFEF",
-        borderRadius: 32,
-        marginTop: 13
+        borderRadius: 3,
+        marginTop: 40
     },
     arrow: {
         marginLeft: 180,
