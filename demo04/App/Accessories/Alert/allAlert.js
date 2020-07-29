@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, TouchableWithoutFeedback, Dimensions } from 'react-native';
-import { StatusBar } from 'react-native'
+import { AppRegistry, StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, TouchableWithoutFeedback, Dimensions,StatusBar } from 'react-native';
 const { width, scale } = Dimensions.get('window');
 const biLi = width * scale / 1125;
 import CommonDialog from './commonDialog';

@@ -8,6 +8,7 @@ import {
   FlatList,
   Text,
   Image,
+  StatusBar,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
