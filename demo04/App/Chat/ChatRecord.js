@@ -22,7 +22,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
-StatusBar.setBarStyle('light-content');
+StatusBar.setBarStyle('dark-content');
 
 
 

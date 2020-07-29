@@ -13,6 +13,9 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MessageDetails from '../navigation/MessageNavigation';
+StatusBar.setBackgroundColor("transparent");
+StatusBar.setTranslucent(true);
+StatusBar.setBarStyle('dark-content');
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 const MessageSum = ({ navigation }) => {

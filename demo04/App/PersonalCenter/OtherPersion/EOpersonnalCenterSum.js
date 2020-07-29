@@ -19,7 +19,7 @@ import Feather from 'react-native-vector-icons/Feather';
 // import { ScrollView } from 'react-native-gesture-handler';
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
-StatusBar.setBarStyle('light-content');
+StatusBar.setBarStyle('dark-content');
 
 export default class PersonalCenterSum extends Component {
     constructor(props) {

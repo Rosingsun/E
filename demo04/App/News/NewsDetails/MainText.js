@@ -10,7 +10,7 @@ const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1080;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
-StatusBar.setBarStyle('light-content');
+StatusBar.setBarStyle('dark-content');
 function bottomLine() {
   return (
     <View style={{ width: '100%', alignItems: 'center' }}>

@@ -22,7 +22,7 @@ const biLi = width * scale / 1125;
 
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
-StatusBar.setBarStyle('light-content');
+StatusBar.setBarStyle('dark-content');
 // export default class Search extends Component {
 export default Search = () => {
     const [isEnabled, setIsEnabled] = useState(false);

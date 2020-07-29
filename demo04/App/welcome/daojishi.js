@@ -6,7 +6,11 @@ import {
     Text,
     TouchableOpacity,
     Alert,
+    StatusBar,
 } from 'react-native';
+StatusBar.setBackgroundColor("transparent");
+StatusBar.setTranslucent(true);
+StatusBar.setBarStyle('dark-content');
 export default class Splash extends Component {
     constructor(props) {
         super(props);

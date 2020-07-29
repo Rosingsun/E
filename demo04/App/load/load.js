@@ -15,7 +15,9 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
-
+StatusBar.setBackgroundColor("transparent");
+StatusBar.setTranslucent(true);
+StatusBar.setBarStyle('dark-content');
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 export default class Search extends Component {

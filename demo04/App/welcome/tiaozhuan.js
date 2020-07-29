@@ -4,6 +4,9 @@ import welcome from './welcome';
 import Splash from './daojishi';
 //import { TabNavigator } from "react-navigation";
 import { StatusBar } from 'react-native'
+StatusBar.setBackgroundColor("transparent");
+StatusBar.setTranslucent(true);
+StatusBar.setBarStyle('dark-content');
 export default class Tiaozhuan extends Component {
   constructor(props) {
     super(props)
@@ -20,7 +23,7 @@ export default class Tiaozhuan extends Component {
     return (
       <View style={styles.container}>
         <Splash/>
-        <StatusBar barStyle='light-content' backgroundColor='rgba(0,0,0,1)' translucent={true}></StatusBar>
+        {/* <StatusBar barStyle='dark-content' backgroundColor='rgba(0,0,0,1)' translucent={true}></StatusBar> */}
         {
           this.state.isShowLauncher?<App />:<Hello />
         }

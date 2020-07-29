@@ -11,6 +11,9 @@ import {
     TouchableNativeFeedback
 } from 'react-native';
 import Splash from './daojishi';
+StatusBar.setBackgroundColor("transparent");
+StatusBar.setTranslucent(true);
+StatusBar.setBarStyle('dark-content');
 
 class FadeView extends React.Component {
     state = {
@@ -50,11 +53,6 @@ export default class MainFadeView extends React.Component {
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <StatusBar
-                    barStyle='dark-content'
-                    backgroundColor='rgba(0,0,0,0)'
-                    translucent={true} />
-                <StatusBar barStyle='light-content' backgroundColor='rgba(0,0,0,0)' translucent={true}></StatusBar>
 
                 <FadeView style={{ width: 800, height: 1000 }}>
                     <Image source={{ uri: 'http://pic.51yuansu.com/backgd/cover/00/56/75/5d64fe67cab35.jpg!/fw/780/quality/90/unsharp/true/compress/true' }}
