@@ -14,27 +14,16 @@ const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
 export default function focus() {
-  // set icon color
-  const [Iconcolor, setIconcolor] = useState('gray');
-  const [flag, setFlag] = useState(true);
-  function changeIconColor() {
-    if (flag) {
-      setIconcolor('red');
-      setFlag(!flag);
-    } else {
-      setFlag(!flag);
-      setIconcolor('gray')
-    }
-  }
-
+  const [Like, setLike] = useState('');
   return (
-    <View style={{ backgroundColor: "#EFEFEF", borderRadius: 20, }}>
+    <View style={{ backgroundColor: "#EFEFEF", borderRadius: 200, paddingBottom: 20 }}>
       <View style={{ flexDirection: "row", width: "94%", marginLeft: '3%' }}>
         {/* 左边这一侧的用户商品信息 */}
-        <View style={{ width: "49%", paddingTop: 5, flexDirection: "column", }}>
+        <View style={{ width: "50%", flexDirection: "column", }}>
           {/* 试一下用flatlist */}
           <View style={styles.showUserlist}>
             <FlatList
+              numColumns={true}
               data={[
                 {
                   name: 'JK妹123213',
@@ -42,7 +31,9 @@ export default function focus() {
                   userWords: '一袖青衣，晚风吹彼岸。',
                   place: '杭州西湖风景区',
                   countNum: '11',
-                  showUserImg: 'https://reactnative.dev/img/tiny_logo.png',
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/99/33/5f05958b37792_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  like: 'gray',
+                  height:128,
                 },
                 {
                   name: 'JK妹123213',
@@ -50,13 +41,25 @@ export default function focus() {
                   userWords: '一袖青衣，晚风吹彼岸。',
                   place: '杭州西湖风景区',
                   countNum: '11',
-                  showUserImg: 'https://reactnative.dev/img/tiny_logo.png',
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/94/80/5ce3cfc9a3d52_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  like: 'red',
+                  height:152,
+                },
+                {
+                  name: 'JK妹123213',
+                  userHead: "../img/a.png",
+                  userWords: '一袖青衣，晚风吹彼岸。',
+                  place: '杭州西湖风景区',
+                  countNum: '11',
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/99/33/5f05958b37792_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  like: 'gray',
+                  height:192,
                 },
               ]}
               renderItem={({ item }) =>
                 <View style={[styles.showContainer]}>
                   {/* 图片框 */}
-                  <Image style={{ height: 240, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: item.showUserImg }} />
+                  <Image style={{ height: item.height, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: item.showUserImg }} />
                   {/* 定位 */}
                   <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
                     <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
@@ -73,7 +76,7 @@ export default function focus() {
                     <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{item.name}</Text>
                     <View style={{ position: "absolute", right: 10, bottom: 5 }}>
                       <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>
-                        <AntDesign name={'like2'} size={12} color={Iconcolor} />
+                        <AntDesign name={'like2'} size={12} color={item.like} />
                         {item.countNum}
                       </Text>
                     </View>
@@ -82,7 +85,7 @@ export default function focus() {
           </View>
         </View>
         {/* 右边这一侧的用户信息 */}
-        <View style={{ width: "49%", paddingTop: 5, flexDirection: "column", marginLeft: "2%" }}>
+        <View style={{ width: "50%", flexDirection: "column", marginLeft: "2%" }}>
           <View style={styles.showUserlist}>
             <FlatList
               data={[
@@ -92,7 +95,9 @@ export default function focus() {
                   userWords: '一袖青衣，晚风吹彼岸。',
                   place: '杭州西湖风景区',
                   countNum: '11',
-                  showUserImg: 'https://reactnative.dev/img/tiny_logo.png',
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/99/29/5efda46aa675b_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  like: 'red',
+                  height:122,
                 },
                 {
                   name: 'JK妹123213',
@@ -100,7 +105,9 @@ export default function focus() {
                   userWords: '一袖青衣，晚风吹彼岸。',
                   place: '杭州西湖风景区',
                   countNum: '11',
-                  showUserImg: 'https://reactnative.dev/img/tiny_logo.png',
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/98/90/5ec62c32e30b4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  like: 'gray',
+                  height:152,
                 },
               ]}
               renderItem={({ item }) =>
@@ -121,8 +128,12 @@ export default function focus() {
                     <Image style={{ height: 20, width: 20, borderRadius: 25, }} source={{ uri: item.userHead }} />
                     <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{item.name}</Text>
                     <View style={{ position: "absolute", right: 10, bottom: 5 }}>
-                      <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>
-                        <AntDesign name={'like2'} size={12} color={Iconcolor} />
+                      <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
+                        onPress={() => {
+                          this.item.like = 'red'
+                        }}
+                      >
+                        <AntDesign name={'like2'} size={12} color={item.like} />
                         {item.countNum}
                       </Text>
                     </View>
@@ -141,10 +152,11 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   showContainer: {
-    width: 185 * biLi,
+    width: '100%',
     borderRadius: 3,
     marginTop: 10,
     backgroundColor: "#fff",
+    elevation: 4,
   },
   item: {
     padding: 0,

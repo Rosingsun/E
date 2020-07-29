@@ -32,17 +32,17 @@ export default class MainText extends Component {
       // TOP
       <View style={styles.container}>
         <View style={styles.Top}>
-          <AntDesign name='leftcircle' size={32} color='#fff' onPress={() => {
+          <AntDesign name='left' size={32} color='#000' onPress={() => {
             Alert.alert("返回")
           }} />
-          <Text style={{ fontSize: 20, color: "#FFFFFF" }}>游记正文</Text>
-          <Feather name="more-horizontal" size={40} color="#FFFFFF" onPress={() => {
+          <Text style={{ fontSize: 20, color: "#000" }}>游记正文</Text>
+          <Feather name="more-horizontal" size={40} color="#000" onPress={() => {
             Alert.alert("更多")
           }} />
         </View>
         {/* 内容 */}
         <View style={{ height: '80%' }}>
-          <ScrollView style={{ backgroundColor: "#43949B", borderBottomRightRadius: 15, borderBottomLeftRadius: 15, }}>
+          <ScrollView style={{ backgroundColor: "#EFEFEF", borderBottomRightRadius: 15, borderBottomLeftRadius: 15, }}>
 
             {/* 九宫格 */}
             <View style={styles.ninePicture}>
@@ -88,18 +88,18 @@ export default class MainText extends Component {
                 } />
               {/* 九宫格底部的定位 */}
               <View style={{ width: "100%", flexDirection: 'row', justifyContent: 'space-around' }}>
-                <Text style={{ fontSize: 50, color: '#43949B', marginTop: -25, marginBottom: -20 }}>·····························</Text></View>
+                <Text style={{ fontSize: 50, color: '#EFEFEF', marginTop: -25, marginBottom: -20 }}>·····························</Text></View>
               <View style={styles.Route}>
                 <Image style={{ width: '100%', height: 90 }} source={require('../..//img/1.jpg')} />
               </View>
               <View style={{ flexDirection: 'row', marginTop: 8 }}>
-                <View style={{ justifyContent: 'center', alignItems: 'center', height: 32, backgroundColor: '#43949B30', marginLeft: '3%', paddingHorizontal: 10 }}>
-                  <Text style={{ fontSize: 12, color: '#197178' }} onPress={() => {
+                <View style={{ justifyContent: 'center', alignItems: 'center', height: 32, backgroundColor: '#FAAF3D29', marginLeft: '3%', paddingHorizontal: 10 }}>
+                  <Text style={{ fontSize: 12, color: '#FAAF3D' }} onPress={() => {
                     Alert.alert("查看tag")
                   }}>#欲把西湖比西子</Text>
                 </View>
-                <View style={{ justifyContent: 'center', alignItems: 'center', height: 32, backgroundColor: '#43949B30', marginLeft: "3%", paddingHorizontal: 10 }}>
-                  <Text style={{ fontSize: 12, color: '#197178' }} onPress={() => {
+                <View style={{ justifyContent: 'center', alignItems: 'center', height: 32, backgroundColor: '#FAAF3D29', marginLeft: "3%", paddingHorizontal: 10 }}>
+                  <Text style={{ fontSize: 12, color: '#FAAF3D' }} onPress={() => {
                     Alert.alert("查看tag")
                   }}>#古诗打卡大赛</Text>
                 </View>
@@ -111,7 +111,11 @@ export default class MainText extends Component {
                 }}>
                   <Text style={{ fontSize: 15, color: '#999999' }}>杭州西湖风景区</Text>
                 </Feather>
-
+                <View style={{ justifyContent: "flex-end" }}>
+                  <AntDesign name="like2" size={25} color="#999999">
+                    <Text style={{ fontSize: 15, }}>111</Text>
+                  </AntDesign>
+                </View>
               </View>
             </View>
             {/* 评论 */}
@@ -119,7 +123,7 @@ export default class MainText extends Component {
               <View style={styles.textTop}>
                 <Text style={{ fontSize: 20, fontWeight: '300' }}>全部评论</Text>
                 <View style={{ width: "100%", flexDirection: 'row', justifyContent: 'space-around' }}>
-                  <Text style={{ fontSize: 50, color: '#43949B', marginTop: -25, marginBottom: -15 }}>·····························</Text></View>
+                  <Text style={{ fontSize: 50, color: '#EFEFEF', marginTop: -25, marginBottom: -15 }}>·····························</Text></View>
               </View>
               {/* 需要数据库开始用评论 */}
               {/* <View style={styles.uesrTalk}> */}
@@ -131,9 +135,9 @@ export default class MainText extends Component {
                       id: "桥本环奈",
                       time: '2020.7.20.16.14',
                       word: "这是我发表的评论",
-                      ddttaa:[
-                        { idd: "user01" ,wordd: "这是小评论01"},
-                        {idd: "user02" ,wordd: "这是小评论02" },
+                      ddttaa: [
+                        { idd: "user01", wordd: "这是小评论01" },
+                        { idd: "user02", wordd: "这是小评论02" },
                       ]
                     },
                     {
@@ -141,13 +145,13 @@ export default class MainText extends Component {
                       id: "桥本环奈",
                       time: '2020.7.20.16.14',
                       word: "这是我发表的评论",
-                      ddttaa:[
-                        { idd: "user03" ,wordd: "这是小评论03"},
-                        {idd: "user04" ,wordd: "这是小评论04" },
-                        {idd: "user05" ,wordd: "这是小评论05" },
-                        { idd: "user03" ,wordd: "这是小评论03"},
-                        {idd: "user04" ,wordd: "这是小评论04" },
-                        {idd: "user05" ,wordd: "这是小评论05" },
+                      ddttaa: [
+                        { idd: "user03", wordd: "这是小评论03" },
+                        { idd: "user04", wordd: "这是小评论04" },
+                        { idd: "user05", wordd: "这是小评论05" },
+                        { idd: "user03", wordd: "这是小评论03" },
+                        { idd: "user04", wordd: "这是小评论04" },
+                        { idd: "user05", wordd: "这是小评论05" },
                       ]
                     },
                   ]}
@@ -162,12 +166,13 @@ export default class MainText extends Component {
                           <Text style={{ fontSize: 15 }}>{item.word}</Text>
 
                           {item.ddttaa.map((item) => {
-                            return(
-                            <View style={{ width: "92%", backgroundColor: '#EFEFEF', flexDirection: 'row', borderRadius: 5 }}>
-                              <Text style={{ marginLeft: '5%', color: '#FFB16C', fontSize: 10 }}>{item.idd}:</Text>
-                              <Text style={{ color: '#000000', fontSize: 10 }}>{item.wordd}</Text>
-                            </View>
-                          )})}
+                            return (
+                              <View style={{ width: "92%", backgroundColor: '#EFEFEF', flexDirection: 'row', borderRadius: 5 }}>
+                                <Text style={{ marginLeft: '5%', color: '#FFB16C', fontSize: 10 }}>{item.idd}:</Text>
+                                <Text style={{ color: '#000000', fontSize: 10 }}>{item.wordd}</Text>
+                              </View>
+                            )
+                          })}
                           <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', width: "100%", marginBottom: 5 }}>
                             <Text style={{ fontSize: 10, color: '#999999' }}>{item.time}</Text>
                             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', }}>
@@ -191,19 +196,11 @@ export default class MainText extends Component {
         </View>
         {/* 底部输入栏 */}
         <View style={styles.bottomText}>
-          <View style={{ height: '75%', width: '60%', backgroundColor: '#FFFFFF', borderRadius: 20, marginLeft: '3%' }}>
+          <View style={{ height: '75%', width: '75%', backgroundColor: '#FFFFFF', borderRadius: 20, marginLeft: '3%' }}>
             <TextInput style={{ justifyContent: 'center', fontSize: 15, marginLeft: '3%' }} placeholder='评论'></TextInput>
           </View>
-          <AntDesign name="staro" size={28} color="#FFFFFF" onPress={() => {
-            Alert.alert('收藏成功')
-          }}></AntDesign>
-          <FontAwesome5 name="share-square" size={25} color="#FFFFFF"
-            onPress={() => { Alert.alert("转发成功") }} ></FontAwesome5>
-          <View style={{ height: 28, width: 60, borderColor: '#FFFFFF', borderWidth: 1, borderRadius: 20, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            <AntDesign name="like2" size={20} color="#FFFFFF" onPress={() => {
-              Alert.alert("点赞")
-            }}></AntDesign>
-            <Text style={{ fontSize: 12, color: '#FFFFFF', marginLeft: 3 }}>200</Text>
+          <View style={{ width: "20%", height: '76%', marginBottom: '1%', backgroundColor: "#6C9575", borderRadius: 20, justifyContent: "center", alignItems: "center" }}>
+            <Text style={{ color: "#fff", fontSize: 15, letterSpacing: 2 }}>发送</Text>
           </View>
         </View>
       </View>
@@ -213,11 +210,11 @@ export default class MainText extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#43949B",
+    backgroundColor: "#EFEFEF",
   },
   Top: {
-    height: 90,
-    backgroundColor: "#FFB16C",
+    height: 78,
+    backgroundColor: "#FFFFFF",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: 'space-between',
@@ -294,7 +291,9 @@ const styles = StyleSheet.create({
     width: "94%",
     marginLeft: "3%",
     marginTop: 8,
-    marginBottom: 20
+    marginBottom: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   textTop: {
     justifyContent: 'center',
@@ -315,7 +314,7 @@ const styles = StyleSheet.create({
     height: 50,
     bottom: 0,
     width: '100%',
-    backgroundColor: '#FFB16C',
+    backgroundColor: '#2F3843',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center'

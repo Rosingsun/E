@@ -112,7 +112,6 @@ export default class Register extends Component {
                                 style={styles.button}
                                 onPress={() => {
                                     this.props.navigation.navigate('App')
-
                                     fetch('http://10.0.2.2:3000/insert/', {
                                         method: 'POST',
                                         headers: {

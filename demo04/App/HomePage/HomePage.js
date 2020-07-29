@@ -17,7 +17,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Details from '../navigation/HomePageNavigation';
-import Bottom_nav from '../Accessories/Nav/bottom';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 StatusBar.setBackgroundColor("transparent");
@@ -48,9 +47,7 @@ const Main = ({ navigation }) => {
       <View style={[styles.top]}>
         <View style={[styles.nav_container]}>
           <View style={{ flexDirection: "row" }}>
-            <Ionicons name={'md-location-sharp'} size={30} color={'#000'}
-            />
-
+            <Ionicons name={'md-location-sharp'} size={30} color={'#000'}/>
             <Text style={{ lineHeight: 30, marginLeft: 10, color: "#000", fontWeight: "bold" }}>杭州</Text>
           </View>
           <View style={[styles.inputBox]}>
@@ -80,11 +77,10 @@ const Main = ({ navigation }) => {
             </View>
             {/* 1-2排行框 */}
             <View style={{ flexDirection: "row", width: '100%' }}>
-              <View style={{ width: '49%', height: '100%', overflow: "hidden" }}>
-                <ImageBackground style={{ height: 110, marginTop: 10, width: '100%', borderRadius: 3, overflow: "hidden" }} source={require('../img/Photo/hangzhou.jpg')} />
-
-                <View style={{ position: "absolute", width: '100%', height: '100%', marginBottom: '-40%', marginLeft: 0, borderRadius: 400, backgroundColor: "#fff", bottom: 0, }}></View>
-                {/* <Text>1111</Text> */}
+              <View style={{ width: '49%', height: '100%' }}>
+                <ImageBackground style={{ height: 110, marginTop: 10, width: '100%', borderRadius: 3 }} source={require('../img/Photo/hangzhou.jpg')} />
+                <Image source={require("../img/dakaBottom.png")} style={{ height: '50%', width: '100%', position: "absolute", bottom: 0, }}></Image>
+                <Text style={{ position: "absolute", bottom: 0, left: 30, width: '100%', }}>每周必去打卡排行榜</Text>
               </View>
               <View style={{ width: "49%", flexDirection: "column", justifyContent: "space-around", alignItems: 'center', marginLeft: '2%' }}>
                 {/* firest View Box */}

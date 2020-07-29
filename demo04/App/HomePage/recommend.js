@@ -32,7 +32,8 @@ export default function recommend() {
                   place: '杭州西湖风景区',
                   countNum: '11',
                   showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/99/33/5f05958b37792_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
-                  like: 'gray'
+                  like: 'gray',
+                  height:128,
                 },
                 {
                   name: 'JK妹123213',
@@ -42,6 +43,7 @@ export default function recommend() {
                   countNum: '11',
                   showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/94/80/5ce3cfc9a3d52_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
                   like: 'red',
+                  height:152,
                 },
                 {
                   name: 'JK妹123213',
@@ -50,13 +52,14 @@ export default function recommend() {
                   place: '杭州西湖风景区',
                   countNum: '11',
                   showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/99/33/5f05958b37792_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
-                  like: 'gray'
+                  like: 'gray',
+                  height:192,
                 },
               ]}
               renderItem={({ item }) =>
                 <View style={[styles.showContainer]}>
                   {/* 图片框 */}
-                  <Image style={{ height: 240, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: item.showUserImg }} />
+                  <Image style={{ height: item.height, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: item.showUserImg }} />
                   {/* 定位 */}
                   <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
                     <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
@@ -94,6 +97,7 @@ export default function recommend() {
                   countNum: '11',
                   showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/99/29/5efda46aa675b_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
                   like: 'red',
+                  height:122,
                 },
                 {
                   name: 'JK妹123213',
@@ -103,6 +107,7 @@ export default function recommend() {
                   countNum: '11',
                   showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/98/90/5ec62c32e30b4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
                   like: 'gray',
+                  height:152,
                 },
               ]}
               renderItem={({ item }) =>
