@@ -33,7 +33,6 @@ export default class Splash extends Component {
                 this.setState({
                     time: time,
                 });
-                console.log(time);
             } else {
                 //当time=0时执行终止循环方法
                 clearInterval(timeChange);

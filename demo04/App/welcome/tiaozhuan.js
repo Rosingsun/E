@@ -25,10 +25,8 @@ export default class Tiaozhuan extends Component {
           this.state.isShowLauncher?<App />:<Hello />
         }
       </View>
-
     )
   }
-
 }
 const styles = StyleSheet.create({
   container: {

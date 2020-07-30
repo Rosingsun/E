@@ -17,7 +17,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 function _showActive(pic, num, titleContain, newsTitle, newsTitleTow) {
-  num = num + 5;
   return (
     <View style={{ height: 158, width: 300, backgroundColor: "#fff", marginLeft: 10, borderRadius: 3, }}>
       <View style={{ height: '70%' }}>
@@ -49,22 +48,26 @@ export default class discovery extends Component {
           <View style={[styles.nav_container]}>
             <View style={{ flexDirection: "row" }}>
               {/* <FontAwesome name={'map-marker'} size={30} color={'#fff'} /> */}
-              <Ionicons name={'md-location-sharp'} size={30} color={'#fff'} />
-              <Text style={{ lineHeight: 30, marginLeft: 10, color: "#fff", fontWeight: "bold" }}>杭州</Text>
+              <Ionicons name={'md-location-sharp'} size={30} color={'#000'} />
+              <Text style={{ lineHeight: 30, marginLeft: 10, color: "#000", fontWeight: "bold" }}>杭州</Text>
             </View>
             <View style={[styles.inputBox]}>
               <TextInput placeholder="abibas" style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }} />
               <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
             </View>
-            <AntDesign name={'calendar'} size={25} color={'#fff'} />
+            <AntDesign name={'calendar'} size={25} color={'#000'} />
           </View>
         </View>
         {/* 第一部分 */}
 
-        <ScrollView style={{ height: '80%' }}>
+        <ScrollView style={{ height: '80%' }}
+        showsVerticalScrollIndicator={false}
+        >
           <View style={{ width: "100%", height: 158, marginTop: 20, paddingLeft: 5, }}>
+            <Text style={{ marginLeft: 10, fontSize: 20 }}>每周专题</Text>
             <FlatList
               horizontal={true}
+              showsHorizontalScrollIndicator={false}
               data={[
                 {
                   key: 'a',
@@ -87,6 +90,29 @@ export default class discovery extends Component {
                 _showActive(item.pic, item.num, item.titleContain, item.newsTitle, item.newsTitleTow)
               } />
           </View>
+
+
+          {/* 第二部分 */}
+          <View style={{ width: '94%', marginTop: 20, height: 340, marginLeft: '3%', backgroundColor: "#fff", borderRadius: 15, }}>
+            {/* title line */}
+            <View style={{ flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 10, paddingTop: 10, }}>
+              <Text>随诗打卡</Text>
+              <Text>查看更多<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
+            </View>
+            <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
+              <Text style={{ width: '18%', backgroundColor: "#6C9575", color: "#fff", borderRadius: 3 }}>  我的专属</Text>
+              <Text style={{ width: '18%', backgroundColor: "#6C957550", color: "#fff", borderRadius: 3 }}>  历史故事</Text>
+              <Text style={{ width: '18%', backgroundColor: "#6C957550", color: "#fff", borderRadius: 3 }}>  附近地点</Text>
+              <Text style={{ width: '18%', backgroundColor: "#6C957550", color: "#fff", borderRadius: 3 }}>  最多人玩</Text>
+            </View>
+            <View>
+              <View>
+                  <View style={{height:'100%',width:'100%',backgroundColor:"red"}}>
+                    
+                  </View>
+              </View>
+            </View>
+          </View>
         </ScrollView>
       </View>
     )
@@ -102,7 +128,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#43949B",
+    backgroundColor: "#EFEFEF",
   },
   inputBox: {
     backgroundColor: "#ffffff",
@@ -114,11 +140,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   top: {
-    height: (90) * biLi,
+    height: (78) * biLi,
     width: "100%",
-    backgroundColor: "#6c9575",
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
+    backgroundColor: "#fff",
+    borderBottomRightRadius: 3,
+    borderBottomLeftRadius: 3,
     elevation: 8,
   },
   nav_container: {
