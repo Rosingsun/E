@@ -8,11 +8,14 @@ import {
   ScrollView,
   FlatList,
   Image,
+  Alert,
 } from 'react-native';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import ProjectsScreen from '../../lotte/cardscreen';
 //底部颜色
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
@@ -38,6 +41,10 @@ export default class discovery extends Component {
     super(props);
     this.state = {
       stateone: '',
+      One: '#6C9575',
+      Two: '#6C957559',
+      Three: '#6C957550',
+      Four: '#6C957550',
     };
   }
   render() {
@@ -61,7 +68,7 @@ export default class discovery extends Component {
         {/* 第一部分 */}
 
         <ScrollView style={{ height: '80%' }}
-        showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
         >
           <View style={{ width: "100%", height: 158, marginTop: 20, paddingLeft: 5, }}>
             <Text style={{ marginLeft: 10, fontSize: 20 }}>每周专题</Text>
@@ -100,17 +107,44 @@ export default class discovery extends Component {
               <Text>查看更多<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
-              <Text style={{ width: '18%', backgroundColor: "#6C9575", color: "#fff", borderRadius: 3 }}>  我的专属</Text>
-              <Text style={{ width: '18%', backgroundColor: "#6C957550", color: "#fff", borderRadius: 3 }}>  历史故事</Text>
-              <Text style={{ width: '18%', backgroundColor: "#6C957550", color: "#fff", borderRadius: 3 }}>  附近地点</Text>
-              <Text style={{ width: '18%', backgroundColor: "#6C957550", color: "#fff", borderRadius: 3 }}>  最多人玩</Text>
+              <Text style={{ width: '18%', backgroundColor: this.state.One, color: "#fff", borderRadius: 3 }}
+                onPress={() => {
+                  this.setState({ One: '#6C9575' })
+                  this.setState({ Two: '#6C957550' })
+                  this.setState({ Three: '#6C957550' })
+                  this.setState({ Four: '#6C957550' })
+                }}>  我的专属</Text>
+              <Text style={{ width: '18%', backgroundColor: this.state.Two, color: "#fff", borderRadius: 3 }}
+                onPress={() => {
+                  this.setState({ One: '#6C957550' })
+                  this.setState({ Two: '#6C9575' })
+                  this.setState({ Three: '#6C957550' })
+                  this.setState({ Four: '#6C957550' })
+                }}
+              >  历史故事</Text>
+              <Text style={{ width: '18%', backgroundColor: this.state.Three, color: "#fff", borderRadius: 3 }}
+                onPress={() => {
+                  this.setState({ One: '#6C957550' })
+                  this.setState({ Two: '#6C957550' })
+                  this.setState({ Three: '#6C9575' })
+                  this.setState({ Four: '#6C957550' })
+                }}
+              >  附近地点</Text>
+              <Text style={{ width: '18%', backgroundColor: this.state.Four, color: "#fff", borderRadius: 3 }}
+                onPress={() => {
+                  this.setState({ One: '#6C957550' })
+                  this.setState({ Two: '#6C957550' })
+                  this.setState({ Three: '#6C957550' })
+                  this.setState({ Four: '#6C9575' })
+                }}
+              >  最多人玩</Text>
             </View>
             <View>
-              <View>
-                  <View style={{height:'100%',width:'100%',backgroundColor:"red"}}>
-                    
-                  </View>
-              </View>
+              {/* <View>
+                <View style={{ height: '100%', width: '100%', backgroundColor: "red" }}>
+                  <ProjectsScreen/>
+                </View>
+              </View> */}
             </View>
           </View>
         </ScrollView>

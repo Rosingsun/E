@@ -17,19 +17,16 @@ export default UserSetting = () => {
             <View style={[styles.top]}>
                 <View style={[styles.nav_container]}>
                     <View style={{ flexDirection: "row" }}>
-                        <AntDesign name={'leftcircle'} size={30} color={'#fff'} onPress={() => {
+                        <AntDesign name={'left'} size={30} color={'#000'} onPress={() => {
                             Alert.alert("返回")
                         }} />
                     </View>
-                    <Text style={{ color: "#fff", fontSize: 20, marginRight: 25 }}>设置</Text>
+                    <Text style={{ color: "#000", fontSize: 20, marginRight: 25 }}>设置</Text>
                     <View>
 
                     </View>
                 </View>
             </View>
-
-            {/* <View style={styles.text}> */}
-
             <TouchableWithoutFeedback onPress={() => {
                 Alert.alert("your press the text");
             }}>
@@ -92,17 +89,15 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: "#43949B",
+        backgroundColor: "#EFEFEF",
         flexDirection: "column"
     },
     top: {
-        position: "absolute",
-        top: 0,
-        height: (100) * biLi,
+        height: (78) * biLi,
         width: "100%",
-        backgroundColor: "#FFB16C",
-        borderBottomRightRadius: 20,
-        borderBottomLeftRadius: 20,
+        backgroundColor: "#fff",
+        borderBottomRightRadius: 15,
+        borderBottomLeftRadius: 15,
         elevation: 8,
     },
     nav_container: {
@@ -134,7 +129,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         flexDirection: "row",
         marginLeft: "5%",
-        marginTop: 110,
+        marginTop: 30,
         justifyContent: 'space-between',
     },
     new: {
