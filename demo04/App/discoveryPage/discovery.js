@@ -16,6 +16,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import ProjectsScreen from '../../lotte/cardscreen';
+import Swiper from 'react-native-swiper';
 //底部颜色
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
@@ -36,7 +37,92 @@ function _showActive(pic, num, titleContain, newsTitle, newsTitleTow) {
     </View>
   )
 };
-export default class discovery extends Component {
+
+var userMap = [
+  {
+    key: "1",
+    backgroundColor: "#111",
+  },
+  {
+    key: "2",
+    backgroundColor: "#222",
+  },
+  {
+    key: "3",
+    backgroundColor: "#333",
+  },
+  {
+    key: "4",
+    backgroundColor: "#444",
+  },
+  {
+    key: "5",
+    backgroundColor: "#555",
+  },
+  {
+    key: "6",
+    backgroundColor: "#666",
+  },
+  {
+    key: "7",
+    backgroundColor: "#777",
+  },
+  {
+    key: "8",
+    backgroundColor: "#888",
+  },
+  {
+    key: "9",
+    backgroundColor: "#999",
+  },
+  {
+    key: "10",
+    backgroundColor: "#aaa",
+  },
+  {
+    key: "11",
+    backgroundColor: "#bbb",
+  },
+  {
+    key: "12",
+    backgroundColor: "#ccc",
+  },
+  {
+    key: "13",
+    backgroundColor: "#ddd",
+  },
+  {
+    key: "14",
+    backgroundColor: "#eee",
+  },
+  {
+    key: "15",
+    backgroundColor: "#fff",
+  },
+]
+
+
+var userInfo = [
+  {
+    userName: "Kali",
+    userHeardImg: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+    userBackGroundPic: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+    nodeNum: "Kali",
+    lineNum: "Kali",
+    userLv: "Lv.8 资深游侠",
+  },
+  {
+    userName: "Kali",
+    userHeardImg: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+    userBackGroundPic: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+    nodeNum: "Kali",
+    lineNum: "Kali",
+    userLv: "Lv.8 资深游侠",
+  },
+]
+
+
+export default class Discovery extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -109,46 +195,85 @@ export default class discovery extends Component {
             <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
               <Text style={{ width: '18%', backgroundColor: this.state.One, color: "#fff", borderRadius: 3 }}
                 onPress={() => {
-                  this.setState({ One: '#6C9575' })
-                  this.setState({ Two: '#6C957550' })
-                  this.setState({ Three: '#6C957550' })
-                  this.setState({ Four: '#6C957550' })
+                  this.setState({ One: '#6C9575', Two: '#6C957550', Three: '#6C957550', Four: '#6C957550' })
                 }}>  我的专属</Text>
               <Text style={{ width: '18%', backgroundColor: this.state.Two, color: "#fff", borderRadius: 3 }}
                 onPress={() => {
-                  this.setState({ One: '#6C957550' })
-                  this.setState({ Two: '#6C9575' })
-                  this.setState({ Three: '#6C957550' })
-                  this.setState({ Four: '#6C957550' })
+                  this.setState({ One: '#6C9575', Two: '#6C957550', Three: '#6C957550', Four: '#6C957550' })
                 }}
               >  历史故事</Text>
               <Text style={{ width: '18%', backgroundColor: this.state.Three, color: "#fff", borderRadius: 3 }}
                 onPress={() => {
-                  this.setState({ One: '#6C957550' })
-                  this.setState({ Two: '#6C957550' })
-                  this.setState({ Three: '#6C9575' })
-                  this.setState({ Four: '#6C957550' })
+                  this.setState({ One: '#6C9575', Two: '#6C957550', Three: '#6C957550', Four: '#6C957550' })
                 }}
               >  附近地点</Text>
               <Text style={{ width: '18%', backgroundColor: this.state.Four, color: "#fff", borderRadius: 3 }}
                 onPress={() => {
-                  this.setState({ One: '#6C957550' })
-                  this.setState({ Two: '#6C957550' })
-                  this.setState({ Three: '#6C957550' })
-                  this.setState({ Four: '#6C9575' })
+                  this.setState({ One: '#6C9575', Two: '#6C957550', Three: '#6C957550', Four: '#6C957550' })
                 }}
               >  最多人玩</Text>
             </View>
             <View>
-              {/* <View>
-                <View style={{ height: '100%', width: '100%', backgroundColor: "red" }}>
-                  <ProjectsScreen/>
-                </View>
-              </View> */}
+              <View style={{ height: '120%', width: '100%', backgroundColor: "red" }}>
+                <ProjectsScreen />
+              </View>
             </View>
           </View>
+          {/* 第三部分 */}
+          {/* 竖向轮播 */}
+          <View>
+            <ScrollView
+              showsVerticalScrollIndicator={true}
+            >
+              <View style={{ height: 300, width: '100%', backgroundColor: "red" }}>
+
+                {
+                  userMap.map((item) => {
+                    return (
+                      <Text style={{ backgroundColor: item.backgroundColor, height: 200 }}>{item.key}</Text>
+                    )
+                  })
+                }
+              </View>
+            </ScrollView>
+          </View>
+
+          {/* 第四部分 */}
+          <View style={{ marginTop: 20, padding: 10 }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+              <Text style={{ fontSize: 20 }}>活跃玩家</Text>
+              <Text style={{ fontSize: 15, color: "#999999" }}>排行榜></Text>
+            </View>
+            <ScrollView
+              style={{ marginTop: 20, borderRadius: 3, }}
+              showsVerticalScrollIndicator={true}
+
+            >
+              <ScrollView style={{ height: 350, width:"100%",backgroundColor:"red"}}>
+                {
+                  userInfo.map((item) => {
+                    return (
+                      <View style={{ width: '70%', backgroundColor: "#fff", height: "100%" ,marginLeft:10}}>
+                        <Image style={{ height: '60%', width: '100%', }} source={{ uri: item.userHeardImg }} />
+                        <View style={{ height: '40%', width: '100%', backgroundColor: "#fff", paddingHorizontal: 10 }}>
+                          <Image style={{ height: 50, width: 50, borderRadius: 25, marginTop: -25, borderWidth: 2, borderColor: "#fff" }} source={{ uri: item.userHeardImg }} />
+                          <Text style={{ backgroundColor: "#fff", fontSize: 20, }}>{item.userName}</Text>
+                          <View style={{ width: 110, flexDirection: "row", justifyContent: "space-between" }}>
+                            <Text style={{ fontSize: 10, color: "#999" }}>{item.lineNum}条游记</Text>
+                            <Text style={{ fontSize: 10, color: "#999999" }} >{item.lineNum}条路线</Text>
+                          </View>
+                          <Text style={{ fontSize: 15, color: "#999", marginTop: 10 }}>{item.userLv}</Text>
+                          <Text style={{ borderWidth: 1, borderColor: "green", width: 50, paddingVertical: 5, paddingHorizontal: 5, }}>关注</Text>
+                        </View>
+                      </View>
+                    )
+                  })
+                }
+              </ScrollView>
+            </ScrollView>
+          </View>
         </ScrollView>
-      </View>
+      </View >
     )
   }
 }

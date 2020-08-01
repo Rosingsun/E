@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Home from '../App/HomePage/HomePage';
-import Discovery from './DiscoveryPage/Discovery';
+import Discovery from './DiscoveryPage/discovery';
 import Setting from './src/page/SettingPage';
 import MessageSum from './News/MessageSum';
 import PersonalCenterSum from './PersonalCenter/personnalCenterSum';

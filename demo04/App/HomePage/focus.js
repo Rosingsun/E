@@ -55,6 +55,16 @@ export default function focus() {
                   like: 'gray',
                   height:192,
                 },
+                {
+                  name: 'JK妹123213',
+                  userHead: "../img/a.png",
+                  userWords: '一袖青衣，晚风吹彼岸。',
+                  place: '杭州西湖风景区',
+                  countNum: '11',
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/99/33/5f05958b37792_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  like: 'gray',
+                  height:92,
+                },
               ]}
               renderItem={({ item }) =>
                 <View style={[styles.showContainer]}>
@@ -108,6 +118,16 @@ export default function focus() {
                   showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/98/90/5ec62c32e30b4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
                   like: 'gray',
                   height:152,
+                },
+                {
+                  name: 'JK妹123213',
+                  userHead: "../img/a.png",
+                  userWords: '一袖青衣，晚风吹彼岸。',
+                  place: '杭州西湖风景区',
+                  countNum: '11',
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/98/90/5ec62c32e30b4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  like: 'gray',
+                  height:182,
                 },
               ]}
               renderItem={({ item }) =>
