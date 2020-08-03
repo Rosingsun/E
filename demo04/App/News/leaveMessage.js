@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   View,
   StyleSheet,
@@ -6,27 +6,24 @@ import {
   FlatList,
   Text,
   Image,
+  Alert,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MainText from './NewsDetails/MainText';
-
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
-const Stack = createStackNavigator();
-export default function Home() {
-  return (
-    <NavigationContainer independent="true">
-      <Stack.Navigator mode="modal" headerMode="none">
-        <Stack.Screen name="leaveMessage" component={leaveMessage} />
-        <Stack.Screen name="MainText" component={MainText} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
+  export default class  leaveMessage extends Component {
+    constructor(props){
+      super(props)
+      this.state={
+        tabBarHeight:50,
+      }
+    }
 
-function leaveMessage({ navigation }) {
+    static navigationOptions = {
+     Height:0,
+  };
+    render(){
   return (
     <View style={[styles.container]}>
       <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
@@ -46,9 +43,9 @@ function leaveMessage({ navigation }) {
             },
           ]}
           renderItem={({ item }) =>
-            <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#ffffff", borderRadius: 15, marginTop: 15, paddingBottom: 8 }}>
+            <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#ffffff", borderRadius: 15, marginTop: 15, paddingBottom: 8, }}>
               {/* 第一行用户信息框 */}
-              <View style={{ padding: 10, flexDirection: "row" }}>
+              <View style={{ padding: 10, flexDirection: "row", }}>
                 <Image style={{ height: 45, width: 45, borderRadius: 30 }} source={require('../img/a.png')} />
                 {/* 用户信息 */}
                 <View style={{ flexDirection: "column", marginLeft: 10 }}>
@@ -58,7 +55,8 @@ function leaveMessage({ navigation }) {
                 <View style={{ position: "absolute", borderRadius: 10, right: 10, top: 10, height: 24, width: 50, backgroundColor: "#6C9575", alignItems: "center" }}>
                   <Text style={{ fontSize: 15, color: "#ffffff" }}
                     onPress={() => {
-                      navigation.navigate('MainText');
+                      Alert.alert(this.state.disPlayState+" "+this.state.tabBarHeight)
+                      this.props.navigation.navigate('MainText',{Height:this.state.disPlayState});
                     }}
                   >回复</Text>
                 </View>
@@ -88,7 +86,7 @@ function leaveMessage({ navigation }) {
       {/* 底部颜色 */}
     </View>
   )
-}
+}}
 const styles = StyleSheet.create({
   container: {
     flex: 1,

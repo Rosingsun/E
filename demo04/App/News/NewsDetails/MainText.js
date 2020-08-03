@@ -33,7 +33,7 @@ export default class MainText extends Component {
       <View style={styles.container}>
         <View style={styles.Top}>
           <AntDesign name='left' size={32} color='#000' onPress={() => {
-            Alert.alert("返回")
+            this.props.navigation.navigate('leaveMessage');
           }} />
           <Text style={{ fontSize: 20, color: "#000" }}>游记正文</Text>
           <Feather name="more-horizontal" size={40} color="#000" onPress={() => {
@@ -142,7 +142,7 @@ export default class MainText extends Component {
                     },
                     {
                       head: '../../img/1.jpg',
-                      id: "桥本环奈",
+                      id: "桥本环奈02",
                       time: '2020.7.20.16.14',
                       word: "这是我发表的评论",
                       ddttaa: [

@@ -52,7 +52,7 @@ const Main = ({ navigation }) => {
           </View>
           <View style={[styles.inputBox]}>
             <TextInput
-              placeholder="abibas"
+              placeholder="去哪玩"
               style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }}
             >
             </TextInput>

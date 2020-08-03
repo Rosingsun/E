@@ -109,7 +109,7 @@ var userInfo = [
     userBackGroundPic: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
     nodeNum: "Kali",
     lineNum: "Kali",
-    userLv: "Lv.8 资深游侠",
+    userLv: "Lv.1 资深游侠",
   },
   {
     userName: "Kali",
@@ -117,7 +117,7 @@ var userInfo = [
     userBackGroundPic: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
     nodeNum: "Kali",
     lineNum: "Kali",
-    userLv: "Lv.8 资深游侠",
+    userLv: "Lv.1 资深游侠",
   },
 ]
 
@@ -178,6 +178,14 @@ export default class Discovery extends Component {
                   num: 2,
                   titleContain: "随李白登黄鹤楼",
                 },
+                {
+                  key: 'a',
+                  pic: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
+                  newsTitle: "杭州西湖以茶会友，小阁相聚风景极好",
+                  newsTitleTow: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
+                  num: 3,
+                  titleContain: "随李白登黄鹤楼",
+                },
               ]}
               renderItem={({ item }) =>
                 _showActive(item.pic, item.num, item.titleContain, item.newsTitle, item.newsTitleTow)
@@ -223,10 +231,8 @@ export default class Discovery extends Component {
           {/* 竖向轮播 */}
           <View>
             <ScrollView
-              showsVerticalScrollIndicator={true}
-            >
-              <View style={{ height: 300, width: '100%', backgroundColor: "red" }}>
-
+              showsVerticalScrollIndicator={true}>
+              <View style={{ height: 300, width: '100%' }}>
                 {
                   userMap.map((item) => {
                     return (
@@ -242,34 +248,32 @@ export default class Discovery extends Component {
           <View style={{ marginTop: 20, padding: 10 }}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
               <Text style={{ fontSize: 20 }}>活跃玩家</Text>
-              <Text style={{ fontSize: 15, color: "#999999" }}>排行榜></Text>
+              <Text style={{ fontSize: 15, color: "#999999" }}>排行榜</Text>
             </View>
-            <ScrollView
-              style={{ marginTop: 20, borderRadius: 3, }}
-              showsVerticalScrollIndicator={true}
 
+            <ScrollView
+              style={{ width: '100%', height: '100%', backgroundColor: "green" ,flexDirection:"row"}}
+              horizontal={true}
             >
-              <ScrollView style={{ height: 350, width:"100%",backgroundColor:"red"}}>
-                {
-                  userInfo.map((item) => {
-                    return (
-                      <View style={{ width: '70%', backgroundColor: "#fff", height: "100%" ,marginLeft:10}}>
-                        <Image style={{ height: '60%', width: '100%', }} source={{ uri: item.userHeardImg }} />
-                        <View style={{ height: '40%', width: '100%', backgroundColor: "#fff", paddingHorizontal: 10 }}>
-                          <Image style={{ height: 50, width: 50, borderRadius: 25, marginTop: -25, borderWidth: 2, borderColor: "#fff" }} source={{ uri: item.userHeardImg }} />
-                          <Text style={{ backgroundColor: "#fff", fontSize: 20, }}>{item.userName}</Text>
-                          <View style={{ width: 110, flexDirection: "row", justifyContent: "space-between" }}>
-                            <Text style={{ fontSize: 10, color: "#999" }}>{item.lineNum}条游记</Text>
-                            <Text style={{ fontSize: 10, color: "#999999" }} >{item.lineNum}条路线</Text>
-                          </View>
-                          <Text style={{ fontSize: 15, color: "#999", marginTop: 10 }}>{item.userLv}</Text>
-                          <Text style={{ borderWidth: 1, borderColor: "green", width: 50, paddingVertical: 5, paddingHorizontal: 5, }}>关注</Text>
+              {
+                userInfo.map((item) => {
+                  return (
+                    <View style={{ width: '100%', backgroundColor: "#fff", height: 350, marginLeft: 10 }}>
+                      <Image style={{ height: '60%', width: '100%', }} source={{ uri: item.userHeardImg }} />
+                      <View style={{ height: '40%', width: '100%', backgroundColor: "#fff", paddingHorizontal: 10 }}>
+                        <Image style={{ height: 50, width: 50, borderRadius: 25, marginTop: -25, borderWidth: 2, borderColor: "#fff" }} source={{ uri: item.userHeardImg }} />
+                        <Text style={{ backgroundColor: "#fff", fontSize: 20, }}>{item.userName}</Text>
+                        <View style={{ width: 110, flexDirection: "row", justifyContent: "space-between" }}>
+                          <Text style={{ fontSize: 10, color: "#999" }}>{item.lineNum}条游记</Text>
+                          <Text style={{ fontSize: 10, color: "#999999" }} >{item.lineNum}条路线</Text>
                         </View>
+                        <Text style={{ fontSize: 15, color: "#999", marginTop: 10 }}>{item.userLv}</Text>
+                        <Text style={{ borderWidth: 1, borderColor: "green", width: 50, paddingVertical: 5, paddingHorizontal: 5, }}>关注</Text>
                       </View>
-                    )
-                  })
-                }
-              </ScrollView>
+                    </View>
+                  )
+                })
+              }
             </ScrollView>
           </View>
         </ScrollView>

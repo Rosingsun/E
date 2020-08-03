@@ -54,11 +54,7 @@ export default function PersonalCenterNavigation() {
                     component={Eshouchang}
                     options={{ title: 'E收藏' }}
                 />
-                <Tab.Screen
-                    name="Edaka"
-                    component={Edaka}
-                    options={{ title: 'E打卡' }}
-                />
+                <Tab.Screen name="Edaka" component={Edaka} options={{ title: 'E打卡' }}/>
             </Tab.Navigator>
         </NavigationContainer>
     );

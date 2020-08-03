@@ -70,12 +70,15 @@ export default class Edaka extends Component {
   render() {
     return (
       <View style={[styles.container]}>
-        <ScrollView Style={{height:'100%',width:'100%',backgroundColor:"red"}}>
           <FlatList
+          style={{height:'80%'}}
+          scrollEnabled={true}
             data={[
-              { key: "1" },
+              { key: "1.5" },
               { key: "2" },
               { key: "3" },
+              { key: "4" },
+              { key: "5" },
               { key: "4" },
             ]}
             renderItem={({ item }) =>
@@ -115,7 +118,6 @@ export default class Edaka extends Component {
               </View>
             }
           />
-        </ScrollView>
       </View>
     );
   }
