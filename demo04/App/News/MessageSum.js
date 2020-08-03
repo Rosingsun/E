@@ -45,8 +45,6 @@ const MessageSum = ({ navigation }) => {
 
         <View style={{ height: '90%', width: '100%', borderBottomRightRadius: 20, borderBottomRightRadius: 20, }}>
           <MessageDetails />
-          
-	
         </View>
       </View>
     </View>

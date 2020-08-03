@@ -51,54 +51,6 @@ var userMap = [
     key: "3",
     backgroundColor: "#333",
   },
-  {
-    key: "4",
-    backgroundColor: "#444",
-  },
-  {
-    key: "5",
-    backgroundColor: "#555",
-  },
-  {
-    key: "6",
-    backgroundColor: "#666",
-  },
-  {
-    key: "7",
-    backgroundColor: "#777",
-  },
-  {
-    key: "8",
-    backgroundColor: "#888",
-  },
-  {
-    key: "9",
-    backgroundColor: "#999",
-  },
-  {
-    key: "10",
-    backgroundColor: "#aaa",
-  },
-  {
-    key: "11",
-    backgroundColor: "#bbb",
-  },
-  {
-    key: "12",
-    backgroundColor: "#ccc",
-  },
-  {
-    key: "13",
-    backgroundColor: "#ddd",
-  },
-  {
-    key: "14",
-    backgroundColor: "#eee",
-  },
-  {
-    key: "15",
-    backgroundColor: "#fff",
-  },
 ]
 
 
@@ -106,22 +58,55 @@ var userInfo = [
   {
     userName: "Kali",
     userHeardImg: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-    userBackGroundPic: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+    userBackGroundPic: "http://pic.51yuansu.com/pic3/cover/03/99/16/5ee9d6e6d996d_610.jpg",
     nodeNum: "Kali",
     lineNum: "Kali",
     userLv: "Lv.1 资深游侠",
   },
   {
     userName: "Kali",
-    userHeardImg: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-    userBackGroundPic: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+    userHeardImg: "http://pic.51yuansu.com/pic3/cover/01/79/99/596f3932bf9a8_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+    userBackGroundPic: "http://pic.51yuansu.com/pic3/cover/03/50/44/5bd146f2c29cc_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
     nodeNum: "Kali",
     lineNum: "Kali",
-    userLv: "Lv.1 资深游侠",
+    userLv: "Lv.2 资深游侠",
+  },
+  {
+    userName: "Kali",
+    userHeardImg: "http://pic.51yuansu.com/pic3/cover/01/79/91/596f37567f1b8_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+    userBackGroundPic: "http://pic.51yuansu.com/pic3/cover/03/94/91/5cee49d4eaa59_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+    nodeNum: "Kali",
+    lineNum: "Kali",
+    userLv: "Lv.3 资深游侠",
   },
 ]
 
-
+var weakMainTitle = [
+  {
+    key: 'a',
+    pic: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
+    newsTitle: "杭州西湖以茶会友，小阁相聚风景极好",
+    newsTitleTow: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
+    num: 1,
+    titleContain: "随白居易钱塘江春行",
+  },
+  {
+    key: 'a',
+    pic: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
+    newsTitle: "杭州西湖以茶会友，小阁相聚风景极好",
+    newsTitleTow: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
+    num: 2,
+    titleContain: "随李白登黄鹤楼",
+  },
+  {
+    key: 'a',
+    pic: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
+    newsTitle: "杭州西湖以茶会友，小阁相聚风景极好",
+    newsTitleTow: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
+    num: 3,
+    titleContain: "随李白登黄鹤楼",
+  },
+]
 export default class Discovery extends Component {
   constructor(props) {
     super(props);
@@ -153,43 +138,23 @@ export default class Discovery extends Component {
         </View>
         {/* 第一部分 */}
 
-        <ScrollView style={{ height: '80%' }}
+        <ScrollView style={{ height: '100%' }}
           showsVerticalScrollIndicator={false}
         >
           <View style={{ width: "100%", height: 158, marginTop: 20, paddingLeft: 5, }}>
             <Text style={{ marginLeft: 10, fontSize: 20 }}>每周专题</Text>
-            <FlatList
+            <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              data={[
-                {
-                  key: 'a',
-                  pic: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
-                  newsTitle: "杭州西湖以茶会友，小阁相聚风景极好",
-                  newsTitleTow: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
-                  num: 1,
-                  titleContain: "随白居易钱塘江春行",
-                },
-                {
-                  key: 'a',
-                  pic: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
-                  newsTitle: "杭州西湖以茶会友，小阁相聚风景极好",
-                  newsTitleTow: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
-                  num: 2,
-                  titleContain: "随李白登黄鹤楼",
-                },
-                {
-                  key: 'a',
-                  pic: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
-                  newsTitle: "杭州西湖以茶会友，小阁相聚风景极好",
-                  newsTitleTow: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
-                  num: 3,
-                  titleContain: "随李白登黄鹤楼",
-                },
-              ]}
-              renderItem={({ item }) =>
-                _showActive(item.pic, item.num, item.titleContain, item.newsTitle, item.newsTitleTow)
-              } />
+            >
+              {
+                weakMainTitle.map((item) => {
+                  return (
+                    _showActive(item.pic, item.num, item.titleContain, item.newsTitle, item.newsTitleTow)
+                  )
+                })
+              }
+            </ScrollView>
           </View>
 
 
@@ -245,22 +210,22 @@ export default class Discovery extends Component {
           </View>
 
           {/* 第四部分 */}
-          <View style={{ marginTop: 20, padding: 10 }}>
+          <View style={{ marginTop: 20, padding: 10 ,backgroundColor: "#fff",}}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
               <Text style={{ fontSize: 20 }}>活跃玩家</Text>
               <Text style={{ fontSize: 15, color: "#999999" }}>排行榜</Text>
             </View>
 
             <ScrollView
-              style={{ width: '100%', height: '100%', backgroundColor: "green" ,flexDirection:"row"}}
+              style={{  height: '100%'}}
               horizontal={true}
             >
               {
                 userInfo.map((item) => {
                   return (
-                    <View style={{ width: '100%', backgroundColor: "#fff", height: 350, marginLeft: 10 }}>
-                      <Image style={{ height: '60%', width: '100%', }} source={{ uri: item.userHeardImg }} />
-                      <View style={{ height: '40%', width: '100%', backgroundColor: "#fff", paddingHorizontal: 10 }}>
+                    <View style={{ width: 260,  height: 350,marginLeft:20}}>
+                      <Image style={{ height: 184, width: '100%', }} source={{ uri: item.userBackGroundPic }} />
+                      <View style={{ height: '40%', width: '100%', backgroundColor: "#fff", paddingHorizontal: 10,elevation:2}}>
                         <Image style={{ height: 50, width: 50, borderRadius: 25, marginTop: -25, borderWidth: 2, borderColor: "#fff" }} source={{ uri: item.userHeardImg }} />
                         <Text style={{ backgroundColor: "#fff", fontSize: 20, }}>{item.userName}</Text>
                         <View style={{ width: 110, flexDirection: "row", justifyContent: "space-between" }}>

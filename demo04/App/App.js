@@ -12,6 +12,7 @@ import welcom from './welcome/welcome';
 import Message from './News/Message';
 import MainText from './News/NewsDetails/MainText';
 import leaveMessage from './News/leaveMessage';
+import Search from './HomePage//detail/Ranking';
 //下面是页面之内需要跳转的
 //消息页面
 //底部材料导航栏
@@ -57,13 +58,23 @@ function MyStack() {
                 inactiveBackgroundColor: "green",
             }}
         >
-            <Stack.Screen name="Home" component={Home}
+            <Stack.Screen name="Home"
                 options={{
                     tabBarLabel: '首页',
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'home'} size={25} color={color} />
                     ),
                 }}>
+                {() => {
+                    return (
+                        <changeStack.Navigator
+                            headerMode="none"
+                        >
+                            <changeStack.Screen name="Home" component={Home} />
+                            <changeStack.Screen name="Search" component={Search} />
+                        </changeStack.Navigator>
+                    )
+                }}
             </Stack.Screen>
             <Stack.Screen name="Discovery" component={Discovery}
                 options={{
@@ -81,8 +92,8 @@ function MyStack() {
                     ),
                 }}
             />
-            <Stack.Screen name="MessageSum" 
-            // component={MessageSum}
+            <Stack.Screen name="MessageSum"
+                component={MessageSum}
                 options={{
                     tabBarLabel: '消息',
                     tabBarIcon: ({ color }) => (
@@ -90,17 +101,17 @@ function MyStack() {
                     ),
                 }}
             >
-                {() => {
+                {/* {() => {
                     return (
-                        <changeStack.Navigator
+                        <changeStack02.Navigator
                             headerMode="none"
                         >
                             <changeStack02.Screen name="MessageSum" component={MessageSum} />
                             <changeStack02.Screen name="MainText" component={MainText} />
                             <changeStack02.Screen name="leaveMessage" component={leaveMessage} />
-                        </changeStack.Navigator>
+                        </changeStack02.Navigator>
                     )
-                }}
+                }} */}
             </Stack.Screen>
             <Stack.Screen name="PersonalCenterSum" component={PersonalCenterSum}
                 options={{
