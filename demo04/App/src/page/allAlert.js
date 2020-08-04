@@ -9,8 +9,8 @@ import { RotationGestureHandler } from 'react-native-gesture-handler';
 export default class DefineCon extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      AlertName:DefineCon02,
+    this.state = {
+      AlertName: DefineCon02,
     }
   }
 
@@ -37,7 +37,7 @@ export default class DefineCon extends Component {
           onPress={this.funAlert.bind(this)}>
           <Text >阿巴阿巴阿八八八</Text>
         </TouchableHighlight>
-        <CommonDialog types={'alert'} components={<this.state.AlertName/>} ref="dAlert" />
+        <CommonDialog types={'alert'} components={<this.state.AlertName />} ref="dAlert" />
       </View>
     )
   }

@@ -13,8 +13,8 @@ const screenHeight= Dimensions.get("window").height;
 class Project extends React.Component{
 
     state={
-        cardWidth:new Animated.Value(315),
-        cardHeight:new Animated.Value(460),
+        cardWidth:new Animated.Value(screenWidth*0.85),
+        cardHeight:new Animated.Value(300),
         titleTop: new Animated.Value(20),
         opacity:new Animated.Value(0),
         textHeight: new Animated.Value(100)
@@ -33,7 +33,7 @@ class Project extends React.Component{
     }
 
     closeCard=()=>{
-        Animated.spring(this.state.cardWidth,{toValue:315}).start();
+        Animated.spring(this.state.cardWidth,{toValue:screenWidth*0.85}).start();
         Animated.spring(this.state.cardHeight,{toValue:460}).start();
         Animated.spring(this.state.titleTop,{toValue:20}).start();
         Animated.timing(this.state.opacity,{toValue:0}).start();
@@ -117,7 +117,7 @@ const Author=styled.Text`
 `;
 const Text=styled.Text`
   font-size:17px;
-  margin:20px;
+  margin:10px;
   line-height:20px;
   color:#3c4560;
 `;

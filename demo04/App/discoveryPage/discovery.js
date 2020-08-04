@@ -17,6 +17,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import ProjectsScreen from '../../lotte/cardscreen';
 import Swiper from 'react-native-swiper';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 //底部颜色
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
@@ -49,6 +50,10 @@ var userMap = [
   },
   {
     key: "3",
+    backgroundColor: "#333",
+  },
+  {
+    key: "4",
     backgroundColor: "#333",
   },
 ]
@@ -106,12 +111,19 @@ var weakMainTitle = [
     num: 3,
     titleContain: "随李白登黄鹤楼",
   },
+  {
+    key: 'a',
+    pic: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
+    newsTitle: "杭州西湖以茶会友，小阁相聚风景极好",
+    newsTitleTow: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
+    num: 4,
+    titleContain: "随李白登黄鹤楼",
+  },
 ]
 export default class Discovery extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stateone: '',
       One: '#6C9575',
       Two: '#6C957559',
       Three: '#6C957550',
@@ -141,7 +153,7 @@ export default class Discovery extends Component {
         <ScrollView style={{ height: '100%' }}
           showsVerticalScrollIndicator={false}
         >
-          <View style={{ width: "100%", height: 158, marginTop: 20, paddingLeft: 5, }}>
+          <View style={{ width: "100%", height: 198, marginTop: 20, paddingLeft: 5, }}>
             <Text style={{ marginLeft: 10, fontSize: 20 }}>每周专题</Text>
             <ScrollView
               horizontal={true}
@@ -159,7 +171,7 @@ export default class Discovery extends Component {
 
 
           {/* 第二部分 */}
-          <View style={{ width: '94%', marginTop: 20, height: 340, marginLeft: '3%', backgroundColor: "#fff", borderRadius: 15, }}>
+          <View style={{ width: '94%', marginTop: 20, height: 400, marginLeft: '3%', backgroundColor: "#fff", borderRadius: 15, }}>
             {/* title line */}
             <View style={{ flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 10, paddingTop: 10, }}>
               <Text>随诗打卡</Text>
@@ -172,60 +184,70 @@ export default class Discovery extends Component {
                 }}>  我的专属</Text>
               <Text style={{ width: '18%', backgroundColor: this.state.Two, color: "#fff", borderRadius: 3 }}
                 onPress={() => {
-                  this.setState({ One: '#6C9575', Two: '#6C957550', Three: '#6C957550', Four: '#6C957550' })
+                  this.setState({ One: '#6C957550', Two: '#6C9575', Three: '#6C957550', Four: '#6C957550' })
                 }}
               >  历史故事</Text>
               <Text style={{ width: '18%', backgroundColor: this.state.Three, color: "#fff", borderRadius: 3 }}
                 onPress={() => {
-                  this.setState({ One: '#6C9575', Two: '#6C957550', Three: '#6C957550', Four: '#6C957550' })
+                  this.setState({ One: '#6C957550', Two: '#6C957550', Three: '#6C9575', Four: '#6C957550' })
                 }}
               >  附近地点</Text>
               <Text style={{ width: '18%', backgroundColor: this.state.Four, color: "#fff", borderRadius: 3 }}
                 onPress={() => {
-                  this.setState({ One: '#6C9575', Two: '#6C957550', Three: '#6C957550', Four: '#6C957550' })
+                  this.setState({ One: '#6C957550', Two: '#6C957550', Three: '#6C957550', Four: '#6C9575' })
                 }}
               >  最多人玩</Text>
             </View>
             <View>
-              <View style={{ height: '120%', width: '100%', backgroundColor: "red" }}>
+              <View style={{ height: '100%', width: '100%' ,overflow:"hidden"}}>
+                <TouchableWithoutFeedback
+                style={{height:'100%',width:'100%'}}
+                  onPress={()=>{
+                    Alert.alert("you touch me");
+                  }}
+                >
                 <ProjectsScreen />
+                </TouchableWithoutFeedback>
               </View>
             </View>
           </View>
           {/* 第三部分 */}
           {/* 竖向轮播 */}
-          <View>
+          <View style={{ marginTop: 40, padding: 10, width: '100%', backgroundColor: "red", height: 400, }}>
             <ScrollView
-              showsVerticalScrollIndicator={true}>
-              <View style={{ height: 300, width: '100%' }}>
-                {
-                  userMap.map((item) => {
-                    return (
-                      <Text style={{ backgroundColor: item.backgroundColor, height: 200 }}>{item.key}</Text>
-                    )
-                  })
-                }
-              </View>
+              horizontal={true}
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+            >
+              {
+                userMap.map((item) => {
+                  return (
+                    // <View style={{ height: '100%', width: 300 }}>
+                    <Text style={{ backgroundColor: "skyblue", height: '30%', width: 200, color: "#fff", marginLeft: 12 }}>{item.key}</Text>
+                    // </View>
+                  )
+                })
+              }
             </ScrollView>
           </View>
 
           {/* 第四部分 */}
-          <View style={{ marginTop: 20, padding: 10 ,backgroundColor: "#fff",}}>
+          <View style={{ marginTop: 20, padding: 10, backgroundColor: "#fff", }}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
               <Text style={{ fontSize: 20 }}>活跃玩家</Text>
-              <Text style={{ fontSize: 15, color: "#999999" }}>排行榜</Text>
+              <Text style={{ fontSize: 15, color: "#999999" }}>排行榜 <FontAwesome name={'angle-right'} size={20} color={'#999999'} /></Text>
             </View>
 
             <ScrollView
-              style={{  height: '100%'}}
+              style={{ height: '100%' }}
               horizontal={true}
             >
               {
                 userInfo.map((item) => {
                   return (
-                    <View style={{ width: 260,  height: 350,marginLeft:20}}>
+                    <View style={{ width: 260, height: 350, marginLeft: 20 }}>
                       <Image style={{ height: 184, width: '100%', }} source={{ uri: item.userBackGroundPic }} />
-                      <View style={{ height: '40%', width: '100%', backgroundColor: "#fff", paddingHorizontal: 10,elevation:2}}>
+                      <View style={{ height: '40%', width: '100%', backgroundColor: "#fff", paddingHorizontal: 10, elevation: 2 }}>
                         <Image style={{ height: 50, width: 50, borderRadius: 25, marginTop: -25, borderWidth: 2, borderColor: "#fff" }} source={{ uri: item.userHeardImg }} />
                         <Text style={{ backgroundColor: "#fff", fontSize: 20, }}>{item.userName}</Text>
                         <View style={{ width: 110, flexDirection: "row", justifyContent: "space-between" }}>
@@ -233,7 +255,7 @@ export default class Discovery extends Component {
                           <Text style={{ fontSize: 10, color: "#999999" }} >{item.lineNum}条路线</Text>
                         </View>
                         <Text style={{ fontSize: 15, color: "#999", marginTop: 10 }}>{item.userLv}</Text>
-                        <Text style={{ borderWidth: 1, borderColor: "green", width: 50, paddingVertical: 5, paddingHorizontal: 5, }}>关注</Text>
+                        <Text style={{ borderWidth: 1, borderColor: "green", width: 50, paddingVertical: 5, height: 30, paddingHorizontal: 5, textAlign: "center" }}>关注</Text>
                       </View>
                     </View>
                   )
