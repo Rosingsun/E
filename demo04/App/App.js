@@ -12,13 +12,19 @@ import welcom from './welcome/welcome';
 import Message from './News/Message';
 import MainText from './News/NewsDetails/MainText';
 import leaveMessage from './News/leaveMessage';
-import Search from './HomePage//detail/Ranking';
+
+import Search from './HomePage/detail/Ranking';
+import BaiduMap from'./Map/baiduMap';
+// 发现页面
+import choiceCity from './DiscoveryPage/moreLine/choiceCity';
+import Line from './DiscoveryPage/moreLine/Line';
 //下面是页面之内需要跳转的
 //消息页面
 //底部材料导航栏
 const Stack = createMaterialBottomTabNavigator();
 const changeStack = createStackNavigator();
-const changeStack02 = createStackNavigator();
+const DiscoveryStack = createStackNavigator();
+const changeStack03 = createStackNavigator();
 function MyStack() {
 
     return (
@@ -67,23 +73,35 @@ function MyStack() {
                 }}>
                 {() => {
                     return (
-                        <changeStack.Navigator
-                            headerMode="none"
-                        >
+                        <changeStack.Navigator headerMode="none">
                             <changeStack.Screen name="Home" component={Home} />
                             <changeStack.Screen name="Search" component={Search} />
                         </changeStack.Navigator>
                     )
                 }}
             </Stack.Screen>
-            <Stack.Screen name="Discovery" component={Discovery}
+            <Stack.Screen name="Discovery"
+            //  component={Discovery}
                 options={{
                     tabBarLabel: '发现',
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'binoculars'} size={20} color={color} />
                     ),
                 }}
-            />
+            >
+                {() => {
+                    return (
+                        <DiscoveryStack.Navigator
+                        headerMode="none"
+                        >
+                            <DiscoveryStack.Screen name="Discovery" component={Discovery} />
+                            <DiscoveryStack.Screen name="BaiduMap" component={BaiduMap} />
+                            <DiscoveryStack.Screen name="choiceCity" component={choiceCity} />
+                            <DiscoveryStack.Screen name="Line" component={Line} />
+                        </DiscoveryStack.Navigator>
+                    )
+                }}
+            </Stack.Screen>
             <Stack.Screen name="Setting" component={Setting}
                 options={{
                     tabBarLabel: '发一个',
@@ -101,17 +119,6 @@ function MyStack() {
                     ),
                 }}
             >
-                {/* {() => {
-                    return (
-                        <changeStack02.Navigator
-                            headerMode="none"
-                        >
-                            <changeStack02.Screen name="MessageSum" component={MessageSum} />
-                            <changeStack02.Screen name="MainText" component={MainText} />
-                            <changeStack02.Screen name="leaveMessage" component={leaveMessage} />
-                        </changeStack02.Navigator>
-                    )
-                }} */}
             </Stack.Screen>
             <Stack.Screen name="PersonalCenterSum" component={PersonalCenterSum}
                 options={{

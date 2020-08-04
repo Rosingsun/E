@@ -214,6 +214,13 @@ export default class Discovery extends Component {
           {/* 第三部分 */}
           {/* 竖向轮播 */}
           <View style={{ marginTop: 40, padding: 10, width: '100%', backgroundColor: "red", height: 400, }}>
+            <View style={{width:'100%',height:20,backgroundColor:"#fff",alignItems:"flex-end"}}>
+              <Text
+              onPress={()=>{
+                this.props.navigation.navigate("choiceCity")
+              }}
+              >更多路线<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
+            </View>
             <ScrollView
               horizontal={true}
               showsVerticalScrollIndicator={false}
@@ -223,7 +230,11 @@ export default class Discovery extends Component {
                 userMap.map((item) => {
                   return (
                     // <View style={{ height: '100%', width: 300 }}>
-                    <Text style={{ backgroundColor: "skyblue", height: '30%', width: 200, color: "#fff", marginLeft: 12 }}>{item.key}</Text>
+                    <Text style={{ backgroundColor: "skyblue", height: '30%', width: 200, color: "#fff", marginLeft: 12 }}
+                    onPress={()=>{
+                      this.props.navigation.navigate("BaiduMap")
+                    }}
+                    >{item.key}</Text>
                     // </View>
                   )
                 })
