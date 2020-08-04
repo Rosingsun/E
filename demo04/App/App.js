@@ -9,7 +9,7 @@ import MessageSum from './News/MessageSum';
 import PersonalCenterSum from './PersonalCenter/personnalCenterSum';
 import welcom from './welcome/welcome';
 //下面是页面之内需要跳转的
-//消息页面
+//消息页面  
 //底部材料导航栏
 const Stack = createMaterialBottomTabNavigator();
 
