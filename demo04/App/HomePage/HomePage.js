@@ -12,6 +12,7 @@ import {
   TextInput,
   StatusBar,
   ImageBackground,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -26,6 +27,7 @@ StatusBar.setBarStyle('dark-content');
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Message from '../News/Message';
+import Search from '../HomePage//detail/Ranking';
 const Stack = createStackNavigator();
 export default function Home() {
   return (
@@ -33,6 +35,7 @@ export default function Home() {
       <Stack.Navigator mode="modal" headerMode="none">
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="Message" component={Message} />
+        <Stack.Screen name="Search" component={Search} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -47,12 +50,12 @@ const Main = ({ navigation }) => {
       <View style={[styles.top]}>
         <View style={[styles.nav_container]}>
           <View style={{ flexDirection: "row" }}>
-            <Ionicons name={'md-location-sharp'} size={30} color={'#000'}/>
+            <Ionicons name={'md-location-sharp'} size={30} color={'#000'} />
             <Text style={{ lineHeight: 30, marginLeft: 10, color: "#000", fontWeight: "bold" }}>杭州</Text>
           </View>
           <View style={[styles.inputBox]}>
             <TextInput
-              placeholder="abibas"
+              placeholder="去哪玩"
               style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }}
             >
             </TextInput>
@@ -80,27 +83,41 @@ const Main = ({ navigation }) => {
               <View style={{ width: '49%', height: '100%' }}>
                 <ImageBackground style={{ height: 110, marginTop: 10, width: '100%', borderRadius: 3 }} source={require('../img/Photo/hangzhou.jpg')} />
                 <Image source={require("../img/dakaBottom.png")} style={{ height: '50%', width: '100%', position: "absolute", bottom: 0, }}></Image>
-                <Text style={{ position: "absolute", bottom: 0, left: 30, width: '100%', }}>每周必去打卡排行榜</Text>
+                <Text style={{ position: "absolute", bottom: 0, left: 30, width: '100%', }}
+
+                >每周必去打卡排行榜</Text>
               </View>
               <View style={{ width: "49%", flexDirection: "column", justifyContent: "space-around", alignItems: 'center', marginLeft: '2%' }}>
                 {/* firest View Box */}
-                <View style={[styles.list]}>
-                  {/* 用户头像 */}
-                  <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../img/a.jpg')} />
-                  <View style={{ alignItems: "center", marginHorizontal: 10 }}>
-                    <Text>每周活跃用户</Text>
-                    <Text>排行榜</Text>
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    navigation.navigate('Search')
+                  }}
+                >
+                  <View style={[styles.list]}>
+                    {/* 用户头像 */}
+                    <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../img/a.jpg')} />
+                    <View style={{ alignItems: "center", marginHorizontal: 10 }}>
+                      <Text>每周活跃用户</Text>
+                      <Text>排行榜</Text>
+                    </View>
                   </View>
-                </View>
+                </TouchableWithoutFeedback>
                 {/* Second View Box */}
-                <View style={[styles.list]}>
-                  {/* 用户头像 */}
-                  <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../img/a.png')} />
-                  <View style={{ alignItems: "center", marginHorizontal: 10 }}>
-                    <Text>每周活跃用户</Text>
-                    <Text>排行榜</Text>
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    navigation.navigate('Search')
+                  }}
+                >
+                  <View style={[styles.list]}>
+                    {/* 用户头像 */}
+                    <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../img/a.png')} />
+                    <View style={{ alignItems: "center", marginHorizontal: 10 }}>
+                      <Text>每周活跃用户</Text>
+                      <Text>排行榜</Text>
+                    </View>
                   </View>
-                </View>
+                </TouchableWithoutFeedback>
                 {/* The Second Box End */}
               </View>
             </View>

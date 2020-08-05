@@ -50,7 +50,7 @@ class ProjectsScreen extends React.Component {
                         this.state.scale.setValue(0.9);
                         this.state.translateY.setValue(44);
                         this.state.thirdScale.setValue(0.8);
-                        this.state.thirdTranslateY.setValue(-50);
+                        this.state.thirdTranslateY.setValue(-24);
                         this.setState({ index: getNextIndex(this.state.index) })
                     });
                 } else {
@@ -82,7 +82,7 @@ class ProjectsScreen extends React.Component {
                         title={Projects[this.state.index].title}
                         image={Projects[this.state.index].image}
                         author={Projects[this.state.index].author}
-                        text={Projects[this.state.index].text}
+                        // text={Projects[this.state.index].text}
                         canOpen={true}
                     />
 
@@ -104,7 +104,7 @@ class ProjectsScreen extends React.Component {
                         title={Projects[getNextIndex(this.state.index)].title}
                         image={Projects[getNextIndex(this.state.index)].image}
                         author={Projects[getNextIndex(this.state.index)].author}
-                        text={Projects[getNextIndex(this.state.index)].text}
+                    // text={Projects[getNextIndex(this.state.index)].text}
 
                     />
                 </Animated.View>
@@ -126,7 +126,7 @@ class ProjectsScreen extends React.Component {
                         title={Projects[getNextIndex(this.state.index + 1)].title}
                         image={Projects[getNextIndex(this.state.index + 1)].image}
                         author={Projects[getNextIndex(this.state.index + 1)].author}
-                        text={Projects[getNextIndex(this.state.index + 1)].text}
+                    // text={Projects[getNextIndex(this.state.index + 1)].text}
 
                     />
                 </Animated.View>
@@ -143,7 +143,7 @@ const Mask = styled.View`
   left:0;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.25);
+  background:rgba(255,255,255,1);
   z-index:-3;
 `;
 const AnimatedMask = Animated.createAnimatedComponent(Mask);

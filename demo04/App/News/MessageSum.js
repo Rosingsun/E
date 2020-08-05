@@ -3,11 +3,8 @@ import {
   View,
   StyleSheet,
   Dimensions,
-  TouchableWithoutFeedback,
   TextInput,
-  FlatList,
   Text,
-  Image,
   StatusBar,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -19,7 +16,10 @@ StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
+
 const MessageSum = ({ navigation }) => {
+  
+
   return (
     <View style={[styles.container]}>
       {/* 顶部输入框 */}
@@ -32,7 +32,7 @@ const MessageSum = ({ navigation }) => {
             </View>
             <View style={[styles.inputBox]}>
               <TextInput
-                placeholder="abibas"
+                placeholder="看什么"
                 style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }}
               >
               </TextInput>
@@ -75,5 +75,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginLeft: "5%",
+    
   },
 });

@@ -7,6 +7,7 @@ import {
     Image,
     StyleSheet,
     ScrollView,
+    Alert,
 } from 'react-native';
 import Bottom_nav from '../Accessories/Nav/bottom';
 import PersonalCenterNavigation from '../navigation/PersonalNavigation';
@@ -26,7 +27,12 @@ export default class PersonalCenterSum extends Component {
     }
     render() {
         return (
-            <ScrollView style={{height:'100%'}}>
+            <ScrollView style={{height:'80%'}}
+            
+            onScroll = {(event)=>{{
+              }}}
+              scrollEnabled={false}
+            >
             <View style={{ flex: 1, backgroundColor: "red", }}>
                 {/* <ScrollView> */}
                 <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
@@ -58,7 +64,6 @@ export default class PersonalCenterSum extends Component {
                 <View style={{ width: '100%', height: '80%', backgroundColor: "red" }}>
                     <PersonalCenterNavigation />
                 </View>
-                {/* </ScrollView> */}
             </View>
             </ScrollView>
         )

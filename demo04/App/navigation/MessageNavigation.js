@@ -69,18 +69,22 @@ export default function MessageDetails() {
         />
         <Tab.Screen
           name="leaveMessage"
-          component={leaveMessage}
+          // component={leaveMessage}
           options={{
             tabBarIcon: ({ color }) => (
               <AntDesign name={'message1'} size={28} color={color} />
             ),
           }}
         >
-          {/* {() => {
-            <Stack.Navigator>
+          {() => {
+            return(
+            <Stack.Navigator
+            headerMode="none"
+            >
+              <Stack.Screen name="leaveMessage" component={leaveMessage} />
               <Stack.Screen name="MainText" component={MainText} />
             </Stack.Navigator>
-          }} */}
+            )}}
         </Tab.Screen>
         <Tab.Screen
           name="Message"

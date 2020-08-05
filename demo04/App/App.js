@@ -2,17 +2,29 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../App/HomePage/HomePage';
 import Discovery from './DiscoveryPage/discovery';
 import Setting from './src/page/SettingPage';
 import MessageSum from './News/MessageSum';
 import PersonalCenterSum from './PersonalCenter/personnalCenterSum';
 import welcom from './welcome/welcome';
+import Message from './News/Message';
+import MainText from './News/NewsDetails/MainText';
+import leaveMessage from './News/leaveMessage';
+
+import Search from './HomePage/detail/Ranking';
+import BaiduMap from'./Map/baiduMap';
+// 发现页面
+import choiceCity from './DiscoveryPage/moreLine/choiceCity';
+import Line from './DiscoveryPage/moreLine/Line';
 //下面是页面之内需要跳转的
 //消息页面  
 //底部材料导航栏
 const Stack = createMaterialBottomTabNavigator();
-
+const changeStack = createStackNavigator();
+const DiscoveryStack = createStackNavigator();
+const changeStack03 = createStackNavigator();
 function MyStack() {
 
     return (
@@ -43,31 +55,53 @@ function MyStack() {
                     elevation: 10,
                     marginTop: 10,
                     elevation: 0,
-                    activeBackgroundColor:"red"
-                  },
-                  
-          // 选中状态的背景颜色
-          activeBackgroundColor: "black",
-          // 未选中状态的颜色
-          inactiveBackgroundColor: "green",
+                    activeBackgroundColor: "red"
+                },
+
+                // 选中状态的背景颜色
+                activeBackgroundColor: "black",
+                // 未选中状态的颜色
+                inactiveBackgroundColor: "green",
             }}
         >
-            <Stack.Screen name="Home" component={Home}
+            <Stack.Screen name="Home"
                 options={{
                     tabBarLabel: '首页',
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'home'} size={25} color={color} />
                     ),
                 }}>
+                {() => {
+                    return (
+                        <changeStack.Navigator headerMode="none">
+                            <changeStack.Screen name="Home" component={Home} />
+                            <changeStack.Screen name="Search" component={Search} />
+                        </changeStack.Navigator>
+                    )
+                }}
             </Stack.Screen>
-            <Stack.Screen name="Discovery" component={Discovery}
+            <Stack.Screen name="Discovery"
+            //  component={Discovery}
                 options={{
                     tabBarLabel: '发现',
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'binoculars'} size={20} color={color} />
                     ),
                 }}
-            />
+            >
+                {() => {
+                    return (
+                        <DiscoveryStack.Navigator
+                        headerMode="none"
+                        >
+                            <DiscoveryStack.Screen name="Discovery" component={Discovery} />
+                            <DiscoveryStack.Screen name="BaiduMap" component={BaiduMap} />
+                            <DiscoveryStack.Screen name="choiceCity" component={choiceCity} />
+                            <DiscoveryStack.Screen name="Line" component={Line} />
+                        </DiscoveryStack.Navigator>
+                    )
+                }}
+            </Stack.Screen>
             <Stack.Screen name="Setting" component={Setting}
                 options={{
                     tabBarLabel: '发一个',
@@ -76,14 +110,16 @@ function MyStack() {
                     ),
                 }}
             />
-            <Stack.Screen name="MessageSum" component={MessageSum}
+            <Stack.Screen name="MessageSum"
+                component={MessageSum}
                 options={{
                     tabBarLabel: '消息',
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'twitch'} size={25} color={color} />
                     ),
                 }}
-            />
+            >
+            </Stack.Screen>
             <Stack.Screen name="PersonalCenterSum" component={PersonalCenterSum}
                 options={{
                     tabBarLabel: '我',

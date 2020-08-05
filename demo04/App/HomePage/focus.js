@@ -65,6 +65,15 @@ export default function focus() {
                   like: 'gray',
                   height:92,
                 },
+                {
+                  name: 'JK妹123213',
+                  userHead: "../img/a.png",
+                  userWords: '一袖青衣，晚风吹彼岸。',
+                  place: '杭州西湖风景区',
+                  countNum: '11',
+                  showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/94/80/5ce3cfc9a3d52_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+                  height:202,
+                },
               ]}
               renderItem={({ item }) =>
                 <View style={[styles.showContainer]}>
