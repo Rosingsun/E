@@ -18,6 +18,7 @@ import BaiduMap from'./Map/baiduMap';
 // 发现页面
 import choiceCity from './DiscoveryPage/moreLine/choiceCity';
 import Line from './DiscoveryPage/moreLine/Line';
+import daka from './DiscoveryPage/daka/dakaAll';
 //下面是页面之内需要跳转的
 //消息页面
 //底部材料导航栏
@@ -44,6 +45,7 @@ function MyStack() {
                 marginLeft: "-1%",
                 padding: 0,
                 margin: 0,
+                // height:10,
                 // elevation:10,
             }}
             tabBarOptions={{
@@ -98,6 +100,7 @@ function MyStack() {
                             <DiscoveryStack.Screen name="BaiduMap" component={BaiduMap} />
                             <DiscoveryStack.Screen name="choiceCity" component={choiceCity} />
                             <DiscoveryStack.Screen name="Line" component={Line} />
+                            <DiscoveryStack.Screen name="daka" component={daka} />
                         </DiscoveryStack.Navigator>
                     )
                 }}

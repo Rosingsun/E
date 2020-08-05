@@ -145,7 +145,12 @@ export default class Discovery extends Component {
               <TextInput placeholder="abibas" style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }} />
               <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
             </View>
-            <AntDesign name={'calendar'} size={25} color={'#000'} />
+            <AntDesign name={'calendar'} size={25} color={'#000'} 
+            onPress={()=>{
+              this.props.navigation.navigate("daka");
+            }}
+            
+            />
           </View>
         </View>
         {/* 第一部分 */}
@@ -175,7 +180,11 @@ export default class Discovery extends Component {
             {/* title line */}
             <View style={{ flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 10, paddingTop: 10, }}>
               <Text>随诗打卡</Text>
-              <Text>查看更多<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
+              <Text
+              onPress={()=>{
+                Alert.alert("dont touch me")
+            }}
+              >查看更多<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
               <Text style={{ width: '18%', backgroundColor: this.state.One, color: "#fff", borderRadius: 3 }}
@@ -213,8 +222,8 @@ export default class Discovery extends Component {
           </View>
           {/* 第三部分 */}
           {/* 竖向轮播 */}
-          <View style={{ marginTop: 40, padding: 10, width: '100%', backgroundColor: "red", height: 400, }}>
-            <View style={{width:'100%',height:20,backgroundColor:"#fff",alignItems:"flex-end"}}>
+          <View style={{ marginTop: 40, padding: 10, width: '100%', height: 400, }}>
+            <View style={{width:'100%',height:20,alignItems:"flex-end"}}>
               <Text
               onPress={()=>{
                 this.props.navigation.navigate("choiceCity")
@@ -246,7 +255,11 @@ export default class Discovery extends Component {
           <View style={{ marginTop: 20, padding: 10, backgroundColor: "#fff", }}>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
               <Text style={{ fontSize: 20 }}>活跃玩家</Text>
-              <Text style={{ fontSize: 15, color: "#999999" }}>排行榜 <FontAwesome name={'angle-right'} size={20} color={'#999999'} /></Text>
+              <Text style={{ fontSize: 15, color: "#999999" }}
+              onPress={()=>{
+                this.props.navigation.navigate("Search");
+            }}
+              >排行榜 <FontAwesome name={'angle-right'} size={20} color={'#999999'} /></Text>
             </View>
 
             <ScrollView

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, ScrollView, Image, StatusBar, FlatList, ItemDivideComponent, TextInput,Alert} from 'react-native';
+import { Text, View, StyleSheet, Dimensions, ScrollView, Image, StatusBar, FlatList, ItemDivideComponent, TextInput, Alert, TouchableHighlight } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MFImage from "./fengzhuang";
@@ -10,67 +10,74 @@ StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
 
 
-var cityInfo=[
+var cityInfo = [
   {
-    CcityName:"杭州",
-    EcityName:"Hang Zhou",
-    backImgSrc:"./photo/hangzhou.jpg",
+    key: 0,
+    CcityName: "杭州",
+    EcityName: "Hang Zhou",
+    backImgSrc: "./photo/hangzhou.jpg",
   },
   {
-    CcityName:"宁波",
-    EcityName:"Ning Bo",
-    backImgSrc:"./photo/ningbo.jpg",
+    key: 1,
+    CcityName: "宁波",
+    EcityName: "Ning Bo",
+    backImgSrc: "./photo/ningbo.jpg",
   },
   {
-    CcityName:"嘉兴",
-    EcityName:"Ja Xing",
-    backImgSrc:"./photo/jiaxing.jpg",
+    key: 2,
+    CcityName: "嘉兴",
+    EcityName: "Ja Xing",
+    backImgSrc: "./photo/jiaxing.jpg",
   },
   {
-    CcityName:"绍兴",
-    EcityName:"Shao Xing",
-    backImgSrc:"./photo/shaoxing.jpg",
+    key: 3,
+    CcityName: "绍兴",
+    EcityName: "Shao Xing",
+    backImgSrc: "./photo/shaoxing.jpg",
   },
   {
-    CcityName:"舟山",
-    EcityName:"Zhou Shan",
-    backImgSrc:"./photo/zhoushan.jpg",
+    key: 4,
+    CcityName: "舟山",
+    EcityName: "Zhou Shan",
+    backImgSrc: "./photo/zhoushan.jpg",
   },
   {
-    CcityName:"温州",
-    EcityName:"Wen Zhou",
-    backImgSrc:"./photo/wenzhou.jpg",
+    key: 5,
+    CcityName: "温州",
+    EcityName: "Wen Zhou",
+    backImgSrc: "./photo/wenzhou.jpg",
   },
   {
-    CcityName:"湖州",
-    EcityName:"Hu Zhou",
-    backImgSrc:"./photo/huzhou.jpg",
+    key: 6,
+    CcityName: "湖州",
+    EcityName: "Hu Zhou",
+    backImgSrc: "./photo/huzhou.jpg",
   },
   {
-    CcityName:"丽水",
-    EcityName:"Li Shui",
-    backImgSrc:"./photo/lishui.jpg",
+    key: 7,
+    CcityName: "丽水",
+    EcityName: "Li Shui",
+    backImgSrc: "./photo/lishui.jpg",
   },
   {
-    CcityName:"金华",
-    EcityName:"Jin Hua",
-    backImgSrc:"./photo/jinhua.jpg",
+    key: 8,
+    CcityName: "金华",
+    EcityName: "Jin Hua",
+    backImgSrc: "./photo/jinhua.jpg",
   },
   {
-    CcityName:"衢州",
-    EcityName:"Qu Zhou",
-    backImgSrc:"./photo/quzhou.jpg",
+    key: 9,
+    CcityName: "衢州",
+    EcityName: "Qu Zhou",
+    backImgSrc: "./photo/quzhou.jpg",
   },
   {
-    CcityName:"台州",
-    EcityName:"Tai Zhou",
-    backImgSrc:"./photo/taizhou.jpg",
+    key: 10,
+    CcityName: "台州",
+    EcityName: "Tai Zhou",
+    backImgSrc: "./photo/taizhou.jpg",
   },
-
 ]
-
-
-
 export default class choiceCity extends Component {
   constructor(props) {
     super(props);
@@ -81,7 +88,7 @@ export default class choiceCity extends Component {
   }
   render() {
     return (
-      
+
       <View style={styles.container}>
 
         <View style={styles.Top}>
@@ -90,27 +97,31 @@ export default class choiceCity extends Component {
           }} />
           <Text style={{ fontSize: 20, color: '#000000', marginLeft: '30%' }}>选择城市</Text>
         </View>
-          <ScrollView showsVerticalScrollIndicator={false}>
-    
+        <ScrollView showsVerticalScrollIndicator={false}>
 
-        <View style={styles.someTouch}>
-            {/* {
-              cityInfo.map((item)=>{
-                return(
-          <View style={styles.Citystyle}>
-            <MFImage style={{ height: '100%',width: '100%' }} touchBgColor={'#00000030'} source={{require(item.backImgSrc)}} onPress={() => { Alert.alert("111") }} />
-            <Text style={styles.photoWord}>{item.CcityName}</Text>
-                <Text style={styles.photoEnglish}>{item.EcityName}</Text>
-          </View>
+
+          <View style={styles.someTouch}>
+            {
+              cityInfo.map((item) => {
+                return (
+                  <View style={styles.Citystyle}>
+                    <TouchableHighlight
+                    style={{height:'100%',width:'100%'}}
+                    onPress={()=>{
+                      this.props.navigation.navigate("Line",{cityName:item.CcityName})
+                    }}
+                    >
+                      <View style={{height:'100%',width:'100%'}}>
+                      <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require("./photo/jinhua.jpg")}/>
+                      <Text style={styles.photoWord}>{item.CcityName}</Text>
+                      <Text style={styles.photoEnglish}>{item.EcityName}</Text>
+                      </View>
+                    </TouchableHighlight>
+                  </View>
                 )
               })
-            } */}
-
-
-
-          
-
-  
+            }
+            {/*   
           <View style={styles.Citystyle}>
             <MFImage style={{ height: '100%',width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/ningbo.jpg')} onPress={() => { Alert.alert("111") }} />
             <Text style={styles.photoWord}>宁波</Text>
@@ -160,9 +171,9 @@ export default class choiceCity extends Component {
             <MFImage style={{ height: '100%',width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/taizhou.jpg')} onPress={() => { Alert.alert("111") }} />
             <Text style={styles.photoWord}>台州</Text>
             <Text style={styles.photoEnglish}>Tai Zhou</Text>
+          </View> */}
+
           </View>
-    
-        </View>
         </ScrollView>
       </View>
     );
@@ -175,37 +186,40 @@ const styles = StyleSheet.create({
     backgroundColor: '#EFEFEF',
   },
   Top: {
-    height: 90,
+    height: 78,
     backgroundColor: '#FFFFFF',
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
     elevation: 10,
-    borderRadius:15
+    borderBottomLeftRadius:15,
+    borderBottomRightRadius:15,
   },
-  Citystyle:{width: "94%",
-  height: 110, 
-  backgroundColor: "#ffffff",
-   borderWidth: 6, 
-   borderRadius: 3,
-    borderColor: "#6C9575", 
-    marginTop:20},
+  Citystyle: {
+    width: "94%",
+    height: 110,
+    backgroundColor: "#000",
+    borderWidth: 6,
+    borderRadius: 3,
+    borderColor: "#6C9575",
+    marginTop: 20
+  },
   someTouch: {
     alignItems: 'center'
   },
-  photoWord:{
-     marginTop: '-18%',
-     zIndex: 10,
-     textAlign:'center',
-     color:'#FFFFFF',
-     fontSize:20 ,
-     fontWeight:'900',
+  photoWord: {
+    marginTop: '-18%',
+    zIndex: 10,
+    textAlign: 'center',
+    color: '#FFFFFF',
+    fontSize: 20,
+    fontWeight: '900',
   },
-  photoEnglish:{
-    width:'100%',
-    textAlign:'center',
-     zIndex: 100,
-     color:'#FFFFFF',
-     fontSize:15
+  photoEnglish: {
+    width: '100%',
+    textAlign: 'center',
+    zIndex: 100,
+    color: '#FFFFFF',
+    fontSize: 15
   },
 })
