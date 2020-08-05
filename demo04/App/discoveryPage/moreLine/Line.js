@@ -52,7 +52,7 @@ export default class Line extends Component {
                 renderItem = {({item})=>
                 <View style={{width:386,height:118,justifyContent:'center',alignItems:'center',backgroundColor:'#6C9575',marginBottom:20,borderRadius:3}}>
 
-                <Image style={{width:371,height:104}} source={require('../picture/zhoushan.jpg')} />
+                <Image style={{width:371,height:104}} source={require('./photo/hangzhou.jpg')} />
                       <Text style = {styles.placeStyle}>{item.place}</Text> 
                       <Text style = {styles.idStyle}>{item.id}</Text> 
                 </View>

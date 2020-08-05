@@ -8,6 +8,69 @@ const biLi = width * scale / 1080;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
+
+
+var cityInfo=[
+  {
+    CcityName:"杭州",
+    EcityName:"Hang Zhou",
+    backImgSrc:"./photo/hangzhou.jpg",
+  },
+  {
+    CcityName:"宁波",
+    EcityName:"Ning Bo",
+    backImgSrc:"./photo/ningbo.jpg",
+  },
+  {
+    CcityName:"嘉兴",
+    EcityName:"Ja Xing",
+    backImgSrc:"./photo/jiaxing.jpg",
+  },
+  {
+    CcityName:"绍兴",
+    EcityName:"Shao Xing",
+    backImgSrc:"./photo/shaoxing.jpg",
+  },
+  {
+    CcityName:"舟山",
+    EcityName:"Zhou Shan",
+    backImgSrc:"./photo/zhoushan.jpg",
+  },
+  {
+    CcityName:"温州",
+    EcityName:"Wen Zhou",
+    backImgSrc:"./photo/wenzhou.jpg",
+  },
+  {
+    CcityName:"湖州",
+    EcityName:"Hu Zhou",
+    backImgSrc:"./photo/huzhou.jpg",
+  },
+  {
+    CcityName:"丽水",
+    EcityName:"Li Shui",
+    backImgSrc:"./photo/lishui.jpg",
+  },
+  {
+    CcityName:"金华",
+    EcityName:"Jin Hua",
+    backImgSrc:"./photo/jinhua.jpg",
+  },
+  {
+    CcityName:"衢州",
+    EcityName:"Qu Zhou",
+    backImgSrc:"./photo/quzhou.jpg",
+  },
+  {
+    CcityName:"台州",
+    EcityName:"Tai Zhou",
+    backImgSrc:"./photo/taizhou.jpg",
+  },
+
+]
+
+
+
 export default class choiceCity extends Component {
   constructor(props) {
     super(props);
@@ -18,11 +81,12 @@ export default class choiceCity extends Component {
   }
   render() {
     return (
+      
       <View style={styles.container}>
 
         <View style={styles.Top}>
           <AntDesign name={'left'} size={32} color='#000000' style={{ marginLeft: '3%' }} onPress={() => {
-            Alert.alert("返回")
+            this.props.navigation.goBack()
           }} />
           <Text style={{ fontSize: 20, color: '#000000', marginLeft: '30%' }}>选择城市</Text>
         </View>
@@ -30,12 +94,21 @@ export default class choiceCity extends Component {
     
 
         <View style={styles.someTouch}>
-          {/* <MFImage style={{hight:200,width:400}} touchBgColor={'#00000020'} source={require('./photo/timg3.jpg')} onPress={()=>{Alert.alert("111") }}/> */}
+            {/* {
+              cityInfo.map((item)=>{
+                return(
           <View style={styles.Citystyle}>
-            <MFImage style={{ height: '100%',width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/hangzhou.jpg')} onPress={() => { Alert.alert("111") }} />
-            <Text style={styles.photoWord}>杭州</Text>
-            <Text style={styles.photoEnglish}>Hang Zhou</Text>
+            <MFImage style={{ height: '100%',width: '100%' }} touchBgColor={'#00000030'} source={{require(item.backImgSrc)}} onPress={() => { Alert.alert("111") }} />
+            <Text style={styles.photoWord}>{item.CcityName}</Text>
+                <Text style={styles.photoEnglish}>{item.EcityName}</Text>
           </View>
+                )
+              })
+            } */}
+
+
+
+          
 
   
           <View style={styles.Citystyle}>
