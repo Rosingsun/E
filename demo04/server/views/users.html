@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+<form action="/users/search" method="post">
+    姓名：<input type="text" name="s_username" value="{{s_username}}"><br>
+    密码：<input type="text" name="s_password" value="{{s_password}}"><br>
+    <input type="submit" value="查询">
+</form>
+
+<table>
+    <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>密码</th>
+        <th>操作</th>
+    </tr>
+    {% for item in datas %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.username}}</td>
+        <td>{{item.password}}</td>
+        <td><a href="/users/add">新增</a></td>
+        <td><a href="/users/del/{{item.id}}">删除</a></td>
+        <td><a href="/users/toUpdate/{{item.id}}">修改</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
