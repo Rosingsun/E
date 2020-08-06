@@ -22,11 +22,45 @@ export default class MainText extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      turnOn: true,
-      turnOff: false
+      content:'',
+       data:[],
+       isLoading:true
     }
   }
+  componentDidMount() {
+    fetch('http://192.168.56.1:3000/list')
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({ data: json.list });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+  }
+   
+  _onClickSendContent=()=>{
+    fetch('http://192.168.56.1:3000/users/list', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: this.state.content,
+      })
+    }).then(function (res) {
+      return res.json();
+  }).then(function (json) {
+      if (json.code == "200") {
+          alert("发送成功")
+      }else if (json.code == "400") {
+          alert("发送失败")
+      }
+  })  
+  }
   render() {
+    const { data, isLoading } = this.state;
     return (
 
       // TOP
@@ -43,7 +77,7 @@ export default class MainText extends Component {
         {/* 内容 */}
         <View style={{ height: '80%' }}>
           <ScrollView style={{ backgroundColor: "#EFEFEF", borderBottomRightRadius: 15, borderBottomLeftRadius: 15, }}>
-
+     
             {/* 九宫格 */}
             <View style={styles.ninePicture}>
               {/* 九宫格信息 */}
@@ -129,32 +163,9 @@ export default class MainText extends Component {
               {/* <View style={styles.uesrTalk}> */}
               <View >
                 <FlatList
-                  data={[
-                    {
-                      head: '../../img/1.jpg',
-                      id: "桥本环奈",
-                      time: '2020.7.20.16.14',
-                      word: "这是我发表的评论",
-                      ddttaa: [
-                        { idd: "user01", wordd: "这是小评论01" },
-                        { idd: "user02", wordd: "这是小评论02" },
-                      ]
-                    },
-                    {
-                      head: '../../img/1.jpg',
-                      id: "桥本环奈02",
-                      time: '2020.7.20.16.14',
-                      word: "这是我发表的评论",
-                      ddttaa: [
-                        { idd: "user03", wordd: "这是小评论03" },
-                        { idd: "user04", wordd: "这是小评论04" },
-                        { idd: "user05", wordd: "这是小评论05" },
-                        { idd: "user03", wordd: "这是小评论03" },
-                        { idd: "user04", wordd: "这是小评论04" },
-                        { idd: "user05", wordd: "这是小评论05" },
-                      ]
-                    },
-                  ]}
+                  extraData={this.state}
+                  data={data}
+                  keyExtractor={({ id }, index) => id}
                   ItemSeparatorComponent={bottomLine}
                   // numColumns ={3}
                   renderItem={({ item }) =>
@@ -163,18 +174,18 @@ export default class MainText extends Component {
                         <Image style={styles.headView} source={require('../../img/1.jpg')} />
                         <View style={{ marginLeft: 10, width: '85%' }}>
                           <Text style={{ fontSize: 12, color: '#4F4F4F' }}>{item.id}</Text>
-                          <Text style={{ fontSize: 15 }}>{item.word}</Text>
+                          <Text style={{ fontSize: 15 }}>{item.content}</Text>
 
-                          {item.ddttaa.map((item) => {
+                          {/* {item.ddttaa.map((item) => {
                             return (
                               <View style={{ width: "92%", backgroundColor: '#EFEFEF', flexDirection: 'row', borderRadius: 5 }}>
                                 <Text style={{ marginLeft: '5%', color: '#FFB16C', fontSize: 10 }}>{item.idd}:</Text>
                                 <Text style={{ color: '#000000', fontSize: 10 }}>{item.wordd}</Text>
                               </View>
                             )
-                          })}
+                          })} */}
                           <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', width: "100%", marginBottom: 5 }}>
-                            <Text style={{ fontSize: 10, color: '#999999' }}>{item.time}</Text>
+                            <Text style={{ fontSize: 10, color: '#999999' }}>{item.createtime}</Text>
                             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', }}>
                               <Ionicons name="chatbox-ellipses-outline" size={15} color="#999999" style={{ paddingRight: 12 * biLi, }} onPress={() => { Alert.alert("评论") }}></Ionicons>
                               <AntDesign name="like2" size={15} color="#999999" onPress={() => {
@@ -197,10 +208,12 @@ export default class MainText extends Component {
         {/* 底部输入栏 */}
         <View style={styles.bottomText}>
           <View style={{ height: '75%', width: '75%', backgroundColor: '#FFFFFF', borderRadius: 20, marginLeft: '3%' }}>
-            <TextInput style={{ justifyContent: 'center', fontSize: 15, marginLeft: '3%' }} placeholder='评论'></TextInput>
+            <TextInput style={{ justifyContent: 'center', fontSize: 15, marginLeft: '3%' }} placeholder='评论'
+             onChangeText={(text) => {this.setState({ content: text });}}/>
           </View>
           <View style={{ width: "20%", height: '76%', marginBottom: '1%', backgroundColor: "#6C9575", borderRadius: 20, justifyContent: "center", alignItems: "center" }}>
-            <Text style={{ color: "#fff", fontSize: 15, letterSpacing: 2 }}>发送</Text>
+            <Text style={{ color: "#fff", fontSize: 15, letterSpacing: 2 }}
+            onPress={() => { this._onClickSendContent();}}>发送</Text>
           </View>
         </View>
       </View>
