@@ -22,33 +22,40 @@ export default class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: '',
+            tipsShowKey: "none",
+            secChoiceBoy: "#5DDA6B",
+            secChoiceGirl: "#5DDA6B00",
+            choiceSex: "boy",
+            borderWidth: "0",
+            password: "",
+            passwordCheck: "",
+            username: "",
         }
     };
     _onClickRegister = () => {
-        var navigation=this.props.navigation; 
+        var navigation = this.props.navigation;
         fetch('http://192.168.56.1:3000/users/reg', {
-                method: 'POST',
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                  username: this.state.username,
-                  password: this.state.password
-              })
-            }).then(function (res) {
-                return res.json();
-            }).then(function (json) {
-                if (json.code == "200") {
-                    alert("注册成功")
-                    // navigation.navigate("App");
-                }else if (json.code == "400") {
-                    alert("用户名或密码已存在")
-                }
-            })  
-      };
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+                password: this.state.password
+
+            })
+        }).then(function (res) {
+            return res.json();
+        }).then(function (json) {
+            if (json.code == "200") {
+                alert("注册成功")
+                // navigation.navigate("App");
+            } else if (json.code == "400") {
+                alert("用户名或密码已存在")
+            }
+        })
+    };
 
     render() {
         return (
@@ -73,22 +80,35 @@ export default class Register extends Component {
                     </View>
                 </View>
                 <View style={[styles.imgBox]}>
-                    <View style={{ alignItems: 'center' }}>
-                        <Image style={{ height: 100, width: 100 }} source={require('../img/login/theboy.png')} />
-                        <Text style={{ fontSize: 20, color: "#FFFFFF", marginTop: 5 }}>男孩</Text>
-                    </View>
-                    <View style={{ alignItems: 'center' }}>
-                        <Image style={{ height: 100, width: 100 }} source={require('../img/login/thegirl.png')} />
-                        <Text style={{ fontSize: 20, color: "#FFFFFF", marginTop: 5 }}>女孩</Text>
-                    </View>
+                    {/* boy */}
+                    <TouchableWithoutFeedback
+                        onPress={() => {
+                            this.setState({ secChoiceGirl: "#5DDA6B00", secChoiceBoy: "#5DDA6B", choiceSex: "boy" })
+                        }}>
+                        <View style={{ alignItems: 'center' }}>
+                            <Image style={{ height: 100, width: 100 }} source={require('../img/login/theboy.png')} />
+                            <AntDesign name={'checkcircle'} size={25} color={this.state.secChoiceBoy} style={{ position: "absolute", right: 0, bottom: 30, }} />
+                            <Text style={{ fontSize: 20, color: "#FFFFFF", marginTop: 5 }}>男孩</Text>
 
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback
+                        onPress={() => {
+                            this.setState({ secChoiceGirl: "#5DDA6B", secChoiceBoy: "#5DDA6B00", choiceSex: "girl" })
+                        }}>
+                        <View style={{ alignItems: 'center' }}>
+                            <Image style={{ height: 100, width: 100, }} source={require('../img/login/thegirl.png')} />
+                            <AntDesign name={'checkcircle'} size={25} color={this.state.secChoiceGirl} style={{ position: "absolute", right: 0, bottom: 30, }} />
+                            <Text style={{ fontSize: 20, color: "#FFFFFF", marginTop: 5 }}>女孩</Text>
+                        </View>
+                    </TouchableWithoutFeedback>
 
                 </View>
                 {/* 登陆框 */}
                 <View style={[styles.userShopBox]}>
                     <View style={{}}>
                         <View style={[styles.inputBox, { marginTop: 20 }]}>
-                        <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>用户名</Text>
+                            <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>用户名</Text>
                             <View style={{ flexDirection: "row" }}>
                                 <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 15 }} name={'user'} size={25} color={'#999999'} />
                                 <TextInput
@@ -101,7 +121,7 @@ export default class Register extends Component {
                             </View>
                         </View>
                         <View style={[styles.inputBox]}>
-                        <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>密码</Text>
+                            <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>密码</Text>
                             <View style={{ flexDirection: "row" }}>
                                 <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 18 }} name={'lock'} size={25} color={'#999999'} />
                                 <TextInput
@@ -114,7 +134,7 @@ export default class Register extends Component {
                             </View>
                         </View>
                         <View style={[styles.inputBox]}>
-                        <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>密码</Text>
+                            <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>密码</Text>
                             <View style={{ flexDirection: "row" }}>
                                 <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 18 }} name={'lock'} size={25} color={'#999999'} />
                                 <TextInput
@@ -122,18 +142,27 @@ export default class Register extends Component {
                                     placeholder='请输入密码'
                                     placeholderTextColor='#999999'
                                     onChangeText={(text) => {
-                                        this.setState({ password: text });
+                                        if (text != this.state.password) {
+                                            this.setState({ tipsShowKey: "flex" });
+                                        } else {
+                                            this.setState({ tipsShowKey: "none" });
+                                        }
+
                                     }} />
                             </View>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <View style={{ width: 250, height: 25, backgroundColor: "#999999", alignItems: 'center', justifyContent: 'center', borderRadius: 3, marginTop: 10 }}>
-                                <Text style={{ color: '#FFFFFF' }}>两次密码请保持一致</Text>
+                            <View style={{ display: this.state.tipsShowKey }}>
+                                <View style={{ width: 250, height: 25, backgroundColor: "#999999", alignItems: 'center', justifyContent: 'center', borderRadius: 3, marginTop: 10 }}>
+                                    <Text style={{ color: '#FFFFFF' }}>两次密码请保持一致</Text>
+                                </View>
+                                <View style={styles.arrow}></View>
                             </View>
-                            <View style={styles.arrow}></View>
                             <TouchableOpacity
                                 style={styles.button}
-                                onPress={() => { this._onClickRegister();}}>
+                                onPress={() => {
+                                    this._onClickRegister();
+                                }}>
                                 <Text style={{ fontSize: 20, color: "#fff" }}>确认</Text>
                             </TouchableOpacity>
                         </View>
@@ -169,7 +198,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: "center",
-        marginTop:20 ,
+        marginTop: 20,
         flexDirection: 'row',
     },
     userShopBox: {
@@ -181,6 +210,8 @@ const styles = StyleSheet.create({
         // justifyContent: "center",
         alignItems: "center",
         marginLeft: "5%",
+
+
     },
     password: {
         width: "80%",
@@ -201,7 +232,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: "#6C9575",
         borderRadius: 10,
-        marginTop: -10
+        marginTop: 10
     },
     inputBox: {
         height: 64 * biLi,
@@ -215,9 +246,8 @@ const styles = StyleSheet.create({
         width: 10,
         height: 10,
         borderStyle: 'solid',
-        borderWidth: 10,
+        // borderWidth:8,
         marginTop: -2,
-
         borderTopColor: "#999999",//下箭头颜色
         borderBottomColor: "#FFFFFF00",
         borderRightColor: "#FFFFFF00",

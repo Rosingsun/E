@@ -11,7 +11,7 @@ import {
     StatusBar,
 } from 'react-native';
 
-import { MapView, MapTypes, Geolocation } from 'react-native-baidu-map';
+import { MapView, MapTypes, Geolocation, Overlay } from 'react-native-baidu-map';
 import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -20,30 +20,32 @@ StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
 // import Dimensions from 'Dimensions';
+
+const { Marker } = Overlay;
 const { width, height } = Dimensions.get('window');
 
 export default class BaiduMap extends Component {
     constructor() {
         super();
         this.state = {
-            zoomControlsVisible: true,
-            trafficEnabled: false,
-            baiduHeatMapEnabled: true,
+            zoomControlsVisible: false,
+            trafficEnabled: true,
+            baiduHeatMapEnabled: false,
             mapType: MapTypes.NORMAL,
-            zoom: 15,
+            zoom: 19,
             center: {
-                longitude: 113.896198,
-                latitude: 22.959144,
+                longitude: 116.465175,
+                latitude: 39.938522
             },
             markers: [
                 {
-                    longitude: 113.896198,
-                    latitude: 22.959144,
+                    longitude: 116.465175,
+                    latitude: 39.938522,
                     title: 'my name',
                 }
             ],
-            clickMessage: '111',
-            poiMessage: '',
+            clickMessage: '10221',
+            poiMessage: '109',
         };
     }
 
@@ -61,7 +63,7 @@ export default class BaiduMap extends Component {
                                 this.props.navigation.goBack()
                             }}
                         />
-                        <View style={{ flexDirection: "row",width:'30%',justifyContent:"space-around"}}>
+                        <View style={{ flexDirection: "row", width: '30%', justifyContent: "space-around" }}>
                             <Ionicons name={'heart-outline'} size={30} color={'#000'}
                                 onPress={() => {
                                 }} />
@@ -76,7 +78,7 @@ export default class BaiduMap extends Component {
                 </View>
                 <MapView
 
-                
+
                     zoomControlsVisible={this.state.zoomControlsVisible} //默认true,是否显示缩放控件,仅支持android
                     trafficEnabled={this.state.trafficEnabled} //默认false,是否显示交通线
                     baiduHeatMapEnabled={this.state.baiduHeatMapEnabled} //默认false,是否显示热力图
@@ -84,22 +86,23 @@ export default class BaiduMap extends Component {
                     zoom={this.state.zoom} //缩放等级,默认为10
                     center={this.state.center} // 地图中心位置
                     markers={this.state.markers} //地图多个标记点
-                    satellite={true}
+                    // satellite={true}
                     onMapLoaded={(e) => { //地图加载事件
+                        //定位用户位置，并且设置为中心点
                         Geolocation.getCurrentPosition()
                             .then(data => {
                                 console.log(data)
-                                this.setState({
-                                    center: {
-                                        longitude: data.longitude,
-                                        latitude: data.latitude
-                                    },
-                                    markers: [{
-                                        longitude: data.longitude,
-                                        latitude: data.latitude,
-                                        title: data.district + data.street
-                                    }]
-                                })
+                                // this.setState({
+                                //     center: {
+                                //         longitude: data.longitude,
+                                //         latitude: data.latitude
+                                //     },
+                                //     markers: [{
+                                //         longitude: data.longitude,
+                                //         latitude: data.latitude,
+                                //         title: data.district + data.street
+                                //     }]
+                                // })
                             })
                             .catch(e => {
                                 console.warn(e, 'error');
@@ -113,7 +116,6 @@ export default class BaiduMap extends Component {
                         let title = '';
                         Geolocation.reverseGeoCode(e.latitude, e.longitude)
                             .then(res => {
-                                console.log(res)
                                 Platform.OS == 'ios' ?
                                     title = res.district + res.streetName
                                     :
@@ -159,6 +161,14 @@ export default class BaiduMap extends Component {
                     }}
                     style={styles.map}
                 >
+                    <Marker
+                        title='中心'
+                        location={{ longitude: 116.465175, latitude: 39.938522 }} />
+                    <Marker
+                        title='中心2'
+                        pinColor="green"
+                        location={{ longitude: 116.467176, latitude: 39.939522 }} />
+
                 </MapView>
 
                 {/* <View style={styles.list}>
@@ -239,7 +249,7 @@ const styles = StyleSheet.create({
     },
     map: {
         width: width,
-        height: height -138,
+        height: height - 137,
         marginBottom: 5,
     },
     list: {
