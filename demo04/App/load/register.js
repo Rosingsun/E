@@ -42,28 +42,17 @@ export default class Register extends Component {
             },
             body: JSON.stringify({
                 username: this.state.username,
-<<<<<<< HEAD
                 password: this.state.password,
                 sex:this.state.choiceSex,
-=======
-                password: this.state.password
-
->>>>>>> f60a0bbdb9486d0c5d2d879700038d830de64a66
             })
         }).then(function (res) {
             return res.json();
         }).then(function (json) {
             if (json.code == "200") {
                 alert("注册成功")
-<<<<<<< HEAD
                 navigation.navigate("App");
             } else if (json.code == "400") {
                 alert("用户名或密码不符合规定")
-=======
-                // navigation.navigate("App");
-            } else if (json.code == "400") {
-                alert("用户名或密码已存在")
->>>>>>> f60a0bbdb9486d0c5d2d879700038d830de64a66
             }
         })
     };
@@ -94,11 +83,7 @@ export default class Register extends Component {
                     {/* boy */}
                     <TouchableWithoutFeedback
                         onPress={() => {
-<<<<<<< HEAD
                             this.setState({ secChoiceGirl: "#5DDA6B00", secChoiceBoy: "#5DDA6B", choiceSex: "0" })
-=======
-                            this.setState({ secChoiceGirl: "#5DDA6B00", secChoiceBoy: "#5DDA6B", choiceSex: "boy" })
->>>>>>> f60a0bbdb9486d0c5d2d879700038d830de64a66
                         }}>
                         <View style={{ alignItems: 'center' }}>
                             <Image style={{ height: 100, width: 100 }} source={require('../img/login/theboy.png')} />
@@ -109,11 +94,7 @@ export default class Register extends Component {
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback
                         onPress={() => {
-<<<<<<< HEAD
                             this.setState({ secChoiceGirl: "#5DDA6B", secChoiceBoy: "#5DDA6B00", choiceSex: "1" })
-=======
-                            this.setState({ secChoiceGirl: "#5DDA6B", secChoiceBoy: "#5DDA6B00", choiceSex: "girl" })
->>>>>>> f60a0bbdb9486d0c5d2d879700038d830de64a66
                         }}>
                         <View style={{ alignItems: 'center' }}>
                             <Image style={{ height: 100, width: 100, }} source={require('../img/login/thegirl.png')} />
