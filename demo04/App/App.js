@@ -21,7 +21,7 @@ import UserSetting from './PersonalCenter/PersonalDetail/Setting';
 import UserAgreement from './PersonalCenter/PersonalDetail/agreement';
 import Privacy from './PersonalCenter/PersonalDetail/Privacy';
 //下面是页面之内需要跳转的
-//消息页面
+//消息页面  
 //底部材料导航栏
 const Stack = createMaterialBottomTabNavigator();
 const changeStack = createStackNavigator();

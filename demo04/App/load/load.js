@@ -24,11 +24,34 @@ export default class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchText: '',
-            searchPass: '',
+            username: '',
+            password: '',
         }
     };
-
+    
+    _onClickLogin = () => {
+        var navigation=this.props.navigation; 
+        fetch('http://192.168.56.1:3000/users/login', {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  username: this.state.username,
+                  password: this.state.password
+              })
+            }).then(function (res) {
+                return res.json();
+            }).then(function (json) {
+                if (json.code == "200") {
+                    navigation.navigate("App");
+                }else if (json.code == "400") {
+                    alert("用户名或密码错误")
+                }
+            })  
+      };
+   
     render() {
         return (
             <View style={[styles.container]}>
@@ -60,7 +83,7 @@ export default class Search extends Component {
                                     placeholder='请输入账号'
                                     placeholderTextColor='#999999'
                                     onChangeText={(text) => {
-                                        this.setState({ searchText: text });
+                                        this.setState({ username: text });
                                     }} />
                             </View>
                         </View>
@@ -74,30 +97,13 @@ export default class Search extends Component {
                                     placeholder='请输入密码'
                                     placeholderTextColor='#999999'
                                     onChangeText={(text) => {
-                                        this.setState({ searchPass: text });
+                                        this.setState({ password: text });
                                     }} />
                             </View>
                         </View>
                         <TouchableOpacity
                             style={styles.button}
-                            onPress={() => {
-                                this.props.navigation.navigate('App')
-                                fetch('http://10.0.2.2:3000/insert/', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Accept': 'application/json',
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({
-                                        a: this.state.searchText,
-                                        b: this.state.searchPass
-                                    })
-                                })
-                                    .then((response) => {
-                                    })
-                                    .catch((error) => {
-                                        console.log(error);
-                                    });
+                            onPress={() => {this._onClickLogin();
                             }}>
                             <Text style={{ fontSize: 20, color: "#fff" }}>登录</Text>
                         </TouchableOpacity>
