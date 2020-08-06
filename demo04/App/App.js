@@ -7,24 +7,26 @@ import Home from '../App/HomePage/HomePage';
 import Discovery from './DiscoveryPage/discovery';
 import Setting from './src/page/SettingPage';
 import MessageSum from './News/MessageSum';
-import PersonalCenterSum from './PersonalCenter/personnalCenterSum';
-import welcom from './welcome/welcome';
-import Message from './News/Message';
-import MainText from './News/NewsDetails/MainText';
-import leaveMessage from './News/leaveMessage';
+
 
 import Search from './HomePage/detail/Ranking';
-import BaiduMap from'./Map/baiduMap';
+import BaiduMap from './Map/baiduMap';
 // 发现页面
 import choiceCity from './DiscoveryPage/moreLine/choiceCity';
 import Line from './DiscoveryPage/moreLine/Line';
+import daka from './DiscoveryPage/daka/dakaAll';
+//个人中心页面
+import PersonalCenterSum from './PersonalCenter/personnalCenterSum';
+import UserSetting from './PersonalCenter/PersonalDetail/Setting';
+import UserAgreement from './PersonalCenter/PersonalDetail/agreement';
+import Privacy from './PersonalCenter/PersonalDetail/Privacy';
 //下面是页面之内需要跳转的
 //消息页面  
 //底部材料导航栏
 const Stack = createMaterialBottomTabNavigator();
 const changeStack = createStackNavigator();
 const DiscoveryStack = createStackNavigator();
-const changeStack03 = createStackNavigator();
+const PersonalStack = createStackNavigator();
 function MyStack() {
 
     return (
@@ -44,6 +46,7 @@ function MyStack() {
                 marginLeft: "-1%",
                 padding: 0,
                 margin: 0,
+                // height:10,
                 // elevation:10,
             }}
             tabBarOptions={{
@@ -81,7 +84,7 @@ function MyStack() {
                 }}
             </Stack.Screen>
             <Stack.Screen name="Discovery"
-            //  component={Discovery}
+                //  component={Discovery}
                 options={{
                     tabBarLabel: '发现',
                     tabBarIcon: ({ color }) => (
@@ -92,12 +95,13 @@ function MyStack() {
                 {() => {
                     return (
                         <DiscoveryStack.Navigator
-                        headerMode="none"
+                            headerMode="none"
                         >
                             <DiscoveryStack.Screen name="Discovery" component={Discovery} />
                             <DiscoveryStack.Screen name="BaiduMap" component={BaiduMap} />
                             <DiscoveryStack.Screen name="choiceCity" component={choiceCity} />
                             <DiscoveryStack.Screen name="Line" component={Line} />
+                            <DiscoveryStack.Screen name="daka" component={daka} />
                         </DiscoveryStack.Navigator>
                     )
                 }}
@@ -120,14 +124,27 @@ function MyStack() {
                 }}
             >
             </Stack.Screen>
-            <Stack.Screen name="PersonalCenterSum" component={PersonalCenterSum}
+            <Stack.Screen name="PersonalCenterSum"
+            //  component={PersonalCenterSum}
                 options={{
                     tabBarLabel: '我',
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'user'} size={25} color={color} />
                     ),
                 }}
-            />
+            >
+                {() => {
+                    return (
+                        <PersonalStack.Navigator headerMode="none">
+                            <PersonalStack.Screen name="PersonalCenterSum" component={PersonalCenterSum} />
+                            <PersonalStack.Screen name="UserSetting" component={UserSetting} />
+                            <PersonalStack.Screen name="UserAgreement" component={UserAgreement} />
+                            <PersonalStack.Screen name="Privacy" component={Privacy} />
+                        </PersonalStack.Navigator>
+                        
+                    )
+                }}
+            </Stack.Screen>
 
         </Stack.Navigator>
     );

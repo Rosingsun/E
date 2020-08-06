@@ -50,7 +50,7 @@ function Main({navigation}) {
 
     //导入底部和顶部组件
     <View style={[styles.container]}>
-      <StatusBar barStyle='light-content' backgroundColor='rgba(0,0,0,0)' translucent={true}></StatusBar>
+      <StatusBar barStyle='dark-content' backgroundColor='rgba(0,0,0,0)' translucent={true}></StatusBar>
       {/* 顶部输入框 */}
       <View style={[styles.top]}>
         <View style={[styles.nav_container]}>

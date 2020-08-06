@@ -54,7 +54,7 @@ export default class Search extends Component {
                     <View style={[styles.nav_container]}>
                         <View style={{ flexDirection: "row" }}>
                             <AntDesign name={'left'} size={30} color={'#000'} onPress={() => {
-                               .0
+                               this.props.navigation.goBack()
                             }} />
                         </View>
                         <Text style={{ color: "#000", fontSize: 20 }}>排行榜</Text>
@@ -176,7 +176,6 @@ export default class Search extends Component {
                             ItemSeparatorComponent={ItemDivideComponent}//分割线组件
                             renderItem={({ item }) =>
                                 <View style={[styles.button2]}>
-
                                     <View style={{ flexDirection: "row", alignItems: "center" }}>
                                         <Text style={{ fontSize: 20, color: "#fff", marginLeft: 22 }}>{item.sort}</Text>
                                         <Image style={{ height: 60 * biLi, width: 60 * biLi, borderRadius: 50, marginLeft: 15, borderColor: "#ffffff", borderWidth: 1 }} source={{

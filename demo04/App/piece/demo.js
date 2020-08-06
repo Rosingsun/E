@@ -38,7 +38,7 @@ export default class Search extends Component {
         return (
             <View style={[styles.container]}>
                 <StatusBar
-                    barStyle='light-content'
+                    barStyle='dark-content'
                     backgroundColor='rgba(0,0,0,0)'
                     translucent={true} />
                 <View style={[styles.top]}>
