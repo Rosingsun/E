@@ -38,8 +38,12 @@ export default class PersonalCenterSum extends Component {
                 <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
                     {/*返回与设置 */}
                     <View style={{position:"absolute",width:"85%",marginLeft:'8%',zIndex:1,marginTop:30,flexDirection:"row",justifyContent:"space-between"}}>
-                        <FontAwesome name='angle-left' size={30} color="white"/>
-                        <Feather name='more-horizontal' size={25} color="white" />
+                        <FontAwesome name='angle-left' size={30} color="#fff"/>
+                        <Feather name='more-horizontal' size={30} color="#fff"
+                        
+                        onPress={()=>{
+                            this.props.navigation.navigate("UserSetting")
+                        }}/>
                     </View>
                     <View style={{ width: '100%', position: "absolute", backgroundColor: "#00000095", height: '100%', }}>
                     </View>

@@ -19,9 +19,6 @@
             navigation.navigate("choiceCity")
           }} style={{ marginLeft: '3%' }}></AntDesign>
           <Text style={{ fontSize: 20, color: '#000000' }}>线路</Text>
-          {/* <Fontisto name="map-marker-alt" size={28} color="#000000" onPress={() => {
-            Alert.alert("更多")
-          }} style={{ marginRight: '3%', }} /> */}
           <View style={{width:10,backgroundColor:"red",height:10}}></View>
 
         </View>

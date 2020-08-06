@@ -146,9 +146,9 @@ export default class Discovery extends Component {
               <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
             </View>
             <AntDesign name={'calendar'} size={25} color={'#000'} 
-            onPress={()=>{
-              this.props.navigation.navigate("daka");
-            }}
+            // onPress={()=>{
+            //   this.props.navigation.navigate("daka");
+            // }}
             
             />
           </View>
