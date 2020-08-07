@@ -1,0 +1,16 @@
+{
+  "name": "fs-",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": "index.js",
+  "keywords": [],
+  "author": "vaiii",
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "^5.0.0"
+  }
+}

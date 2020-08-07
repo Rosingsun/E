@@ -29,7 +29,7 @@ export default class Register extends Component {
             borderWidth: "0",
             password: "",
             passwordCheck: "",
-            username: "",
+            uid: "",
         }
     };
     _onClickRegister = () => {
@@ -41,7 +41,7 @@ export default class Register extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                username: this.state.username,
+                uid: this.state.uid,
                 password: this.state.password,
                 sex:this.state.choiceSex,
             })
@@ -116,7 +116,7 @@ export default class Register extends Component {
                                     placeholder='请输入账号'
                                     placeholderTextColor='#999999'
                                     onChangeText={(text) => {
-                                        this.setState({ username: text });
+                                        this.setState({ uid: text });
                                     }} />
                             </View>
                         </View>
