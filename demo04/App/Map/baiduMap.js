@@ -21,7 +21,7 @@ StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
 // import Dimensions from 'Dimensions';
 
-const { Marker } = Overlay;
+const { Marker, Cluster, Arc, Circle, Polyline, Polygon, InfoWindow, HeatMap } = Overlay;
 const { width, height } = Dimensions.get('window');
 
 export default class BaiduMap extends Component {
@@ -78,7 +78,7 @@ export default class BaiduMap extends Component {
                 </View>
                 <MapView
 
-
+                    pinColor={{}}
                     zoomControlsVisible={this.state.zoomControlsVisible} //默认true,是否显示缩放控件,仅支持android
                     trafficEnabled={this.state.trafficEnabled} //默认false,是否显示交通线
                     baiduHeatMapEnabled={this.state.baiduHeatMapEnabled} //默认false,是否显示热力图
@@ -166,77 +166,28 @@ export default class BaiduMap extends Component {
                         location={{ longitude: 116.465175, latitude: 39.938522 }} />
                     <Marker
                         title='中心2'
-                        pinColor="green"
                         location={{ longitude: 116.467176, latitude: 39.939522 }} />
-
+                    <Marker
+                        title='中心3'
+                        location={{ longitude: 116.467177, latitude: 39.937524 }} />
+                    <Polyline
+                        stroke={{ width: 5, color: 'AA000000' }}
+                        points={[
+                            { longitude: 116.467176, latitude: 39.939522 },
+                            { longitude: 116.465175, latitude: 39.938522 },
+                            { longitude: 116.467177, latitude: 39.937524 },
+                        ]}
+                    />
+                    {/*  */}
+                    {/* <Polygon
+                        points={[
+                            { longitude: 116.467176, latitude: 39.939522 },
+                            { longitude: 116.465175, latitude: 39.938522 },
+                            { longitude: 116.467177, latitude: 39.937524 },
+                        ]}
+                        stroke={{width: 0, color: '#000'}}
+                    /> */}
                 </MapView>
-
-                {/* <View style={styles.list}>
-                    <Text>地图缩放控件状态: </Text>
-                    {this.state.zoomControlsVisible ?
-                        <Text onPress={() => this.setState({ zoomControlsVisible: false })}>显示</Text>
-                        :
-                        <Text onPress={() => this.setState({ zoomControlsVisible: true })}>关闭</Text>
-                    }
-                </View>
-                <View style={styles.list}>
-                    <Text>交通线状态: </Text>
-                    {this.state.trafficEnabled ?
-                        <Text onPress={() => this.setState({ trafficEnabled: false })}>显示</Text>
-                        :
-                        <Text onPress={() => this.setState({ trafficEnabled: true })}>关闭</Text>
-                    }
-                </View>
-                <View style={styles.list}>
-                    <Text>热力图状态: </Text>
-                    {this.state.baiduHeatMapEnabled ?
-                        <Text onPress={() => this.setState({ baiduHeatMapEnabled: false })}>显示</Text>
-                        :
-                        <Text onPress={() => this.setState({ baiduHeatMapEnabled: true })}>关闭</Text>
-                    }
-                </View>
-                <View style={styles.list}>
-                    <Text>地图模式状态: </Text>
-                    {this.state.mapType == MapTypes.NORMAL ?
-                        <Text onPress={() => this.setState({ mapType: MapTypes.SATELLITE })}>普通</Text>
-                        :
-                        <Text onPress={() => this.setState({ mapType: MapTypes.NORMAL })}>卫星</Text>
-                    }
-                </View>
-                <View style={styles.list}>
-                    <Text>地图空白区域点击信息: </Text>
-                </View>
-                <View style={styles.list}>
-                    <Text>{this.state.clickMessage}</Text>
-                </View>
-                <View style={styles.list}>
-                    <Text>地图已有点点击信息: </Text>
-                </View>
-                <View style={styles.list}>
-                    <Text>{this.state.poiMessage}</Text>
-                </View>
-                <View style={styles.list}>
-                    <Text onPress={() => {
-                        Geolocation.getCurrentPosition()
-                            .then(data => {
-                                console.log(data)
-                                this.setState({
-                                    center: {
-                                        longitude: data.longitude,
-                                        latitude: data.latitude
-                                    },
-                                    markers: [{
-                                        longitude: data.longitude,
-                                        latitude: data.latitude,
-                                        title: data.district + data.street
-                                    }]
-                                })
-                            })
-                            .catch(e => {
-                                console.warn(e, 'error');
-                            })
-                    }}>当前位置</Text>
-                </View> */}
             </ScrollView>
         );
     }

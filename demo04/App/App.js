@@ -60,13 +60,11 @@ function MyStack() {
                     elevation: 0,
                     activeBackgroundColor: "red"
                 },
-
                 // 选中状态的背景颜色
                 activeBackgroundColor: "black",
                 // 未选中状态的颜色
                 inactiveBackgroundColor: "green",
-            }}
-        >
+            }}>
             <Stack.Screen name="Home"
                 options={{
                     tabBarLabel: '首页',
@@ -90,8 +88,7 @@ function MyStack() {
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'binoculars'} size={20} color={color} />
                     ),
-                }}
-            >
+                }}>
                 {() => {
                     return (
                         <DiscoveryStack.Navigator
@@ -112,8 +109,7 @@ function MyStack() {
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'plus'} size={25} color={color} />
                     ),
-                }}
-            />
+                }}/>
             <Stack.Screen name="MessageSum"
                 component={MessageSum}
                 options={{
@@ -121,8 +117,7 @@ function MyStack() {
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'twitch'} size={25} color={color} />
                     ),
-                }}
-            >
+                }}>
             </Stack.Screen>
             <Stack.Screen name="PersonalCenterSum"
             //  component={PersonalCenterSum}
@@ -131,8 +126,7 @@ function MyStack() {
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'user'} size={25} color={color} />
                     ),
-                }}
-            >
+                }}>
                 {() => {
                     return (
                         <PersonalStack.Navigator headerMode="none">
@@ -141,7 +135,6 @@ function MyStack() {
                             <PersonalStack.Screen name="UserAgreement" component={UserAgreement} />
                             <PersonalStack.Screen name="Privacy" component={Privacy} />
                         </PersonalStack.Navigator>
-                        
                     )
                 }}
             </Stack.Screen>

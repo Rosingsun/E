@@ -16,6 +16,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
 
+ // 监听键盘
+        // this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardDidShow);
+        // this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardDidHide);
+
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 export default class Register extends Component {
@@ -31,7 +35,7 @@ export default class Register extends Component {
             passwordCheck: "",
             username: "",
         }
-    };
+    };  
     _onClickRegister = () => {
         var navigation = this.props.navigation;
         fetch('http://192.168.56.1:3000/users/reg', {
@@ -125,8 +129,10 @@ export default class Register extends Component {
                             <View style={{ flexDirection: "row" }}>
                                 <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 18 }} name={'lock'} size={25} color={'#999999'} />
                                 <TextInput
+                                password={true}
                                     style={styles.password}
                                     placeholder='请输入密码'
+                                    secureTextEntry={true}
                                     placeholderTextColor='#999999'
                                     onChangeText={(text) => {
                                         this.setState({ password: text });
@@ -140,7 +146,9 @@ export default class Register extends Component {
                                 <TextInput
                                     style={styles.password}
                                     placeholder='请输入密码'
+                                    secureTextEntry={true}
                                     placeholderTextColor='#999999'
+                                    password={true}
                                     onChangeText={(text) => {
                                         if (text != this.state.password) {
                                             this.setState({ tipsShowKey: "flex" });
@@ -148,7 +156,7 @@ export default class Register extends Component {
                                             this.setState({ tipsShowKey: "none" });
                                         }
 
-                                    }} />
+                                    }} ></TextInput>
                             </View>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
