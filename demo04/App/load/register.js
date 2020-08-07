@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
@@ -29,11 +29,11 @@ export default class Register extends Component {
             tipsShowKey: "none",
             secChoiceBoy: "#5DDA6B",
             secChoiceGirl: "#5DDA6B00",
-            choiceSex: "boy",
+            choiceSex: "0",
             borderWidth: "0",
             password: "",
             passwordCheck: "",
-            username: "",
+            uid: "",
         }
     };  
     _onClickRegister = () => {
@@ -45,18 +45,18 @@ export default class Register extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password
-
+                uid: this.state.uid,
+                password: this.state.password,
+                sex:this.state.choiceSex,
             })
         }).then(function (res) {
             return res.json();
         }).then(function (json) {
             if (json.code == "200") {
                 alert("注册成功")
-                // navigation.navigate("App");
+                navigation.navigate("App");
             } else if (json.code == "400") {
-                alert("用户名或密码已存在")
+                alert("用户名或密码不符合规定")
             }
         })
     };
@@ -87,7 +87,7 @@ export default class Register extends Component {
                     {/* boy */}
                     <TouchableWithoutFeedback
                         onPress={() => {
-                            this.setState({ secChoiceGirl: "#5DDA6B00", secChoiceBoy: "#5DDA6B", choiceSex: "boy" })
+                            this.setState({ secChoiceGirl: "#5DDA6B00", secChoiceBoy: "#5DDA6B", choiceSex: "0" })
                         }}>
                         <View style={{ alignItems: 'center' }}>
                             <Image style={{ height: 100, width: 100 }} source={require('../img/login/theboy.png')} />
@@ -98,7 +98,7 @@ export default class Register extends Component {
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback
                         onPress={() => {
-                            this.setState({ secChoiceGirl: "#5DDA6B", secChoiceBoy: "#5DDA6B00", choiceSex: "girl" })
+                            this.setState({ secChoiceGirl: "#5DDA6B", secChoiceBoy: "#5DDA6B00", choiceSex: "1" })
                         }}>
                         <View style={{ alignItems: 'center' }}>
                             <Image style={{ height: 100, width: 100, }} source={require('../img/login/thegirl.png')} />
@@ -120,7 +120,7 @@ export default class Register extends Component {
                                     placeholder='请输入账号'
                                     placeholderTextColor='#999999'
                                     onChangeText={(text) => {
-                                        this.setState({ username: text });
+                                        this.setState({ uid: text });
                                     }} />
                             </View>
                         </View>
@@ -131,6 +131,9 @@ export default class Register extends Component {
                                 <TextInput
                                 password={true}
                                     style={styles.password}
+                                    keyboardType = 'numeric'
+                                    secureTextEntry={true}
+
                                     placeholder='请输入密码'
                                     secureTextEntry={true}
                                     placeholderTextColor='#999999'
@@ -146,7 +149,9 @@ export default class Register extends Component {
                                 <TextInput
                                     style={styles.password}
                                     placeholder='请输入密码'
+                                    keyboardType = 'numeric'
                                     secureTextEntry={true}
+
                                     placeholderTextColor='#999999'
                                     password={true}
                                     onChangeText={(text) => {

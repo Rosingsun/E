@@ -24,7 +24,7 @@ export default class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
+            uid: '',
             password: '',
         }
     };
@@ -38,7 +38,7 @@ export default class Search extends Component {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                  username: this.state.username,
+                  uid: this.state.uid,
                   password: this.state.password
               })
             }).then(function (res) {
@@ -83,7 +83,7 @@ export default class Search extends Component {
                                     placeholder='请输入账号'
                                     placeholderTextColor='#999999'
                                     onChangeText={(text) => {
-                                        this.setState({ username: text });
+                                        this.setState({ uid: text });
                                     }} />
                             </View>
                         </View>
