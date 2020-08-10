@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 //引入数据库包
+var path = require('path');
+/* formidable用于解析表单数据，特别是文件上传 */
 var formidable = require('formidable');
 var db = require("../db/db");
 /**
@@ -100,7 +102,8 @@ router.get('/del/:id', function (req, res) {
     });
 });
 /**
- * 修改
+ * 修改个人中心
+ * 
  */
 router.get('/toUpdate/:id', function (req, res) {
     var id = req.params.id;
@@ -112,17 +115,30 @@ router.get('/toUpdate/:id', function (req, res) {
         }
     });
 });
-router.post('/update', function (req, res) {
-    var id = req.body.id;
-    var uid = req.body.uid;
-    var password = req.body.password;
-    db.query("update user set uid='" + uid + "',password='" + password + "' where id=" + id, function (err, rows) {
+router.post('/update',  (req, res, next) => {
+    const form = formidable({ multiples: true });
+    form.uploadDir = "./serverImage";
+    form.keepExtensions = true;//保存扩展名
+    form.maxFieldsSize = 2 * 1024 * 1024;//上传文件的最大大小
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        next(err);
+        return;
+      }
+    var id = fields.id;
+    var uid = fields.uid;
+    var password = fields.password;
+    var username = fields.username;
+    var PersonalSignature = fields.PersonalSignature;
+    var head = path.basename(files.head.path);
+    db.query("update user set uid='" + uid + "',password='" + password + "',username='" + username + "',PersonalSignature='" + PersonalSignature + "',head='" + head + "' where id=" + id, function (err, rows) {
         if (err) {
             res.end('修改失败：' + err);
         } else {
             res.redirect('/users');
         }
     });
+});
 });
 /**
  * 查询
@@ -156,18 +172,19 @@ router.get('/upload', (req, res) => {
   
 router.post('/upload', (req, res, next) => {
     const form = formidable({ multiples: true });
-    form.uploadDir = "./uploads";
+    form.uploadDir = "./serverImage";
     form.keepExtensions = true;//保存扩展名
     form.maxFieldsSize = 20 * 1024 * 1024;//上传文件的最大大小
-    form.parse(req, (err, fields, files) => {
-      if (err) {
-        next(err);
-        return;
-      }
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      next(err);
+      return;
+    }
+
     //   res.json({ fields, files });
         var title = fields.title;
         var words = fields.words;
-        var showUserImg = files.showUserImg.path;
+        var showUserImg =path.basename(files.showUserImg.path);
         db.query("insert into travels (title,words,showUserImg) VALUES('" + title + "','" + words + "','" + showUserImg +"')",function(err, rows){
             if(err){
                 res.end('添加失败：' + err);
@@ -178,8 +195,4 @@ router.post('/upload', (req, res, next) => {
     });
   });
 
-
-
-
-   
 module.exports = router;
