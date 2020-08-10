@@ -7,6 +7,7 @@ import {
   Dimensions,
   Text,
   FlatList,
+  Alert,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -33,7 +34,7 @@ export default function recommend() {
                   countNum: '11',
                   showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/99/33/5f05958b37792_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
                   like: 'gray',
-                  height:128,
+                  height:258,
                 },
                 {
                   name: 'JK妹123213',
@@ -75,7 +76,11 @@ export default function recommend() {
                     <Image style={{ height: 20, width: 20, borderRadius: 25, }} source={{ uri: item.userHead }} />
                     <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{item.name}</Text>
                     <View style={{ position: "absolute", right: 10, bottom: 5 }}>
-                      <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>
+                      <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
+                      onPress={()=>{
+                        Alert.alert("you press me ")
+                      }}
+                      >
                         <AntDesign name={'like2'} size={12} color={item.like} />
                         {item.countNum}
                       </Text>
@@ -107,13 +112,13 @@ export default function recommend() {
                   countNum: '11',
                   showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/98/90/5ec62c32e30b4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
                   like: 'gray',
-                  height:152,
+                  height:202,
                 },
               ]}
               renderItem={({ item }) =>
                 <View style={[styles.showContainer]}>
                   {/* 图片框 */}
-                  <Image style={{ height: 240, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: item.showUserImg }} />
+                  <Image style={{ height: item.height, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: item.showUserImg }} />
                   {/* 定位 */}
                   <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
                     <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
@@ -129,9 +134,9 @@ export default function recommend() {
                     <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{item.name}</Text>
                     <View style={{ position: "absolute", right: 10, bottom: 5 }}>
                       <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
-                        onPress={() => {
-                          this.item.like = 'red'
-                        }}
+                        // onPress={() => {
+                        //   this.item.like = 'red'
+                        // }}
                       >
                         <AntDesign name={'like2'} size={12} color={item.like} />
                         {item.countNum}

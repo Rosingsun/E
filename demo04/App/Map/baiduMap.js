@@ -8,6 +8,7 @@ import {
     Platform,
     Dimensions,
     Alert,
+    Image,
     StatusBar,
 } from 'react-native';
 
@@ -16,13 +17,40 @@ import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { FlatList } from 'react-native-gesture-handler';
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
 // import Dimensions from 'Dimensions';
 
-const { Marker } = Overlay;
+const { Marker, Cluster, Arc, Circle, Polyline, Polygon, InfoWindow, HeatMap } = Overlay;
 const { width, height } = Dimensions.get('window');
+
+
+var imgDate = [
+    {
+        key: "1",
+        imgUri: "http://pic.51yuansu.com/pic3/cover/03/98/30/5e7ab67256496_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        placeName: "断壁残垣",
+        placeHoldName: "杭州西溪湿地",
+        distance: 2,
+        preTime: 52,
+    },
+    {
+        key: "1",
+        imgUri: "http://pic.51yuansu.com/pic3/cover/03/98/30/5e7ac1694ca6a_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        placeName: "断壁残垣",
+        distance: 4,
+        preTime: 52,
+    },
+    {
+        key: "1",
+        imgUri: "http://pic.51yuansu.com/pic3/cover/03/98/30/5e7ab67673734_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        placeName: "断壁残垣",
+        distance: 3,
+        preTime: 52,
+    },
+]
 
 export default class BaiduMap extends Component {
     constructor() {
@@ -61,24 +89,16 @@ export default class BaiduMap extends Component {
                         <AntDesign name={'left'} size={20} color={'#000'}
                             onPress={() => {
                                 this.props.navigation.goBack()
-                            }}
-                        />
+                            }} />
                         <View style={{ flexDirection: "row", width: '30%', justifyContent: "space-around" }}>
-                            <Ionicons name={'heart-outline'} size={30} color={'#000'}
-                                onPress={() => {
-                                }} />
-                            <MaterialCommunityIcons name={'swap-horizontal-circle-outline'} size={30} color={'#000'}
-                                onPress={() => {
-                                }} />
-                            <Feather name={'more-horizontal'} size={30} color={'#000'}
-                                onPress={() => {
-                                }} />
+                            <Ionicons name={'heart-outline'} size={30} color={'#000'} />
+                            <MaterialCommunityIcons name={'swap-horizontal-circle-outline'} size={30} color={'#000'} />
+                            <Feather name={'more-horizontal'} size={30} color={'#000'} />
                         </View>
                     </View>
                 </View>
                 <MapView
-
-
+                    pinColor={{}}
                     zoomControlsVisible={this.state.zoomControlsVisible} //默认true,是否显示缩放控件,仅支持android
                     trafficEnabled={this.state.trafficEnabled} //默认false,是否显示交通线
                     baiduHeatMapEnabled={this.state.baiduHeatMapEnabled} //默认false,是否显示热力图
@@ -91,7 +111,6 @@ export default class BaiduMap extends Component {
                         //定位用户位置，并且设置为中心点
                         Geolocation.getCurrentPosition()
                             .then(data => {
-                                console.log(data)
                                 // this.setState({
                                 //     center: {
                                 //         longitude: data.longitude,
@@ -166,77 +185,62 @@ export default class BaiduMap extends Component {
                         location={{ longitude: 116.465175, latitude: 39.938522 }} />
                     <Marker
                         title='中心2'
-                        pinColor="green"
                         location={{ longitude: 116.467176, latitude: 39.939522 }} />
-
+                    <Marker
+                        title='中心3'
+                        location={{ longitude: 116.467177, latitude: 39.937524 }} />
+                    <Polyline
+                        stroke={{ width: 5, color: 'AA000000' }}
+                        points={[
+                            { longitude: 116.467176, latitude: 39.939522 },
+                            { longitude: 116.465175, latitude: 39.938522 },
+                            { longitude: 116.467177, latitude: 39.937524 },
+                        ]}
+                    />
                 </MapView>
 
-                {/* <View style={styles.list}>
-                    <Text>地图缩放控件状态: </Text>
-                    {this.state.zoomControlsVisible ?
-                        <Text onPress={() => this.setState({ zoomControlsVisible: false })}>显示</Text>
-                        :
-                        <Text onPress={() => this.setState({ zoomControlsVisible: true })}>关闭</Text>
-                    }
-                </View>
-                <View style={styles.list}>
-                    <Text>交通线状态: </Text>
-                    {this.state.trafficEnabled ?
-                        <Text onPress={() => this.setState({ trafficEnabled: false })}>显示</Text>
-                        :
-                        <Text onPress={() => this.setState({ trafficEnabled: true })}>关闭</Text>
-                    }
-                </View>
-                <View style={styles.list}>
-                    <Text>热力图状态: </Text>
-                    {this.state.baiduHeatMapEnabled ?
-                        <Text onPress={() => this.setState({ baiduHeatMapEnabled: false })}>显示</Text>
-                        :
-                        <Text onPress={() => this.setState({ baiduHeatMapEnabled: true })}>关闭</Text>
-                    }
-                </View>
-                <View style={styles.list}>
-                    <Text>地图模式状态: </Text>
-                    {this.state.mapType == MapTypes.NORMAL ?
-                        <Text onPress={() => this.setState({ mapType: MapTypes.SATELLITE })}>普通</Text>
-                        :
-                        <Text onPress={() => this.setState({ mapType: MapTypes.NORMAL })}>卫星</Text>
-                    }
-                </View>
-                <View style={styles.list}>
-                    <Text>地图空白区域点击信息: </Text>
-                </View>
-                <View style={styles.list}>
-                    <Text>{this.state.clickMessage}</Text>
-                </View>
-                <View style={styles.list}>
-                    <Text>地图已有点点击信息: </Text>
-                </View>
-                <View style={styles.list}>
-                    <Text>{this.state.poiMessage}</Text>
-                </View>
-                <View style={styles.list}>
-                    <Text onPress={() => {
-                        Geolocation.getCurrentPosition()
-                            .then(data => {
-                                console.log(data)
-                                this.setState({
-                                    center: {
-                                        longitude: data.longitude,
-                                        latitude: data.latitude
-                                    },
-                                    markers: [{
-                                        longitude: data.longitude,
-                                        latitude: data.latitude,
-                                        title: data.district + data.street
-                                    }]
-                                })
+                {/* 底部地图滑动提示 */}
+                <View style={{ height: 240, width: "100%", }}>
+                    <View style={{ position: "absolute", height: 30, backgroundColor: "#2F3843", paddingVertical: 5, top: -35, left: 0 }}>
+                        <Text style={{ color: "#fff", fontSize: 20, lineHeight: 25 }}>大家都打卡了</Text>
+                    </View>
+                    <ScrollView
+                        style={{ width: '100%', height: 100, }}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                    >
+                        {
+                            imgDate.map((item) => {
+                                return (
+                                    <View style={{ marginLeft: 10 }}>
+                                        <View style={{ width: 138, height: 93 }}>
+                                            <Image style={{ height: 100, width: '100%' }} source={{ uri: item.imgUri }} />
+                                        </View>
+                                        <Text style={{ marginTop: -15 }}>距离此路线仅{item.distance}km</Text>
+                                    </View>
+                                )
                             })
-                            .catch(e => {
-                                console.warn(e, 'error');
+                        }
+                    </ScrollView>
+                    <Text style={{ fontSize: 20 }}>杭州西溪湿地 </Text>
+                    <ScrollView
+                        style={{ width: '100%', height: 100, }}
+                        horizontal={false}
+                        showsVerticalScrollIndicator={false}
+                    >
+                        {
+                            imgDate.map((item) => {
+                                return (
+                                    <View style={{ justifyContent: "space-between" }}>
+                                        <View style={{ width: '100%', height: 20, backgroundColor: "green" }}>
+                                            {/* <Image style={{ height: 100, width: '100%' }} source={{ uri: item.imgUri }} /> */}
+                                        </View>
+                                    </View>
+                                )
                             })
-                    }}>当前位置</Text>
-                </View> */}
+                        }
+                    </ScrollView>
+                </View>
             </ScrollView>
         );
     }
@@ -249,7 +253,7 @@ const styles = StyleSheet.create({
     },
     map: {
         width: width,
-        height: height - 137,
+        height: height - 380,
         marginBottom: 5,
     },
     list: {

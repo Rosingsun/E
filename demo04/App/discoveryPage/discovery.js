@@ -39,6 +39,25 @@ function _showActive(pic, num, titleContain, newsTitle, newsTitleTow) {
   )
 };
 
+function activityUser(userBackGroundPic, userHeardImg, userName, lineNum, userLv) {
+  return (
+
+    <View style={{ width: 260, height: 350, marginLeft: 20 }}>
+      <Image style={{ height: 184, width: '100%', }} source={{ uri: userBackGroundPic }} />
+      <View style={{ height: '40%', width: '100%', backgroundColor: "#fff", paddingHorizontal: 10, elevation: 2 }}>
+        <Image style={{ height: 50, width: 50, borderRadius: 25, marginTop: -25, borderWidth: 2, borderColor: "#fff" }} source={{ uri: userHeardImg }} />
+        <Text style={{ backgroundColor: "#fff", fontSize: 20, }}>{userName}</Text>
+        <View style={{ width: 110, flexDirection: "row", justifyContent: "space-between" }}>
+          <Text style={{ fontSize: 10, color: "#999" }}>{lineNum}条游记</Text>
+          <Text style={{ fontSize: 10, color: "#999999" }} >{lineNum}条路线</Text>
+        </View>
+        <Text style={{ fontSize: 15, color: "#999", marginTop: 10 }}>{userLv}</Text>
+        <Text style={{ borderWidth: 1, borderColor: "green", width: 50, paddingVertical: 5, height: 30, paddingHorizontal: 5, textAlign: "center" }}>关注</Text>
+      </View>
+    </View>
+  )
+}
+
 var userMap = [
   {
     key: "1",
@@ -145,12 +164,7 @@ export default class Discovery extends Component {
               <TextInput placeholder="abibas" style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }} />
               <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
             </View>
-            <AntDesign name={'calendar'} size={25} color={'#000'} 
-            // onPress={()=>{
-            //   this.props.navigation.navigate("daka");
-            // }}
-            
-            />
+            <AntDesign name={'calendar'} size={25} color={'#000'} />
           </View>
         </View>
         {/* 第一部分 */}
@@ -181,9 +195,9 @@ export default class Discovery extends Component {
             <View style={{ flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 10, paddingTop: 10, }}>
               <Text>随诗打卡</Text>
               <Text
-              onPress={()=>{
-                Alert.alert("dont touch me")
-            }}
+                onPress={() => {
+                  this.props.navigation.navigate("dakaAll");
+                }}
               >查看更多<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
@@ -208,14 +222,14 @@ export default class Discovery extends Component {
               >  最多人玩</Text>
             </View>
             <View>
-              <View style={{ height: '100%', width: '100%' ,overflow:"hidden"}}>
+              <View style={{ height: '100%', width: '100%', overflow: "hidden" }}>
                 <TouchableWithoutFeedback
-                style={{height:'100%',width:'100%'}}
-                  onPress={()=>{
+                  style={{ height: '100%', width: '100%' }}
+                  onPress={() => {
                     Alert.alert("you touch me");
                   }}
                 >
-                <ProjectsScreen />
+                  <ProjectsScreen />
                 </TouchableWithoutFeedback>
               </View>
             </View>
@@ -223,32 +237,30 @@ export default class Discovery extends Component {
           {/* 第三部分 */}
           {/* 竖向轮播 */}
           <View style={{ marginTop: 40, padding: 10, width: '100%', height: 400, }}>
-            <View style={{width:'100%',height:20,alignItems:"flex-end"}}>
+            <View style={{ width: '100%', height: 20, alignItems: "flex-end" }}>
               <Text
-              onPress={()=>{
-                this.props.navigation.navigate("choiceCity")
-              }}
+                onPress={() => {
+                  this.props.navigation.navigate("choiceCity")
+                }}
               >更多路线<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
             </View>
-            <ScrollView
-              horizontal={true}
+            {/* <ScrollView
+              horizontal={false}
               showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}
-            >
+            > */}
               {
                 userMap.map((item) => {
                   return (
-                    // <View style={{ height: '100%', width: 300 }}>
-                    <Text style={{ backgroundColor: "skyblue", height: '30%', width: 200, color: "#fff", marginLeft: 12 }}
-                    onPress={()=>{
-                      this.props.navigation.navigate("BaiduMap")
-                    }}
+                    <Text style={{ backgroundColor: item.backgroundColor, height: '30%', width: 200, color: "#fff", marginLeft: 12 }}
+                      onPress={() => {
+                        this.props.navigation.navigate("BaiduMap")
+                      }}
                     >{item.key}</Text>
-                    // </View>
                   )
                 })
               }
-            </ScrollView>
+            {/* </ScrollView> */}
           </View>
 
           {/* 第四部分 */}
@@ -256,9 +268,9 @@ export default class Discovery extends Component {
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
               <Text style={{ fontSize: 20 }}>活跃玩家</Text>
               <Text style={{ fontSize: 15, color: "#999999" }}
-              onPress={()=>{
-                this.props.navigation.navigate("Search");
-            }}
+                onPress={() => {
+                  this.props.navigation.navigate("Search");
+                }}
               >排行榜 <FontAwesome name={'angle-right'} size={20} color={'#999999'} /></Text>
             </View>
 
@@ -269,19 +281,7 @@ export default class Discovery extends Component {
               {
                 userInfo.map((item) => {
                   return (
-                    <View style={{ width: 260, height: 350, marginLeft: 20 }}>
-                      <Image style={{ height: 184, width: '100%', }} source={{ uri: item.userBackGroundPic }} />
-                      <View style={{ height: '40%', width: '100%', backgroundColor: "#fff", paddingHorizontal: 10, elevation: 2 }}>
-                        <Image style={{ height: 50, width: 50, borderRadius: 25, marginTop: -25, borderWidth: 2, borderColor: "#fff" }} source={{ uri: item.userHeardImg }} />
-                        <Text style={{ backgroundColor: "#fff", fontSize: 20, }}>{item.userName}</Text>
-                        <View style={{ width: 110, flexDirection: "row", justifyContent: "space-between" }}>
-                          <Text style={{ fontSize: 10, color: "#999" }}>{item.lineNum}条游记</Text>
-                          <Text style={{ fontSize: 10, color: "#999999" }} >{item.lineNum}条路线</Text>
-                        </View>
-                        <Text style={{ fontSize: 15, color: "#999", marginTop: 10 }}>{item.userLv}</Text>
-                        <Text style={{ borderWidth: 1, borderColor: "green", width: 50, paddingVertical: 5, height: 30, paddingHorizontal: 5, textAlign: "center" }}>关注</Text>
-                      </View>
-                    </View>
+                    activityUser(item.userBackGroundPic, item.userHeardImg, item.userName, item.lineNum, item.lineNum, item.userLv)
                   )
                 })
               }
