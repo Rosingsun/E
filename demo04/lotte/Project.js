@@ -83,7 +83,7 @@ const Container=styled.View`
     height:460px;
     border-radius:14px;
     background-color:white;
-    box-shadow:0 10px 20px rgba(0,0,0,0.15);
+    box-shadow:0 10px 20px rgba(0,0,0,1);
 `;
 const AnimatedContainer=Animated.createAnimatedComponent(Container);
 const Cover=styled.View`
@@ -110,7 +110,7 @@ const Author=styled.Text`
   position:absolute;
   bottom:20px;
   left:20px;
-  color:rgba(255,255,255,0.8);
+  color:rgba(255,255,255,1);
   font-size:15px;
   font-weight:600;
   text-transform:uppercase;

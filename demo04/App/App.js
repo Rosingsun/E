@@ -14,7 +14,7 @@ import BaiduMap from './Map/baiduMap';
 // 发现页面
 import choiceCity from './DiscoveryPage/moreLine/choiceCity';
 import Line from './DiscoveryPage/moreLine/Line';
-import daka from './DiscoveryPage/daka/dakaAll';
+import dakaAll from './DiscoveryPage/daka/dakaAll';
 //个人中心页面
 import PersonalCenterSum from './PersonalCenter/personnalCenterSum';
 import UserSetting from './PersonalCenter/PersonalDetail/Setting';
@@ -98,7 +98,7 @@ function MyStack() {
                             <DiscoveryStack.Screen name="BaiduMap" component={BaiduMap} />
                             <DiscoveryStack.Screen name="choiceCity" component={choiceCity} />
                             <DiscoveryStack.Screen name="Line" component={Line} />
-                            <DiscoveryStack.Screen name="daka" component={daka} />
+                            <DiscoveryStack.Screen name="dakaAll" component={dakaAll} />
                         </DiscoveryStack.Navigator>
                     )
                 }}

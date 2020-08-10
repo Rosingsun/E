@@ -18,15 +18,22 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 // import { text } from 'express';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
+const scenicData=[
+    {
+        picture: "./img/a.jpg",
+        title: '西湖·一个小亭子',
+        scenicSpot: "西湖景区",
+        clock: "杜甫、李白、白居易也曾在这里打过卡"
+    },
+    {
+        picture: "./img/a.jpg",
+        title: '西湖·一个小亭子',
+        scenicSpot: "西湖景区",
+        clock: "杜甫、李白、白居易也曾在这里打过卡"
+    },
+]
 
-const TestData = [
-    { id: 10086, name: '  人气最高  ' },
-    { id: 10087, name: '  离我最近  ' },
-    { id: 10088, name: '  最新收录  ' },
-    { id: 10089, name: '  评分最高  ' },
-];
-
-export default class Search extends Component {
+export default class dakaAll extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,6 +54,7 @@ export default class Search extends Component {
         this.setState({ openStatus: res == 1 });
     }
 
+    _
     render() {
         return (
             <View style={[styles.container]}>
@@ -58,18 +66,7 @@ export default class Search extends Component {
                             }} />
                         </View>
                         <Text style={{ color: "#000", fontSize: 20, marginLeft: 30 }}>打卡全部</Text>
-
                         <View>
-                            {/* <SelfadaptModal 
-                            menuList={TestData} 
-                            containerStyle={styles.demeOneBtn}
-                            modalStyle={{backgroundColor:"#FFCA9B"}}
-                            unActiveMenuTextStyle={{color:"#fff"}}
-                            // content={this.state.demoOneValue}
-                            // onPress={(res)=>this.doSelect(res,'demoOneValue')}
-                            openStatus={(res)=>this.onOpenStatusChange(res)}>
-                      <AntDesign name={'bars'} size={30} color={'#fff'} /> 
-                      </SelfadaptModal>  */}
                             <Text style={{ fontSize: 15, color: '#000' }}>{this.state.openStatus}</Text>
                         </View>
                     </View>
@@ -115,7 +112,8 @@ export default class Search extends Component {
                                     <Text style={[styles.clock]}>{item.clock}</Text>
                                 </TouchableOpacity>
                             </View>
-                        </View>} />
+                        </View>
+                    } />
             </View>
         )
     }

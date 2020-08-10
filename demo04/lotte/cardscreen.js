@@ -151,7 +151,7 @@ const Container = styled.View`
     flex:1;
     justify-content:center;
     align-items:center;
-    background:#f0f3f5;
+    background:#fff;
 `;
 const Text = styled.Text``;
 const Projects = [

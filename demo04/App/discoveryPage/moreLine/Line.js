@@ -55,42 +55,42 @@ export default function Line({ route, navigation }) {
               latitude: 39.938522
             },
             {
-              place: '杭州上城区到下城区',
-              id: 'By:石原里美',
-              longitude: 119.465175,
-              latitude: 39.938522
+              place: '杭州拱宸桥到江干区',
+              id: 'By:桥本环奈',
+              longitude: 111.465175,
+              latitude: 20.938522
+            },
+            {
+              place: '杭州拱宸桥到江干区',
+              id: 'By:桥本环奈',
+              longitude: 118.414175,
+              latitude: 39.928592
             },
           ]}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) =>
             <View style={{ width: 386, height: 118, justifyContent: 'center', alignItems: 'center', backgroundColor: '#6C9575', marginBottom: 20, borderRadius: 3 }}>
               <MapView
-              zoomControlsVisible={false} //默认true,是否显示缩放控件,仅支持android
-              trafficEnabled={true} //默认false,是否显示交通线
-              baiduHeatMapEnabled={false} //默认false,是否显示热力图
-              mapType={MapTypes.NORMAL} //地图模式,NORMAL普通 SATELLITE卫星图
-              zoomGesturesEnabled={false}//允许手势缩放
-              scrollGesturesEnabled={false}//允许拖动s
-              zoom={20} //缩放等级,默认为10
-              // center={20} // 地图中心位置
-              style={{ width: 371, height: 104 }}>
-                 <Marker
-                        title='中心'
-                        location={item.longitude,item.latitude } />
-                    <Marker
-                        title='中心2'
-                        location={{ longitude: 116.467176, latitude: 39.939522 }} />
-                    <Marker
-                        title='中心3'
-                        location={{ longitude: 116.467177, latitude: 39.937524 }} />
-                    <Polyline
-                        stroke={{ width: 5, color: 'AA000000' }}
-                        points={[
-                            { longitude: 116.467176, latitude: 39.939522 },
-                            { longitude: 116.465175, latitude: 39.938522 },
-                            { longitude: 116.467177, latitude: 39.937524 },
-                        ]}
-                    />
+                zoomControlsVisible={false} //默认true,是否显示缩放控件,仅支持android
+                trafficEnabled={true} //默认false,是否显示交通线
+                baiduHeatMapEnabled={false} //默认false,是否显示热力图
+                mapType={MapTypes.NORMAL} //地图模式,NORMAL普通 SATELLITE卫星图
+                zoomGesturesEnabled={false}//允许手势缩放
+                scrollGesturesEnabled={false}//允许拖动
+                zoom={40} //缩放等级,默认为10
+                //根据不同传入值 更换地图中心位置
+                center={{ longitude: item.longitude, latitude: item.latitude }}
+                // center={20} // 地图中心位置
+                style={{ width: 371, height: 104 }}>
+                <Polyline
+                  stroke={{ width: 5, color: 'AA000000' }}
+                  points={[
+                    { longitude: item.longitude + 0.00001, latitude: item.latitude + 0.00002 },
+                    { longitude: item.longitude + 0.00002, latitude: item.latitude + 0.00003 },
+                    { longitude: item.longitude + 0.00003, latitude: item.latitude + 0.00001 },
+                    { longitude: item.longitude + 0.00004, latitude: item.latitude + 0.00002 },
+                  ]}
+                />
               </MapView>
 
               {/* <Image style={{ width: 371, height: 104 }} source={require('./photo/hangzhou.jpg')} /> */}
@@ -124,7 +124,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     height: 44,
     position: 'absolute',
-    color: '#FFFFFF',
+    fontWeight: "900",
+    color: '#000',
     top: 5,
     left: 5,
   },
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     height: 44,
     position: 'absolute',
-    color: '#FFFFFF',
+    color: '#000',
     fontWeight: '200',
     top: 5,
     right: 5,
