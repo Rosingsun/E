@@ -84,10 +84,10 @@ export default class App extends Component {
             <View style={{ backgroundColor: '#2F3843', width: 280, height: 35, borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 15, color: '#FFFFFF' }}>确认交易</Text></View>
           </TouchableWithoutFeedback>
         </View>
-        <View style={{ width: '100%', alignItems: "center", marginTop: '6%' }}>
+        <View style={{ width: '100%', alignItems: "center", marginTop: '5%',}}>
           <TextInput
             placeholder="  给TA留个言吧！"
-            style={{ paddingHorizontal: 80, width: '85%', backgroundColor: '#EFEFEF', paddingLeft: 20, borderRadius: 10, borderWidth: 8, borderColor: '#FFFFFF', }} />
+            style={{ paddingHorizontal: 80, width: '95%', backgroundColor: '#EFEFEF', paddingLeft: 20, borderRadius: 10, borderWidth: 8, borderColor: '#FFFFFF', marginBottom:20}} />
         </View>
       </View>
     );

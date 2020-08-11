@@ -51,8 +51,8 @@ function activityUser(userBackGroundPic, userHeardImg, userName, lineNum, userLv
           <Text style={{ fontSize: 10, color: "#999" }}>{lineNum}条游记</Text>
           <Text style={{ fontSize: 10, color: "#999999" }} >{lineNum}条路线</Text>
         </View>
-        <Text style={{ fontSize: 15, color: "#999", marginTop: 10 }}>{userLv}</Text>
-        <Text style={{ borderWidth: 1, borderColor: "green", width: 50, paddingVertical: 5, height: 30, paddingHorizontal: 5, textAlign: "center" }}>关注</Text>
+        <Text style={{ fontSize: 15, color: "#999", marginTop: 10,}}>{userLv}</Text>
+        <Text style={{ borderWidth: 1, borderColor: "green", width: 70, paddingVertical: 5, height: 30, paddingHorizontal: 5, textAlign: "center" }}>关注</Text>
       </View>
     </View>
   )
@@ -73,7 +73,7 @@ var userMap = [
   },
   {
     key: "4",
-    backgroundColor: "#333",
+    backgroundColor: "#444",
   },
 ]
 
@@ -83,24 +83,24 @@ var userInfo = [
     userName: "Kali",
     userHeardImg: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
     userBackGroundPic: "http://pic.51yuansu.com/pic3/cover/03/99/16/5ee9d6e6d996d_610.jpg",
-    nodeNum: "Kali",
-    lineNum: "Kali",
+    nodeNum: "1",
+    lineNum: "2",
     userLv: "Lv.1 资深游侠",
   },
   {
     userName: "Kali",
     userHeardImg: "http://pic.51yuansu.com/pic3/cover/01/79/99/596f3932bf9a8_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
     userBackGroundPic: "http://pic.51yuansu.com/pic3/cover/03/50/44/5bd146f2c29cc_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-    nodeNum: "Kali",
-    lineNum: "Kali",
+    nodeNum: "3",
+    lineNum: "4",
     userLv: "Lv.2 资深游侠",
   },
   {
     userName: "Kali",
     userHeardImg: "http://pic.51yuansu.com/pic3/cover/01/79/91/596f37567f1b8_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
     userBackGroundPic: "http://pic.51yuansu.com/pic3/cover/03/94/91/5cee49d4eaa59_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-    nodeNum: "Kali",
-    lineNum: "Kali",
+    nodeNum: "5",
+    lineNum: "6",
     userLv: "Lv.3 资深游侠",
   },
 ]
@@ -158,10 +158,10 @@ export default class Discovery extends Component {
             <View style={{ flexDirection: "row" }}>
               {/* <FontAwesome name={'map-marker'} size={30} color={'#fff'} /> */}
               <Ionicons name={'md-location-sharp'} size={30} color={'#000'} />
-              <Text style={{ lineHeight: 30, marginLeft: 10, color: "#000", fontWeight: "bold" }}>杭州</Text>
+              <Text style={{ lineHeight: 30, color: "#000", fontWeight: "bold" }}>杭州</Text>
             </View>
             <View style={[styles.inputBox]}>
-              <TextInput placeholder="abibas" style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }} />
+              <TextInput placeholder="搜索" style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }} />
               <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
             </View>
             <AntDesign name={'calendar'} size={25} color={'#000'} />
@@ -200,24 +200,24 @@ export default class Discovery extends Component {
                 }}
               >查看更多<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
             </View>
-            <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
-              <Text style={{ width: '18%', backgroundColor: this.state.One, color: "#fff", borderRadius: 3 }}
+            <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 ,}}>
+              <Text style={{ width: '20%', backgroundColor: this.state.One, color: "#fff", borderRadius: 3 }}
                 onPress={() => {
-                  this.setState({ One: '#6C9575', Two: '#6C957550', Three: '#6C957550', Four: '#6C957550' })
+                  this.setState({ One: '#6C9575', Two: '#6C957550', Three: '#6C957550', Four: '#6C957550'})
                 }}>  我的专属</Text>
-              <Text style={{ width: '18%', backgroundColor: this.state.Two, color: "#fff", borderRadius: 3 }}
+              <Text style={{ width: '20%', backgroundColor: this.state.Two, color: "#fff", borderRadius: 3 }}
                 onPress={() => {
-                  this.setState({ One: '#6C957550', Two: '#6C9575', Three: '#6C957550', Four: '#6C957550' })
+                  this.setState({ One: '#6C957550', Two: '#6C9575', Three: '#6C957550', Four: '#6C957550'})
                 }}
               >  历史故事</Text>
-              <Text style={{ width: '18%', backgroundColor: this.state.Three, color: "#fff", borderRadius: 3 }}
+              <Text style={{ width: '20%', backgroundColor: this.state.Three, color: "#fff", borderRadius: 3 ,}}
                 onPress={() => {
-                  this.setState({ One: '#6C957550', Two: '#6C957550', Three: '#6C9575', Four: '#6C957550' })
+                  this.setState({ One: '#6C957550', Two: '#6C957550', Three: '#6C9575', Four: '#6C957550'})
                 }}
               >  附近地点</Text>
-              <Text style={{ width: '18%', backgroundColor: this.state.Four, color: "#fff", borderRadius: 3 }}
+              <Text style={{ width: '20%', backgroundColor: this.state.Four, color: "#fff", borderRadius: 3,textAlign:"center" }}
                 onPress={() => {
-                  this.setState({ One: '#6C957550', Two: '#6C957550', Three: '#6C957550', Four: '#6C9575' })
+                  this.setState({ One: '#6C957550', Two: '#6C957550', Three: '#6C957550', Four: '#6C9575'})
                 }}
               >  最多人玩</Text>
             </View>
@@ -236,8 +236,8 @@ export default class Discovery extends Component {
           </View>
           {/* 第三部分 */}
           {/* 竖向轮播 */}
-          <View style={{ marginTop: 40, padding: 10, width: '100%', height: 400, }}>
-            <View style={{ width: '100%', height: 20, alignItems: "flex-end" }}>
+          <View style={{ marginTop: 50, padding: 10, width: '100%', height: 400, }}>
+            <View style={{ width: '100%', height: 20, alignItems: "flex-end" ,backgroundColor:"#fff"}}>
               <Text
                 onPress={() => {
                   this.props.navigation.navigate("choiceCity")
@@ -281,7 +281,7 @@ export default class Discovery extends Component {
               {
                 userInfo.map((item) => {
                   return (
-                    activityUser(item.userBackGroundPic, item.userHeardImg, item.userName, item.lineNum, item.lineNum, item.userLv)
+                    activityUser(item.userBackGroundPic, item.userHeardImg, item.userName, item.lineNum, item.userLv)
                   )
                 })
               }
@@ -305,13 +305,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#EFEFEF",
   },
   inputBox: {
-    backgroundColor: "#ffffff",
-    width: 250 * biLi,
+    backgroundColor: "#efefef",
+    width: '70%',
     borderRadius: 20,
     padding: 0,
     height: 35 * biLi,
     fontSize: 12,
     flexDirection: "row",
+    marginTop:0,
   },
   top: {
     height: (78) * biLi,

@@ -27,48 +27,56 @@ export default class PersonalCenterSum extends Component {
     }
     render() {
         return (
-            <ScrollView style={{height:'80%'}}
-            
-            onScroll = {(event)=>{{
-              }}}
-              scrollEnabled={false}
+            <ScrollView style={{ height: '80%' }}
+
+                onScroll={(event) => {
+                    {
+                    }
+                }}
+                scrollEnabled={false}
             >
-            <View style={{ flex: 1, backgroundColor: "red", }}>
-                {/* <ScrollView> */}
-                <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
-                    {/*返回与设置 */}
-                    <View style={{position:"absolute",width:"85%",marginLeft:'8%',zIndex:1,marginTop:30,flexDirection:"row",justifyContent:"space-between"}}>
-                        <FontAwesome name='angle-left' size={30} color="#fff"/>
-                        <Feather name='more-horizontal' size={30} color="#fff"
-                        
-                        onPress={()=>{
-                            this.props.navigation.navigate("UserSetting")
-                        }}/>
-                    </View>
-                    <View style={{ width: '100%', position: "absolute", backgroundColor: "#00000095", height: '100%', }}>
-                    </View>
-                    {/* 用户信息 */}
-                    <View style={[styles.userBox]}>
-                        <View style={{ width: '40%', alignItems: "center" }}>
-                            <Image style={[styles.userHead]} source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} />
-                            <Text style={{ fontSize: 20 }}>aboutJOY</Text>
-                            <Text style={{ color: '#999999', fontSize: 15, }}>人无利，不可交也</Text>
+                <View style={{ flex: 1, backgroundColor: "red", }}>
+                    {/* <ScrollView> */}
+                    <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
+                        {/*返回与设置 */}
+                        <View style={{ position: "absolute", width: "85%", marginLeft: '8%', zIndex: 1, marginTop: 30, flexDirection: "row", justifyContent: "space-between" }}>
+                            <FontAwesome name='angle-left' size={30} color="#fff" />
+                            <Feather name='more-horizontal' size={30} color="#fff"
+
+                                onPress={() => {
+                                    this.props.navigation.navigate("UserSetting")
+                                }} />
                         </View>
-                        <View style={{ width: '60%', alignItems: "flex-end", paddingRight: 20, }}>
-                            <View style={{ height: '100%', justifyContent: "center", alignItems: "flex-end" }}>
-                                <Text style={[styles.vipText]}>LV1  查看收益</Text>
-                                <View style={{ flexDirection: "row" }}>
-                                    <Text style={[styles.textStyle]}>20关注</Text>
-                                    <Text style={[styles.textStyle]}>20粉丝</Text>
+                        <View style={{ width: '100%', position: "absolute", backgroundColor: "#00000095", height: '100%', }}>
+                        </View>
+                        {/* 用户信息 */}
+                        <View style={[styles.userBox]}>
+                            <View style={{ width: '40%', alignItems: "center" }}>
+                                <Image style={[styles.userHead]} source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} />
+                                <FontAwesome style={{ position: "absolute", top: 25, right: 30, zIndex: 1 }} name='camera' size={20} color="#2F3843" 
+                                onPress={() => {
+                                    this.props.navigation.navigate("changePersonalInfoMation")
+                                }}
+                                
+                                />
+                                <Text style={{ fontSize: 20 }}>aboutJOY</Text>
+                                <Text style={{ color: '#999999', fontSize: 15, }}>人无利，不可交也</Text>
+                            </View>
+                            <View style={{ width: '60%', alignItems: "flex-end", paddingRight: 20, }}>
+                                <View style={{ height: '100%', justifyContent: "center", alignItems: "flex-end" }}>
+                                    <Text style={[styles.vipText]}>LV1  查看收益</Text>
+                                    <View style={{ flexDirection: "row" }}>
+                                        <Text style={[styles.textStyle]}>20关注</Text>
+                                        <Text style={[styles.textStyle]}>20粉丝</Text>
+                                    </View>
                                 </View>
                             </View>
                         </View>
+                    </ImageBackground>
+                    <View style={{ width: '100%', height: '80%', backgroundColor: "red" }}>
+                        <PersonalCenterNavigation />
                     </View>
-                </ImageBackground>
-                <View style={{ width: '100%', height: '80%', backgroundColor: "red" }}>
-                    <PersonalCenterNavigation />
                 </View>
-            </View>
             </ScrollView>
         )
     }

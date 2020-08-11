@@ -27,7 +27,7 @@ export default function Line({ route, navigation }) {
           navigation.navigate("choiceCity")
         }} style={{ marginLeft: '3%' }}></AntDesign>
         <Text style={{ fontSize: 20, color: '#000000' }}>线路</Text>
-        <View style={{ width: 10, backgroundColor: "red", height: 10 }}></View>
+        <View style={{width:25}}></View>
 
       </View>
       <View style={{ height: 40, width: '94%', marginLeft: '3%', justifyContent: 'center' }}>
@@ -69,7 +69,7 @@ export default function Line({ route, navigation }) {
           ]}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) =>
-            <View style={{ width: 386, height: 118, justifyContent: 'center', alignItems: 'center', backgroundColor: '#6C9575', marginBottom: 20, borderRadius: 3 }}>
+            <View style={{ width: 386, height: 118,justifyContent: 'center', alignItems: 'center', backgroundColor: '#6C9575', marginBottom: 20, borderRadius: 3 }}>
               <MapView
                 zoomControlsVisible={false} //默认true,是否显示缩放控件,仅支持android
                 trafficEnabled={true} //默认false,是否显示交通线

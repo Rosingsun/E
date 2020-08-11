@@ -51,12 +51,12 @@ const Main = ({ navigation }) => {
         <View style={[styles.nav_container]}>
           <View style={{ flexDirection: "row" }}>
             <Ionicons name={'md-location-sharp'} size={30} color={'#000'} />
-            <Text style={{ lineHeight: 30, marginLeft: 10, color: "#000", fontWeight: "bold" }}>杭州</Text>
+            <Text style={{ lineHeight: 30, marginLeft: 0, color: "#000", fontWeight: "bold" }}>杭州</Text>
           </View>
           <View style={[styles.inputBox]}>
             <TextInput
               placeholder="去哪玩"
-              style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }}
+              style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '83%', lineHeight: -2, }}
             >
             </TextInput>
             <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
@@ -83,9 +83,7 @@ const Main = ({ navigation }) => {
               <View style={{ width: '49%', height: '100%' }}>
                 <ImageBackground style={{ height: 110, marginTop: 10, width: '100%', borderRadius: 3 }} source={require('../img/Photo/hangzhou.jpg')} />
                 <Image source={require("../img/dakaBottom.png")} style={{ height: '50%', width: '100%', position: "absolute", bottom: 0, }}></Image>
-                <Text style={{ position: "absolute", bottom: 0, left: 30, width: '100%', }}
-
-                >每周必去打卡排行榜</Text>
+                <Text style={{ position: "absolute", bottom: 5, textAlign: "center", width: '100%', }}>每周必去打卡排行榜</Text>
               </View>
               <View style={{ width: "49%", flexDirection: "column", justifyContent: "space-around", alignItems: 'center', marginLeft: '2%' }}>
                 {/* firest View Box */}
@@ -102,7 +100,7 @@ const Main = ({ navigation }) => {
                       <Text>排行榜</Text>
                     </View>
                   </View>
-                </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>    
                 {/* Second View Box */}
                 <TouchableWithoutFeedback
                   onPress={() => {
@@ -170,6 +168,7 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#EFEFEF",
     borderRadius: 20,
+    marginTop: 10,
   },
   list: {
     width: "100%",
@@ -207,7 +206,7 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     backgroundColor: "#EFEFEF",
-    width: 250 * biLi,
+    width: '70%',
     borderRadius: 20,
     padding: 0,
     height: 35 * biLi,

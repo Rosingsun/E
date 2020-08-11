@@ -28,7 +28,7 @@ const MessageSum = ({ navigation }) => {
           <View style={[styles.nav_container]}>
             <View style={{ flexDirection: "row" }}>
               <Ionicons name={'md-location-sharp'} size={30} color={'#000000'} />
-              <Text style={{ lineHeight: 30, marginLeft: 10, color: "#000000", fontWeight: "bold" }}>杭州</Text>
+              <Text style={{ lineHeight: 30, marginLeft: 0, color: "#000000", fontWeight: "bold" }}>杭州</Text>
             </View>
             <View style={[styles.inputBox]}>
               <TextInput
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     backgroundColor: "#EFEFEF",
-    width: 250 * biLi,
+    width: '70%',
     borderRadius: 20,
     padding: 0,
     height: 35 * biLi,

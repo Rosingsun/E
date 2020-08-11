@@ -104,7 +104,7 @@ export default class choiceCity extends Component {
             {
               cityInfo.map((item) => {
                 return (
-                  <View style={styles.Citystyle}>
+                  <View style={styles.Citystyle} >
                     <TouchableHighlight
                     style={{height:'100%',width:'100%'}}
                     onPress={()=>{
@@ -113,8 +113,8 @@ export default class choiceCity extends Component {
                     >
                       <View style={{height:'100%',width:'100%'}}>
                       <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require("./photo/jinhua.jpg")}/>
-                      <Text style={styles.photoWord}>{item.CcityName}</Text>
-                      <Text style={styles.photoEnglish}>{item.EcityName}</Text>
+                      <Text style={styles.photoWord} pointerEvents="none">{item.CcityName}</Text>
+                      <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
                       </View>
                     </TouchableHighlight>
                   </View>
