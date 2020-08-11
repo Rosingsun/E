@@ -24,6 +24,7 @@ export default function MessageDetails() {
       independent="true">
       <Tab.Navigator
         tabBarOptions={{
+          
           labelStyle: {
             backgroundColor:"#fff"
           },
@@ -56,6 +57,8 @@ export default function MessageDetails() {
           //显示标签和显示icon
           showLabel: false,
           showIcon: true,
+          tabBarVisible:false,
+          // mode:"model",
         }}
       >
         <Tab.Screen
@@ -65,6 +68,7 @@ export default function MessageDetails() {
             tabBarIcon: ({ color }) => (
               <AntDesign name={'like2'} size={28} color={color} />
             ),
+            
           }}
         />
         <Tab.Screen
@@ -74,6 +78,7 @@ export default function MessageDetails() {
             tabBarIcon: ({ color }) => (
               <AntDesign name={'message1'} size={28} color={color} />
             ),
+            headerShown : false, // 是否渲染导航栏，默认 true
           }}
         >
           {() => {
@@ -82,7 +87,11 @@ export default function MessageDetails() {
             headerMode="none"
             >
               <Stack.Screen name="leaveMessage" component={leaveMessage} />
-              <Stack.Screen name="MainText" component={MainText} />
+              <Stack.Screen name="MainText" component={MainText} 
+              options={{
+                headerShown : false, // 是否渲染导航栏，默认 true
+              }}
+              />
             </Stack.Navigator>
             )}}
         </Tab.Screen>
