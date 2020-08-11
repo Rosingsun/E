@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   container: {
     // width: '100%',
     height: '60%',
-    backgroundColor: "#43949B",
+    backgroundColor: "#6C9575",
     padding: 10,
   },
   mainBox: {

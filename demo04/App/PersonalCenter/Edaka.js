@@ -125,7 +125,7 @@ export default class Edaka extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#43949B",
+    backgroundColor: "#6C9575",
   },
   wordBox: {
     width: "60%",

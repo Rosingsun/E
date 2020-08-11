@@ -23,6 +23,7 @@ import UserSetting from './PersonalCenter/PersonalDetail/Setting';
 import UserAgreement from './PersonalCenter/PersonalDetail/agreement';
 import Privacy from './PersonalCenter/PersonalDetail/Privacy';
 import changePersonalInfoMation from './PersonalCenter/PersonalDetail/changePersonalInfomation';
+import ProductionRoute from './PersonalCenter/PersonalDetail/ProductionRoute';
 //下面是页面之内需要跳转的
 //消息页面  
 //底部材料导航栏
@@ -137,8 +138,7 @@ function MyStack() {
                             <PersonalStack.Screen name="UserSetting" component={UserSetting} />
                             <PersonalStack.Screen name="UserAgreement" component={UserAgreement} />
                             <PersonalStack.Screen name="Privacy" component={Privacy} />
-                            <PersonalStack.Screen name="changePersonalInfoMation" component={changePersonalInfoMation} />
-                            
+                            <PersonalStack.Screen name="changePersonalInfoMation" component={changePersonalInfoMation} />                            
                         </PersonalStack.Navigator>
                     )
                 }}

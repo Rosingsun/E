@@ -65,7 +65,7 @@ function SwiperMainContainer(item) {
             <View>
               <MaterialCommunityIcons name={'share-circle'} size={30} color={'#484848'} />
             </View>
-            <View style={{ flexDirection: "row" ,width:130,justifyContent:"space-between"}}>
+            <View style={{ flexDirection: "row", width: 130, justifyContent: "space-between" }}>
               <AntDesign name={'staro'} size={30} color={'#484848'} />
               <AntDesign name={'message1'} size={30} color={'#484848'} />
               <View style={{ flexDirection: "row", alignItems: "center", borderWidth: 1, borderColor: "#000000", borderRadius: 20, paddingHorizontal: 5 }}>
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   container: {
     // width: '100%',
     height: '60%',
-    backgroundColor: "#43949B",
+    backgroundColor: "#6C9575",
     padding: 10,
   },
   mainBox: {
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     backgroundColor: "#000",
-    borderRadius:10,
+    borderRadius: 10,
   },
   userWord: {
     letterSpacing: 1,
@@ -131,6 +131,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#197178",
     marginRight: 10,
-    borderRadius:3,
+    borderRadius: 3,
   },
 })

@@ -57,6 +57,7 @@ export default function recommend() {
                   height:192,
                 },
               ]}
+              
               renderItem={({ item }) =>
                 <View style={[styles.showContainer]}>
                   {/* 图片框 */}
@@ -86,7 +87,8 @@ export default function recommend() {
                       </Text>
                     </View>
                   </View>
-                </View>} />
+                </View>} 
+                />
           </View>
         </View>
         {/* 右边这一侧的用户信息 */}

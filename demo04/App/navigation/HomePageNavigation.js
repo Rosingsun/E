@@ -14,6 +14,7 @@ export default function Details() {
     <NavigationContainer
       independent="true"
       animationEnabled="false"
+      tabBarVisible="false"
     >
       <Tab.Navigator
         tabBarOptions={{

@@ -17,7 +17,6 @@ import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { FlatList } from 'react-native-gesture-handler';
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -98,7 +97,6 @@ export default class BaiduMap extends Component {
                     </View>
                 </View>
                 <MapView
-                    pinColor={{}}
                     zoomControlsVisible={this.state.zoomControlsVisible} //默认true,是否显示缩放控件,仅支持android
                     trafficEnabled={this.state.trafficEnabled} //默认false,是否显示交通线
                     baiduHeatMapEnabled={this.state.baiduHeatMapEnabled} //默认false,是否显示热力图
