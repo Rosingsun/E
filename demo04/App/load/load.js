@@ -45,7 +45,7 @@ export default class Search extends Component {
                 return res.json();
             }).then(function (json) {
                 if (json.code == "200") {
-                    navigation.navigate("App");
+                    navigation.navigate("App",{id:item.id});
                 }else if (json.code == "400") {
                     alert("用户名或密码错误")
                 }
@@ -104,6 +104,7 @@ export default class Search extends Component {
                         <TouchableOpacity
                             style={styles.button}
                             onPress={() => {this._onClickLogin();
+
                             }}>
                             <Text style={{ fontSize: 20, color: "#fff" }}>登录</Text>
                         </TouchableOpacity>

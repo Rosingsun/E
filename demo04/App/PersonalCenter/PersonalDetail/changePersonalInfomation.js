@@ -11,14 +11,37 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign'
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
+
 export default class changePersonalInfoMation extends Component {
     constructor(props) {
         super(props)
         this.state = {
             ableInput: "写一段话介绍自己吧！",
-            userName: "用户名",
+            username: "用户名",
         }
     }
+   _onClickUpdata =() =>{
+    fetch('http://192.168.56.1:3000/users/toUpdate/id', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json;multipart/form-data'
+        },
+        body: JSON.stringify({
+          username: this.state.username,
+          PersonalSignature:this.state.ableInput,
+      })
+    }).then(function (res) {
+        return res.json();
+    }).then(function (json) {
+        if (json.code == "200") {
+            alert("保存成功")
+        }else if (json.code == "400") {
+            alert("用户名或密码错误")
+        }
+    })  
+   }
+
     render() {
         return (
             <View style={[styles.container]}>
@@ -30,7 +53,8 @@ export default class changePersonalInfoMation extends Component {
                             }} />
                         {/* </View> */}
                         <Text style={{ color: "#000", fontSize: 20, marginRight: 25 }}>编辑资料</Text>
-                        <Text style={{ color: "#000", fontSize: 15, marginRight: 25 }}>保存</Text>
+                        <Text style={{ color: "#000", fontSize: 15, marginRight: 25 }} onPress={() => {
+                                this._onClickUpdata(); }}>保存</Text>
                         {/* <View>
 
                         </View> */}

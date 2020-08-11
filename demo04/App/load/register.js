@@ -54,7 +54,7 @@ export default class Register extends Component {
         }).then(function (json) {
             if (json.code == "200") {
                 alert("注册成功")
-                navigation.navigate("App");
+                navigation.navigate("App",{id:item.id});
             } else if (json.code == "400") {
                 alert("用户名或密码不符合规定")
             }
