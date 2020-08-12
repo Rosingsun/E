@@ -9,6 +9,7 @@ import Exianlu from '../PersonalCenter/Exianlu';
 import ProductionRoute from '../PersonalCenter/PersonalDetail/ProductionRoute';
 import Eshouchang from '../PersonalCenter/Eshouchang';
 import Edaka from '../PersonalCenter/Edaka';
+import dakaPlaceChoice from'../PersonalCenter/PersonalDetail/dakaPlaceChoice';
 const Tab = createMaterialTopTabNavigator();
 const ExianluStack = createStackNavigator();
 export default function PersonalCenterNavigation() {
@@ -64,6 +65,8 @@ export default function PersonalCenterNavigation() {
                                         headerShown: false, // 是否渲染导航栏，默认 true
                                     }}
                                 />
+                                <ExianluStack.Screen name="dakaPlaceChoice" component={dakaPlaceChoice} />
+                                
                             </ExianluStack.Navigator>
                         )
                     }}

@@ -10,15 +10,17 @@ import {
 //
 import StarRating from 'react-native-star-rating';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 // import { ScrollView } from 'react-native-gesture-handler';
 // import { Item } from 'react-native-paper/lib/typescript/src/components/List/List';
 
-export default class Edaka extends Component {
+export default class dakaPlaceChoice extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       starCount: '2',
+      placeSumCount:0,
     };
   }
 
@@ -30,6 +32,17 @@ export default class Edaka extends Component {
   render() {
     return (
       <View style={[styles.container]}>
+        <View style={styles.Top}>
+          <AntDesign name={'left'} size={32} color='#000000' onPress={() => {
+            this.props.navigation.goBack()
+          }} />
+          <Text style={{ fontSize: 20, color: '#000000', marginLeft: '12%' }}>选择城市</Text>
+          <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, padding: 2, paddingHorizontal: 5 }}
+            onPress={() => {
+              this.props.navigation.navigate("dakaPlaceChoice")
+            }}
+          >下一步(2/3)</Text>
+        </View>
         <FlatList
           style={{ height: '80%' }}
           scrollEnabled={false}
@@ -74,6 +87,14 @@ export default class Edaka extends Component {
                 <Text style={{ color: "#999999", fontSize: 10 }}>西湖景区</Text>
                 <Text style={{ color: "#999999", fontSize: 10, padding: 2, width: 160, backgroundColor: "#EFEFEF" }}>杜甫、李白、白居易也在这里打卡</Text>
                 {/* </View> */}
+                
+                <View style={{position:"absolute",right:-10,top:'45%'}}>
+                    <AntDesign name={'pluscircle'} size={22} color='#6C9575' 
+                      onPress={()=>{
+
+                      }}
+                    />
+                  </View>
               </View>
             </View>
           }
@@ -101,5 +122,19 @@ const styles = StyleSheet.create({
     height: 118,
     flexDirection: "row",
     backgroundColor: "#FFFFFF"
+  },
+  Top: {
+    height: 78,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    // justifyContent:"space-between",
+    justifyContent: "space-between",
+    flexDirection: 'row',
+    elevation: 10,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+    width: '100%',
+    backgroundColor: "#fff"
   },
 })
