@@ -10,12 +10,14 @@ import ProductionRoute from '../PersonalCenter/PersonalDetail/ProductionRoute';
 import Eshouchang from '../PersonalCenter/Eshouchang';
 import Edaka from '../PersonalCenter/Edaka';
 import dakaPlaceChoice from'../PersonalCenter/PersonalDetail/dakaPlaceChoice';
+import improveInformation from '../PersonalCenter/PersonalDetail/ImproveInformation';
 const Tab = createMaterialTopTabNavigator();
 const ExianluStack = createStackNavigator();
 export default function PersonalCenterNavigation() {
     return (
         <NavigationContainer
             independent="true"
+            headerShown="none"
         >
             <Tab.Navigator
                 tabBarOptions={{
@@ -51,7 +53,6 @@ export default function PersonalCenterNavigation() {
                     options={{
                         title: 'E线路',
                         headerShown: false
-
                     }}
                 >
                     {() => {
@@ -66,6 +67,7 @@ export default function PersonalCenterNavigation() {
                                     }}
                                 />
                                 <ExianluStack.Screen name="dakaPlaceChoice" component={dakaPlaceChoice} />
+                                <ExianluStack.Screen name="improveInformation" component={improveInformation} />
                                 
                             </ExianluStack.Navigator>
                         )
