@@ -97,7 +97,11 @@ export default class ProductionRoute extends Component {
                         this.props.navigation.goBack()
                     }} />
                     <Text style={{ fontSize: 20, color: '#000000',marginLeft:'12%' }}>选择城市</Text>
-                    <Text style={{ fontSize: 15, color: '#fff', }}>下一步(1/3)</Text>
+                    <Text style={{ fontSize: 12, color: '#fff',backgroundColor:"#6C9575",borderRadius:15,padding:2,paddingHorizontal:5}}
+                    onPress={()=>{
+                        this.props.navigation.navigate("dakaPlaceChoice")
+                    }}
+                    >下一步(1/3)</Text>
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.someTouch}>
@@ -137,21 +141,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         justifyContent: 'flex-start',
         alignItems: 'center',
+        // justifyContent:"space-between",
         justifyContent:"space-between",
         flexDirection: 'row',
         elevation: 10,
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,
         width:'100%',
-        backgroundColor:"pink"
+        backgroundColor:"#fff"
     },
     Citystyle: {
         width: "94%",
         height: 110,
-        backgroundColor: "#000",
+        backgroundColor: "#fff",
         borderWidth: 6,
         borderRadius: 3,
-        borderColor: "#6C9575",
+        borderColor: "#fff",
         marginTop: 20
     },
     someTouch: {
