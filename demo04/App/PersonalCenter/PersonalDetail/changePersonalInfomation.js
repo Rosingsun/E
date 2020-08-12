@@ -13,54 +13,55 @@ import ImagePicker from 'react-native-image-picker';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
-<<<<<<< HEAD
-=======
 // More info on all the options is below in the API Reference... just some common use cases shown here
-const photoOptions = {
-    title:'请选择',
-    quality: 0.8,
-    cancelButtonTitle:'取消',
-    takePhotoButtonTitle:'拍照',
-    chooseFromLibraryButtonTitle:'选择相册',
-    allowsEditing: true,
-    noData: false,
-    storageOptions: {
-        skipBackup: true,
-        path: 'images'
-    }
-};
-  function choosePicker(){
-    ImagePicker.showImagePicker(photoOptions, (response) => {
-        console.log('Response = ', response);
-        if (response.didCancel) {
-            console.log('User cancelled image picker');
-        }
-        else if (response.error) {
-            console.log('ImagePicker Error: ', response.error);
-        }
-        else if (response.customButton) {
-            console.log('User tapped custom button: ', response.customButton);
-        }
-        else {
-            let source = { uri: response.uri };
-            // You can also display the image using data:
-            // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-            this.setState({
-                avatarSource: source
-            });
-        }
-    });
-}
 
->>>>>>> 9803e6234720160dc6dc96493f7641ac3b851d15
+
 export default class changePersonalInfoMation extends Component {
     constructor(props) {
         super(props)
         this.state = {
             ableInput: "写一段话介绍自己吧！",
             username: "用户名",
+            avatarSource:{},
         }
     }
+    onClickChoosePicture = ()=>{
+    const options = {
+        title:'请选择',
+        quality: 0.8,
+        cancelButtonTitle:'取消',
+        takePhotoButtonTitle:'拍照',
+        chooseFromLibraryButtonTitle:'选择相册',
+        allowsEditing: true,
+        noData: false,
+        storageOptions: {
+            skipBackup: true,
+            path: 'images'
+        }
+    };
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            }
+            else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            }
+            else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+            }
+            else {
+                const source = { uri: response.uri };
+                // You can also display the image using data:
+                // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+                this.setState({
+                    avatarSource: source
+                });
+                console.warn(this.state.avatarSource.uri);
+            }
+        });  
+}
+
    _onClickUpdata =() =>{
     fetch('http://192.168.56.1:3000/users/toUpdate/id', {
         method: 'POST',
@@ -102,10 +103,10 @@ export default class changePersonalInfoMation extends Component {
                     </View>
                 </View>
                 <View style={{ width: '100%', height: '26%', justifyContent: "center", alignItems: "center" }}>
-                    <Image style={{ height: 100, width: 100, borderRadius: 50 }} source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/99/63/5f2a55dd406ec_610.jpg!/fw/260/quality/90/unsharp/true/compress/true" }} />
+                    <Image style={{ height: 100, width: 100, borderRadius: 50 }} source={this.state.avatarSource} />
                     <Text style={{ color: "#999999", marginTop: 10 }}
                         onPress={()=>{
-                            choosePicker();
+                            this.onClickChoosePicture();
                         }}
                     >点击更新图像</Text>
                 </View>
