@@ -106,73 +106,21 @@ export default class choiceCity extends Component {
                 return (
                   <View style={styles.Citystyle} >
                     <TouchableHighlight
-                    style={{height:'100%',width:'100%'}}
-                    onPress={()=>{
-                      this.props.navigation.navigate("Line",{cityName:item.CcityName})
-                    }}
+                      style={{ height: '100%', width: '100%' }}
+                      onPress={() => {
+                        this.props.navigation.navigate("Line", { cityName: item.CcityName })
+                      }}
                     >
-                      <View style={{height:'100%',width:'100%'}}>
-                      <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require("./photo/jinhua.jpg")}/>
-                      <Text style={styles.photoWord} pointerEvents="none">{item.CcityName}</Text>
-                      <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
+                      <View style={{ height: '100%', width: '100%' }}>
+                        <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require("./photo/jinhua.jpg")} />
+                        <Text style={styles.photoWord} pointerEvents="none">{item.CcityName}</Text>
+                        <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
                       </View>
                     </TouchableHighlight>
                   </View>
                 )
               })
             }
-            {/*   
-          <View style={styles.Citystyle}>
-            <MFImage style={{ height: '100%',width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/ningbo.jpg')} onPress={() => { Alert.alert("111") }} />
-            <Text style={styles.photoWord}>宁波</Text>
-            <Text style={styles.photoEnglish}>Ning Bo</Text>
-          </View>       
-             <View style={styles.Citystyle}>
-            <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/jiaxing.jpg')} onPress={() => { Alert.alert("111") }} />
-            <Text style={styles.photoWord}>嘉兴</Text>
-            <Text style={styles.photoEnglish}>Ja Xing</Text>
-          </View>
-          <View style={styles.Citystyle}>
-            <MFImage style={{ height: '100%',width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/shaoxing.jpg')} onPress={() => { Alert.alert("111") }} />
-            <Text style={styles.photoWord}>绍兴</Text>
-            <Text style={styles.photoEnglish}>Shao Xing</Text>
-          </View>      
-            <View style={styles.Citystyle}>
-            <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/zhoushan.jpg')} onPress={() => { Alert.alert("111") }} />
-            <Text style={styles.photoWord}>舟山</Text>
-            <Text style={styles.photoEnglish}>Zhou Shan</Text>
-          </View>
-          <View style={styles.Citystyle}>
-            <MFImage style={{ height: '100%',  width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/wenzhou.jpg')} onPress={() => { Alert.alert("111") }} />
-            <Text style={styles.photoWord}>温州</Text>
-            <Text style={styles.photoEnglish}>Wen Zhou</Text>
-          </View>
-          <View style={styles.Citystyle}>
-            <MFImage style={{ height: '100%',  width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/huzhou.jpg')} onPress={() => { Alert.alert("111") }} />
-            <Text style={styles.photoWord}>湖州</Text>
-            <Text style={styles.photoEnglish}>Hu Zhou</Text>
-          </View>
-          <View style={styles.Citystyle}>
-            <MFImage style={{ height: '100%',width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/lishui.jpg')} onPress={() => { Alert.alert("111") }} />
-            <Text style={styles.photoWord}>丽水</Text>
-            <Text style={styles.photoEnglish}>Li Shui</Text>
-          </View>
-          <View style={styles.Citystyle}>
-            <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/jinhua.jpg')} onPress={() => { Alert.alert("111") }} />
-            <Text style={styles.photoWord}>金华</Text>
-            <Text style={styles.photoEnglish}>Zhou Shan</Text>
-          </View>    
-          <View style={styles.Citystyle}>
-            <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/quzhou.jpg')} onPress={() => { Alert.alert("111") }} />
-            <Text style={styles.photoWord}>衢州</Text>
-            <Text style={styles.photoEnglish}>Qu Zhou</Text>
-          </View>    
-                <View style={[styles.Citystyle,{marginBottom:20}]}>
-            <MFImage style={{ height: '100%',width: '100%' }} touchBgColor={'#00000030'} source={require('./photo/taizhou.jpg')} onPress={() => { Alert.alert("111") }} />
-            <Text style={styles.photoWord}>台州</Text>
-            <Text style={styles.photoEnglish}>Tai Zhou</Text>
-          </View> */}
-
           </View>
         </ScrollView>
       </View>
@@ -192,8 +140,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     elevation: 10,
-    borderBottomLeftRadius:15,
-    borderBottomRightRadius:15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
   },
   Citystyle: {
     width: "94%",
