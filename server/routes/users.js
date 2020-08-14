@@ -115,6 +115,7 @@ router.get('/toUpdate/:id', function (req, res) {
         }
     });
 });
+
 router.post('/update',  (req, res, next) => {
     const form = formidable({ multiples: true });
     form.uploadDir = "./serverImage";
@@ -126,16 +127,14 @@ router.post('/update',  (req, res, next) => {
         return;
       }
     var id = fields.id;
-    var uid = fields.uid;
-    var password = fields.password;
     var username = fields.username;
     var PersonalSignature = fields.PersonalSignature;
     var head = path.basename(files.head.path);
-    db.query("update user set uid='" + uid + "',password='" + password + "',username='" + username + "',PersonalSignature='" + PersonalSignature + "',head='" + head + "' where id=" + id, function (err, rows) {
+    db.query("update user set username='" + username + "',PersonalSignature='" + PersonalSignature + "',head='" + head + "' where id=" + id, function (err, rows) {
         if (err) {
-            res.end('修改失败：' + err);
+            res.json({code:400,msg:"修改失败"});
         } else {
-            res.redirect('/users');
+            res.json({code:200,msg:"更新成功"});
         }
     });
 });
@@ -165,7 +164,7 @@ router.post('/search', function (req, res) {
         }
     });
 });
-//上传图片
+//发布
 router.get('/upload', (req, res) => {
     res.render('upload.html');
   });

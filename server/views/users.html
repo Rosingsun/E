@@ -14,9 +14,10 @@
 <table>
     <tr>
         <th>编号</th>
-        <th>用户名</th>
-        <th>密码</th>
+        <!-- <th>用户名</th>
+        <th>密码</th> -->
         <th>昵称</th>
+        <th>性别</th>
         <th>个性签名</th>
         <th>头像</th>
         <th>操作</th>
@@ -24,9 +25,10 @@
     {% for item in datas %}
     <tr>
         <td>{{item.id}}</td>
-        <td>{{item.uid}}</td>
-        <td>{{item.password}}</td>
+        <!-- <td>{{item.uid}}</td>
+        <td>{{item.password}}</td> -->
          <td>{{item.username}}</td>
+         <td>{{item.sex}}</td>
         <td>{{item.PersonalSignature}}</td> 
         <td>{{item.head}}</td>
         <td><a href="/users/reg">新增</a></td>
