@@ -5,11 +5,14 @@
 import {AppRegistry} from 'react-native';
 //正常主页
 // import App from './App/navigation/welcomeNavigation';
-// import MyStack from './App/App';
+import MyStack from './App/App';
 //复选框
-import checkBoX from './App/src/page/checkBox'
+// import checkBoX from './App/src/page/checkBox'
 //art demo
 // import App from './App/src/page/App';
+
+// testPage
+// import App from './App';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => checkBoX);
+AppRegistry.registerComponent(appName, () => MyStack);

@@ -9,30 +9,14 @@ import {
     Text,
     Dimensions,
     FlatList,
+    Animated,
+    TouchableWithoutFeedback
 
 } from 'react-native';
 import StarRating from 'react-native-star-rating';
 import AntDesign from 'react-native-vector-icons/AntDesign'
-// import SelfadaptModal from 'react-native-selfadapt-modal';
-// import { TextInput, Button } from 'react-native-paper';
-// import { text } from 'express';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
-const scenicData=[
-    {
-        picture: "./img/a.jpg",
-        title: '西湖·一个小亭子',
-        scenicSpot: "西湖景区",
-        clock: "杜甫、李白、白居易也曾在这里打过卡"
-    },
-    {
-        picture: "./img/a.jpg",
-        title: '西湖·一个小亭子',
-        scenicSpot: "西湖景区",
-        clock: "杜甫、李白、白居易也曾在这里打过卡"
-    },
-]
-
 export default class dakaAll extends Component {
     constructor(props) {
         super(props);
@@ -41,23 +25,32 @@ export default class dakaAll extends Component {
             loaded: false,
             errInfo: null,
             demoOneValue: '',
+            touchFlag: true,
+            touchBottom: -Dimensions.get('window').height + Dimensions.get('window').height / 4.5,
+            fadeAnim: new Animated.Value(-Dimensions.get('window').height + Dimensions.get('window').height / 7),
+            lineWidth: new Animated.Value(Dimensions.get('window').height),
         }
     };
 
-    onStarRatingPress(rating) {
-        this.setState({
-            starCount: rating
-        });
-    }
-    onOpenStatusChange = (res) => {
-        // console.log('===res===',res);
-        this.setState({ openStatus: res == 1 });
-    }
 
-    _
+    //消息框收回
+    fadeIn = () => {
+        Animated.spring(this.state.fadeAnim, {
+            toValue: -Dimensions.get('window').height + Dimensions.get('window').height / 7,
+            duration: 400
+        }).start();
+    };
+    //消息框弹出
+    fadeOut = () => {
+        Animated.spring(this.state.fadeAnim, {
+            toValue: -Dimensions.get('window').height + Dimensions.get('window').height / 2,
+            duration: 400
+        }).start();
+    };
     render() {
         return (
             <View style={[styles.container]}>
+
                 <View style={[styles.top]}>
                     <View style={[styles.nav_container]}>
                         <View style={{ flexDirection: "row" }}>
@@ -71,11 +64,16 @@ export default class dakaAll extends Component {
                         </View>
                     </View>
                 </View>
-                {/* 顶部分类 */}
                 <FlatList
-                    style={{paddingTop:10,}}
+                    style={{ paddingTop: 10, }}
                     showsVerticalScrollIndicator={false}
                     data={[
+                        {
+                            picture: "./img/a.jpg",
+                            title: '西湖·一个小亭子',
+                            scenicSpot: "西湖景区",
+                            clock: "杜甫、李白、白居易也曾在这里打过卡"
+                        },
                         {
                             picture: "./img/a.jpg",
                             title: '西湖·一个小亭子',
@@ -114,12 +112,36 @@ export default class dakaAll extends Component {
                             </View>
                         </View>
                     } />
+                <TouchableWithoutFeedback
+                    style={{ width: '100%', height: '100%', backgroundColor: "skyblue",justifyContent:"center" }}
+                    onPress={() => {
+                        if (this.state.touchFlag) {
+                            this.fadeOut()
+                            this.setState({ touchFlag: false })
+                        } else {
+                            this.fadeIn()
+                            this.setState({ touchFlag: true })
+                        }
+                    }}
+                >
+
+                    {/* 底部弹窗 */}
+                    <Animated.View style={[styles.bottomCircle, { bottom: this.state.fadeAnim, width: this.state.lineWidth }]}></Animated.View>
+                </TouchableWithoutFeedback>
+
             </View>
         )
     }
 }
 const styles = StyleSheet.create({
-
+    bottomCircle: {
+        width: Dimensions.get('window').height,
+        height: Dimensions.get('window').height,
+        // left: -Dimensions.get('window').height / 4.5,
+        position: "absolute",
+        backgroundColor: "red",
+        borderRadius: 260,
+    },
     container: {
         flex: 1,
         backgroundColor: "#EFEFEF",
@@ -131,7 +153,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,
-        elevation:6,
+        elevation: 6,
     },
     nav_container: {
         flex: 0.7,
@@ -141,7 +163,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         marginLeft: "5%",
-        
     },
     words: {
         color: "#fff",
@@ -156,8 +177,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         marginLeft: "5%",
         flexDirection: "row",
-        marginTop:10,
-        borderRadius:3,
+        marginTop: 10,
+        borderRadius: 3,
     },
     title: {
         fontSize: 15,
@@ -171,10 +192,10 @@ const styles = StyleSheet.create({
     clock: {
         color: "#999999",
         fontSize: 10,
-        justifyContent:"center",
-        alignItems:"center",
-        lineHeight:20,
-        
+        justifyContent: "center",
+        alignItems: "center",
+        lineHeight: 20,
+
     },
     button: {
         width: 190 * biLi,

@@ -1,49 +1,33 @@
 import React, { useState } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
-const SexData = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "男",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "女",
-  },
-];
-
-const Item = ({ item, onPress, style }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item]}>
-    <Text style={styles.title}>{item.title}</Text>
-    <View style={[{ height: 20, width: 20, backgroundColor: "red", borderRadius: 20, }, style]}></View>
-  </TouchableOpacity>
-);
+import Picker from 'react-native-picker';
 
 const App = () => {
-  const [selectedId, setSelectedId] = useState(null);
 
-  const renderItem = ({ item }) => {
-    // 前面的是选中状态。后面的是未选中状态
-    const backgroundColor = item.id === selectedId ? "#FAAF3D" : "#FFFFFF";
-
-    return (
-      <Item
-        item={item}
-        onPress={() => setSelectedId(item.id)}
-        style={{ backgroundColor }}
-      />
-    );
-  };
-
+  let data = ['男','女'];
+  // for(var i=0;i<100;i++){
+  //     data.push(i);
+  // }
+  Picker.init({
+    pickerData: data,
+    selectedValue: [59],
+    onPickerConfirm: data => {
+        console.log(data);
+    },
+    onPickerCancel: data => {
+        console.log(data);
+    },
+    onPickerSelect: data => {
+        console.log(data);
+    }
+});
+Picker.show();
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={SexData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        extraData={selectedId}
-      />
-    </SafeAreaView>
+    <View><Text
+      onPress={()=>{
+        Picker.show();
+      }}
+    >111</Text></View>
   );
 };
 

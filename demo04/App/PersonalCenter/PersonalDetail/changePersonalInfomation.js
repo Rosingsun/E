@@ -7,13 +7,15 @@ import {
     Dimensions,
     Image,
     TextInput,
+    TouchableNativeFeedback,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import ImagePicker from 'react-native-image-picker';
+import Picker from 'react-native-picker';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
-// More info on all the options is below in the API Reference... just some common use cases shown here
+// 上传图片/这里即头像
 const photoOptions = {
     title:'请选择',
     quality: 0.8,
@@ -49,6 +51,24 @@ const photoOptions = {
         }
     });
 }
+
+
+//底部选择框
+let data = ['男','女'];
+  Picker.init({
+    pickerData: data,
+    selectedValue: [59],
+    onPickerConfirm: data => {
+        console.log(data);
+    },
+    onPickerCancel: data => {
+        console.log(data);
+    },
+    onPickerSelect: data => {
+        console.log(data);
+    }
+});
+
 
 export default class changePersonalInfoMation extends Component {
     constructor(props) {
@@ -96,17 +116,21 @@ export default class changePersonalInfoMation extends Component {
                             <AntDesign name={'right'} size={20} color={'#999999'} />
                         </View>
                     </View>
-
+                <TouchableNativeFeedback
+                onPress={()=>{
+                    Picker.show();
+                }}
+                >
                     <View style={styles.button}>
                         <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>性别</Text>
                         <View style={{ flexDirection: "row", alignItems: "center", paddingRight: 20 }}>
-                            <TextInput
-                                placeholder={this.state.userName}
+                            <Text>男</Text>
+                            <AntDesign name={'right'} size={20} color={'#999999'}
+                                
                             />
-                            <AntDesign name={'right'} size={20} color={'#999999'}/>
                         </View>
                     </View>
-
+                    </TouchableNativeFeedback>
                     <View style={styles.button}>
                         <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>简介</Text>
                         <TextInput
