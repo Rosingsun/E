@@ -11,6 +11,9 @@ import Eshouchang from '../PersonalCenter/Eshouchang';
 import Edaka from '../PersonalCenter/Edaka';
 import dakaPlaceChoice from'../PersonalCenter/PersonalDetail/dakaPlaceChoice';
 import improveInformation from '../PersonalCenter/PersonalDetail/ImproveInformation';
+import LineProgressBar from'../PersonalCenter/PersonalDetail/LineProgressBar';
+//个人中心详情页面
+import mylevel from '../PersonalCenter/PersonalDetail/myLevel';
 const Tab = createMaterialTopTabNavigator();
 const ExianluStack = createStackNavigator();
 export default function PersonalCenterNavigation() {

@@ -17,6 +17,7 @@ import BaiduMap from './Map/baiduMap';
 import choiceCity from './DiscoveryPage/moreLine/choiceCity';
 import Line from './DiscoveryPage/moreLine/Line';
 import dakaAll from './DiscoveryPage/daka/dakaAll';
+import chating from './News/chating/chating';
 //个人中心页面
 import PersonalCenterSum from './PersonalCenter/personnalCenterSum';
 import UserSetting from './PersonalCenter/PersonalDetail/Setting';
@@ -24,6 +25,8 @@ import UserAgreement from './PersonalCenter/PersonalDetail/agreement';
 import Privacy from './PersonalCenter/PersonalDetail/Privacy';
 import changePersonalInfoMation from './PersonalCenter/PersonalDetail/changePersonalInfomation';
 import ProductionRoute from './PersonalCenter/PersonalDetail/ProductionRoute';
+import mylevel from './PersonalCenter/PersonalDetail/myLevel';
+import renderCalendarWithCustomMarkingType from'./PersonalCenter/PersonalDetail/rili';
 //下面是页面之内需要跳转的
 //消息页面  
 //底部材料导航栏
@@ -31,6 +34,7 @@ const Stack = createMaterialBottomTabNavigator();
 const changeStack = createStackNavigator();
 const DiscoveryStack = createStackNavigator();
 const PersonalStack = createStackNavigator();
+const NewsStack = createStackNavigator();
 function MyStack() {
 
     return (
@@ -115,13 +119,23 @@ function MyStack() {
                     ),
                 }}/>
             <Stack.Screen name="MessageSum"
-                component={MessageSum}
+                // component={MessageSum}
                 options={{
                     tabBarLabel: '消息',
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'twitch'} size={25} color={color} />
                     ),
                 }}>
+                    {()=>{
+                        return(
+                            <NewsStack.Navigator
+                            headerMode="none"
+                        >
+                            <NewsStack.Screen name="MessageSum" component={MessageSum} />
+                            <NewsStack.Screen name="chating" component={chating} />
+                        </NewsStack.Navigator>
+                        )
+                    }}
             </Stack.Screen>
             <Stack.Screen name="PersonalCenterSum"
             //  component={PersonalCenterSum}
@@ -139,6 +153,11 @@ function MyStack() {
                             <PersonalStack.Screen name="UserAgreement" component={UserAgreement} />
                             <PersonalStack.Screen name="Privacy" component={Privacy} />
                             <PersonalStack.Screen name="changePersonalInfoMation" component={changePersonalInfoMation} />                            
+                            {/* 等级页面 */}
+                            <PersonalStack.Screen name="mylevel" component={mylevel} />   
+                            {/* 日历页面 */}
+                            <PersonalStack.Screen name="renderCalendarWithCustomMarkingType" component={renderCalendarWithCustomMarkingType} />   
+                                                                                 
                         </PersonalStack.Navigator>
                     )
                 }}
