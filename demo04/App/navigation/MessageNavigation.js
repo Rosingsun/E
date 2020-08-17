@@ -122,7 +122,7 @@ export default function MessageDetails() {
                   }}
                 />
                 {/* <MessageStack.Screen name="ChatInfoMation" component={ChatInfoMation} /> */}
-                
+
               </MessageStack.Navigator>
             )
           }}

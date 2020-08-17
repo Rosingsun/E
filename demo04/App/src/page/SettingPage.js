@@ -9,47 +9,9 @@ import {
   Text,
   TouchableWithoutFeedback
 } from 'react-native';
-// import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
-
-// 上传图片/这里即头像
-const photoOptions = {
-  title: '请选择',
-  multiple: true,
-  quality: 1,
-  cancelButtonTitle: '取消',
-  chooseFromLibraryButtonTitle: '选择相册',
-  allowsEditing: true,
-  noData: false,
-  storageOptions: {
-    skipBackup: true,
-    path: 'images'
-  }
-};
-
-
-function choosePicker(){
-  ImagePicker.launchImageLibrary(photoOptions, (response) => {
-    console.log('Response = ', response);
-    if (response.didCancel) {
-      console.log('User cancelled image picker');
-    }
-    else if (response.error) {
-      console.log('ImagePicker Error: ', response.error);
-    }
-    else if (response.customButton) {
-      console.log('User tapped custom button: ', response.customButton);
-    }
-    else {
-      let source = { uri: response.uri };
-      // let 
-      this.setState({
-        avatarSource: source
-      });
-    }
-  });
-}
 
 export default class choicePhoto extends Component {
   constructor(props) {
@@ -68,9 +30,16 @@ export default class choicePhoto extends Component {
         <TouchableWithoutFeedback
           style={{ padding: 30, backgroundColor: "skyblue", color: "#fff" }}
           title="选择"
-          onpress={
-            choosePicker()
-          } >
+            onPress={
+              ImagePicker.openPicker({
+                  multiple: true,
+                  enableRotationGesture:true,
+              }).then(images => {
+                  console.log(images);
+              })
+            }
+            
+          >
           <Text>111</Text>
         </TouchableWithoutFeedback>
       </View>
