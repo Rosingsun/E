@@ -52,10 +52,10 @@ export default class Register extends Component {
         }).then(function (res) {
             return res.json();
         }).then(function (json) {
-            if (json.code == "200") {
+            if (json.errno == 0) {
                 alert("注册成功")
-                navigation.navigate("App");
-            } else if (json.code == "400") {
+                navigation.navigate("Search");
+            } else if (json.errno == -1) {
                 alert("用户名或密码不符合规定")
             }
         })
