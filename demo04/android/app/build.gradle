@@ -188,7 +188,6 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
     //获取相册
-    implementation project(':react-native-image-picker')
 
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {

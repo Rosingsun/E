@@ -6182,6 +6182,11 @@ react-native-calendars@^1.313.0:
     react-native-swipe-gestures "^1.0.5"
     xdate "^0.8.0"
 
+react-native-checkboxlist@0.0.8:
+  version "0.0.8"
+  resolved "https://registry.npm.taobao.org/react-native-checkboxlist/download/react-native-checkboxlist-0.0.8.tgz#a2831c37ce6205b0b56aa907e3370367021f8ff5"
+  integrity sha1-ooMcN85iBbC1aqkH4zcDZwIfj/U=
+
 react-native-flexi-radio-button@^0.2.2:
   version "0.2.2"
   resolved "https://registry.npm.taobao.org/react-native-flexi-radio-button/download/react-native-flexi-radio-button-0.2.2.tgz#a0180393c531ba3477722c6e42a31ceb1c11623b"
@@ -6197,10 +6202,11 @@ react-native-gesture-handler@^1.6.1:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-react-native-image-picker@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.npm.taobao.org/react-native-image-picker/download/react-native-image-picker-2.3.3.tgz#eaacd4a1ed9e9887613be31f0765478ca2f18a51"
-  integrity sha1-6qzUoe2emIdhO+MfB2VHjKLxilE=
+react-native-image-crop-picker@^0.32.2:
+  version "0.32.2"
+  resolved "https://registry.npm.taobao.org/react-native-image-crop-picker/download/react-native-image-crop-picker-0.32.2.tgz#862bddc99f7a8e17b7f584846a0c46bfad233917"
+  integrity sha1-hivdyZ96jhe39YSEagxGv60jORc=
+
 
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"

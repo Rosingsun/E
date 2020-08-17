@@ -10,7 +10,7 @@ import {
     TouchableNativeFeedback,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import ImagePicker from 'react-native-image-picker';
+// import ImagePicker from 'react-native-image-picker';
 import Picker from 'react-native-picker';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;

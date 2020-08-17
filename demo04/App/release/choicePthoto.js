@@ -6,7 +6,7 @@ import {
   View,
 
 } from 'react-native';
-import ImagePicker from 'react-native-image-picker';
+// import ImagePicker from 'react-native-image-picker';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
@@ -56,6 +56,12 @@ export default class choicePhoto extends Component{
     return(
         <View>
           <Image source={{uri:this.state.avatarSource}} style={{height:200,width:200}}/>
+          <Button
+          style={{padding:30,}}
+          onpress={()=>{
+            choosePicker();
+          }}
+          >悬着</Button>
         </View>
         
     )
@@ -65,7 +71,7 @@ export default class choicePhoto extends Component{
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:"red"
+    backgroundColor:"pink"
   },
 });
 
