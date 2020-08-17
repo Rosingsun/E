@@ -16,9 +16,9 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
 
- // 监听键盘
-        // this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardDidShow);
-        // this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardDidHide);
+// 监听键盘
+// this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardDidShow);
+// this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardDidHide);
 
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
@@ -35,7 +35,7 @@ export default class Register extends Component {
             passwordCheck: "",
             uid: "",
         }
-    };  
+    };
     _onClickRegister = () => {
         var navigation = this.props.navigation;
         fetch('http://192.168.56.1:3000/users/reg', {
@@ -47,15 +47,15 @@ export default class Register extends Component {
             body: JSON.stringify({
                 uid: this.state.uid,
                 password: this.state.password,
-                sex:this.state.choiceSex,
+                sex: this.state.choiceSex,
             })
         }).then(function (res) {
             return res.json();
         }).then(function (json) {
-            if (json.code == "200") {
+            if (json.errno == 0) {
                 alert("注册成功")
-                navigation.navigate("App");
-            } else if (json.code == "400") {
+                navigation.navigate("Search");
+            } else if (json.errno == -1) {
                 alert("用户名或密码不符合规定")
             }
         })
@@ -129,9 +129,9 @@ export default class Register extends Component {
                             <View style={{ flexDirection: "row" }}>
                                 <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 18 }} name={'lock'} size={25} color={'#999999'} />
                                 <TextInput
-                                password={true}
+                                    password={true}
                                     style={styles.password}
-                                    keyboardType = 'numeric'
+                                    keyboardType='numeric'
                                     secureTextEntry={true}
 
                                     placeholder='请输入密码'
@@ -149,7 +149,7 @@ export default class Register extends Component {
                                 <TextInput
                                     style={styles.password}
                                     placeholder='请输入密码'
-                                    keyboardType = 'numeric'
+                                    keyboardType='numeric'
                                     secureTextEntry={true}
 
                                     placeholderTextColor='#999999'

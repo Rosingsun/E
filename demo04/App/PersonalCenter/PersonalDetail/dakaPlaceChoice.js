@@ -14,8 +14,6 @@ import StarRating from 'react-native-star-rating';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-// import { ScrollView } from 'react-native-gesture-handler';
-// import { Item } from 'react-native-paper/lib/typescript/src/components/List/List';
 
 export default class dakaPlaceChoice extends Component {
 

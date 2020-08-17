@@ -14,9 +14,21 @@ import {
 
 } from 'react-native';
 import StarRating from 'react-native-star-rating';
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import AntDesign from 'react-native-vector-icons/AntDesign';
+// 用ART来画顶部的圆
+import {
+    Surface, //  一个矩形可渲染的区域，是其他元素的容器
+    Group, // 可容纳多个形状、文本和其他的分组
+    Shape, // 形状定义，可填充
+    Path, // 路径
+    LinearGradient, // 渐变色
+    Pattern, // 填充图片
+    ClippingRectangle, // 剪辑
+} from '@react-native-community/art';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
+// 定义路径
+
 export default class dakaAll extends Component {
     constructor(props) {
         super(props);
@@ -26,9 +38,9 @@ export default class dakaAll extends Component {
             errInfo: null,
             demoOneValue: '',
             touchFlag: true,
-            touchBottom: -Dimensions.get('window').height + Dimensions.get('window').height / 4.5,
-            fadeAnim: new Animated.Value(-Dimensions.get('window').height + Dimensions.get('window').height / 7),
-            lineWidth: new Animated.Value(Dimensions.get('window').height),
+            fadeAnim: new Animated.Value(0),
+            // fadeAnim: new Animated.Value(-Dimensions.get('window').height+),
+            circlePathHeight: 400,//400-700
         }
     };
 
@@ -36,18 +48,21 @@ export default class dakaAll extends Component {
     //消息框收回
     fadeIn = () => {
         Animated.spring(this.state.fadeAnim, {
-            toValue: -Dimensions.get('window').height + Dimensions.get('window').height / 7,
+            toValue: 0,
             duration: 400
         }).start();
     };
     //消息框弹出
     fadeOut = () => {
         Animated.spring(this.state.fadeAnim, {
-            toValue: -Dimensions.get('window').height + Dimensions.get('window').height / 2,
+            toValue: -200,
             duration: 400
         }).start();
     };
     render() {
+        var circlePath = Path()
+            .moveTo(0, 70)
+            .arc(Dimensions.get('window').width, 0, this.state.circlePathHeight);
         return (
             <View style={[styles.container]}>
 
@@ -113,7 +128,7 @@ export default class dakaAll extends Component {
                         </View>
                     } />
                 <TouchableWithoutFeedback
-                    style={{ width: '100%', height: '100%', backgroundColor: "skyblue",justifyContent:"center" }}
+                    style={{ width: '100%', height: '100%', backgroundColor: "skyblue", justifyContent: "center" }}
                     onPress={() => {
                         if (this.state.touchFlag) {
                             this.fadeOut()
@@ -126,7 +141,13 @@ export default class dakaAll extends Component {
                 >
 
                     {/* 底部弹窗 */}
-                    <Animated.View style={[styles.bottomCircle, { bottom: this.state.fadeAnim, width: this.state.lineWidth }]}></Animated.View>
+                    <Animated.View style={[styles.bottomCircle, { bottom: this.state.fadeAnim, width: '100%' }]}>
+                        <Surface width={'100%'} height={70} style={{ position: "absolute", top: 0, left: 0 }}>
+                            <Shape d={circlePath} style={{ elevation: 10 }} fill="#fff" stroke="#fff" strokeWidth={10} />
+                        </Surface>
+                        <View style={{ height: Dimensions.get('window').height / 2 - 70, backgroundColor: "red", marginTop: 70 }}></View>
+                    </Animated.View>
+
                 </TouchableWithoutFeedback>
 
             </View>
@@ -136,11 +157,9 @@ export default class dakaAll extends Component {
 const styles = StyleSheet.create({
     bottomCircle: {
         width: Dimensions.get('window').height,
-        height: Dimensions.get('window').height,
-        // left: -Dimensions.get('window').height / 4.5,
+        height: Dimensions.get('window').height / 2,
         position: "absolute",
-        backgroundColor: "red",
-        borderRadius: 260,
+        backgroundColor: "skyblue",
     },
     container: {
         flex: 1,
