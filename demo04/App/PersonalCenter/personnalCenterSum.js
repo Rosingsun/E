@@ -9,12 +9,9 @@ import {
     ScrollView,
     Alert,
 } from 'react-native';
-import Bottom_nav from '../Accessories/Nav/bottom';
 import PersonalCenterNavigation from '../navigation/PersonalNavigation';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
-import { SceneView } from 'react-navigation';
-// import { ScrollView } from 'react-native-gesture-handler';
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -51,20 +48,32 @@ export default class PersonalCenterSum extends Component {
                         </View>
                         {/* 用户信息 */}
                         <View style={[styles.userBox]}>
+
                             <View style={{ width: '40%', alignItems: "center" }}>
                                 <Image style={[styles.userHead]} source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} />
-                                <FontAwesome style={{ position: "absolute", top: 25, right: 30, zIndex: 1 }} name='camera' size={20} color="#2F3843" 
-                                onPress={() => {
-                                    this.props.navigation.navigate("changePersonalInfoMation")
-                                }}
-                                
+                                <FontAwesome style={{ position: "absolute", top: 25, right: 30, zIndex: 1 }} name='camera' size={20} color="#2F3843"
+                                    onPress={() => {
+                                        this.props.navigation.navigate("changePersonalInfoMation")
+                                    }}
                                 />
                                 <Text style={{ fontSize: 20 }}>aboutJOY</Text>
                                 <Text style={{ color: '#999999', fontSize: 15, }}>人无利，不可交也</Text>
                             </View>
                             <View style={{ width: '60%', alignItems: "flex-end", paddingRight: 20, }}>
-                                <View style={{ height: '100%', justifyContent: "center", alignItems: "flex-end" }}>
-                                    <Text style={[styles.vipText]}>LV1  查看收益</Text>
+                                <View style={{ position: "absolute", top: 5, right: 0, backgroundColor: "#999999", width: 65,paddingLeft:5,paddingVertical:5, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, }}>
+                                    <Text
+                                        onPress={() => {
+                                            this.props.navigation.navigate("changePersonalInfoMation")
+                                        }}
+                                    >编辑资料</Text>
+                                </View>
+                                <View style={{ height: '100%', justifyContent: "center", alignItems: "flex-end", marginTop: 24 }}>
+                                    <Text style={[styles.vipText]}
+                                        onPress={() => {
+                                            // this.props.navigation.navigate("renderCalendarWithCustomMarkingType")
+                                            this.props.navigation.navigate("mylevel")
+                                        }}
+                                    >LV2  查看收益</Text>
                                     <View style={{ flexDirection: "row" }}>
                                         <Text style={[styles.textStyle]}>20关注</Text>
                                         <Text style={[styles.textStyle]}>20粉丝</Text>
@@ -100,7 +109,7 @@ const styles = StyleSheet.create({
     },
     vipText: {
         color: '#fff',
-        backgroundColor: "#999999",
+        backgroundColor: "#2F3843",
         paddingVertical: 8,
         width: 80,
         fontSize: 10,
@@ -108,7 +117,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     textStyle: {
-        paddingTop: 10,
+        paddingTop: 8,
         padding: 5,
         fontSize: 15,
         color: "#999999"

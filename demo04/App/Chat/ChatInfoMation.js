@@ -24,7 +24,7 @@ StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
 // export default class Search extends Component {
-export default Search = () => {
+export default ChatInfoMation = () => {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     // const [isEnabled, setIsEnabled] = useState(false);

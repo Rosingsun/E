@@ -15,18 +15,22 @@ import Message from '../News/Message';
 import trade from '../News/trade';
 import MainText from '../News/NewsDetails/MainText';
 
+// 聊天详情页面
+import chating from '../News/chating/chating'
+import ChatInfoMation from '../Chat/ChatInfoMation';
+
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
-
+const MessageStack = createStackNavigator();
 export default function MessageDetails() {
   return (
     <NavigationContainer
       independent="true">
       <Tab.Navigator
         tabBarOptions={{
-          
+
           labelStyle: {
-            backgroundColor:"#fff"
+            backgroundColor: "#fff"
           },
           //选中状态的选项卡的文本颜色
           activeTintColor: "#6C9575",
@@ -57,7 +61,7 @@ export default function MessageDetails() {
           //显示标签和显示icon
           showLabel: false,
           showIcon: true,
-          tabBarVisible:false,
+          tabBarVisible: false,
           // mode:"model",
         }}
       >
@@ -68,7 +72,7 @@ export default function MessageDetails() {
             tabBarIcon: ({ color }) => (
               <AntDesign name={'like2'} size={28} color={color} />
             ),
-            
+
           }}
         />
         <Tab.Screen
@@ -78,32 +82,51 @@ export default function MessageDetails() {
             tabBarIcon: ({ color }) => (
               <AntDesign name={'message1'} size={28} color={color} />
             ),
-            headerShown : false, // 是否渲染导航栏，默认 true
+            headerShown: false, // 是否渲染导航栏，默认 true
           }}
         >
           {() => {
-            return(
-            <Stack.Navigator
-            headerMode="none"
-            >
-              <Stack.Screen name="leaveMessage" component={leaveMessage} />
-              <Stack.Screen name="MainText" component={MainText} 
-              options={{
-                headerShown : false, // 是否渲染导航栏，默认 true
-              }}
-              />
-            </Stack.Navigator>
-            )}}
+            return (
+              <Stack.Navigator
+                headerMode="none"
+              >
+                <Stack.Screen name="leaveMessage" component={leaveMessage} />
+                <Stack.Screen name="MainText" component={MainText}
+                  options={{
+                    headerShown: false, // 是否渲染导航栏，默认 true
+                  }}
+                />
+              </Stack.Navigator>
+            )
+          }}
         </Tab.Screen>
         <Tab.Screen
           name="Message"
-          component={Message}
+          // component={Message}
           options={{
             tabBarIcon: ({ color }) => (
               <Fontisto name={'email'} size={28} color={color} />
             ),
           }}
-        />
+        >
+          {() => {
+            return (
+              <MessageStack.Navigator
+                headerMode="none"
+                headerShown={false}
+              >
+                <MessageStack.Screen name="Message" component={Message} />
+                <MessageStack.Screen name="chating" component={chating}
+                  options={{
+                    headerShown: false, // 是否渲染导航栏，默认 true
+                  }}
+                />
+                {/* <MessageStack.Screen name="ChatInfoMation" component={ChatInfoMation} /> */}
+                
+              </MessageStack.Navigator>
+            )
+          }}
+        </Tab.Screen>
         <Tab.Screen
           name="trade"
           component={trade}

@@ -17,13 +17,13 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 // const Message = ({ navigation }) => {
-  const Item = ({ item, onPress, style }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item]}>
-      <Text style={styles.title}>{item.title}</Text>
-      <View style={[{ height: 20, width: 20, backgroundColor: "red", borderRadius: 20, }, style]}></View>
-    </TouchableOpacity>
-  );
-  
+const Item = ({ item, onPress, style }) => (
+  <TouchableOpacity onPress={onPress} style={[styles.item]}>
+    <Text style={styles.title}>{item.title}</Text>
+    <View style={[{ height: 20, width: 20, backgroundColor: "red", borderRadius: 20, }, style]}></View>
+  </TouchableOpacity>
+);
+
 export default class Message extends Component {
   constructor(props) {
     super(props)
@@ -32,11 +32,11 @@ export default class Message extends Component {
       BmessageWidth: '94%',
       BmessageMarginLeft: '3%',
       choiceColor: "#FAAF3D",
-      selectedId:null,
+      selectedId: null,
     }
   }
 
-   renderItem = ({ item }) => {
+  renderItem = ({ item }) => {
     // 前面的是选中状态。后面的是未选中状态
     const backgroundColor = item.id === selectedId ? "#FAAF3D" : "#FFFFFF";
 
@@ -80,6 +80,10 @@ export default class Message extends Component {
                         BmessageMarginLeft: '3%',
                       })
                   }
+                }}
+
+                onPress={() => {
+                  this.props.navigation.navigate("chating", { userName: item.name });
                 }}
               >
                 <View style={{ justifyContent: "center", }}>
