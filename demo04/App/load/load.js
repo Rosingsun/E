@@ -48,7 +48,7 @@ export default class Search extends Component {
                 return res.json();
             }).then(function (json) {
                 if (json.errno == 0) {
-                     console.log(json)
+                    //  console.log(json)
                     
                     // navigation.navigate("App");
                     alert("成功")
