@@ -12,6 +12,7 @@ import {
 import PersonalCenterNavigation from '../navigation/PersonalNavigation';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
+import {storage} from '../Accessories/storage/index'
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -20,11 +21,28 @@ export default class PersonalCenterSum extends Component {
     constructor(props) {
         super(props)
         this.state = {
+          username:'',
+          PersonalSignature:'',
+          head:'',
         }
     }
+
+    componentDidMount() {
+        storage.load('userInfo', (data) => {
+            this.setState({
+                username:data.username,
+                PersonalSignature:data.PersonalSignature,
+                head:data.head,
+                
+            })
+            
+          })
+        }
+
     render() {
         return (
             <ScrollView style={{ height: '80%' }}
+           
 
                 onScroll={(event) => {
                     {
@@ -56,8 +74,8 @@ export default class PersonalCenterSum extends Component {
                                         this.props.navigation.navigate("changePersonalInfoMation")
                                     }}
                                 />
-                                <Text style={{ fontSize: 20 }}>aboutJOY</Text>
-                                <Text style={{ color: '#999999', fontSize: 15, }}>人无利，不可交也</Text>
+                                <Text style={{ fontSize: 20 }}>{this.state.username}</Text>
+                                <Text style={{ color: '#999999', fontSize: 15, }}>{this.state.PersonalSignature}</Text>
                             </View>
                             <View style={{ width: '60%', alignItems: "flex-end", paddingRight: 20, }}>
                                 <View style={{ position: "absolute", top: 5, right: 0, backgroundColor: "#999999", width: 65,paddingLeft:5,paddingVertical:5, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, }}>

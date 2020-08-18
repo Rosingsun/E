@@ -15,7 +15,7 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
-import Storage from 'react-native-storage';
+import {storage} from '../Accessories/storage/index'
 
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
@@ -30,7 +30,7 @@ export default class Search extends Component {
             password: '',
         }
     };
-    
+      
     _onClickLogin = () => {
         var navigation=this.props.navigation; 
         fetch('http://192.168.56.1:3000/users/login', {
@@ -38,7 +38,7 @@ export default class Search extends Component {
                 credentials: "include",
                 headers: {
                   'Accept': 'application/json',
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                   uid: this.state.uid,
@@ -49,9 +49,18 @@ export default class Search extends Component {
             }).then(function (json) {
                 if (json.errno == 0) {
                     //  console.log(json)
-                    
-                    // navigation.navigate("App");
-                    alert("成功")
+                     let obj = {}
+                     obj.id = json.data.id
+                     obj.username = json.data.username
+                     obj.PersonalSignature = json.data.PersonalSignature
+                     obj.token = json.data.token
+                     obj.head = json.data.head
+                     storage.save('userInfo',obj)
+                     
+                        // 登录成功
+                        //  console.log(json)
+                        navigation.navigate("App");
+                        alert("成功")
                 }else if (json.errno == -1) {
                     alert("用户名或密码错误")
                 }
