@@ -8,7 +8,6 @@ import {
     StyleSheet,
     ScrollView,
 } from 'react-native';
-// import Bottom_nav from '../Accessories/Nav/bottom';
 import PersonalCenterNavigation from './daohangxiding/PersonalNavigation';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';

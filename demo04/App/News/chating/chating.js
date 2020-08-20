@@ -134,7 +134,7 @@ export default class chating extends Component {
                                 <View style={{ paddingLeft: 20, width: '100%', flexDirection: "row", paddingVertical: 5, justifyContent: "flex-start", alignItems: "center" }}>
                                     <Image source={{ uri: item.userImg }} style={{ height: 40, width: 40, borderRadius: 30 }}
                                         onPress={() => {
-                                            Alert.alert("!");
+                                            // Alert.alert("!");
                                         }}
                                     />
                                     <View style={{ backgroundColor: "#fff", maxWidth: '65%', padding: 8, borderRadius: 10, justifyContent: "center", marginLeft: 5 }}>

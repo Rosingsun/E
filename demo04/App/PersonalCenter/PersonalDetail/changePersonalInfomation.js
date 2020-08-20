@@ -12,7 +12,7 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ImagePicker from 'react-native-image-crop-picker';
 import Picker from 'react-native-picker';
-import {storage} from '../../Accessories/storage/index'
+// import {storage} from '../../Accessories/storage/index'
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
@@ -43,16 +43,16 @@ export default class changePersonalInfoMation extends Component {
             
         }
     }
-    componentDidMount() {
-        storage.load('userInfo', (data) => {
-            this.setState({
-                username:data.username,
-                PersonalSignature:data.PersonalSignature,
-                head:data.head,  
-            })
+    // componentDidMount() {
+    //     storage.load('userInfo', (data) => {
+    //         this.setState({
+    //             username:data.username,
+    //             PersonalSignature:data.PersonalSignature,
+    //             head:data.head,  
+    //         })
             
-          })
-        }
+    //       })
+    //     }
     render() {
         return (
             <View style={[styles.container]}>

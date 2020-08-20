@@ -13,7 +13,6 @@ import {
   StatusBar,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Bottom_nav from '../../Accessories/Nav/bottom';
 import UserShop from '../../Accessories/HomePage/userShop';
 // import Global from '../global';
 const { width, scale } = Dimensions.get("window");
@@ -174,7 +173,6 @@ function Main({navigation}) {
           </View>
         </View>
       </ScrollView>
-      <Bottom_nav />
     </View>
   )
 }

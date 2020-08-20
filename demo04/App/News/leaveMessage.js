@@ -55,7 +55,7 @@ const biLi = width * scale / 1125;
                 <View style={{ position: "absolute", borderRadius: 10, right: 10, top: 10, height: 24, width: 50, backgroundColor: "#6C9575", alignItems: "center" }}>
                   <Text style={{ fontSize: 15, color: "#ffffff" }}
                     onPress={() => {
-                      Alert.alert(this.state.disPlayState+" "+this.state.tabBarHeight)
+                      // Alert.alert(this.state.disPlayState+" "+this.state.tabBarHeight)
                       this.props.navigation.navigate('MainText',{Height:this.state.disPlayState});
                     }}
                   >回复</Text>

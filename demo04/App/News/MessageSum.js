@@ -11,9 +11,9 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MessageDetails from '../navigation/MessageNavigation';
-StatusBar.setBackgroundColor("transparent");
+StatusBar.setBackgroundColor("#000");
 StatusBar.setTranslucent(true);
-StatusBar.setBarStyle('dark-content');
+StatusBar.setBarStyle('default');
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 

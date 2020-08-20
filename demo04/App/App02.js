@@ -3,17 +3,22 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-
+//底部导航栏的主要页面
 import Home from '../App/HomePage/HomePage';
 import Discovery from './DiscoveryPage/discovery';
 import Setting from './src/page/SettingPage';
 import MessageSum from './News/MessageSum';
-
+//首页
+//首页顶部导航
+import MessageDetails from './navigation/MessageNavigation'
+import Search from './HomePage/detail/Ranking';
+import focus from './HomePage/focus';
+import local from './HomePage/local';
+import recommend from './HomePage/recommend';
 //发布页面
 // import 
-
-import Search from './HomePage/detail/Ranking';
 import BaiduMap from './Map/baiduMap';
 // 发现页面
 import choiceCity from './DiscoveryPage/moreLine/choiceCity';
@@ -29,11 +34,26 @@ import changePersonalInfoMation from './PersonalCenter/PersonalDetail/changePers
 import ProductionRoute from './PersonalCenter/PersonalDetail/ProductionRoute';
 import mylevel from './PersonalCenter/PersonalDetail/myLevel';
 import renderCalendarWithCustomMarkingType from './PersonalCenter/PersonalDetail/rili';
-//下面是页面之内需要跳转的
-//消息页面  
-//底部材料导航栏
+//消息页面
+// 消息01
+// 消息02
+// 消息03
+// 消息04
+
+//定义各类导航栏的变量
+
+const HomaPageTabNavigation = createMaterialTopTabNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
+// 各类导航的编写
+//消息页面的顶部导航
+// function TabNavigation(){
+//     return(
+
+//     )
+// }
+
+// 底部导航
 function bottomTab() {
 
     return (
@@ -87,8 +107,8 @@ function bottomTab() {
                     tabBarLabel: '发现',
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'binoculars'} size={20} color={color} />
-              
-                        ),
+
+                    ),
                 }}>
             </Tab.Screen>
             <Tab.Screen name="Setting" component={Setting}
@@ -121,6 +141,7 @@ function bottomTab() {
     );
 }
 
+// 堆栈导航
 function MyStack() {
     return (
         <Stack.Navigator
@@ -139,10 +160,10 @@ function MyStack() {
             <Stack.Screen name="changePersonalInfoMation" component={changePersonalInfoMation} />
             <Stack.Screen name="mylevel" component={mylevel} />
             <Stack.Screen name="renderCalendarWithCustomMarkingType" component={renderCalendarWithCustomMarkingType} />
+            
         </Stack.Navigator>
     );
 }
-
 
 export default function App() {
     return (

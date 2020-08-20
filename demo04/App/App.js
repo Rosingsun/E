@@ -3,6 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { createStackNavigator } from '@react-navigation/stack';
+
+
 import Home from '../App/HomePage/HomePage';
 import Discovery from './DiscoveryPage/discovery';
 import Setting from './src/page/SettingPage';
@@ -32,9 +34,6 @@ import renderCalendarWithCustomMarkingType from './PersonalCenter/PersonalDetail
 //底部材料导航栏
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
-const DiscoveryStack = createStackNavigator();
-const PersonalStack = createStackNavigator();
-const NewsStack = createStackNavigator();
 function bottomTab() {
 
     return (
@@ -88,7 +87,8 @@ function bottomTab() {
                     tabBarLabel: '发现',
                     tabBarIcon: ({ color }) => (
                         <FontAwesome name={'binoculars'} size={20} color={color} />
-                    ),
+              
+                        ),
                 }}>
             </Tab.Screen>
             <Tab.Screen name="Setting" component={Setting}
