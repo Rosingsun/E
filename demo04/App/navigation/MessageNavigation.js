@@ -22,121 +22,109 @@ import ChatInfoMation from '../Chat/ChatInfoMation';
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
 const MessageStack = createStackNavigator();
+function App() {
+  return (
+    <Tab.Navigator
+      tabBarOptions={{
+
+        labelStyle: {
+          backgroundColor: "#fff"
+        },
+        //选中状态的选项卡的文本颜色
+        activeTintColor: "#6C9575",
+        activeTintColor: "#43949B",
+        // 未选中的选项卡的颜色
+        inactiveTintColor: "#000000",
+        adaptive: true,
+        // 导航栏状态
+        tabStyle: {
+          // backgroundColor: "red",
+        },
+        // 样式设置
+        style: {
+          backgroundColor: "#FFFFFF",
+          overflow: "hidden",
+          borderBottomRightRadius: 20,
+          borderBottomLeftRadius: 20,
+          height: 50,
+          elevation: 0,
+        },
+        //底部横条样式设置
+        indicatorStyle: {
+          height: 0,
+        },
+        iconStyle: {
+          width: '100%',
+        },
+        //显示标签和显示icon
+        showLabel: false,
+        showIcon: true,
+        tabBarVisible: false,
+        // mode:"model",
+      }}
+    >
+      <Tab.Screen
+        name="thumbs"
+        component={thumbs}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <AntDesign name={'like2'} size={28} color={color} />
+          ),
+
+        }}
+      />
+      <Tab.Screen
+        name="leaveMessage"
+        component={leaveMessage}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <AntDesign name={'message1'} size={28} color={color} />
+          ),
+        }}
+      >
+      </Tab.Screen>
+      <Tab.Screen
+        name="Message"
+        component={Message}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Fontisto name={'email'} size={28} color={color} />
+          ),
+        }} />
+      <Tab.Screen
+        name="trade"
+        component={trade}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name={'envelope-open-text'} size={28} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+
+
+function MyStack() {
+  return (
+    <Stack.Navigator
+      headerMode="none"
+    >
+      <Stack.Screen name="App" component={App} />
+      <Stack.Screen name="MainText" component={MainText} />
+      <Stack.Screen name="chating" component={chating} />
+    </Stack.Navigator>
+  );
+}
+
+
 export default function MessageDetails() {
   return (
     <NavigationContainer
-      independent="true">
-      <Tab.Navigator
-        tabBarOptions={{
-
-          labelStyle: {
-            backgroundColor: "#fff"
-          },
-          //选中状态的选项卡的文本颜色
-          activeTintColor: "#6C9575",
-          activeTintColor: "#43949B",
-          // 未选中的选项卡的颜色
-          inactiveTintColor: "#000000",
-          adaptive: true,
-          // 导航栏状态
-          tabStyle: {
-            // backgroundColor: "red",
-          },
-          // 样式设置
-          style: {
-            backgroundColor: "#FFFFFF",
-            overflow: "hidden",
-            borderBottomRightRadius: 20,
-            borderBottomLeftRadius: 20,
-            height: 50,
-            elevation: 0,
-          },
-          //底部横条样式设置
-          indicatorStyle: {
-            height: 0,
-          },
-          iconStyle: {
-            width: '100%',
-          },
-          //显示标签和显示icon
-          showLabel: false,
-          showIcon: true,
-          tabBarVisible: false,
-          // mode:"model",
-        }}
-      >
-        <Tab.Screen
-          name="thumbs"
-          component={thumbs}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <AntDesign name={'like2'} size={28} color={color} />
-            ),
-
-          }}
-        />
-        <Tab.Screen
-          name="leaveMessage"
-          // component={leaveMessage}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <AntDesign name={'message1'} size={28} color={color} />
-            ),
-            headerShown: false, // 是否渲染导航栏，默认 true
-          }}
-        >
-          {() => {
-            return (
-              <Stack.Navigator
-                headerMode="none"
-              >
-                <Stack.Screen name="leaveMessage" component={leaveMessage} />
-                <Stack.Screen name="MainText" component={MainText}
-                  options={{
-                    headerShown: false, // 是否渲染导航栏，默认 true
-                  }}
-                />
-              </Stack.Navigator>
-            )
-          }}
-        </Tab.Screen>
-        <Tab.Screen
-          name="Message"
-          // component={Message}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Fontisto name={'email'} size={28} color={color} />
-            ),
-          }}
-        >
-          {() => {
-            return (
-              <MessageStack.Navigator
-                headerMode="none"
-                headerShown={false}
-              >
-                <MessageStack.Screen name="Message" component={Message} />
-                <MessageStack.Screen name="chating" component={chating}
-                  options={{
-                    headerShown: false, // 是否渲染导航栏，默认 true
-                  }}
-                />
-                {/* <MessageStack.Screen name="ChatInfoMation" component={ChatInfoMation} /> */}
-
-              </MessageStack.Navigator>
-            )
-          }}
-        </Tab.Screen>
-        <Tab.Screen
-          name="trade"
-          component={trade}
-          options={{
-            tabBarIcon: ({ color }) => (
-              <FontAwesome5 name={'envelope-open-text'} size={28} color={color} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+      independent="true"
+    >
+      <MyStack />
     </NavigationContainer>
   );
 }

@@ -5,7 +5,7 @@
 import {AppRegistry} from 'react-native';
 //正常主页
 // import App from './App/navigation/welcomeNavigation';
-import MyStack from './App/App';
+import MyStack from './App/App02';
 //复选框
 // import App from './App/src/page/demo01'
 

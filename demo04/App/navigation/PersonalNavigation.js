@@ -9,80 +9,83 @@ import Exianlu from '../PersonalCenter/Exianlu';
 import ProductionRoute from '../PersonalCenter/PersonalDetail/ProductionRoute';
 import Eshouchang from '../PersonalCenter/Eshouchang';
 import Edaka from '../PersonalCenter/Edaka';
-import dakaPlaceChoice from'../PersonalCenter/PersonalDetail/dakaPlaceChoice';
+import dakaPlaceChoice from '../PersonalCenter/PersonalDetail/dakaPlaceChoice';
 import improveInformation from '../PersonalCenter/PersonalDetail/ImproveInformation';
-import LineProgressBar from'../PersonalCenter/PersonalDetail/LineProgressBar';
+import LineProgressBar from '../PersonalCenter/PersonalDetail/LineProgressBar';
 //个人中心详情页面
 import mylevel from '../PersonalCenter/PersonalDetail/myLevel';
 const Tab = createMaterialTopTabNavigator();
-const ExianluStack = createStackNavigator();
+const Stack = createStackNavigator();
+
+function TabNavigate() {
+    return (
+        <Tab.Navigator
+            tabBarOptions={{
+                //底部横线样式
+                indicatorStyle: {
+                    height: 2,
+                    backgroundColor: "#FFB16C",
+                    width: 20,
+                    marginLeft: 40,
+                    marginBottom: 5,
+                },
+                labelStyle: {
+                    fontSize: 20,
+                    borderRadius: 20,
+                },
+
+                tabStyle: {
+                    height: 45,
+                },
+                activeBackgroundColor: "red",
+                headerShown: false
+            }}
+
+        >
+            <Tab.Screen
+                name="Eline"
+                component={Eline}
+                options={{ title: 'E游记' }}
+            />
+            <Tab.Screen
+                name="Exianlu"
+                component={Exianlu}
+                options={{ title: 'E线路', }}
+            />
+
+            <Tab.Screen
+                name="Eshouchang"
+                component={Eshouchang}
+                options={{ title: 'E收藏' }}
+            />
+            <Tab.Screen
+                name="Edaka"
+                component={Edaka}
+                options={{ title: 'E打卡' }} />
+        </Tab.Navigator>
+    );
+}
+
+function MyStack() {
+    return (
+        <Stack.Navigator
+            headerMode="none"
+        >
+            <Stack.Screen name="TabNavigate" component={TabNavigate} />
+            <Stack.Screen name="ProductionRoute" component={ProductionRoute} />
+            <Stack.Screen name="dakaPlaceChoice" component={dakaPlaceChoice} />
+            <Stack.Screen name="improveInformation" component={improveInformation} />
+        </Stack.Navigator>
+    );
+}
+
+
 export default function PersonalCenterNavigation() {
     return (
         <NavigationContainer
             independent="true"
-            headerShown="none"
         >
-            <Tab.Navigator
-                tabBarOptions={{
-                    //底部横线样式
-                    indicatorStyle: {
-                        height: 2,
-                        backgroundColor: "#FFB16C",
-                        width: 20,
-                        marginLeft: 40,
-                        marginBottom: 5,
-                    },
-                    labelStyle: {
-                        fontSize: 20,
-                        borderRadius: 20,
-                    },
-
-                    tabStyle: {
-                        height: 45,
-                    },
-                    activeBackgroundColor: "red",
-                    headerShown: false
-                }}
-
-            >
-                <Tab.Screen
-                    name="Eline"
-                    component={Eline}
-                    options={{ title: 'E游记' }}
-                />
-                <Tab.Screen
-                    name="Exianlu"
-                    // component={Exianlu}
-                    options={{
-                        title: 'E线路',
-                        headerShown: false
-                    }}
-                >
-                    {() => {
-                        return (
-                            <ExianluStack.Navigator
-                                headerMode="none"
-                            >
-                                <ExianluStack.Screen name="Exianlu" component={Exianlu} />
-                                <ExianluStack.Screen name="ProductionRoute" component={ProductionRoute}
-                                    options={{
-                                        headerShown: false, // 是否渲染导航栏，默认 true
-                                    }}
-                                />
-                                <ExianluStack.Screen name="dakaPlaceChoice" component={dakaPlaceChoice} />
-                                <ExianluStack.Screen name="improveInformation" component={improveInformation} />
-                                
-                            </ExianluStack.Navigator>
-                        )
-                    }}
-                </Tab.Screen>
-                <Tab.Screen
-                    name="Eshouchang"
-                    component={Eshouchang}
-                    options={{ title: 'E收藏' }}
-                />
-                <Tab.Screen name="Edaka" component={Edaka} options={{ title: 'E打卡' }} />
-            </Tab.Navigator>
+            <MyStack />
         </NavigationContainer>
     );
 }
