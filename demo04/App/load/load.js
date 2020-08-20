@@ -10,34 +10,13 @@ import {
     Dimensions,
     TouchableWithoutFeedback,
     StatusBar,
-    AsyncStorage,
+
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Entypo from 'react-native-vector-icons/Entypo'
-// import { Item } from 'react-native-paper/lib/typescript/src/components/List/List';
-import Storage from 'react-native-storage';
+import {storage} from '../Accessories/storage/index'
 
-var storage = new Storage({
-    // 最大容量，默认值1000条数据循环存储
-    size: 1000, 
-    // 存储引擎：对于RN使用AsyncStorage，对于web使用window.localStorage
-    // 如果不指定则数据只会保存在内存中，重启后即丢失
-    storageBackend: AsyncStorage,  
-    // 数据过期时间，默认一整天（1000 * 3600 * 24 毫秒），设为null则永不过期
-    defaultExpires: 1000 * 3600 * 24, 
-    // 读写时在内存中缓存数据。默认启用。
-    enableCache: true,
-  
-    // 如果storage中没有相应数据，或数据已过期，
-    // 则会调用相应的sync方法，无缝返回最新数据。
-    // sync方法的具体说明会在后文提到
-    // 你可以在构造函数这里就写好sync的方法
-    // 或是在任何时候，直接对storage.sync进行赋值修改
-    // 或是写到另一个文件里，这里require引入
-    // sync: require('你可以另外写一个文件专门处理sync')    
-  })
-  global.storage = storage;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -51,14 +30,15 @@ export default class Search extends Component {
             password: '',
         }
     };
-    
+      
     _onClickLogin = () => {
         var navigation=this.props.navigation; 
         fetch('http://192.168.56.1:3000/users/login', {
                 method: 'POST',
+                credentials: "include",
                 headers: {
                   'Accept': 'application/json',
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                   uid: this.state.uid,
@@ -68,7 +48,19 @@ export default class Search extends Component {
                 return res.json();
             }).then(function (json) {
                 if (json.errno == 0) {
-                    navigation.navigate("App");
+                    //  console.log(json)
+                     let obj = {}
+                     obj.id = json.data.id
+                     obj.username = json.data.username
+                     obj.PersonalSignature = json.data.PersonalSignature
+                     obj.token = json.data.token
+                     obj.head = json.data.head
+                     storage.save('userInfo',obj)
+                     
+                        // 登录成功
+                        //  console.log(json)
+                        navigation.navigate("App");
+                        alert("成功")
                 }else if (json.errno == -1) {
                     alert("用户名或密码错误")
                 }

@@ -3,33 +3,62 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var fs = require('fs');
+const JwtUtil = require('./public/utils/jwt');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
 var app = express();
 
-// view engine setup  更换模板引擎
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
+const ENV = process.env.NODE_ENV || 'production'
 
-//注释掉默认的，自己手动修改默认引擎;
-var nunjucks = require('nunjucks');
-nunjucks.configure(path.join(__dirname, 'views'), {
-  autoescape: true,
-  express: app,
-  watch: true
+if (ENV === 'development') {
+  global.baseUrl = 'http://localhost:3000'
+}else if (ENV === 'production') {
+  global.baseUrl = 'http://localhost:3000'
+}
+
+app.all('*', function (req, res, next) {    
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Content-type,token");
+  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  res.header("X-Powered-By", ' 3.2.1');
+  res.header("Content-Type", "application/json;charset=utf-8");
+  next();
 });
 
-app.use(express.static('upload'));
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function (req, res, next) {
+  if (req.url !== '/users/login' && req.url !== '/users/reg'){
+      let token = req.headers.token;
+      let jwt = new JwtUtil(token);
+      let result = jwt.verifyToken();
+      // 如果考验通过就next，否则就返回登录信息不正确
+      if (result == 'err') {
+          res.send({status: 403, msg: '登录已过期,请重新登录'});
+          // res.render('login.html');
+      } else {
+        global.userInfo = result
+        next();
+      }
+  } else {
+      next();
+  }
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -44,12 +73,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  // res.render('views/error');
-  // res.json({ message: err.message, error: err });
-  res.render('error.html',{error:err});//根据错误状态码渲染不同模板数据
-
-  
-  // res.status(err.status);//http错误状态码
+  res.render('error');
 });
 
 module.exports = app;

@@ -12,6 +12,7 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ImagePicker from 'react-native-image-crop-picker';
 import Picker from 'react-native-picker';
+import {storage} from '../../Accessories/storage/index'
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
@@ -37,10 +38,21 @@ export default class changePersonalInfoMation extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            ableInput: "写一段话介绍自己吧！",
-            userName: "用户名",
+            PersonalSignature: "写一段话介绍自己吧！",
+            username: "用户名",
+            
         }
     }
+    componentDidMount() {
+        storage.load('userInfo', (data) => {
+            this.setState({
+                username:data.username,
+                PersonalSignature:data.PersonalSignature,
+                head:data.head,  
+            })
+            
+          })
+        }
     render() {
         return (
             <View style={[styles.container]}>
@@ -84,7 +96,7 @@ export default class changePersonalInfoMation extends Component {
                         <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>用户名</Text>
                         <View style={{ flexDirection: "row", alignItems: "center", paddingRight: 20 }}>
                             <TextInput
-                                placeholder={this.state.userName}
+                                placeholder={this.state.username}
                             />
                             <AntDesign name={'right'} size={20} color={'#999999'} />
                         </View>
@@ -107,7 +119,7 @@ export default class changePersonalInfoMation extends Component {
                     <View style={styles.button}>
                         <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>简介</Text>
                         <TextInput
-                            placeholder={this.state.ableInput}
+                            placeholder={this.state.PersonalSignature}
                         />
                     </View>
 
