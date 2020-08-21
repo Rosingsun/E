@@ -10,6 +10,7 @@ import {
     Alert,
 } from 'react-native';
 import PersonalCenterNavigation from '../navigation/PersonalNavigation';
+import { PersonalTab } from "../App02";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 // import {storage} from '../Accessories/storage/index'
@@ -21,9 +22,9 @@ export default class PersonalCenterSum extends Component {
     constructor(props) {
         super(props)
         this.state = {
-          username:'',
-          PersonalSignature:'',
-          head:'',
+            username: '',
+            PersonalSignature: '',
+            head: '',
         }
     }
 
@@ -33,24 +34,16 @@ export default class PersonalCenterSum extends Component {
     //             username:data.username,
     //             PersonalSignature:data.PersonalSignature,
     //             head:data.head,
-                
+
     //         })
-            
+
     //       })
     //     }
 
     render() {
         return (
-            <ScrollView style={{ height: '80%' }}
-           
-
-                onScroll={(event) => {
-                    {
-                    }
-                }}
-                scrollEnabled={false}
-            >
-                <View style={{ flex: 1, backgroundColor: "red", }}>
+            // <ScrollView style={{ height: '80%', backgroundColor: "skyblue" }}>
+                <View style={{ flex: 1, backgroundColor: "skyblue" }}>
                     {/* <ScrollView> */}
                     <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
                         {/*返回与设置 */}
@@ -66,7 +59,6 @@ export default class PersonalCenterSum extends Component {
                         </View>
                         {/* 用户信息 */}
                         <View style={[styles.userBox]}>
-
                             <View style={{ width: '40%', alignItems: "center" }}>
                                 <Image style={[styles.userHead]} source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} />
                                 <FontAwesome style={{ position: "absolute", top: 25, right: 30, zIndex: 1 }} name='camera' size={20} color="#2F3843"
@@ -75,10 +67,10 @@ export default class PersonalCenterSum extends Component {
                                     }}
                                 />
                                 <Text style={{ fontSize: 20 }}>{this.state.username}</Text>
-                                <Text style={{ color: '#999999', fontSize: 15, }}>{this.state.PersonalSignature}</Text>
+                                <Text style={{ color: '#999999', fontSize: 15, }}>{this.state.PersonalSignature}2312</Text>
                             </View>
                             <View style={{ width: '60%', alignItems: "flex-end", paddingRight: 20, }}>
-                                <View style={{ position: "absolute", top: 5, right: 0, backgroundColor: "#999999", width: 65,paddingLeft:5,paddingVertical:5, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, }}>
+                                <View style={{ position: "absolute", top: 5, right: 0, backgroundColor: "#999999", width: 65, paddingLeft: 5, paddingVertical: 5, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, }}>
                                     <Text
                                         onPress={() => {
                                             this.props.navigation.navigate("changePersonalInfoMation")
@@ -100,11 +92,13 @@ export default class PersonalCenterSum extends Component {
                             </View>
                         </View>
                     </ImageBackground>
-                    <View style={{ width: '100%', height: '80%', backgroundColor: "red" }}>
-                        <PersonalCenterNavigation />
+
+                    <View style={{ width: '100%', height: '80%', backgroundColor: "skyblue" }}>
+                        <PersonalTab />
                     </View>
                 </View>
-            </ScrollView>
+
+            // </ScrollView>
         )
     }
 }
