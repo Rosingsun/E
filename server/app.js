@@ -7,6 +7,7 @@ const JwtUtil = require('./public/utils/jwt');
 
 var usersRouter = require('./routes/users');
 var travelRouter = require('./routes/travels/travel');
+var commentRouter = require('./routes/travels/comment');
 
 var app = express();
 
@@ -58,7 +59,7 @@ app.use(function (req, res, next) {
 
 app.use('/api/users', usersRouter);
 app.use('/api/travels/travel',travelRouter);
-
+app.use('/api/travels/comment',commentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

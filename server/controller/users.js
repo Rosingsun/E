@@ -52,7 +52,7 @@ const queryAllUsers = () => {
  */
 
  const updataPersonal = (username,sex,head,PersonalSignature) =>{
-   let id = global.userInfo.id
+   let user_id = global.userInfo.user_id
    let sql = `UPDATE user SET `
    if (username) {
     sql += `username='${username}',`
@@ -67,10 +67,10 @@ if(PersonalSignature){
     sql += `PersonalSignature='${PersonalSignature}',`
 }
 sql = sql.substring(0, sql.length - 1)
-sql += ` WHERE id = ${id}`
+sql += ` WHERE user_id = ${user_id}`
 return exec(sql).then(row=>{
     if(row){
-        let personSql = `SELECT * FROM user where id=${id}`
+        let personSql = `SELECT * FROM user where user_id=${user_id}`
         return exec(personSql).then(row=>{
             return row[0] || {}
         })
@@ -85,9 +85,9 @@ return exec(sql).then(row=>{
  * @param {*} newPassword 新密码
  */
 const updataPassword = (oldPassword, newPassword) => {
-    let id = global.userInfo.id
-    let passwordSql = `SELECT * FROM user where id = ${id}`
-    let sql = `UPDATE user SET password = ${newPassword} where id = ${id}`
+    let user_id = global.userInfo.user_id
+    let passwordSql = `SELECT * FROM user where user_id = ${user_id}`
+    let sql = `UPDATE user SET password = ${newPassword} where user_id = ${user_id}`
     let sqlOldPassword = exec(passwordSql).then(row => {
         return row[0].password || ''
     })
