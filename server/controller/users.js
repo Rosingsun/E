@@ -60,8 +60,11 @@ const queryAllUsers = () => {
 if (sex > -1) {
     sql += `sex=${sex},`
 }
-if (headPortraitUrl) {
-    sql += `headPortraitUrl='${headPortraitUrl}',`
+if (head) {
+    sql += `head='${head}',`
+}
+if(PersonalSignature){
+    sql += `PersonalSignature='${PersonalSignature}',`
 }
 sql = sql.substring(0, sql.length - 1)
 sql += ` WHERE id = ${id}`
