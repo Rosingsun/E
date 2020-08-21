@@ -10,7 +10,7 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MessageDetails from '../navigation/MessageNavigation';
+import {MessageTopTab} from '../App02';
 StatusBar.setBackgroundColor("#000");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('default');
@@ -44,7 +44,7 @@ const MessageSum = ({ navigation }) => {
 
 
         <View style={{ height: '90%', width: '100%', borderBottomRightRadius: 20, borderBottomRightRadius: 20, }}>
-          <MessageDetails />
+            <MessageTopTab/>
         </View>
       </View>
     </View>

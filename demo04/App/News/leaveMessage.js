@@ -9,20 +9,15 @@ import {
   Alert,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MainText from './NewsDetails/MainText';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
   export default class  leaveMessage extends Component {
     constructor(props){
       super(props)
       this.state={
-        tabBarHeight:50,
       }
     }
 
-    static navigationOptions = {
-     Height:0,
-  };
     render(){
   return (
     <View style={[styles.container]}>
@@ -55,8 +50,7 @@ const biLi = width * scale / 1125;
                 <View style={{ position: "absolute", borderRadius: 10, right: 10, top: 10, height: 24, width: 50, backgroundColor: "#6C9575", alignItems: "center" }}>
                   <Text style={{ fontSize: 15, color: "#ffffff" }}
                     onPress={() => {
-                      // Alert.alert(this.state.disPlayState+" "+this.state.tabBarHeight)
-                      this.props.navigation.navigate('MainText',{Height:this.state.disPlayState});
+                      this.props.navigation.navigate('MainText');
                     }}
                   >回复</Text>
                 </View>

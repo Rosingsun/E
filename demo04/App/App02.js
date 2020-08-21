@@ -2,6 +2,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
@@ -12,7 +15,6 @@ import Setting from './src/page/SettingPage';
 import MessageSum from './News/MessageSum';
 //首页
 //首页顶部导航
-import MessageDetails from './navigation/MessageNavigation'
 import Search from './HomePage/detail/Ranking';
 import focus from './HomePage/focus';
 import local from './HomePage/local';
@@ -35,10 +37,12 @@ import ProductionRoute from './PersonalCenter/PersonalDetail/ProductionRoute';
 import mylevel from './PersonalCenter/PersonalDetail/myLevel';
 import renderCalendarWithCustomMarkingType from './PersonalCenter/PersonalDetail/rili';
 //消息页面
-// 消息01
-// 消息02
-// 消息03
-// 消息04
+import thumbs from './News/thumbs';
+import leaveMessage from './News/leaveMessage';
+import Message from './News/Message';
+import trade from './News/trade';
+import MainText from './News/NewsDetails/MainText';
+
 
 //定义各类导航栏的变量
 
@@ -47,12 +51,87 @@ const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 // 各类导航的编写
 //消息页面的顶部导航
-// function TabNavigation(){
-//     return(
-
-//     )
-// }
-
+// 输出，给其他页面调用
+export function MessageTopTab() {
+    return (
+      <HomaPageTabNavigation.Navigator
+        tabBarOptions={{
+          labelStyle: {
+            backgroundColor: "#fff"
+          },
+          //选中状态的选项卡的文本颜色
+          activeTintColor: "#6C9575",
+          activeTintColor: "#43949B",
+          // 未选中的选项卡的颜色
+          inactiveTintColor: "#000000",
+          adaptive: true,
+          // 导航栏状态
+          tabStyle: {
+            // backgroundColor: "red",
+          },
+          // 样式设置
+          style: {
+            backgroundColor: "#FFFFFF",
+            overflow: "hidden",
+            borderBottomRightRadius: 20,
+            borderBottomLeftRadius: 20,
+            height: 50,
+            elevation: 0,
+          },
+          //底部横条样式设置
+          indicatorStyle: {
+            height: 0,
+          },
+          iconStyle: {
+            width: '100%',
+          },
+          //显示标签和显示icon
+          showLabel: false,
+          showIcon: true,
+          tabBarVisible: false,
+          // mode:"model",
+        }}
+      >
+        <HomaPageTabNavigation.Screen
+          name="thumbs"
+          component={thumbs}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <AntDesign name={'like2'} size={28} color={color} />
+            ),
+  
+          }}
+        />
+        <HomaPageTabNavigation.Screen
+          name="leaveMessage"
+          component={leaveMessage}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <AntDesign name={'message1'} size={28} color={color} />
+            ),
+          }}
+        >
+        </HomaPageTabNavigation.Screen>
+        <HomaPageTabNavigation.Screen
+          name="Message"
+          component={Message}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Fontisto name={'email'} size={28} color={color} />
+            ),
+          }} />
+        <HomaPageTabNavigation.Screen
+          name="trade"
+          component={trade}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <FontAwesome5 name={'envelope-open-text'} size={28} color={color} />
+            ),
+          }}
+        />
+      </HomaPageTabNavigation.Navigator>
+    );
+  }
 // 底部导航
 function bottomTab() {
 
@@ -73,8 +152,6 @@ function bottomTab() {
                 marginLeft: "-1%",
                 padding: 0,
                 margin: 0,
-                // height:10,
-                // elevation:10,
             }}
             tabBarOptions={{
                 style: {
@@ -136,18 +213,16 @@ function bottomTab() {
                     ),
                 }}>
             </Tab.Screen>
-
         </Tab.Navigator>
     );
 }
-
 // 堆栈导航
 function MyStack() {
     return (
-        <Stack.Navigator
-            headerMode="none"
-        >
+        <Stack.Navigator headerMode="none">
             <Stack.Screen name="MyTabs" component={bottomTab} />
+            <Stack.Screen name="MessageTopTab" component={MessageTopTab} />
+            
             <Stack.Screen name="Search" component={Search} />
             <Stack.Screen name="BaiduMap" component={BaiduMap} />
             <Stack.Screen name="choiceCity" component={choiceCity} />
@@ -160,11 +235,16 @@ function MyStack() {
             <Stack.Screen name="changePersonalInfoMation" component={changePersonalInfoMation} />
             <Stack.Screen name="mylevel" component={mylevel} />
             <Stack.Screen name="renderCalendarWithCustomMarkingType" component={renderCalendarWithCustomMarkingType} />
+            {/* 消息页面 */}
+            <Stack.Screen name="thumbs" component={thumbs} />
+            <Stack.Screen name="Message" component={Message} />
+            <Stack.Screen name="leaveMessage" component={leaveMessage} />
+            <Stack.Screen name="trade" component={trade} />
+            <Stack.Screen name="MainText" component={MainText} />
             
         </Stack.Navigator>
     );
 }
-
 export default function App() {
     return (
         <NavigationContainer>
