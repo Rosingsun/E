@@ -12,7 +12,7 @@ import {
 import PersonalCenterNavigation from '../navigation/PersonalNavigation';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
-import {storage} from '../Accessories/storage/index'
+// import {storage} from '../Accessories/storage/index'
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -27,17 +27,17 @@ export default class PersonalCenterSum extends Component {
         }
     }
 
-    componentDidMount() {
-        storage.load('userInfo', (data) => {
-            this.setState({
-                username:data.username,
-                PersonalSignature:data.PersonalSignature,
-                head:data.head,
+    // componentDidMount() {
+    //     storage.load('userInfo', (data) => {
+    //         this.setState({
+    //             username:data.username,
+    //             PersonalSignature:data.PersonalSignature,
+    //             head:data.head,
                 
-            })
+    //         })
             
-          })
-        }
+    //       })
+    //     }
 
     render() {
         return (

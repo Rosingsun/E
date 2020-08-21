@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Text, View, StatusBar, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';

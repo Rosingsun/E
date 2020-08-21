@@ -67,7 +67,7 @@ export default class MainText extends Component {
       <View style={styles.container}>
         <View style={styles.Top}>
           <AntDesign name='left' size={32} color='#000' onPress={() => {
-            this.props.navigation.navigate('leaveMessage');
+            this.props.navigation.goBack();
           }} />
           <Text style={{ fontSize: 20, color: "#000" }}>游记正文</Text>
           <Feather name="more-horizontal" size={40} color="#000" onPress={() => {
