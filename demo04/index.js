@@ -4,8 +4,8 @@
 
 import {AppRegistry} from 'react-native';
 //正常主页
-// import App from './App/navigation/welcomeNavigation';
-import MyStack from './App/App02';
+import App from './App/navigation/welcomeNavigation';
+// import MyStack from './App/App';
 //复选框
 // import App from './App/src/page/demo01'
 
@@ -16,4 +16,4 @@ import MyStack from './App/App02';
 // import App from './App';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => MyStack);
+AppRegistry.registerComponent(appName, () => App);

@@ -5,8 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const JwtUtil = require('./public/utils/jwt');
 
-var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var travelRouter = require('./routes/travels/travel');
+var commentRouter = require('./routes/travels/comment');
 
 var app = express();
 
@@ -39,7 +40,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
-  if (req.url !== '/users/login' && req.url !== '/users/reg'){
+  if (req.url !== '/api/users/login' && req.url !== '/api/users/reg'){
       let token = req.headers.token;
       let jwt = new JwtUtil(token);
       let result = jwt.verifyToken();
@@ -56,9 +57,9 @@ app.use(function (req, res, next) {
   }
 });
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
+app.use('/api/users', usersRouter);
+app.use('/api/travels/travel',travelRouter);
+app.use('/api/travels/comment',commentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
