@@ -9,7 +9,6 @@ import {
     ScrollView,
     Alert,
 } from 'react-native';
-import PersonalCenterNavigation from '../navigation/PersonalNavigation';
 import { PersonalTab } from "../App02";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';

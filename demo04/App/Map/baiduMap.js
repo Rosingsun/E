@@ -17,6 +17,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Example from './HorizontalBanner'
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -61,7 +62,7 @@ export default class BaiduMap extends Component {
             mapType: MapTypes.NORMAL,
             zoom: 19,
             center: {
-                longitude: 116.465175,
+                longitude: 116.465171,
                 latitude: 39.938522
             },
             markers: [
@@ -183,45 +184,32 @@ export default class BaiduMap extends Component {
                         location={{ longitude: 116.465175, latitude: 39.938522 }} />
                     <Marker
                         title='中心2'
-                        location={{ longitude: 116.467176, latitude: 39.939522 }} />
+                        location={{ longitude: 116.467177, latitude: 39.939524 }} />
                     <Marker
                         title='中心3'
-                        location={{ longitude: 116.467177, latitude: 39.937524 }} />
+                        location={{ longitude: 116.467177, latitude: 39.937523 }} />
+                    <Marker
+                        title='中心4'
+                        location={{ longitude: 116.467171, latitude: 39.937524 }} />
                     <Polyline
                         stroke={{ width: 5, color: 'AA000000' }}
                         points={[
                             { longitude: 116.467176, latitude: 39.939522 },
-                            { longitude: 116.465175, latitude: 39.938522 },
+                            { longitude: 116.465177, latitude: 39.938524 },
                             { longitude: 116.467177, latitude: 39.937524 },
+                            // { longitude: 116.467177, latitude: 39.937524 },
                         ]}
                     />
                 </MapView>
 
                 {/* 底部地图滑动提示 */}
-                <View style={{ height: 240, width: "100%", }}>
+                <View style={{ height: 140, width: "100%", position: "absolute", bottom: 0, }}>
                     <View style={{ position: "absolute", height: 30, backgroundColor: "#2F3843", paddingVertical: 5, top: -35, left: 0 }}>
-                        <Text style={{ color: "#fff", fontSize: 20, lineHeight: 25 }}>大家都打卡了</Text>
+                        <Text style={{ color: "#fff", fontSize: 20, lineHeight: 25 }}>杭州西溪湿地风景区</Text>
                     </View>
-                    <ScrollView
-                        style={{ width: '100%', height: 100, }}
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                    >
-                        {
-                            imgDate.map((item) => {
-                                return (
-                                    <View style={{ marginLeft: 10 }}>
-                                        <View style={{ width: 138, height: 93 }}>
-                                            <Image style={{ height: 100, width: '100%' }} source={{ uri: item.imgUri }} />
-                                        </View>
-                                        <Text style={{ marginTop: -15 }}>距离此路线仅{item.distance}km</Text>
-                                    </View>
-                                )
-                            })
-                        }
-                    </ScrollView>
-                    <Text style={{ fontSize: 20 }}>杭州西溪湿地 </Text>
-                    <ScrollView
+                    <Example />
+                    {/* <Text style={{ fontSize: 20 }}>杭州西溪湿地 </Text> */}
+                    {/* <ScrollView
                         style={{ width: '100%', height: 100, }}
                         horizontal={false}
                         showsVerticalScrollIndicator={false}
@@ -231,13 +219,12 @@ export default class BaiduMap extends Component {
                                 return (
                                     <View style={{ justifyContent: "space-between" }}>
                                         <View style={{ width: '100%', height: 20, backgroundColor: "green" }}>
-                                            {/* <Image style={{ height: 100, width: '100%' }} source={{ uri: item.imgUri }} /> */}
                                         </View>
                                     </View>
                                 )
                             })
                         }
-                    </ScrollView>
+                    </ScrollView> */}
                 </View>
             </ScrollView>
         );
@@ -247,11 +234,11 @@ export default class BaiduMap extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#fff',
     },
     map: {
         width: width,
-        height: height - 380,
+        height: height - 90,
         marginBottom: 5,
     },
     list: {

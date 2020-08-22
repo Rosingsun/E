@@ -12,6 +12,7 @@ const { Marker, Cluster, Arc, Circle, Polyline, Polygon, InfoWindow, HeatMap } =
 //获取用户屏幕高低
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1080;
+
 //设置顶部状态栏
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);

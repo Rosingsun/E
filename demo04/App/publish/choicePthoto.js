@@ -30,16 +30,16 @@ export default class choicePhoto extends Component {
         <TouchableWithoutFeedback
           style={{ padding: 30, backgroundColor: "skyblue", color: "#fff" }}
           title="选择"
-            onPress={
-              ImagePicker.openPicker({
-                  multiple: true,
-                  enableRotationGesture:true,
-              }).then(images => {
-                  console.log(images);
-              })
-            }
-            
-          >
+          onPress={
+            ImagePicker.openPicker({
+              multiple: true,
+              enableRotationGesture: true,
+            }).then(images => {
+              this.props.navigation.navigate("spread");
+            })
+          }
+
+        >
           <Text>111</Text>
         </TouchableWithoutFeedback>
       </View>

@@ -13,7 +13,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 //底部导航栏的主要页面
 import Home from '../App/HomePage/HomePage';
 import Discovery from './DiscoveryPage/discovery';
-import Setting from './src/page/SettingPage';
+import choicePhoto from './publish/choicePthoto';
 import MessageSum from './News/MessageSum';
 //首页
 //首页顶部导航
@@ -22,6 +22,10 @@ import focus from './HomePage/focus';
 import local from './HomePage/local';
 import recommend from './HomePage/recommend';
 //发布页面
+import Section from './publish/publishDetails/Section';
+import spread from './publish/publishDetails/spread';
+import topic from './publish/publishDetails/topic';
+
 // import 
 import BaiduMap from './Map/baiduMap';
 // 发现页面
@@ -222,7 +226,7 @@ function bottomTab() {
         component={Discovery}
         options={{ tabBarLabel: '发现', tabBarIcon: ({ color }) => (<FontAwesome name={'binoculars'} size={20} color={color} />), }}>
       </Tab.Screen>
-      <Tab.Screen name="Setting" component={Setting}
+      <Tab.Screen name="choicePhoto" component={choicePhoto}
         options={{ tabBarLabel: '发一个', tabBarIcon: ({ color }) => (<FontAwesome name={'plus'} size={25} color={color} />), }} />
       <Tab.Screen name="MessageSum"
         component={MessageSum}
@@ -251,6 +255,10 @@ function MyStack() {
       <Stack.Screen name="UserAgreement" component={UserAgreement} />
       <Stack.Screen name="Privacy" component={Privacy} />
       <Stack.Screen name="renderCalendarWithCustomMarkingType" component={renderCalendarWithCustomMarkingType} />
+      {/* 发布页面详情页 */}
+      <Stack.Screen name="Section" component={Section} />
+      <Stack.Screen name="topic" component={topic} />
+      <Stack.Screen name="spread" component={spread} />
       {/* /。/消息页面 */}
       <Stack.Screen name="thumbs" component={thumbs} />
       <Stack.Screen name="Message" component={Message} />

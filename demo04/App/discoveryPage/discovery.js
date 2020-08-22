@@ -14,7 +14,7 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import MyCustomCarousel from './card'
 import ProjectsScreen from '../../lotte/cardscreen';
 import Swiper from 'react-native-swiper';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
@@ -190,9 +190,9 @@ export default class Discovery extends Component {
 
 
           {/* 第二部分 */}
-          <View style={{ width: '94%', marginTop: 20, height: 400, marginLeft: '3%', backgroundColor: "#fff", borderRadius: 15, }}>
+          <View style={{ width: '94%', marginTop: 20,paddingBottom:10, marginLeft: '3%', backgroundColor: "#fff", borderRadius: 15, }}>
             {/* title line */}
-            <View style={{ flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 10, paddingTop: 10, }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between",alignItems:'center', paddingHorizontal: 10, paddingTop: 10, }}>
               <Text>随诗打卡</Text>
               <Text
                 onPress={() => {
@@ -201,28 +201,30 @@ export default class Discovery extends Component {
               >查看更多<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10, }}>
-              <Text style={{ width: '20%', backgroundColor: this.state.One, color: "#fff", borderRadius: 3 }}
+              <Text style={{ width: '20%', textAlign:"center",backgroundColor: this.state.One, color: "#fff", borderRadius: 3 }}
                 onPress={() => {
                   this.setState({ One: '#6C9575', Two: '#6C957550', Three: '#6C957550', Four: '#6C957550' })
-                }}>  我的专属</Text>
-              <Text style={{ width: '20%', backgroundColor: this.state.Two, color: "#fff", borderRadius: 3 }}
+                }}>我的专属</Text>
+              <Text style={{ width: '20%',textAlign:"center", backgroundColor: this.state.Two, color: "#fff", borderRadius: 3 }}
                 onPress={() => {
                   this.setState({ One: '#6C957550', Two: '#6C9575', Three: '#6C957550', Four: '#6C957550' })
                 }}
-              >  历史故事</Text>
-              <Text style={{ width: '20%', backgroundColor: this.state.Three, color: "#fff", borderRadius: 3, }}
+              >历史故事</Text>
+              <Text style={{ width: '20%',textAlign:"center", backgroundColor: this.state.Three, color: "#fff", borderRadius: 3, }}
                 onPress={() => {
                   this.setState({ One: '#6C957550', Two: '#6C957550', Three: '#6C9575', Four: '#6C957550' })
                 }}
-              >  附近地点</Text>
-              <Text style={{ width: '20%', backgroundColor: this.state.Four, color: "#fff", borderRadius: 3, textAlign: "center" }}
+              >附近地点</Text>
+              <Text style={{ width: '20%',textAlign:"center", backgroundColor: this.state.Four, color: "#fff", borderRadius: 3, textAlign: "center" }}
                 onPress={() => {
                   this.setState({ One: '#6C957550', Two: '#6C957550', Three: '#6C957550', Four: '#6C9575' })
                 }}
-              >  最多人玩</Text>
+              >最多人玩</Text>
             </View>
+            {/* 卡片 */}
             <View>
-              <View style={{ height: '100%', width: '100%', overflow: "hidden" }}>
+              <MyCustomCarousel/>
+              {/* <View style={{ height: '100%', width: '100%', overflow: "hidden" }}>
                 <TouchableWithoutFeedback
                   style={{ height: '100%', width: '100%' }}
                   onPress={() => {
@@ -231,7 +233,7 @@ export default class Discovery extends Component {
                 >
                   <ProjectsScreen />
                 </TouchableWithoutFeedback>
-              </View>
+              </View> */}
             </View>
           </View>
           {/* 第三部分 */}

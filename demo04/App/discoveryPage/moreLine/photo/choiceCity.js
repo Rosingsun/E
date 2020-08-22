@@ -100,7 +100,7 @@ export default class choiceCity extends Component {
         <ScrollView showsVerticalScrollIndicator={false}>
 
 
-          <View style={styles.someTouch}>
+          {/* <View style={styles.someTouch}>
             {
               cityInfo.map((item) => {
                 return (
@@ -121,7 +121,7 @@ export default class choiceCity extends Component {
                 )
               })
             }
-          </View>
+          </View> */}
           
 
         </ScrollView>
