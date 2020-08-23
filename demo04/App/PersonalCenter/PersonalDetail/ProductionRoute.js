@@ -3,80 +3,78 @@ import { Text, View, StyleSheet, Dimensions, ScrollView, Image, StatusBar, FlatL
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 // import MFImage from "../../DiscoveryPage/moreLine/fengzhuang/fengzhuang";
-import MFImage from "../../DiscoveryPage/moreLine/fengzhuang";
+import MFImage from "../../discoveryPage/moreLine/fengzhuang";
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1080;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
-
-
 var cityInfo = [
     {
         key: 0,
         CcityName: "杭州",
         EcityName: "Hang Zhou",
-        backImgSrc: "../../DiscoveryPage/moreLine/photo/hangzhou.jpg",
+        backImgSrc: "../../discoveryPage/moreLine/photo/hangzhou.jpg",
     },
     {
         key: 1,
         CcityName: "宁波",
         EcityName: "Ning Bo",
-        backImgSrc: "../../DiscoveryPage/moreLine/photo/ningbo.jpg",
+        backImgSrc: "../../discoveryPage/moreLine/photo/ningbo.jpg",
     },
     {
         key: 2,
         CcityName: "嘉兴",
         EcityName: "Ja Xing",
-        backImgSrc: "../../DiscoveryPage/moreLine/photo/jiaxing.jpg",
+        backImgSrc: "../../discoveryPage/moreLine/photo/jiaxing.jpg",
     },
     {
         key: 3,
         CcityName: "绍兴",
         EcityName: "Shao Xing",
-        backImgSrc: "../../DiscoveryPage/moreLine/photo/shaoxing.jpg",
+        backImgSrc: "../../discoveryPage/moreLine/photo/shaoxing.jpg",
     },
     {
         key: 4,
         CcityName: "舟山",
         EcityName: "Zhou Shan",
-        backImgSrc: "../../DiscoveryPage/moreLine/photo/zhoushan.jpg",
+        backImgSrc: "../../discoveryPage/moreLine/photo/zhoushan.jpg",
     },
     {
         key: 5,
         CcityName: "温州",
         EcityName: "Wen Zhou",
-        backImgSrc: "../../DiscoveryPage/moreLine/photo/wenzhou.jpg",
+        backImgSrc: "../../discoveryPage/moreLine/photo/wenzhou.jpg",
     },
     {
         key: 6,
         CcityName: "湖州",
         EcityName: "Hu Zhou",
-        backImgSrc: "../../DiscoveryPage/moreLine/photo/huzhou.jpg",
+        backImgSrc: "../../discoveryPage/moreLine/photo/huzhou.jpg",
     },
     {
         key: 7,
         CcityName: "丽水",
         EcityName: "Li Shui",
-        backImgSrc: "../../DiscoveryPage/moreLine/photo/lishui.jpg",
+        backImgSrc: "../../discoveryPage/moreLine/photo/lishui.jpg",
     },
     {
         key: 8,
         CcityName: "金华",
         EcityName: "Jin Hua",
-        backImgSrc: "../../DiscoveryPage/moreLine/photo/jinhua.jpg",
+        backImgSrc: "../../discoveryPage/moreLine/photo/jinhua.jpg",
     },
     {
         key: 9,
         CcityName: "衢州",
         EcityName: "Qu Zhou",
-        backImgSrc: "../../DiscoveryPage/moreLine/photo/quzhou.jpg",
+        backImgSrc: "../../discoveryPage/moreLine/photo/quzhou.jpg",
     },
     {
         key: 10,
         CcityName: "台州",
         EcityName: "Tai Zhou",
-        backImgSrc: "../../DiscoveryPage/moreLine/photo/taizhou.jpg",
+        backImgSrc: "../../discoveryPage/moreLine/photo/taizhou.jpg",
     },
 ]
 export default class ProductionRoute extends Component {
@@ -115,7 +113,7 @@ export default class ProductionRoute extends Component {
                                                 this.props.navigation.navigate("Line", { cityName: item.CcityName })
                                             }}>
                                             <View style={{ height: '100%', width: '100%' }}>
-                                                <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require("../../DiscoveryPage/moreLine/photo/jinhua.jpg")} />
+                                                <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require("../../discoveryPage/moreLine/photo/jinhua.jpg")} />
                                                 <Text style={styles.photoWord} pointerEvents="none">{item.CcityName}</Text>
                                                 <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
                                             </View>

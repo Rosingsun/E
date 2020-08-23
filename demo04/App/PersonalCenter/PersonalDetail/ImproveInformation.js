@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions, ScrollView, Image, StatusBar, FlatList, ItemDivideComponent, TextInput, Alert, TouchableHighlight } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import MFImage from "../../DiscoveryPage/moreLine/fengzhuang";
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1080;
 export default class improveInformation extends Component {

@@ -12,7 +12,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 
 //底部导航栏的主要页面
 import Home from '../App/HomePage/HomePage';
-import Discovery from './DiscoveryPage/discovery';
+import Discovery from './discoveryPage/discovery';
 // import Setting from './src/page/SettingPage';
 import choicePhoto from './publish/choicePthoto';
 import MessageSum from './News/MessageSum';
@@ -26,9 +26,9 @@ import recommend from './HomePage/recommend';
 // import 
 import BaiduMap from './Map/baiduMap';
 // 发现页面
-import choiceCity from './DiscoveryPage/moreLine/choiceCity';
-import Line from './DiscoveryPage/moreLine/Line';
-import dakaAll from './DiscoveryPage/daka/dakaAll';
+import choiceCity from './discoveryPage/moreLine/choiceCity';
+import Line from './discoveryPage/moreLine/Line';
+import dakaAll from './discoveryPage/daka/dakaAll';
 import chating from './News/chating/chating';
 
 

@@ -7,7 +7,7 @@ import {
     StyleSheet,
     TextInput,
     ScrollView,
-    Image,  
+    Image,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 var topicLine = [
@@ -71,7 +71,11 @@ export default class topic extends Component {
             <View style={[styles.container]}>
                 <View style={[styles.top]}>
                     <View style={[styles.top_container]}>
-                        <FontAwesome name='angle-left' size={32} color="#000" />
+                        <FontAwesome name='angle-left' size={32} color="#000"
+                            onPress={()=>{
+                                this.props.navigation.goBack();
+                            }}
+                        />
                         <Text style={{ color: "#000" }}>你他妈关老子</Text>
                         <Text >  </Text>
                     </View>

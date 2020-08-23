@@ -113,17 +113,25 @@ export default class spread extends Component {
 
                 </View>
                 <View style={{ position: "absolute", backgroundColor: "#2F3843", alignItems: "center", justifyContent: "space-around", flexDirection: "row", height: 50, width: '100%', bottom: 0, left: 0 }}>
+                    {/* 获取图片，可能删除 */}
                     <FontAwesome name='photo' size={20} color="#fff" />
-                    <Foundation name='at-sign' size={20} color="#fff"
-                        onPress={()=>{
+                    {/* at符号 */}
+                    <Feather name='at-sign' size={20} color="#fff"
+                        onPress={() => {
                             this.props.navigation.navigate("Section")
                         }}
                     />
-                    <Feather name='md-location-sharp' size={20} color="#fff" />
+                    {/* # 符号 */}
+                    <FontAwesome name='hashtag' size={20} color="#fff"
+
+                        onPress={() => {
+                            this.props.navigation.navigate("topic")
+                        }}
+                    />
+                    {/* 标签 */}
                     <Feather name='smile' size={20} color="#fff" />
+                    {/* 定位 */}
                     <Ionicons name='location-sharp' size={20} color="#fff" />
-
-
                 </View>
             </View>
         )
