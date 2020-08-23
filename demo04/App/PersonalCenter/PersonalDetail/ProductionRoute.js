@@ -110,7 +110,7 @@ export default class ProductionRoute extends Component {
                                         <TouchableHighlight
                                             style={{ height: '100%', width: '100%' }}
                                             onPress={() => {
-                                                this.props.navigation.navigate("Line", { cityName: item.CcityName })
+                                                // this.props.navigation.navigate("Line", { cityName: item.CcityName })
                                             }}>
                                             <View style={{ height: '100%', width: '100%' }}>
                                                 <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require("../../discoveryPage/moreLine/photo/jinhua.jpg")} />

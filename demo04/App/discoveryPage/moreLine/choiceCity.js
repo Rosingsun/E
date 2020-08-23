@@ -15,67 +15,67 @@ var cityInfo = [
     key: 0,
     CcityName: "杭州",
     EcityName: "Hang Zhou",
-    backImgSrc: "./photo/hangzhou.jpg",
+    backImgSrc: require("./photo/hangzhou.jpg"),
   },
   {
     key: 1,
     CcityName: "宁波",
     EcityName: "Ning Bo",
-    backImgSrc: "./photo/ningbo.jpg",
+    backImgSrc: require("./photo/ningbo.jpg"),
   },
   {
     key: 2,
     CcityName: "嘉兴",
     EcityName: "Ja Xing",
-    backImgSrc: "./photo/jiaxing.jpg",
+    backImgSrc: require("./photo/jiaxing.jpg"),
   },
   {
     key: 3,
     CcityName: "绍兴",
     EcityName: "Shao Xing",
-    backImgSrc: "./photo/shaoxing.jpg",
+    backImgSrc: require("./photo/shaoxing.jpg"),
   },
   {
     key: 4,
     CcityName: "舟山",
     EcityName: "Zhou Shan",
-    backImgSrc: "./photo/zhoushan.jpg",
+    backImgSrc: require("./photo/zhoushan.jpg"),
   },
   {
     key: 5,
     CcityName: "温州",
     EcityName: "Wen Zhou",
-    backImgSrc: "./photo/wenzhou.jpg",
+    backImgSrc: require("./photo/wenzhou.jpg"),
   },
   {
     key: 6,
     CcityName: "湖州",
     EcityName: "Hu Zhou",
-    backImgSrc: "./photo/huzhou.jpg",
+    backImgSrc: require("./photo/huzhou.jpg"),
   },
   {
     key: 7,
     CcityName: "丽水",
     EcityName: "Li Shui",
-    backImgSrc: "./photo/lishui.jpg",
+    backImgSrc: require("./photo/lishui.jpg"),
   },
   {
     key: 8,
     CcityName: "金华",
     EcityName: "Jin Hua",
-    backImgSrc: "./photo/jinhua.jpg",
+    backImgSrc: require("./photo/jinhua.jpg"),
   },
   {
     key: 9,
     CcityName: "衢州",
     EcityName: "Qu Zhou",
-    backImgSrc: "./photo/quzhou.jpg",
+    backImgSrc: require("./photo/quzhou.jpg"),
   },
   {
     key: 10,
     CcityName: "台州",
     EcityName: "Tai Zhou",
-    backImgSrc: "./photo/taizhou.jpg",
+    backImgSrc: require("./photo/taizhou.jpg"),
   },
 ]
 export default class choiceCity extends Component {
@@ -112,7 +112,7 @@ export default class choiceCity extends Component {
                       }}
                     >
                       <View style={{ height: '100%', width: '100%' }}>
-                        <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require("./photo/jinhua.jpg")} />
+                        <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={item.backImgSrc} />
                         <Text style={styles.photoWord} pointerEvents="none">{item.CcityName}</Text>
                         <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
                       </View>
@@ -122,7 +122,7 @@ export default class choiceCity extends Component {
               })
             }
           </View>
-          
+
 
         </ScrollView>
       </View>

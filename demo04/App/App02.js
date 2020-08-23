@@ -278,6 +278,7 @@ function MyStack() {
       <Stack.Screen name="ProductionRoute" component={ProductionRoute} />
       <Stack.Screen name="dakaPlaceChoice" component={dakaPlaceChoice} />
       <Stack.Screen name="improveInformation" component={improveInformation} />
+      
     </Stack.Navigator>
   );
 }

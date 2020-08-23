@@ -10,7 +10,8 @@ import {
     Dimensions,
     FlatList,
     Animated,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    TouchableWithoutFeedbackBase
 
 } from 'react-native';
 import StarRating from 'react-native-star-rating';
@@ -38,7 +39,10 @@ export default class dakaAll extends Component {
             errInfo: null,
             demoOneValue: '',
             touchFlag: true,
-            fadeAnim: new Animated.Value(0),
+
+            fadeAnim: new Animated.Value(-(Dimensions.get('window').height / 2 - 70)),
+            Vertical: new Animated.Value(0),
+            disPlayFlag:"none",
             // fadeAnim: new Animated.Value(-Dimensions.get('window').height+),
             circlePathHeight: 400,//400-700
         }
@@ -55,20 +59,33 @@ export default class dakaAll extends Component {
     //消息框弹出
     fadeOut = () => {
         Animated.spring(this.state.fadeAnim, {
-            toValue: -200,
+            toValue: -(Dimensions.get('window').height / 2 - 70),
             duration: 400
         }).start();
     };
+
+    // 横向滑轮
+    fadeVerticalleft = () => {
+        Animated.spring(this.state.Vertical, {
+            toValue: -(Dimensions.get('window').width),
+            duration: 400
+        }).start();
+    }
+    fadeVerticalright = () => {
+        Animated.spring(this.state.Vertical, {
+            toValue: 0,
+            duration: 400
+        }).start();
+    }
     render() {
         var circlePath = Path()
             .moveTo(0, 70)
             .arc(Dimensions.get('window').width, 0, this.state.circlePathHeight);
         return (
             <View style={[styles.container]}>
-
                 <View style={[styles.top]}>
                     <View style={[styles.nav_container]}>
-                        <View style={{ flexDirection: "row" }}>
+                        <View style={{ flexDirection: "row", }}>
                             <AntDesign name={'left'} size={30} color={'#000'} onPress={() => {
                                 this.props.navigation.goBack();
                             }} />
@@ -127,39 +144,66 @@ export default class dakaAll extends Component {
                             </View>
                         </View>
                     } />
+                    
                 <TouchableWithoutFeedback
-                    style={{ width: '100%', height: '100%', backgroundColor: "skyblue", justifyContent: "center" }}
+                    style={{ width: '100%', height: '100%', justifyContent: "center" }}
                     onPress={() => {
                         if (this.state.touchFlag) {
                             this.fadeOut()
                             this.setState({ touchFlag: false })
                         } else {
                             this.fadeIn()
-                            this.setState({ touchFlag: true })
+                            this.setState({ touchFlag: false })
                         }
                     }}
                 >
-
                     {/* 底部弹窗 */}
-                    <Animated.View style={[styles.bottomCircle, { bottom: this.state.fadeAnim, width: '100%' }]}>
-                        <Surface width={'100%'} height={70} style={{ position: "absolute", top: 0, left: 0 }}>
-                            <Shape d={circlePath} style={{ elevation: 10 }} fill="#fff" stroke="#fff" strokeWidth={10} />
-                        </Surface>
-                        <View style={{ height: Dimensions.get('window').height / 2 - 70, backgroundColor: "red", marginTop: 70 }}></View>
+                    <Animated.View style={[styles.bottomCircle, { bottom: this.state.fadeAnim, width: '100%', }]}>
+                            <Surface width={'100%'} height={70} style={{ position: "absolute", top: 0, left: 0 }}>
+                                <Shape d={circlePath} fill="#fff" stroke="#fff" strokeWidth={10} />
+                            </Surface>
+                        <View style={{ position: "absolute", width: '60%', left: '20%', flexDirection: "row", top: 40, justifyContent: "space-around" }}>
+                            <Text onPress={() => { this.fadeVerticalright(); }}
+                                style={{ width: '40%', height: 40, textAlign: "center", backgroundColor: "pink" }}>111</Text>
+                            <Text onPress={() => { this.fadeVerticalleft(); }}
+                                style={{ width: '40%', height: 40, textAlign: "center", backgroundColor: "skyblue" }}>222</Text>
+                        </View>
+                        <View style={{ height: Dimensions.get('window').height / 2 - 70, marginTop: 70 }}>
+                        
+                            <View style={{ width: '200%', backgroundColor: "#fff", height: '100%', flexDirection: "row" }}>
+                                <Animated.View style={{ width: '50%', height: '100%', marginLeft: this.state.Vertical, }}>
+                                    {/* 左边的框 */}
+                                    <TouchableWithoutFeedback
+                                        onPress={() => {
+                                            Alert.alert("111");
+                                        }}>
+                                        <View style={{ height: '100%', width: '100%' }}></View>
+                                    </TouchableWithoutFeedback>
+                                </Animated.View>
+                                <Animated.View style={{ width: '50%', height: '100%', backgroundColor: "red" }}>
+                                    {/* 右边的框 */}
+                                    <TouchableWithoutFeedback
+                                        onPress={() => {
+                                            Alert.alert("222");
+                                        }}>
+                                        <View style={{ height: '100%', width: '100%' }}></View>
+                                    </TouchableWithoutFeedback>
+                                </Animated.View>
+                            </View>
+                        </View>
                     </Animated.View>
-
+                    
                 </TouchableWithoutFeedback>
-
             </View>
         )
     }
 }
 const styles = StyleSheet.create({
     bottomCircle: {
-        width: Dimensions.get('window').height,
+        // width: Dimensions.get('window').height,
         height: Dimensions.get('window').height / 2,
         position: "absolute",
-        backgroundColor: "skyblue",
+        elevation:10,
     },
     container: {
         flex: 1,
