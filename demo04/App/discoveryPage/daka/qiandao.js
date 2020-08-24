@@ -48,7 +48,7 @@ var userPicInfo = [
 
 ]
 
-export default class App extends Component {
+export default class qiandao extends Component {
 
   constructor(props) {
     super(props);

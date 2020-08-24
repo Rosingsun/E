@@ -37,7 +37,7 @@ export default class Line extends Component {
         this.refs.title.setNativeProps({
             style: {
                 opacity: 0,
-                height: 0
+                // height: 0
             },
         });
     } else {
@@ -45,7 +45,7 @@ export default class Line extends Component {
         this.refs.title.setNativeProps({
             style: {
                 opacity: 1,
-                height: 40
+                // height: 40
             },
         });
     }
@@ -159,10 +159,8 @@ export default class Line extends Component {
         </View>
         <View style={styles.list}>
           
-        <View ref='title' style={{ opacity: 1, height: 40, width: '100%', opacity: 1, marginLeft: '3%', justifyContent: 'center' }}>
-              <Text style={{ fontSize: 20, color: '#000000' }}>{cityName}</Text>
-            </View>
           <ScrollView
+            style={{paddingTop:40,}}
             onScroll={(event) => this._onScroll(event)}
           >
             <FlatList
@@ -171,7 +169,12 @@ export default class Line extends Component {
               renderItem={({ item }) => drawLine(item.longitude, item.latitude, item.place, item.id)}
             />
           </ScrollView>
+          
+        <View ref='title' style={{top:0,position:"absolute",backgroundColor:"#fff",opacity: 1, height: 40, width: '100%', opacity: 1, marginLeft: '3%', justifyContent: 'center' }}>
+              <Text style={{ fontSize: 20, color: '#000000' }}>{cityName}</Text>
+            </View>
         </View>
+        
       </View>
     );
   }
