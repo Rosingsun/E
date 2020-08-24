@@ -9,7 +9,12 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
-
+//登录欢迎页面
+import dengru from './load/dengru';
+import load from './load/load';
+import MainFadeView from './welcome/welcome';
+import Splash from './welcome/daojishi';
+import Register from'./load/register';
 //底部导航栏的主要页面
 import Home from '../App/HomePage/HomePage';
 import Discovery from './discoveryPage/discovery';
@@ -244,7 +249,15 @@ function MyStack() {
   return (
     <Stack.Navigator headerMode="none">
       {/* 底部导航栏 */}
-      <Stack.Screen name="MyTabs" component={bottomTab} />
+      
+      {/* 欢迎页面 */}
+      <Stack.Screen name="dengru" component={dengru} />
+      <Stack.Screen name="load" component={load} />
+      <Stack.Screen name="MainFadeView" component={MainFadeView} />
+      <Stack.Screen name="Splash" component={Splash} />
+      <Stack.Screen name="Register" component={Register} />
+      {/* 还未定义 */}
+      <Stack.Screen name="bottomTab" component={bottomTab} />
       <Stack.Screen name="MessageTopTab" component={MessageTopTab} />
       <Stack.Screen name="Search" component={Search} />
       <Stack.Screen name="BaiduMap" component={BaiduMap} />
@@ -255,6 +268,7 @@ function MyStack() {
       <Stack.Screen name="UserAgreement" component={UserAgreement} />
       <Stack.Screen name="Privacy" component={Privacy} />
       <Stack.Screen name="renderCalendarWithCustomMarkingType" component={renderCalendarWithCustomMarkingType} />
+
       {/* 发布页面详情页 */}
       <Stack.Screen name="Section" component={Section} />
       <Stack.Screen name="topic" component={topic} />

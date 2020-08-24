@@ -12,26 +12,13 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ImagePicker from 'react-native-image-crop-picker';
 import Picker from 'react-native-picker';
-// import {storage} from '../../Accessories/storage/index'
+import {storage} from '../../Accessories/storage/index'
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
 
 //底部选择框
 let data = ['男', '女'];
-Picker.init({
-    pickerData: data,
-    selectedValue: [59],
-    onPickerConfirm: data => {
-        console.log(data);
-    },
-    onPickerCancel: data => {
-        console.log(data);
-    },
-    onPickerSelect: data => {
-        console.log(data);
-    }
-});
 
 
 export default class changePersonalInfoMation extends Component {
@@ -40,19 +27,40 @@ export default class changePersonalInfoMation extends Component {
         this.state = {
             PersonalSignature: "写一段话介绍自己吧！",
             username: "用户名",
+            avatarSource:'',
             
         }
     }
-    // componentDidMount() {
-    //     storage.load('userInfo', (data) => {
-    //         this.setState({
-    //             username:data.username,
-    //             PersonalSignature:data.PersonalSignature,
-    //             head:data.head,  
-    //         })
+    componentDidMount() {
+        storage.load('userInfo', (data) => {
+            this.setState({
+                username:data.username,
+                PersonalSignature:data.PersonalSignature,
+                head:data.head,  
+            })
             
-    //       })
-    //     }
+          })
+        }
+    _fetchImage(image) {
+        
+        let url = "http://192.168.56.1:3000/users/updataPersonal"
+        let head = {uri: image.path, type: 'multipart/form-data', name:'image.png' };
+    
+        let formData = new FormData();
+        formData.append('file', head); // 这里的 file 要与后台名字对应。
+    
+        fetch(url,{
+            method:'POST',
+            headers:{
+                'Content-Type':'multipart/form-data',
+            },
+            body:formData,
+        }).then(function (response) {
+            console.log("response",response);
+            return response.json();
+        })
+    }
+
     render() {
         return (
             <View style={[styles.container]}>
@@ -71,7 +79,7 @@ export default class changePersonalInfoMation extends Component {
                     </View>
                 </View>
                 <View style={{ width: '100%', height: '26%', justifyContent: "center", alignItems: "center" }}>
-                    <Image style={{ height: 100, width: 100, borderRadius: 50 }} source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/99/63/5f2a55dd406ec_610.jpg!/fw/260/quality/90/unsharp/true/compress/true" }} />
+                    <Image style={{ height: 100, width: 100, borderRadius: 50 }} source={this.state.avatarSource} />
                     <Text style={{ color: "#999999", marginTop: 10 }}
                         onPress={() => {
                             // 从本地相册选择单幅图像
@@ -82,8 +90,14 @@ export default class changePersonalInfoMation extends Component {
                                 height: 400,
                                 cropping: true,
                                 // showCropGuidelines :true
-                            }).then(images => {
-                                console.log(images);
+                            }).then(image => {
+                                let source = {uri: image.path};
+                                // console.log(images);
+                                this._fetchImage(image);
+
+                                this.setState({
+                                   avatarSource: source
+                                });
                             });
                         }}
                     >点击更新图像</Text>
