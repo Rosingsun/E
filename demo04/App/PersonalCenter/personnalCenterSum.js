@@ -6,7 +6,6 @@ import {
     StatusBar,
     Image,
     StyleSheet,
-    ScrollView,
     Alert,
 } from 'react-native';
 import { PersonalTab } from "../App02";

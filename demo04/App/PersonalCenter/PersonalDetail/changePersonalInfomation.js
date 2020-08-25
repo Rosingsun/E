@@ -43,7 +43,7 @@ export default class changePersonalInfoMation extends Component {
         }
     _fetchImage(image) {
         
-        let url = "http://192.168.56.1:3000/users/updataPersonal"
+        let url = "http://192.168.56.1:3000/api/users/updataPersonal"
         let head = {uri: image.path, type: 'multipart/form-data', name:'image.png' };
     
         let formData = new FormData();
@@ -72,7 +72,9 @@ export default class changePersonalInfoMation extends Component {
                         }} />
                         {/* </View> */}
                         <Text style={{ color: "#000", fontSize: 20, marginRight: 25 }}>编辑资料</Text>
-                        <Text style={{ color: "#000", fontSize: 15, marginRight: 25 }}>保存</Text>
+                        <Text style={{ color: "#000", fontSize: 15, marginRight: 25 }} onPress={()=>{
+                            this.props.navigation.goBack();
+                        }}>保存</Text>
                         {/* <View>
 
                         </View> */}

@@ -38,7 +38,7 @@ export default class Register extends Component {
     };
     _onClickRegister = () => {
         var navigation = this.props.navigation;
-        fetch('http://192.168.56.1:3000/users/reg', {
+        fetch('http://192.168.56.1:3000/api/users/reg', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
