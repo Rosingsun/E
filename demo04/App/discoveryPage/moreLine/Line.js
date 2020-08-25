@@ -21,6 +21,25 @@ StatusBar.setBarStyle('dark-content');
 //主要的函数
 export default function Line({ route, navigation }) {
   const { cityName } = route.params;
+  function _onScroll(event) {
+    let y = event.nativeEvent.contentOffset.y;
+    if (this.state.oldPostion <y) {
+        this.state.oldPostion=y;
+        this.refs.title.setNativeProps({
+            style: {
+                opacity: 0,
+            },
+        });
+    } else {
+        this.state.oldPostion=y;
+        this.refs.title.setNativeProps({
+            style: {
+                opacity: 1,
+            },
+        });
+    }
+}
+
   return (
     <View style={styles.container}>
       <View style={styles.topStyle}>
