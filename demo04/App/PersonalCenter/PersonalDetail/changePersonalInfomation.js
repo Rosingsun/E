@@ -16,7 +16,6 @@ import {storage} from '../../Accessories/storage/index'
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
-
 //底部选择框
 let data = ['男', '女'];
 

@@ -97,9 +97,10 @@ export default class MyCustomCarousel extends PureComponent {
             // <View style={{ width: '80%', height:370, }}>
             //     {/* 此高度要和下面第一个VIEW的高度一样哦，不然alart点不出来 */}
                 <TouchableOpacity style={{ width: '80%', height:400,backgroundColor: 'transparent',justifyContent:'center', marginLeft: '10%', }}
-                    activeOpacity={1}
+                    activeOpacity={0}
                     onPress={() => {
                         Alert.alert(item.title)
+                        this.props.navigation.navigate("qiandao");
 
                     }}>
 

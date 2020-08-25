@@ -14,67 +14,67 @@ var cityInfo = [
         key: 0,
         CcityName: "杭州",
         EcityName: "Hang Zhou",
-        backImgSrc: "../../discoveryPage/moreLine/photo/hangzhou.jpg",
+        backImgSrc: require("../../discoveryPage/moreLine/photo/hangzhou.jpg"),
     },
     {
         key: 1,
         CcityName: "宁波",
         EcityName: "Ning Bo",
-        backImgSrc: "../../discoveryPage/moreLine/photo/ningbo.jpg",
+        backImgSrc: require("../../discoveryPage/moreLine/photo/ningbo.jpg"),
     },
     {
         key: 2,
         CcityName: "嘉兴",
-        EcityName: "Ja Xing",
-        backImgSrc: "../../discoveryPage/moreLine/photo/jiaxing.jpg",
+        EcityName: "Jia Xing",
+        backImgSrc: require("../../discoveryPage/moreLine/photo/jiaxing.jpg"),
     },
     {
         key: 3,
         CcityName: "绍兴",
         EcityName: "Shao Xing",
-        backImgSrc: "../../discoveryPage/moreLine/photo/shaoxing.jpg",
+        backImgSrc: require("../../discoveryPage/moreLine/photo/shaoxing.jpg"),
     },
     {
         key: 4,
         CcityName: "舟山",
         EcityName: "Zhou Shan",
-        backImgSrc: "../../discoveryPage/moreLine/photo/zhoushan.jpg",
+        backImgSrc: require("../../discoveryPage/moreLine/photo/zhoushan.jpg"),
     },
     {
         key: 5,
         CcityName: "温州",
         EcityName: "Wen Zhou",
-        backImgSrc: "../../discoveryPage/moreLine/photo/wenzhou.jpg",
+        backImgSrc: require("../../discoveryPage/moreLine/photo/wenzhou.jpg"),
     },
     {
         key: 6,
         CcityName: "湖州",
         EcityName: "Hu Zhou",
-        backImgSrc: "../../discoveryPage/moreLine/photo/huzhou.jpg",
+        backImgSrc: require("../../discoveryPage/moreLine/photo/huzhou.jpg"),
     },
     {
         key: 7,
         CcityName: "丽水",
         EcityName: "Li Shui",
-        backImgSrc: "../../discoveryPage/moreLine/photo/lishui.jpg",
+        backImgSrc: require("../../discoveryPage/moreLine/photo/lishui.jpg"),
     },
     {
         key: 8,
         CcityName: "金华",
         EcityName: "Jin Hua",
-        backImgSrc: "../../discoveryPage/moreLine/photo/jinhua.jpg",
+        backImgSrc: require("../../discoveryPage/moreLine/photo/jinhua.jpg"),
     },
     {
         key: 9,
         CcityName: "衢州",
         EcityName: "Qu Zhou",
-        backImgSrc: "../../discoveryPage/moreLine/photo/quzhou.jpg",
+        backImgSrc: require("../../discoveryPage/moreLine/photo/quzhou.jpg"),
     },
     {
         key: 10,
         CcityName: "台州",
         EcityName: "Tai Zhou",
-        backImgSrc: "../../discoveryPage/moreLine/photo/taizhou.jpg",
+        backImgSrc: require("../../discoveryPage/moreLine/photo/taizhou.jpg"),
     },
 ]
 export default class ProductionRoute extends Component {
@@ -94,11 +94,11 @@ export default class ProductionRoute extends Component {
                     <AntDesign name={'left'} size={32} color='#000000' onPress={() => {
                         this.props.navigation.goBack()
                     }} />
-                    <Text style={{ fontSize: 20, color: '#000000',marginLeft:'12%' }}>选择城市</Text>
-                    <Text style={{ fontSize: 12, color: '#fff',backgroundColor:"#6C9575",borderRadius:15,padding:2,paddingHorizontal:5}}
-                    onPress={()=>{
-                        this.props.navigation.navigate("dakaPlaceChoice")
-                    }}
+                    <Text style={{ fontSize: 20, color: '#000000', marginLeft: '12%' }}>选择城市</Text>
+                    <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, padding: 2, paddingHorizontal: 5 }}
+                        onPress={() => {
+                            this.props.navigation.navigate("dakaPlaceChoice")
+                        }}
                     >下一步(1/3)</Text>
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false}>
@@ -113,7 +113,7 @@ export default class ProductionRoute extends Component {
                                                 // this.props.navigation.navigate("Line", { cityName: item.CcityName })
                                             }}>
                                             <View style={{ height: '100%', width: '100%' }}>
-                                                <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={require("../../discoveryPage/moreLine/photo/jinhua.jpg")} />
+                                                <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={item.backImgSrc} />
                                                 <Text style={styles.photoWord} pointerEvents="none">{item.CcityName}</Text>
                                                 <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
                                             </View>
@@ -140,13 +140,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         // justifyContent:"space-between",
-        justifyContent:"space-between",
+        justifyContent: "space-between",
         flexDirection: 'row',
         elevation: 10,
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,
-        width:'100%',
-        backgroundColor:"#fff"
+        width: '100%',
+        backgroundColor: "#fff"
     },
     Citystyle: {
         width: "94%",

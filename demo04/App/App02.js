@@ -38,8 +38,8 @@ import choiceCity from './discoveryPage/moreLine/choiceCity';
 import Line from './discoveryPage/moreLine/Line';
 import dakaAll from './discoveryPage/daka/dakaAll';
 import chating from './News/chating/chating';
-
-
+import qiandao from './discoveryPage/daka/qiandao';
+import MyCustomCarousel from './discoveryPage/card';
 //个人中心页面
 import Eline from './PersonalCenter/Eline';
 import Exianlu from './PersonalCenter/Exianlu';
@@ -281,6 +281,7 @@ function MyStack() {
       <Stack.Screen name="MainText" component={MainText} />
       {/* /。。/消息页面详情 */}
       <Stack.Screen name="chating" component={chating} />
+
       {/* /。/个人中心页面 */}
       <Stack.Screen name="Eline" component={Eline} />
       <Stack.Screen name="Exianlu" component={Exianlu} />
@@ -292,6 +293,9 @@ function MyStack() {
       <Stack.Screen name="ProductionRoute" component={ProductionRoute} />
       <Stack.Screen name="dakaPlaceChoice" component={dakaPlaceChoice} />
       <Stack.Screen name="improveInformation" component={improveInformation} />
+      {/* 发现 */}
+      <Stack.Screen name="qiandao" component={qiandao} />
+      <Stack.Screen name="MyCustomCarousel" component={MyCustomCarousel} />
       
     </Stack.Navigator>
   );

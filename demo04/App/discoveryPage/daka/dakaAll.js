@@ -153,7 +153,7 @@ export default class dakaAll extends Component {
                             this.setState({ touchFlag: false })
                         } else {
                             this.fadeIn()
-                            this.setState({ touchFlag: false })
+                            this.setState({ touchFlag: true })
                         }
                     }}
                 >
@@ -162,14 +162,16 @@ export default class dakaAll extends Component {
                             <Surface width={'100%'} height={70} style={{ position: "absolute", top: 0, left: 0 }}>
                                 <Shape d={circlePath} fill="#fff" stroke="#fff" strokeWidth={10} />
                             </Surface>
-                        <View style={{ position: "absolute", width: '60%', left: '20%', flexDirection: "row", top: 40, justifyContent: "space-around" }}>
+                        <View style={{ height: Dimensions.get('window').height / 2 - 70, marginTop: 70 }}>
+                        
+                        <View style={{width: '100%',backgroundColor:"#fff", flexDirection: "row", top: 0,zIndex:10, }}>
+                            <View style={{width:'60%',flexDirection:"row",backgroundColor:"#000",justifyContent:"space-around",marginLeft:"20%"}}>
                             <Text onPress={() => { this.fadeVerticalright(); }}
                                 style={{ width: '40%', height: 40, textAlign: "center", backgroundColor: "pink" }}>111</Text>
                             <Text onPress={() => { this.fadeVerticalleft(); }}
                                 style={{ width: '40%', height: 40, textAlign: "center", backgroundColor: "skyblue" }}>222</Text>
+                                </View>
                         </View>
-                        <View style={{ height: Dimensions.get('window').height / 2 - 70, marginTop: 70 }}>
-                        
                             <View style={{ width: '200%', backgroundColor: "#fff", height: '100%', flexDirection: "row" }}>
                                 <Animated.View style={{ width: '50%', height: '100%', marginLeft: this.state.Vertical, }}>
                                     {/* 左边的框 */}
@@ -200,7 +202,7 @@ export default class dakaAll extends Component {
 }
 const styles = StyleSheet.create({
     bottomCircle: {
-        // width: Dimensions.get('window').height,
+        width: Dimensions.get('window').height,
         height: Dimensions.get('window').height / 2,
         position: "absolute",
         elevation:10,

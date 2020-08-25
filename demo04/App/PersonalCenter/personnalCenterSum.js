@@ -23,6 +23,7 @@ export default class PersonalCenterSum extends Component {
             username: '',
             PersonalSignature: '',
             head: '',
+            scrollowAble: false,
         }
     }
 
@@ -38,9 +39,39 @@ export default class PersonalCenterSum extends Component {
           })
         }
 
+    _onScroll(event) {
+        let y = event.nativeEvent.contentOffset.y;
+        console.log(y);
+        Alert.alert("111")
+        if (y == 200) {
+            this.setState = { scrollowAble: false }
+        }
+        // if (this.state.oldPostion <y) {
+        //     this.state.oldPostion=y;
+        //     this.refs.title.setNativeProps({
+        //         style: {
+        //             opacity: 0,
+        //             // height: 0
+        //         },
+        //     });
+        // } else {
+        //     this.state.oldPostion=y;
+        //     this.refs.title.setNativeProps({
+        //         style: {
+        //             opacity: 1,
+        //             // height: 40
+        //         },
+        //     });
+        // }
+    }
     render() {
         return (
-            // <ScrollView style={{ height: '80%', backgroundColor: "skyblue" }}>
+            <ScrollView
+                onScroll={(event) => this._onScroll(event)}
+                style={{ height: '80%', backgroundColor: "skyblue" }}
+                scrollEnabled={this.state.scrollowAble}
+
+            >
                 <View style={{ flex: 1, backgroundColor: "skyblue" }}>
                     {/* <ScrollView> */}
                     <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
@@ -96,7 +127,7 @@ export default class PersonalCenterSum extends Component {
                     </View>
                 </View>
 
-            // </ScrollView>
+            </ScrollView>
         )
     }
 }
