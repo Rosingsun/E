@@ -22,7 +22,7 @@ StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
-export default class Search extends Component {
+export default class load extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,7 +33,7 @@ export default class Search extends Component {
       
     _onClickLogin = () => {
         var navigation=this.props.navigation; 
-        fetch('http://192.168.56.1:3000/users/login', {
+        fetch('http://192.168.56.1:3000/api/users/login', {
                 method: 'POST',
                 credentials: "include",
                 headers: {
@@ -48,9 +48,8 @@ export default class Search extends Component {
                 return res.json();
             }).then(function (json) {
                 if (json.errno == 0) {
-                    //  console.log(json)
                      let obj = {}
-                     obj.id = json.data.id
+                     obj.user_id = json.data.user_id
                      obj.username = json.data.username
                      obj.PersonalSignature = json.data.PersonalSignature
                      obj.token = json.data.token
@@ -59,7 +58,7 @@ export default class Search extends Component {
                      
                         // 登录成功
                         //  console.log(json)
-                        navigation.navigate("App");
+                        navigation.navigate("bottomTab");
                         alert("成功")
                 }else if (json.errno == -1) {
                     alert("用户名或密码错误")

@@ -6,13 +6,12 @@ import {
     StatusBar,
     Image,
     StyleSheet,
-    ScrollView,
     Alert,
 } from 'react-native';
 import { PersonalTab } from "../App02";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
-// import {storage} from '../Accessories/storage/index'
+import {storage} from '../Accessories/storage/index'
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -27,6 +26,19 @@ export default class PersonalCenterSum extends Component {
             scrollowAble: false,
         }
     }
+
+    componentDidMount() {
+        storage.load('userInfo', (data) => {
+            this.setState({
+                username:data.username,
+                PersonalSignature:data.PersonalSignature,
+                head:data.head,
+
+            })
+
+          })
+        }
+
     _onScroll(event) {
         let y = event.nativeEvent.contentOffset.y;
         console.log(y);
