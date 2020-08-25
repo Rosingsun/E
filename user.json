@@ -1,0 +1,58 @@
+{
+  "RECORDS": [
+    {
+      "user_id": "1",
+      "uid": "yunsheng",
+      "username": "杰哥",
+      "password": "123456789",
+      "head": "upload_2b302f9d911ebdfa38f95c76f7e8b3b0",
+      "sex": "0",
+      "PersonalSignature": "爱是一道光"
+    },
+    {
+      "user_id": "2",
+      "uid": "admino",
+      "username": "云生",
+      "password": "1234568",
+      "head": "",
+      "sex": "1",
+      "PersonalSignature": ""
+    },
+    {
+      "user_id": "3",
+      "uid": "yunsheng999",
+      "username": "",
+      "password": "1234567890d",
+      "head": "",
+      "sex": "1",
+      "PersonalSignature": ""
+    },
+    {
+      "user_id": "4",
+      "uid": "zhangsan",
+      "username": "",
+      "password": "147258",
+      "head": "",
+      "sex": "0",
+      "PersonalSignature": ""
+    },
+    {
+      "user_id": "5",
+      "uid": "flskadhjdg",
+      "username": "",
+      "password": "147258",
+      "head": "",
+      "sex": "0",
+      "PersonalSignature": ""
+    },
+    {
+      "user_id": "6",
+      "uid": "999loin",
+      "username": "",
+      "password": "1234567890",
+      "head": "",
+      "sex": "1",
+      "PersonalSignature": ""
+    }
+  ]
+}

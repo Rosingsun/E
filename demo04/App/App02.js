@@ -9,7 +9,12 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
-
+//登录欢迎页面
+import dengru from './load/dengru';
+import load from './load/load';
+import MainFadeView from './welcome/welcome';
+import Splash from './welcome/daojishi';
+import Register from'./load/register';
 //底部导航栏的主要页面
 import Home from '../App/HomePage/HomePage';
 import Discovery from './discoveryPage/discovery';
@@ -33,8 +38,8 @@ import choiceCity from './discoveryPage/moreLine/choiceCity';
 import Line from './discoveryPage/moreLine/Line';
 import dakaAll from './discoveryPage/daka/dakaAll';
 import chating from './News/chating/chating';
-
-
+import qiandao from './discoveryPage/daka/qiandao';
+import MyCustomCarousel from './discoveryPage/card';
 //个人中心页面
 import Eline from './PersonalCenter/Eline';
 import Exianlu from './PersonalCenter/Exianlu';
@@ -244,7 +249,15 @@ function MyStack() {
   return (
     <Stack.Navigator headerMode="none">
       {/* 底部导航栏 */}
-      <Stack.Screen name="MyTabs" component={bottomTab} />
+      
+      {/* 欢迎页面 */}
+      <Stack.Screen name="dengru" component={dengru} />
+      <Stack.Screen name="load" component={load} />
+      <Stack.Screen name="MainFadeView" component={MainFadeView} />
+      <Stack.Screen name="Splash" component={Splash} />
+      <Stack.Screen name="Register" component={Register} />
+      {/* 还未定义 */}
+      <Stack.Screen name="bottomTab" component={bottomTab} />
       <Stack.Screen name="MessageTopTab" component={MessageTopTab} />
       <Stack.Screen name="Search" component={Search} />
       <Stack.Screen name="BaiduMap" component={BaiduMap} />
@@ -255,6 +268,7 @@ function MyStack() {
       <Stack.Screen name="UserAgreement" component={UserAgreement} />
       <Stack.Screen name="Privacy" component={Privacy} />
       <Stack.Screen name="renderCalendarWithCustomMarkingType" component={renderCalendarWithCustomMarkingType} />
+
       {/* 发布页面详情页 */}
       <Stack.Screen name="Section" component={Section} />
       <Stack.Screen name="topic" component={topic} />
@@ -267,6 +281,7 @@ function MyStack() {
       <Stack.Screen name="MainText" component={MainText} />
       {/* /。。/消息页面详情 */}
       <Stack.Screen name="chating" component={chating} />
+
       {/* /。/个人中心页面 */}
       <Stack.Screen name="Eline" component={Eline} />
       <Stack.Screen name="Exianlu" component={Exianlu} />
@@ -278,6 +293,9 @@ function MyStack() {
       <Stack.Screen name="ProductionRoute" component={ProductionRoute} />
       <Stack.Screen name="dakaPlaceChoice" component={dakaPlaceChoice} />
       <Stack.Screen name="improveInformation" component={improveInformation} />
+      {/* 发现 */}
+      <Stack.Screen name="qiandao" component={qiandao} />
+      <Stack.Screen name="MyCustomCarousel" component={MyCustomCarousel} />
       
     </Stack.Navigator>
   );

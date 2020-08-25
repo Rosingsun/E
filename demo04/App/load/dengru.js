@@ -22,7 +22,7 @@ export default function dengru({navigation}) {
                     <View style={{ paddingTop: 60, width: 40 }}>
                             <FontAwesome name='angle-left' size={30} color="white" backgroundColor=" #43949B00 "
                             onPress={()=>{
-                                navigation.navigate('MainFadeView')
+                                navigation.navigate('bottomTab')
                             }}
                             />
                     </View>
@@ -38,7 +38,7 @@ export default function dengru({navigation}) {
                             <TouchableHighlight activeOpacity={0.5}
                                 style={[styles.touchButtonup]}
                                 onPress={() => { 
-                                    navigation.navigate('Search')
+                                    navigation.navigate('load')
                                  }}
                                 >
                                 <Text style={{ fontSize: 20, color: '#2F3843', textAlign: 'center' }}>登入</Text>

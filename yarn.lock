@@ -2,3 +2,7 @@
 # yarn lockfile v1
 
 
+react-native-image-picker@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.npm.taobao.org/react-native-image-picker/download/react-native-image-picker-2.3.3.tgz#eaacd4a1ed9e9887613be31f0765478ca2f18a51"
+  integrity sha1-6qzUoe2emIdhO+MfB2VHjKLxilE=

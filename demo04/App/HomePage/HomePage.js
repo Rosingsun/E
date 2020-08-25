@@ -19,13 +19,37 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Details from '../navigation/HomePageNavigation';
+import {
+  MapView,
+  MapTypes,
+  Geolocation
+} from 'react-native-baidu-map';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
 export default class Home extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      Gps: '',
+    };
+  }
+  //获取地理位置
+  _Gps() {
+    Geolocation.getCurrentPosition()
+      .then(data => {
+        console.log('getCurrentPosition', data);
+        this.setState({ Gps: data.city });
+      })
+      .catch(e => {
+        console.warn(e, 'error');
+      })
+  }
+
   render() {
+    this._Gps()
     return (
       //导入底部和顶部组件
       <View style={[styles.container]}>
@@ -34,7 +58,7 @@ export default class Home extends Component {
           <View style={[styles.nav_container]}>
             <View style={{ flexDirection: "row" }}>
               <Ionicons name={'md-location-sharp'} size={30} color={'#000'} />
-              <Text style={{ lineHeight: 30, marginLeft: 0, color: "#000", fontWeight: "bold" }}>杭州</Text>
+              <Text style={{ lineHeight: 30, marginLeft: 0, color: "#000", fontWeight: "bold" }}>{this.state.Gps}</Text>
             </View>
             <View style={[styles.inputBox]}>
               <TextInput
@@ -63,11 +87,11 @@ export default class Home extends Component {
               </View>
               {/* 1-2排行框 */}
               <View style={{ flexDirection: "row", width: '100%' }}>
-                <TouchableWithoutFeedback 
-                    onPress={()=>{
-                      alert("you want to change your page")
-                    }}
-                  >
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    alert("you want to change your page")
+                  }}
+                >
                   <View style={{ width: '49%', height: '100%' }}>
                     <ImageBackground style={{ height: 110, marginTop: 10, width: '100%', borderRadius: 3 }} source={require('../img/Photo/hangzhou.jpg')} />
                     <Image source={require("../img/dakaBottom.png")} style={{ height: '50%', width: '100%', position: "absolute", bottom: 0, }}></Image>
@@ -213,10 +237,11 @@ const styles = StyleSheet.create({
     flex: 0.7,
     marginTop: '8%',
     flexDirection: "row",
-    width: "90%",
+    width: "96%",
     justifyContent: "space-between",
     alignItems: "center",
-    marginLeft: "5%",
+    marginLeft: "3%",
+    backgroundColor:"pink"
   },
 });
 
