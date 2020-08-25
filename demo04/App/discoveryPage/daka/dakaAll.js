@@ -11,7 +11,8 @@ import {
     FlatList,
     Animated,
     TouchableWithoutFeedback,
-    TouchableWithoutFeedbackBase
+    TouchableWithoutFeedbackBase,
+    ScrollView
 
 } from 'react-native';
 import StarRating from 'react-native-star-rating';
@@ -26,6 +27,8 @@ import {
     Pattern, // 填充图片
     ClippingRectangle, // 剪辑
 } from '@react-native-community/art';
+// 单选
+import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 // 定义路径
@@ -39,10 +42,9 @@ export default class dakaAll extends Component {
             errInfo: null,
             demoOneValue: '',
             touchFlag: true,
-
-            fadeAnim: new Animated.Value(-(Dimensions.get('window').height / 2 - 70)),
+            fadeAnim: new Animated.Value(-(Dimensions.get('window').height / 1.8 - 70)),
             Vertical: new Animated.Value(0),
-            disPlayFlag:"none",
+            disPlayFlag: "none",
             // fadeAnim: new Animated.Value(-Dimensions.get('window').height+),
             circlePathHeight: 400,//400-700
         }
@@ -59,7 +61,7 @@ export default class dakaAll extends Component {
     //消息框弹出
     fadeOut = () => {
         Animated.spring(this.state.fadeAnim, {
-            toValue: -(Dimensions.get('window').height / 2 - 70),
+            toValue: -(Dimensions.get('window').height / 1.8 - 70),
             duration: 400
         }).start();
     };
@@ -77,10 +79,18 @@ export default class dakaAll extends Component {
             duration: 400
         }).start();
     }
+
     render() {
         var circlePath = Path()
             .moveTo(0, 70)
             .arc(Dimensions.get('window').width, 0, this.state.circlePathHeight);
+        var CityName = [
+            { name: "杭州" },
+            { name: "杭州" },
+            { name: "杭州" },
+            { name: "杭州" },
+            { name: "杭州" }
+        ]
         return (
             <View style={[styles.container]}>
                 <View style={[styles.top]}>
@@ -144,45 +154,55 @@ export default class dakaAll extends Component {
                             </View>
                         </View>
                     } />
-                    
+
                 <TouchableWithoutFeedback
                     style={{ width: '100%', height: '100%', justifyContent: "center" }}
                     onPress={() => {
                         if (this.state.touchFlag) {
                             this.fadeOut()
-                            this.setState({ touchFlag: false })
+                            this.setState({ touchFlag: false, circlePathHeight: 400 })
                         } else {
                             this.fadeIn()
-                            this.setState({ touchFlag: true })
+                            this.setState({ touchFlag: true, circlePathHeight: 700 })
                         }
                     }}
                 >
                     {/* 底部弹窗 */}
                     <Animated.View style={[styles.bottomCircle, { bottom: this.state.fadeAnim, width: '100%', }]}>
-                            <Surface width={'100%'} height={70} style={{ position: "absolute", top: 0, left: 0 }}>
-                                <Shape d={circlePath} fill="#fff" stroke="#fff" strokeWidth={10} />
-                            </Surface>
+                        <Surface width={'100%'} height={70} style={{ position: "absolute", top: 0, left: 0 }}>
+                            <Shape d={circlePath} fill="#fff" stroke="#fff" strokeWidth={10} />
+                        </Surface>
                         <View style={{ height: Dimensions.get('window').height / 2 - 70, marginTop: 70 }}>
-                        
-                        <View style={{width: '100%',backgroundColor:"#fff", flexDirection: "row", top: 0,zIndex:10, }}>
-                            <View style={{width:'60%',flexDirection:"row",backgroundColor:"#000",justifyContent:"space-around",marginLeft:"20%"}}>
-                            <Text onPress={() => { this.fadeVerticalright(); }}
-                                style={{ width: '40%', height: 40, textAlign: "center", backgroundColor: "pink" }}>111</Text>
-                            <Text onPress={() => { this.fadeVerticalleft(); }}
-                                style={{ width: '40%', height: 40, textAlign: "center", backgroundColor: "skyblue" }}>222</Text>
+
+                            <View style={{ width: '100%', backgroundColor: "#fff", flexDirection: "row", top: 0, zIndex: 10, }}>
+                                <View style={{ width: '60%', flexDirection: "row", justifyContent: "space-around", marginLeft: "20%" }}>
+                                    <Text onPress={() => { this.fadeVerticalright(); }}
+                                        style={{ width: '40%', height: 40, textAlign: "center" }}>全部地点</Text>
+                                    <Text onPress={() => { this.fadeVerticalleft(); }}
+                                        style={{ width: '40%', height: 40, textAlign: "center" }}>全部种类</Text>
                                 </View>
-                        </View>
+                            </View>
                             <View style={{ width: '200%', backgroundColor: "#fff", height: '100%', flexDirection: "row" }}>
                                 <Animated.View style={{ width: '50%', height: '100%', marginLeft: this.state.Vertical, }}>
-                                    {/* 左边的框 */}
-                                    <TouchableWithoutFeedback
-                                        onPress={() => {
-                                            Alert.alert("111");
-                                        }}>
-                                        <View style={{ height: '100%', width: '100%' }}></View>
-                                    </TouchableWithoutFeedback>
+                                    <View style={{ height: '100%', width: '100%' }}>
+                                        <TouchableWithoutFeedback>
+                                            <ScrollView style={{ height: '100%', width: "100%", backgroundColor: "#efefef" }}>
+                                                <RadioGroup style={{}} onSelect={(index, value) => console.log(index)} >
+                                                    {
+                                                        CityName.map((item) => {
+                                                            return (
+                                                                <View style={{ padding: 10, marginTop: 20, borderRadius: 20, width: '90%', marginLeft: "5%", backgroundColor: "#fff" }}>
+                                                                    <Text>{item.name}</Text>
+                                                                </View>
+                                                            )
+                                                        })
+                                                    }
+                                                </RadioGroup>
+                                            </ScrollView>
+                                        </TouchableWithoutFeedback>
+                                    </View>
                                 </Animated.View>
-                                <Animated.View style={{ width: '50%', height: '100%', backgroundColor: "red" }}>
+                                <Animated.View style={{ width: '50%', height: '100%', }}>
                                     {/* 右边的框 */}
                                     <TouchableWithoutFeedback
                                         onPress={() => {
@@ -194,7 +214,7 @@ export default class dakaAll extends Component {
                             </View>
                         </View>
                     </Animated.View>
-                    
+
                 </TouchableWithoutFeedback>
             </View>
         )
@@ -203,9 +223,9 @@ export default class dakaAll extends Component {
 const styles = StyleSheet.create({
     bottomCircle: {
         width: Dimensions.get('window').height,
-        height: Dimensions.get('window').height / 2,
+        height: Dimensions.get('window').height / 1.8,
         position: "absolute",
-        elevation:10,
+        elevation: 10,
     },
     container: {
         flex: 1,

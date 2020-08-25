@@ -47,15 +47,12 @@ const ENTRIES1 = [
     dakaFlag: 1,
     illustration: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597766489234&di=aed5d40a3b8d9ac4cbc9838e73c0c462&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201804%2F02%2F20180402003053_vKaQw.jpeg',
   },
-
 ];
 const DATA = [];
 for (let i = 0; i < 30; i++) {
   DATA.push(i);
 }
-
 export default class Example extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -64,7 +61,6 @@ export default class Example extends Component {
       index: 0,
     };
   }
-
   _renderItemWithParallax({ item, index }, parallaxProps) {
     return (
       <SliderEntry
@@ -77,38 +73,25 @@ export default class Example extends Component {
   }
   mainExample(number, title) {
     const { slider1ActiveSlide } = this.state;
-
     return (
       <View style={styles.exampleContainer}>
-        {/* <Text style={styles.title}>{`Example ${number}`}</Text>
-                <Text style={styles.subtitle}>{title}</Text>  */}
         <Carousel
           ref={c => this._slider1Ref = c}
-          // data={ENTRIES1}
           data={ENTRIES1}
           renderItem={this._renderItemWithParallax}
-          // sliderWidth={sliderWidth}
-          // itemWidth={itemWidth}
           sliderWidth={sliderWidth}
           itemWidth={sliderWidth / 1.5}
           hasParallaxImages={true}
           firstItem={SLIDER_1_FIRST_ITEM}
           inactiveSlideScale={0.85}
           inactiveSlideOpacity={0.5}
-
-          // inactiveSlideShift={20}
           containerCustomStyle={styles.slider}
           contentContainerCustomStyle={styles.sliderContentContainer}
           loop={false}
-          // loopClonesPerSide={1}
           autoplay={true}
           autoplayDelay={500}
           autoplayInterval={3000}
-
-
-          // onSnapToItem={(index) => this.setState({ slider1ActiveSlide: index }) }
           onSnapToItem={index => this.setState({ index })}
-          // onSnapToItem={index => this.setState({ index })}
           scrollInterpolator={scrollInterpolator}
           slideInterpolatedStyle={(index, animatedValue, carouselProps) => {
             return animatedStyles(
@@ -121,16 +104,12 @@ export default class Example extends Component {
           layout={'default'}
           removeClippedSubviews={false}
           useScrollView={true}
-
         />
         <Text style={styles.counter}>{this.state.index}</Text>
 
       </View>
     );
   }
-
-
-
   get gradient() {
     return (
       <LinearGradient
@@ -141,29 +120,12 @@ export default class Example extends Component {
       />
     );
   }
-
   render() {
     const Example1 = this.mainExample(1, 'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots');
-
     return (
       <SafeAreaView style={styles.safeArea}>
-        {/* <View style={styles.container}> */}
-          {/* 状态栏 */}
-          {/* <StatusBar
-            translucent={true}
-            backgroundColor={'rgba(0, 0, 0, 0.3)'}
-            barStyle={'light-content'}
-          /> */}
           {this.gradient}
-          {/* <ScrollView
-            style={styles.scrollview}
-            scrollEventThrottle={200}
-            directionalLockEnabled={true}
-          > */}
           {Example1}
-
-          {/* </ScrollView> */}
-        {/* </View> */}
       </SafeAreaView>
     );
   }
