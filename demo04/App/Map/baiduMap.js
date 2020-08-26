@@ -10,6 +10,7 @@ import {
     Alert,
     Image,
     StatusBar,
+    SafeAreaView,
 } from 'react-native';
 
 import { MapView, MapTypes, Geolocation, Overlay } from 'react-native-baidu-map';
@@ -18,6 +19,18 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Example from './HorizontalBanner'
+import LinearGradient from 'react-native-linear-gradient';
+import Carousel, { Pagination, ParallaxImage } from 'react-native-snap-carousel';
+// import { sliderWidth, itemWidth } from './styles/SliderEntry.style';
+import SliderEntry from './SliderEntry';
+import {
+    scrollInterpolator,
+    animatedStyles,
+    TRANSLATE_VALUE,
+} from './animations3';
+
+
+
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -25,50 +38,91 @@ StatusBar.setBarStyle('dark-content');
 
 const { Marker, Cluster, Arc, Circle, Polyline, Polygon, InfoWindow, HeatMap } = Overlay;
 const { width, height } = Dimensions.get('window');
+const sliderWidth = Dimensions.get('window').width;
+const itemWidth = Dimensions.get('window').width * 0.35;
+const ITEM_HEIGHT = Dimensions.get('window').width * 0.3 - 20;
+const IS_ANDROID = Platform.OS === 'android';
+const SLIDER_1_FIRST_ITEM = 1;
+const DATA = [];
+for (let i = 0; i < 30; i++) {
+    DATA.push(i);
+}
 
 
-var imgDate = [
+
+const ENTRIES1 = [
     {
-        key: "1",
-        imgUri: "http://pic.51yuansu.com/pic3/cover/03/98/30/5e7ab67256496_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-        placeName: "断壁残垣",
-        placeHoldName: "杭州西溪湿地",
-        distance: 2,
-        preTime: 52,
+        title: '断壁残垣',
+        subtitle: 'The Broken Wall',
+        dakaFlag: 0,
+        longitude: 117.465175,
+        latitude: 39.938522,
+        illustration: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597595405165&di=b8b9a6c89903508354a507cb4aefc0ab&imgtype=0&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D3768549857%2C101530550%26fm%3D214%26gp%3D0.jpg',
     },
     {
-        key: "1",
-        imgUri: "http://pic.51yuansu.com/pic3/cover/03/98/30/5e7ac1694ca6a_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-        placeName: "断壁残垣",
-        distance: 4,
-        preTime: 52,
+        title: '西湖',
+        subtitle: 'West Lake',
+        dakaFlag: 0,
+        longitude: 118.467177,
+        latitude: 39.939524,
+        illustration: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=194262224,3639052328&fm=26&gp=0.jpg',
     },
     {
-        key: "1",
-        imgUri: "http://pic.51yuansu.com/pic3/cover/03/98/30/5e7ab67673734_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-        placeName: "断壁残垣",
-        distance: 3,
-        preTime: 52,
+        title: '西湖',
+        subtitle: 'West Lake',
+        dakaFlag: 0,
+        longitude: 119.467177,
+        latitude: 39.937523,
+        illustration: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2142249982,2509089594&fm=26&gp=0.jpg',
     },
-]
+    {
+        title: '西湖',
+        subtitle: 'West Lake',
+        dakaFlag: 1,
+        longitude: 120.467171,
+        latitude: 31.937524,
+        illustration: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597766449537&di=0d45f9687757722ba383e1ccf051a1a0&imgtype=0&src=http%3A%2F%2Fimg3.doubanio.com%2Fview%2Fgroup_topic%2Fl%2Fpublic%2Fp90995552.jpg',
+    },
+    {
+        title: '西湖',
+        subtitle: 'West Lake',
+        dakaFlag: 1,
+        longitude: 121.467177,
+        latitude: 39.937523,
+        illustration: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597766489234&di=aed5d40a3b8d9ac4cbc9838e73c0c462&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201804%2F02%2F20180402003053_vKaQw.jpeg',
+    },
+    {
+        title: '断壁残垣',
+        subtitle: 'The Broken Wall',
+        dakaFlag: 0,
+        longitude: 110.465175,
+        latitude: 39.938522,
+        illustration: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597595405165&di=b8b9a6c89903508354a507cb4aefc0ab&imgtype=0&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D3768549857%2C101530550%26fm%3D214%26gp%3D0.jpg',
+    },
+];
+
 
 export default class BaiduMap extends Component {
     constructor() {
         super();
         this.state = {
+
+            slider1ActiveSlide: 1,
+            activeIndex: 0,
             zoomControlsVisible: false,
             trafficEnabled: true,
             baiduHeatMapEnabled: false,
             mapType: MapTypes.NORMAL,
+            index: 0,
             zoom: 19,
             center: {
-                longitude: 116.465171,
-                latitude: 39.938522
+                longitude: ENTRIES1[0].longitude,
+                latitude: ENTRIES1[0].latitude,
             },
             markers: [
                 {
-                    longitude: 116.465175,
-                    latitude: 39.938522,
+                    longitude: ENTRIES1[0].longitude,
+                    latitude: ENTRIES1[0].latitude,
                     title: 'my name',
                 }
             ],
@@ -76,12 +130,74 @@ export default class BaiduMap extends Component {
             poiMessage: '109',
         };
     }
-
-    componentDidMount() {
-
+    _renderItemWithParallax({ item, index }, parallaxProps) {
+        return (
+            <SliderEntry
+                data={item}
+                even={(index + 1) % 2 === 0}
+                parallax={true}
+                parallaxProps={parallaxProps}
+            />
+        );
     }
+    mainExample(number, title) {
+        const { slider1ActiveSlide } = this.state;
+        return (
+            <View style={styles.exampleContainer}>
+                <Carousel
+                    ref={c => this._slider1Ref = c}
+                    data={ENTRIES1}
+                    renderItem={this._renderItemWithParallax}
+                    sliderWidth={sliderWidth}
+                    itemWidth={sliderWidth / 1.5}
+                    hasParallaxImages={true}
+                    firstItem={SLIDER_1_FIRST_ITEM}
+                    inactiveSlideScale={0.85}
+                    inactiveSlideOpacity={0.5}
+                    containerCustomStyle={styles.slider}
+                    contentContainerCustomStyle={styles.sliderContentContainer}
+                    loop={false}
+                    autoplay={true}
+                    autoplayDelay={500}
+                    autoplayInterval={3000}
+                    onSnapToItem={index =>
+                        // this.setState({ index })
+                        this.setState({
+                            center: {
+                                longitude: ENTRIES1[index].longitude,
+                                latitude: ENTRIES1[index].latitude,
+                            },
+                        })
 
+                    }
+                    scrollInterpolator={scrollInterpolator}
+                    slideInterpolatedStyle={(index, animatedValue, carouselProps) => {
+                        return animatedStyles(
+                            index,
+                            animatedValue,
+                            carouselProps,
+                            this.state.index
+                        );
+                    }}
+                    layout={'default'}
+                    removeClippedSubviews={false}
+                    useScrollView={true}
+                />
+            </View>
+        );
+    }
+    get gradient() {
+        return (
+            <LinearGradient
+                colors={['#fff', '#fff']}
+                startPoint={{ x: 1, y: 0 }}
+                endPoint={{ x: 0, y: 1 }}
+                style={styles.gradient}
+            />
+        );
+    }
     render() {
+        const Example1 = this.mainExample(0, 'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots');
         return (
             <ScrollView style={styles.container}>
                 <View style={[styles.top]}>
@@ -105,126 +221,59 @@ export default class BaiduMap extends Component {
                     zoom={this.state.zoom} //缩放等级,默认为10
                     center={this.state.center} // 地图中心位置
                     markers={this.state.markers} //地图多个标记点
-                    // satellite={true}
-                    onMapLoaded={(e) => { //地图加载事件
-                        //定位用户位置，并且设置为中心点
-                        Geolocation.getCurrentPosition()
-                            .then(data => {
-                                // this.setState({
-                                //     center: {
-                                //         longitude: data.longitude,
-                                //         latitude: data.latitude
-                                //     },
-                                //     markers: [{
-                                //         longitude: data.longitude,
-                                //         latitude: data.latitude,
-                                //         title: data.district + data.street
-                                //     }]
-                                // })
-                            })
-                            .catch(e => {
-                                console.warn(e, 'error');
-                            })
-                    }}
-
                     onMarkerClick={(e) => { //标记点点击事件
                         console.log(e)
                     }}
-                    onMapClick={(e) => { //地图空白区域点击事件,返回经纬度
-                        let title = '';
-                        Geolocation.reverseGeoCode(e.latitude, e.longitude)
-                            .then(res => {
-                                Platform.OS == 'ios' ?
-                                    title = res.district + res.streetName
-                                    :
-                                    title = res.district + res.street;
-                                this.setState({
-                                    center: {
-                                        longitude: e.longitude,
-                                        latitude: e.latitude,
-                                    },
-                                    markers: [{
-                                        longitude: e.longitude,
-                                        latitude: e.latitude,
-                                        title: title,
-                                    }],
-                                    clickMessage: JSON.stringify(res)
-                                })
-                            })
-                            .catch(err => {
-                                console.log(err)
-                            })
-
-                    }}
-                    onMapPoiClick={(e) => { //地图已有点点击
-                        Geolocation.reverseGeoCode(e.latitude, e.longitude)
-                            .then(res => {
-                                res = JSON.stringify(res)
-                                this.setState({
-                                    center: {
-                                        longitude: e.longitude,
-                                        latitude: e.latitude,
-                                    },
-                                    markers: [{
-                                        longitude: e.longitude,
-                                        latitude: e.latitude,
-                                        title: e.name,
-                                    }],
-                                    poiMessage: res
-                                })
-                            })
-                            .catch(err => {
-                                console.log(err)
-                            })
-                    }}
                     style={styles.map}
                 >
-                    <Marker
-                        title='中心'
-                        location={{ longitude: 116.465175, latitude: 39.938522 }} />
-                    <Marker
-                        title='中心2'
-                        location={{ longitude: 116.467177, latitude: 39.939524 }} />
-                    <Marker
-                        title='中心3'
-                        location={{ longitude: 116.467177, latitude: 39.937523 }} />
-                    <Marker
-                        title='中心4'
-                        location={{ longitude: 116.467171, latitude: 39.937524 }} />
-                    <Polyline
-                        stroke={{ width: 5, color: 'AA000000' }}
-                        points={[
-                            { longitude: 116.467176, latitude: 39.939522 },
-                            { longitude: 116.465177, latitude: 39.938524 },
-                            { longitude: 116.467177, latitude: 39.937524 },
-                            // { longitude: 116.467177, latitude: 39.937524 },
-                        ]}
-                    />
+                    {/* 用来画点 */}
+                    {
+                        ENTRIES1.map((item) => {
+                            return (
+                                <Marker
+                                    title='中心4'
+                                    location={{ longitude: item.longitude, latitude: item.latitude }} />
+                            )
+                        })
+                    }
                 </MapView>
 
                 {/* 底部地图滑动提示 */}
                 <View style={{ height: 140, width: "100%", position: "absolute", bottom: 0, }}>
                     <View style={{ position: "absolute", height: 30, backgroundColor: "#2F3843", paddingVertical: 5, top: -35, left: 0 }}>
-                        <Text style={{ color: "#fff", fontSize: 20, lineHeight: 25 }}>杭州西溪湿地风景区</Text>
-                    </View>
-                    <Example />
-                    {/* <Text style={{ fontSize: 20 }}>杭州西溪湿地 </Text> */}
-                    {/* <ScrollView
-                        style={{ width: '100%', height: 100, }}
-                        horizontal={false}
-                        showsVerticalScrollIndicator={false}
-                    >
-                        {
-                            imgDate.map((item) => {
-                                return (
-                                    <View style={{ justifyContent: "space-between" }}>
-                                        <View style={{ width: '100%', height: 20, backgroundColor: "green" }}>
-                                        </View>
-                                    </View>
-                                )
-                            })
-                        }
-                    </ScrollView> */}
+                        <Text style={{ color: "#fff", fontSize: 20, lineHeight: 25 }}
+                            onPress={() => {
+                                this.setState({
+                                    center: {
+                                        longitude: 0,
+                                        latitude: 0,
+                                    },
+                                    markers: [{
+                                        longitude: 0,
+                                        latitude: 0,
+                                        title: 'haha',
+                                    }],
+                                })
+                            }}
+                        >杭州西溪湿地风景区</Text>
+                    </View><Text style={{
+                        position: "absolute",
+                        fontSize: 30,
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                        left: 20,
+                        color: "#fff",
+                        top: -100,
+                        backgroundColor: '#000',
+                    }}>{this.state.index}</Text>
+                    {/* 这下面的东西很重要 */}
+                    <SafeAreaView style={styles.safeArea}>
+                        {/* {this.gradient} */}
+                        {Example1}
+                    </SafeAreaView>
+
+
+                    {/* 到这里为止 */}
                 </View>
             </ScrollView>
         );
@@ -254,5 +303,41 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 15,
         elevation: 8,
         flexDirection: "row"
+    },
+    safeArea: {
+        height: '100%',
+        // backgroundColor: colors.black
+    },
+    container: {
+        flex: 1,
+        // backgroundColor:' colors.background1'
+    },
+    gradient: {
+        ...StyleSheet.absoluteFillObject
+    },
+    scrollview: {
+        flex: 1,
+    },
+
+    slider: {
+        // 距离上部分有多高
+        overflow: 'visible' // for custom animations
+        //自定义动画
+    },
+    // 点点距离轮播的距离
+    sliderContentContainer: {
+        paddingVertical: 0,
+    },
+    // 点点距离轮播的距离
+    paginationContainer: {
+        paddingVertical: 0
+    },
+    counter: {
+        position: "absolute",
+        fontSize: 30,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        backgroundColor: '#FFF',
+
     },
 });
