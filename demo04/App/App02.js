@@ -14,7 +14,7 @@ import dengru from './load/dengru';
 import load from './load/load';
 import MainFadeView from './welcome/welcome';
 import Splash from './welcome/daojishi';
-import Register from'./load/register';
+import Register from './load/register';
 //底部导航栏的主要页面
 import Home from '../App/HomePage/HomePage';
 import Discovery from './discoveryPage/discovery';
@@ -249,7 +249,7 @@ function MyStack() {
   return (
     <Stack.Navigator headerMode="none">
       {/* 底部导航栏 */}
-      
+
       {/* 欢迎页面 */}
       <Stack.Screen name="dengru" component={dengru} />
       <Stack.Screen name="load" component={load} />
@@ -294,9 +294,11 @@ function MyStack() {
       <Stack.Screen name="dakaPlaceChoice" component={dakaPlaceChoice} />
       <Stack.Screen name="improveInformation" component={improveInformation} />
       {/* 发现 */}
+
+      <Stack.Screen name="PersonalCenterSum" component={PersonalCenterSum} />
       <Stack.Screen name="qiandao" component={qiandao} />
       <Stack.Screen name="MyCustomCarousel" component={MyCustomCarousel} />
-      
+
     </Stack.Navigator>
   );
 }
