@@ -49,7 +49,7 @@ export default class Home extends Component {
   }
 
   render() {
-    this._Gps()
+    // this._Gps()
     return (
       //导入底部和顶部组件
       <View style={[styles.container]}>
