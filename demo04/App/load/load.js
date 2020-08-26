@@ -33,7 +33,7 @@ export default class load extends Component {
       
     _onClickLogin = () => {
         var navigation=this.props.navigation; 
-        fetch('http://192.168.56.1:3000/api/users/login', {
+        fetch('http://127.0.0.1:3000/api/users/login', {
                 method: 'POST',
                 credentials: "include",
                 headers: {

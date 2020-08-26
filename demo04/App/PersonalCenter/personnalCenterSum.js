@@ -7,6 +7,7 @@ import {
     Image,
     StyleSheet,
     Alert,
+    ScrollView
 } from 'react-native';
 import { PersonalTab } from "../App02";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
