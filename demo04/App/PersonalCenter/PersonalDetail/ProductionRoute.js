@@ -82,7 +82,10 @@ export default class ProductionRoute extends Component {
         super(props);
         this.state = {
             turnOn: true,
-            turnOff: false
+            turnOff: false,
+            choiceWichOne: '',
+            borderColor: "#FAAF3D",
+            choiceFlag: true,
         }
     }
     render() {
@@ -91,26 +94,30 @@ export default class ProductionRoute extends Component {
             <View style={styles.container}>
 
                 <View style={styles.Top}>
-                    <AntDesign name={'left'} size={32} color='#000000' onPress={() => {
-                        this.props.navigation.goBack()
-                    }} />
-                    <Text style={{ fontSize: 20, color: '#000000', marginLeft: '12%' }}>选择城市</Text>
-                    <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, padding: 2, paddingHorizontal: 5 }}
-                        onPress={() => {
-                            this.props.navigation.navigate("dakaPlaceChoice")
-                        }}
-                    >下一步(1/3)</Text>
+                    <View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: "space-between", alignContent: "center" }}>
+                        <AntDesign name={'left'} size={32} color='#000000' onPress={() => {
+                            this.props.navigation.goBack()
+                        }} />
+                        <Text style={{ fontSize: 20, color: '#000000', marginLeft: '12%' }}>选择城市</Text>
+                        <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, padding: 2, paddingHorizontal: 5 }}
+                            onPress={() => {
+                                this.props.navigation.navigate("dakaPlaceChoice")
+                            }}
+                        >下一步(1/3)</Text>
+                    </View>
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.someTouch}>
                         {
                             cityInfo.map((item) => {
                                 return (
-                                    <View style={styles.Citystyle} >
+                                    <View style={[styles.Citystyle, { borderColor: this.state.choiceFlag ? "#fff" : this.state.borderColor }]} >
                                         <TouchableHighlight
                                             style={{ height: '100%', width: '100%' }}
                                             onPress={() => {
-                                                // this.props.navigation.navigate("Line", { cityName: item.CcityName })
+                                                // this.state.choiceWichOne
+                                                this.setState({ choiceWichOne: item.CcityName, choiceFlag: !this.state.choiceFlag })
+                                                console.log(this.state.choiceWichOne)
                                             }}>
                                             <View style={{ height: '100%', width: '100%' }}>
                                                 <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={item.backImgSrc} />

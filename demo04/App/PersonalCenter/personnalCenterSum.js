@@ -69,11 +69,11 @@ export default class PersonalCenterSum extends Component {
         return (
             <ScrollView
                 onScroll={(event) => this._onScroll(event)}
-                style={{ height: '80%', backgroundColor: "skyblue" }}
+                style={{ height: '80%', backgroundColor: "#6C9575" }}
                 scrollEnabled={this.state.scrollowAble}
 
             >
-                <View style={{ flex: 1, backgroundColor: "skyblue" }}>
+                <View style={{ flex: 1, backgroundColor: "#6C9575" }}>
                     {/* <ScrollView> */}
                     <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
                         {/*返回与设置 */}

@@ -14,6 +14,7 @@ import {
   ImageBackground,
   TouchableWithoutFeedback,
   TouchableWithoutFeedbackBase,
+  SafeAreaView
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -25,7 +26,7 @@ import {
   Geolocation
 } from 'react-native-baidu-map';
 const { width, scale } = Dimensions.get("window");
-const biLi = width * scale / 1125;
+const biLi = width * scale / 1300;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
   },
   mainBox: {
     width: "100%",
-    height: "73%",
+    height: 250,
     borderRadius: 3,
   },
   firstBox: {
@@ -241,7 +242,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginLeft: "3%",
-    backgroundColor:"pink"
+    backgroundColor: "pink"
   },
 });
 

@@ -104,6 +104,7 @@ export default class Section extends React.Component {
                             console.log('---SectionListClickCallback--:', item, index)
                         }}
                         sectionItemViewStyle={{ marginTop: 4, borderRadius: 20, width: '90%', padding: 10, height: 36, }}
+                        // sectionHeaderTextStyle ={{width:'90%',borderRadius:20}}
                         sectionHeaderViewStyle={{ color: "red", width: '10%' }}
                         otherAlphabet="#"
                     /></View>

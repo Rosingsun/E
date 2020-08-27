@@ -32,12 +32,17 @@ export default class choicePhoto extends Component {
           title="选择"
           onPress={
             ImagePicker.openPicker({
+              width: 400,
+              height: 400,
               multiple: true,
+              cropping: true,
               enableRotationGesture: true,
             }).then(images => {
+              console.log(images)
               this.props.navigation.navigate("spread");
             })
           }
+          
 
         >
           <Text>111</Text>

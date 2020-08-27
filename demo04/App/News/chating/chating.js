@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Text, View, StyleSheet, Dimensions, Image, TextInput, Alert,
+    Text, View, StyleSheet, Dimensions, Image, TextInput, Alert,TouchableOpacity
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -109,7 +109,7 @@ export default class chating extends Component {
                     </View>
                 </View>
                 <ScrollView
-                    style={{ backgroundColor: "#000",height:200 }}
+                    style={{ backgroundColor: "#efefef",height:200 }}
                     // 获取ScrollView视图拥有高度
                     onContentSizeChange={(contentWidth, contentHeight) => {
                         _scrollToBottomY = contentHeight;
@@ -123,8 +123,8 @@ export default class chating extends Component {
                             return (
                                 <View
                                     style={{ paddingRight: 20, width: '100%', flexDirection: "row", paddingVertical: 5, justifyContent: "flex-end", alignItems: "center" }}>
-                                    <View style={{ backgroundColor: "#fff", width: '65%', padding: 8, borderRadius: 10, justifyContent: "center", marginRight: 5 }}>
-                                        <Text style={{ color: "#404040", letterSpacing: 1 }}> 213123213123213123213123213123213123213123213123213123213123213123213123213123213123213123213123213123213123</Text>
+                                    <View style={{ backgroundColor: "#fff", maxWidth: '65%', padding: 8, borderRadius: 10, justifyContent: "center", marginRight: 5 }}>
+                                        <Text style={{ color: "#404040", letterSpacing: 1,alignSelf:'flex-start' }}>{item.userSpeachContain}</Text>
                                     </View>
                                     <Image source={{ uri: item.userImg }} style={{ height: 40, width: 40, borderRadius: 30 }} />
                                 </View>
@@ -132,13 +132,15 @@ export default class chating extends Component {
                         } else {
                             return (
                                 <View style={{ paddingLeft: 20, width: '100%', flexDirection: "row", paddingVertical: 5, justifyContent: "flex-start", alignItems: "center" }}>
-                                    <Image source={{ uri: item.userImg }} style={{ height: 40, width: 40, borderRadius: 30 }}
-                                        onPress={() => {
-                                            // Alert.alert("!");
+                                    <TouchableOpacity
+                                        onPress={()=>{
+                                            this.props.navigation.navigate("ChatInfoMation")
                                         }}
-                                    />
+                                    >
+                                    <Image source={{ uri: item.userImg }} style={{ height: 40, width: 40, borderRadius: 30 }}/>
+                                    </TouchableOpacity>
                                     <View style={{ backgroundColor: "#fff", maxWidth: '65%', padding: 8, borderRadius: 10, justifyContent: "center", marginLeft: 5 }}>
-                                        <Text style={{ color: "#404040", letterSpacing: 1 }}>654231</Text>
+                                        <Text style={{ color: "#404040", letterSpacing: 1,alignSelf:'flex-start' }}>{item.userSpeachContain}</Text>
                                     </View>
                                 </View>
                             )

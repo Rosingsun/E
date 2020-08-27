@@ -26,6 +26,7 @@ import Search from './HomePage/detail/Ranking';
 import focus from './HomePage/focus';
 import local from './HomePage/local';
 import recommend from './HomePage/recommend';
+import exchange from './HomePage/detail/exchange';
 //发布页面
 import Section from './publish/publishDetails/Section';
 import spread from './publish/publishDetails/spread';
@@ -65,7 +66,8 @@ import leaveMessage from './News/leaveMessage';
 import Message from './News/Message';
 import trade from './News/trade';
 import MainText from './News/NewsDetails/MainText';
-
+import ChatInfoMation from'./Chat/ChatInfoMation';
+import ChatRecord from'./Chat/ChatRecord';
 
 //定义各类导航栏的变量
 
@@ -244,12 +246,14 @@ function bottomTab() {
     </Tab.Navigator>
   );
 }
+
+
 // 堆栈导航
 function MyStack() {
   return (
     <Stack.Navigator headerMode="none">
       {/* 底部导航栏 */}
-
+<Stack.Screen name="bottomTab" component={bottomTab} />
       {/* 欢迎页面 */}
       <Stack.Screen name="dengru" component={dengru} />
       <Stack.Screen name="load" component={load} />
@@ -257,7 +261,7 @@ function MyStack() {
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Register" component={Register} />
       {/* 还未定义 */}
-      <Stack.Screen name="bottomTab" component={bottomTab} />
+      
       <Stack.Screen name="MessageTopTab" component={MessageTopTab} />
       <Stack.Screen name="Search" component={Search} />
       <Stack.Screen name="BaiduMap" component={BaiduMap} />
@@ -298,7 +302,9 @@ function MyStack() {
       <Stack.Screen name="PersonalCenterSum" component={PersonalCenterSum} />
       <Stack.Screen name="qiandao" component={qiandao} />
       <Stack.Screen name="MyCustomCarousel" component={MyCustomCarousel} />
-
+      <Stack.Screen name="ChatInfoMation" component={ChatInfoMation} />
+      <Stack.Screen name="ChatRecord" component={ChatRecord} />
+      {/* 首页 */}
     </Stack.Navigator>
   );
 }
