@@ -17,7 +17,10 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import { ScrollView } from 'react-native-gesture-handler';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
-
+StatusBar.setBackgroundColor("#888888");
+StatusBar.setTranslucent(true);
+StatusBar.setBarStyle('dark-content');
+StatusBar.setHidden(true, 'fade')
 class ItemDivideComponent extends Component {
     render() {
         return (
@@ -54,7 +57,7 @@ export default class Search extends Component {
                     <View style={[styles.nav_container]}>
                         <View style={{ flexDirection: "row" }}>
                             <AntDesign name={'left'} size={30} color={'#000'} onPress={() => {
-                               this.props.navigation.goBack()
+                                this.props.navigation.goBack()
                             }} />
                         </View>
                         <Text style={{ color: "#000", fontSize: 20 }}>排行榜</Text>
@@ -207,7 +210,7 @@ const styles = StyleSheet.create({
     top: {
         height: (78) * biLi,
         width: "100%",
-        backgroundColor: "#fff",
+        backgroundColor: "#00000080",
         borderBottomRightRadius: 15,
         borderBottomLeftRadius: 15,
         elevation: 8,

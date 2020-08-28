@@ -14,7 +14,7 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Foundation from 'react-native-vector-icons/Foundation';
 import Feather from 'react-native-vector-icons/Feather';
-
+import ImagePicker from 'react-native-image-crop-picker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 export default class spread extends Component {
@@ -22,9 +22,28 @@ export default class spread extends Component {
         super(props);
         this.state = {
             addPicState: "flex",
+            avatarSource: '',
         };
     }
+    _fetchImage(image) {
 
+        let url = "http://192.168.56.1:3000/api/users/updataPersonal"
+        let head = { uri: image.path, type: 'multipart/form-data', name: 'image.png' };
+
+        let formData = new FormData();
+        formData.append('file', head); // 这里的 file 要与后台名字对应。
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            body: formData,
+        }).then(function (response) {
+            console.log("response", response);
+            return response.json();
+        })
+    }
     render() {
         var imgDate = [
             {
@@ -91,7 +110,7 @@ export default class spread extends Component {
                                         }
                                         return (
                                             <View style={{ width: '31%', marginLeft: '2%', flexDirection: "row" }}>
-                                                <Image style={{ height: 72, width: '100%', backgroundColor: "yellow", marginTop: 10 }} source={{ uri: item.imgSrc }} />
+                                                <Image style={{ height: 72, width: '100%', backgroundColor: "yellow", marginTop: 10 }} source={this.state.avatarSource} />
                                             </View>
                                         )
                                     })
@@ -114,7 +133,27 @@ export default class spread extends Component {
                 </View>
                 <View style={{ position: "absolute", backgroundColor: "#2F3843", alignItems: "center", justifyContent: "space-around", flexDirection: "row", height: 50, width: '100%', bottom: 0, left: 0 }}>
                     {/* 获取图片，可能删除 */}
-                    <FontAwesome name='photo' size={20} color="#fff" />
+                    <FontAwesome name='photo' size={20} color="#fff"
+                        onPress={() => {
+                            // 从本地相册选择单幅图像
+                            // 调用多个图像
+                            ImagePicker.openPicker({
+                                // multiple: true,
+                                width: 400,
+                                height: 400,
+                                cropping: true,
+                                // showCropGuidelines :true
+                            }).then(image => {
+                                let source = { uri: image.path };
+                                // console.log(images);
+                                this._fetchImage(image);
+                                this.setState({
+                                    avatarSource: source
+                                });
+                            });
+                        }}
+
+                    />
                     {/* at符号 */}
                     <Feather name='at-sign' size={20} color="#fff"
                         onPress={() => {

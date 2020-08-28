@@ -97,7 +97,6 @@ export default class changePersonalInfoMation extends Component {
                                 let source = { uri: image.path };
                                 // console.log(images);
                                 this._fetchImage(image);
-
                                 this.setState({
                                     avatarSource: source
                                 });

@@ -9,75 +9,80 @@ const biLi = width * scale / 1080;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
-var cityInfo = [
-    {
-        key: 0,
-        CcityName: "杭州",
-        EcityName: "Hang Zhou",
-        backImgSrc: require("../../discoveryPage/moreLine/photo/hangzhou.jpg"),
-    },
-    {
-        key: 1,
-        CcityName: "宁波",
-        EcityName: "Ning Bo",
-        backImgSrc: require("../../discoveryPage/moreLine/photo/ningbo.jpg"),
-    },
-    {
-        key: 2,
-        CcityName: "嘉兴",
-        EcityName: "Jia Xing",
-        backImgSrc: require("../../discoveryPage/moreLine/photo/jiaxing.jpg"),
-    },
-    {
-        key: 3,
-        CcityName: "绍兴",
-        EcityName: "Shao Xing",
-        backImgSrc: require("../../discoveryPage/moreLine/photo/shaoxing.jpg"),
-    },
-    {
-        key: 4,
-        CcityName: "舟山",
-        EcityName: "Zhou Shan",
-        backImgSrc: require("../../discoveryPage/moreLine/photo/zhoushan.jpg"),
-    },
-    {
-        key: 5,
-        CcityName: "温州",
-        EcityName: "Wen Zhou",
-        backImgSrc: require("../../discoveryPage/moreLine/photo/wenzhou.jpg"),
-    },
-    {
-        key: 6,
-        CcityName: "湖州",
-        EcityName: "Hu Zhou",
-        backImgSrc: require("../../discoveryPage/moreLine/photo/huzhou.jpg"),
-    },
-    {
-        key: 7,
-        CcityName: "丽水",
-        EcityName: "Li Shui",
-        backImgSrc: require("../../discoveryPage/moreLine/photo/lishui.jpg"),
-    },
-    {
-        key: 8,
-        CcityName: "金华",
-        EcityName: "Jin Hua",
-        backImgSrc: require("../../discoveryPage/moreLine/photo/jinhua.jpg"),
-    },
-    {
-        key: 9,
-        CcityName: "衢州",
-        EcityName: "Qu Zhou",
-        backImgSrc: require("../../discoveryPage/moreLine/photo/quzhou.jpg"),
-    },
-    {
-        key: 10,
-        CcityName: "台州",
-        EcityName: "Tai Zhou",
-        backImgSrc: require("../../discoveryPage/moreLine/photo/taizhou.jpg"),
-    },
-]
 export default class ProductionRoute extends Component {
+    static defaultProps = {
+        multiList: [
+            {
+                key: 0,
+                CcityName: "杭州",
+                EcityName: "Hang Zhou",
+                backImgSrc: require("../../discoveryPage/moreLine/photo/hangzhou.jpg"),
+            },
+            {
+                key: 1,
+                CcityName: "宁波",
+                EcityName: "Ning Bo",
+                backImgSrc: require("../../discoveryPage/moreLine/photo/ningbo.jpg"),
+            },
+            {
+                key: 2,
+                CcityName: "嘉兴",
+                EcityName: "Jia Xing",
+                backImgSrc: require("../../discoveryPage/moreLine/photo/jiaxing.jpg"),
+            },
+            {
+                key: 3,
+                CcityName: "绍兴",
+                EcityName: "Shao Xing",
+                backImgSrc: require("../../discoveryPage/moreLine/photo/shaoxing.jpg"),
+            },
+            {
+                key: 4,
+                CcityName: "舟山",
+                EcityName: "Zhou Shan",
+                backImgSrc: require("../../discoveryPage/moreLine/photo/zhoushan.jpg"),
+            },
+            {
+                key: 5,
+                CcityName: "温州",
+                EcityName: "Wen Zhou",
+                backImgSrc: require("../../discoveryPage/moreLine/photo/wenzhou.jpg"),
+            },
+            {
+                key: 6,
+                CcityName: "湖州",
+                EcityName: "Hu Zhou",
+                backImgSrc: require("../../discoveryPage/moreLine/photo/huzhou.jpg"),
+            },
+            {
+                key: 7,
+                CcityName: "丽水",
+                EcityName: "Li Shui",
+                backImgSrc: require("../../discoveryPage/moreLine/photo/lishui.jpg"),
+            },
+            {
+                key: 8,
+                CcityName: "金华",
+                EcityName: "Jin Hua",
+                backImgSrc: require("../../discoveryPage/moreLine/photo/jinhua.jpg"),
+            },
+            {
+                key: 9,
+                CcityName: "衢州",
+                EcityName: "Qu Zhou",
+                backImgSrc: require("../../discoveryPage/moreLine/photo/quzhou.jpg"),
+            },
+            {
+                key: 10,
+                CcityName: "台州",
+                EcityName: "Tai Zhou",
+                backImgSrc: require("../../discoveryPage/moreLine/photo/taizhou.jpg"),
+            },
+        ]
+    };
+
+
+
     constructor(props) {
         super(props);
         this.state = {
@@ -86,13 +91,95 @@ export default class ProductionRoute extends Component {
             choiceWichOne: '',
             borderColor: "#FAAF3D",
             choiceFlag: true,
+            multiData: this.props.multiList,
+            selectMultiItem: [],
         }
     }
+ //多选
+ _selectMultiItemPress(item) {
+    if (item.select) {
+        this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
+            return x === item.id;
+        }), 1);
+    } else {
+        this.state.selectMultiItem.push(item.id);
+    }
+    this.state.multiData[item.id].select = !item.select;
+    this.setState({ multiData: this.state.multiData });
+}
+//递交 选中 
+_submitMultiPress() {
+    alert(`选中了${JSON.stringify(this.state.selectMultiItem)}`)
+}
+//渲染多选标记
+_renderMultiMark() {
+    let multiData = this.state.multiData;
+    let len = multiData.length;
+    let menuArr = [];
+    for (let i = 0; i < len; i++) {
+        let item = multiData[i];
+        if (item.select) {
+            menuArr.push(
+                //选中状态
+                <TouchableOpacity
+                    onPress={() => this._selectMultiItemPress(item)} 
+                    style={[styles.markRow, styles.markChecked]}>
+                    <View style={[styles.Citystyle, { borderColor: this.state.choiceFlag ? "#fff" : this.state.borderColor }]} >
+                                        <TouchableHighlight
+                                            style={{ height: '100%', width: '100%' }}
+                                            onPress={() => {
+                                                // this.state.choiceWichOne
+                                                this.setState({ choiceWichOne: item.CcityName, choiceFlag: !this.state.choiceFlag })
+                                                console.log(this.state.choiceWichOne)
+                                            }}>
+                                            <View style={{ height: '100%', width: '100%' }}>
+                                                <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={item.backImgSrc} />
+                                                <Text style={styles.photoWord} pointerEvents="none">{item.CcityName}</Text>
+                                                <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
+                                            </View>
+                                        </TouchableHighlight>
+                                    </View>
+                </TouchableOpacity>
+            )
+        } else {
+            menuArr.push(
+                // 未选中状态
+                <TouchableOpacity
+                    onPress={() => this._selectMultiItemPress(item)}
+                     style={[styles.markRow, styles.markUnCheck]}>
+                    <View style={[styles.Citystyle, { borderColor: this.state.choiceFlag ? "#fff" : this.state.borderColor }]} >
+                                        <TouchableHighlight
+                                            style={{ height: '100%', width: '100%' }}
+                                            onPress={() => {
+                                                // this.state.choiceWichOne
+                                                this.setState({ choiceWichOne: item.CcityName, choiceFlag: !this.state.choiceFlag })
+                                                console.log(this.state.choiceWichOne)
+                                            }}>
+                                            <View style={{ height: '100%', width: '100%' }}>
+                                                <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={item.backImgSrc} />
+                                                <Text style={styles.photoWord} pointerEvents="none">{item.CcityName}</Text>
+                                                <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
+                                            </View>
+                                        </TouchableHighlight>
+                                    </View>
+                </TouchableOpacity>
+            )
+        }
+    }
+    return (
+        //讲各类状态框输出到前端页面
+        <View style={styles.multiBox}>
+            {menuArr}
+        </View>
+    );
+}
+
+
     render() {
         return (
 
             <View style={styles.container}>
-
+<Button title={"确定"} onPress={() => this._submitMultiPress()} />
                 <View style={styles.Top}>
                     <View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: "space-between", alignContent: "center" }}>
                         <AntDesign name={'left'} size={32} color='#000000' onPress={() => {
@@ -108,27 +195,7 @@ export default class ProductionRoute extends Component {
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.someTouch}>
-                        {
-                            cityInfo.map((item) => {
-                                return (
-                                    <View style={[styles.Citystyle, { borderColor: this.state.choiceFlag ? "#fff" : this.state.borderColor }]} >
-                                        <TouchableHighlight
-                                            style={{ height: '100%', width: '100%' }}
-                                            onPress={() => {
-                                                // this.state.choiceWichOne
-                                                this.setState({ choiceWichOne: item.CcityName, choiceFlag: !this.state.choiceFlag })
-                                                console.log(this.state.choiceWichOne)
-                                            }}>
-                                            <View style={{ height: '100%', width: '100%' }}>
-                                                <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={item.backImgSrc} />
-                                                <Text style={styles.photoWord} pointerEvents="none">{item.CcityName}</Text>
-                                                <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
-                                            </View>
-                                        </TouchableHighlight>
-                                    </View>
-                                )
-                            })
-                        }
+                    {this._renderMultiMark()}
                     </View>
                 </ScrollView>
             </View>

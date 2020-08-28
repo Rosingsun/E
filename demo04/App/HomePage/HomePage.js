@@ -30,6 +30,7 @@ const biLi = width * scale / 1300;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
+StatusBar.setHidden(false,'fade')
 export default class Home extends Component {
   constructor(props) {
     super(props)
@@ -58,15 +59,12 @@ export default class Home extends Component {
         <View style={[styles.top]}>
           <View style={[styles.nav_container]}>
             <View style={{ flexDirection: "row" }}>
+              {/* <FontAwesome name={'map-marker'} size={30} color={'#fff'} /> */}
               <Ionicons name={'md-location-sharp'} size={30} color={'#000'} />
-              <Text style={{ lineHeight: 30, marginLeft: 0, color: "#000", fontWeight: "bold" }}>{this.state.Gps}</Text>
+              <Text style={{ lineHeight: 30, color: "#000", fontWeight: "bold" }}>杭州</Text>
             </View>
             <View style={[styles.inputBox]}>
-              <TextInput
-                placeholder="去哪玩"
-                style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '83%', lineHeight: -2, }}
-              >
-              </TextInput>
+              <TextInput placeholder="搜索" style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }} />
               <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
             </View>
             <AntDesign name={'calendar'} size={25} color={'#000'} />
@@ -228,7 +226,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   top: {
-    height: (80) * biLi,
+    height: (78) * biLi,
     width: "100%",
     backgroundColor: "#fff",
     borderRadius: 0,
@@ -242,7 +240,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginLeft: "3%",
-    backgroundColor: "pink"
+    backgroundColor:"pink"
   },
 });
 

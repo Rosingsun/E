@@ -239,8 +239,8 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     button: {
-        height: 52 * biLi,
-        width: 312 * biLi,
+        height:50,
+        width: '100%',
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#6C9575",
@@ -248,8 +248,8 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     inputBox: {
-        height: 64 * biLi,
-        width: 346 * biLi,
+        height:50   ,
+        width: '100%',
         backgroundColor: "#EFEFEF",
         borderRadius: 3,
         marginTop: 40
