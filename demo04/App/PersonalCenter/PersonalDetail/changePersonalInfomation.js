@@ -12,7 +12,7 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ImagePicker from 'react-native-image-crop-picker';
 import Picker from 'react-native-picker';
-import {storage} from '../../Accessories/storage/index'
+import { storage } from '../../Accessories/storage/index'
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
@@ -26,37 +26,39 @@ export default class changePersonalInfoMation extends Component {
         this.state = {
             PersonalSignature: "写一段话介绍自己吧！",
             username: "用户名",
-            avatarSource:'',
-            
+            avatarSource: '',
+            userSex: "男"
         }
     }
     
     componentDidMount() {
         storage.load('userInfo', (data) => {
             this.setState({
-                username:data.username,
-                PersonalSignature:data.PersonalSignature,
-                head:data.head,  
+                username: data.username,
+                PersonalSignature: data.PersonalSignature,
+                head: data.head,
             })
-            
-          })
-        }
+
+        })
+    }
+
+
     _fetchImage(image) {
-        
+
         let url = "http://192.168.56.1:3000/api/users/updataPersonal"
-        let head = {uri: image.path, type: 'multipart/form-data', name:'image.png' };
-    
+        let head = { uri: image.path, type: 'multipart/form-data', name: 'image.png' };
+
         let formData = new FormData();
         formData.append('file', head); // 这里的 file 要与后台名字对应。
-    
-        fetch(url,{
-            method:'POST',
-            headers:{
-                'Content-Type':'multipart/form-data',
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data',
             },
-            body:formData,
+            body: formData,
         }).then(function (response) {
-            console.log("response",response);
+            console.log("response", response);
             return response.json();
         })
     }
@@ -114,12 +116,11 @@ export default class changePersonalInfoMation extends Component {
                                 cropping: true,
                                 // showCropGuidelines :true
                             }).then(image => {
-                                let source = {uri: image.path};
+                                let source = { uri: image.path };
                                 // console.log(images);
                                 this._fetchImage(image);
-
                                 this.setState({
-                                   avatarSource: source
+                                    avatarSource: source
                                 });
                             });
                         }}
@@ -141,15 +142,27 @@ export default class changePersonalInfoMation extends Component {
                     </View>
                     <TouchableNativeFeedback
                         onPress={() => {
+                            Picker.init({
+                                pickerData: data,
+                                onPickerConfirm: data => {
+                                    this.setState({ userSex: data })
+                                },
+                                onPickerCancel: data => {
+                                    console.log(data);
+                                },
+                                onPickerSelect: data => {
+                                    this.setState({ userSex: data })
+                                }
+                            });
                             Picker.show();
+                            // Alert.alert("1");
                         }}
                     >
                         <View style={styles.button}>
                             <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>性别</Text>
                             <View style={{ flexDirection: "row", alignItems: "center", paddingRight: 20 }}>
-                                <Text>男</Text>
+                                <Text>{this.state.userSex}</Text>
                                 <AntDesign name={'right'} size={20} color={'#999999'}
-
                                 />
                             </View>
                         </View>

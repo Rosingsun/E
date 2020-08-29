@@ -14,6 +14,7 @@ import {
   ImageBackground,
   TouchableWithoutFeedback,
   TouchableWithoutFeedbackBase,
+  SafeAreaView
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -25,7 +26,7 @@ import {
   Geolocation
 } from 'react-native-baidu-map';
 const { width, scale } = Dimensions.get("window");
-const biLi = width * scale / 1125;
+const biLi = width * scale / 1300;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -49,7 +50,7 @@ export default class Home extends Component {
   }
 
   render() {
-    this._Gps()
+    // this._Gps()
     return (
       //导入底部和顶部组件
       <View style={[styles.container]}>
@@ -57,15 +58,12 @@ export default class Home extends Component {
         <View style={[styles.top]}>
           <View style={[styles.nav_container]}>
             <View style={{ flexDirection: "row" }}>
+              {/* <FontAwesome name={'map-marker'} size={30} color={'#fff'} /> */}
               <Ionicons name={'md-location-sharp'} size={30} color={'#000'} />
-              <Text style={{ lineHeight: 30, marginLeft: 0, color: "#000", fontWeight: "bold" }}>{this.state.Gps}</Text>
+              <Text style={{ lineHeight: 30, color: "#000", fontWeight: "bold" }}>杭州</Text>
             </View>
             <View style={[styles.inputBox]}>
-              <TextInput
-                placeholder="去哪玩"
-                style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '83%', lineHeight: -2, }}
-              >
-              </TextInput>
+              <TextInput placeholder="搜索" style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }} />
               <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
             </View>
             <AntDesign name={'calendar'} size={25} color={'#000'} />
@@ -204,7 +202,7 @@ const styles = StyleSheet.create({
   },
   mainBox: {
     width: "100%",
-    height: "73%",
+    height: 250,
     borderRadius: 3,
   },
   firstBox: {
@@ -227,7 +225,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   top: {
-    height: (80) * biLi,
+    height: (78) * biLi,
     width: "100%",
     backgroundColor: "#fff",
     borderRadius: 0,

@@ -58,9 +58,30 @@ export default class Message extends Component {
         <View style={{ paddingTop: 0, height: '100%', paddingBottom: 10 }}>
           <FlatList
             data={[
-              { name: 'JK&妹' },
-              { name: 'JK&妹' },
-              { name: 'JK&妹' },
+              { 
+                key:1,
+                name: 'JK&妹',
+                time:"2020/08/12",
+                userHead:require('../img/a.png'),
+                sendContainer:"交个朋21321友吧",
+                messageNum:13,
+               },
+               { 
+                key:2,
+                name: 'JK&妹',
+                time:"2020/08/12",
+                userHead:require('../img/a.png'),
+                sendContainer:"交个朋友吧",
+                messageNum:13,
+               },
+               { 
+                key:3,
+                name: 'JK&妹',
+                time:"2020/08/12",
+                userHead:require('../img/a.png'),
+                sendContainer:"交个朋友吧",
+                messageNum:13,
+               },
             ]}
             renderItem={({ item }) =>
               <TouchableNativeFeedback
@@ -110,10 +131,10 @@ export default class Message extends Component {
                       <View style={{ flexDirection: "column", marginLeft: 10, justifyContent: "space-between", width: '65%' }}>
                         <Text style={{ fontSize: 15 }}>{item.name}</Text>
                         {/* 用户发送未读消息 */}
-                        <Text style={{ color: "#999999", width: '100%', fontSize: 12 }}>你好</Text>
+                        <Text style={{ color: "#999999", width: '100%', fontSize: 12 }}>{item.sendContainer}</Text>
                       </View>
                       <View style={{ position: "absolute", right: 30, top: 15, alignItems: "flex-end" }}>
-                        <Text style={{ fontSize: 10, color: "#999999" }}>14分钟前</Text>
+                        <Text style={{ fontSize: 10, color: "#999999" }}>{item.time}</Text>
                         <Text style={[styles.userSend]}>1</Text>
                       </View>
                     </View>
