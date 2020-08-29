@@ -18,11 +18,13 @@ import ImagePicker from 'react-native-image-crop-picker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 export default class spread extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
             addPicState: "flex",
-            avatarSource: '',
+            avatarSource: [],
+            source: new Array(9)
         };
     }
     _fetchImage(image) {
@@ -45,6 +47,7 @@ export default class spread extends Component {
         })
     }
     render() {
+
         var imgDate = [
             {
                 key: 1,
@@ -103,14 +106,14 @@ export default class spread extends Component {
                         <View>
                             <View style={{ width: '94%', flexWrap: "wrap", flexDirection: "row", marginLeft: '3%' }}>
                                 {
-                                    imgDate.map((item) => {
+                                    this.state.avatarSource.map((item) => {
                                         if (item.key == 9) {
-                                            // this.setState({addPicState:"none"})
                                             Alert.alert("11111")
                                         }
                                         return (
                                             <View style={{ width: '31%', marginLeft: '2%', flexDirection: "row" }}>
-                                                <Image style={{ height: 72, width: '100%', backgroundColor: "yellow", marginTop: 10 }} source={this.state.avatarSource} />
+                                                {/* <Text>{item}</Text> */}
+                                                <Image style={{ height: 72, width: '100%', backgroundColor: "yellow", marginTop: 10 }} source={{ uri: item }} />
                                             </View>
                                         )
                                     })
@@ -143,13 +146,17 @@ export default class spread extends Component {
                                 height: 400,
                                 cropping: true,
                                 // showCropGuidelines :true
-                            }).then(image => {
-                                let source = { uri: image.path };
+                                multiple: true,
+                                maxFiles: 9,
+                            }).then(images => {
+                                source = images.map(item => { return item.path });
+                                console.log(source);
                                 // console.log(images);
-                                this._fetchImage(image);
+                                this._fetchImage(images);
                                 this.setState({
                                     avatarSource: source
                                 });
+                                console.log("sdsad d" + this.state.avatarSource)
                             });
                         }}
 

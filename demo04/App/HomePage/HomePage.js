@@ -30,7 +30,6 @@ const biLi = width * scale / 1300;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
-StatusBar.setHidden(false,'fade')
 export default class Home extends Component {
   constructor(props) {
     super(props)
