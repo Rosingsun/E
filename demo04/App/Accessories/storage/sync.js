@@ -9,10 +9,10 @@ import {storage} from './index'
 const sync = {
 
   user(params) {
-    let { id, resolve, reject, syncParams: { head, username,PersonalSignature } } = params
-    fetch('http://192.168.56.1:3000/users/login', {
+    let { id, resolve, reject, syncParams: { head, username,PersonalSignature,user_id } } = params
+    fetch('http://192.168.56.1:3000/api/users/login', {
       method: 'GET',
-      body: 'id=' + id,
+      body: 'id=' + id, 
       ...extraFetchOptions,
     }).then(response => {
       return response.json()

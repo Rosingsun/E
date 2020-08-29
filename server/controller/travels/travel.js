@@ -11,7 +11,7 @@ const { exec } = require('../../db/mysql')
  */
 const release = (title, words, username, createTime, showUserImg,user_id) => {
     let sql = `INSERT INTO travels (title, words ,username, createTime,showUserImg,user_id) 
-              VALUES ( ${title} , ${words}, ${username}, '${createTime}', '${showUserImg}',${user_id})`
+              VALUES ( '${title}' , '${words}', '${username}', '${createTime}', '${showUserImg}',${user_id})`
     return exec(sql).then(row => {
       return row || {}
     })
