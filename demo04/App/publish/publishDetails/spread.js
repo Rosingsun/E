@@ -24,7 +24,9 @@ export default class spread extends Component {
         this.state = {
             addPicState: "flex",
             avatarSource: [],
-            source: new Array(9)
+            source: new Array(9),
+            title:'',
+            words:'',
         };
     }
     _fetchImage(image) {
@@ -92,14 +94,30 @@ export default class spread extends Component {
                     <View style={[styles.top_container]}>
                         <FontAwesome name='angle-left' size={32} color="#000" />
                         <Text style={{ color: "#000" }}>你他妈关老子</Text>
-                        <Text style={{ paddingHorizontal: 20, backgroundColor: "#6C9575", color: "#fff", paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20, }} > 发送 </Text>
+                        <Text style={{ paddingHorizontal: 20, backgroundColor: "#6C9575", color: "#fff", paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20, }} 
+                        > 发送 </Text>
                     </View>
                 </View>
                 <View style={{ backgroundColor: "#fff", marginTop: 20, width: '90%', marginLeft: '5%', paddingBottom: 10, borderRadius: 15 }}>
+                    <View style={{ width: '94%', height: 40, backgroundColor: "#efefef", marginLeft: '3%', marginTop: 10, borderRadius: 15 }}>
+
+                        <TextInput
+                            style={{ width: "100%", height: 40, letterSpacing: 1, }}
+                            placeholder="标题 "
+                            onChangeText={(text)=>{
+                                this.setState({title:text});
+                            }}
+                        />
+                    </View>
                     <View style={{ width: '94%', height: 110, backgroundColor: "#efefef", marginLeft: '3%', marginTop: 10, borderRadius: 15 }}>
+
                         <TextInput
                             style={{ width: "100%", height: 40, letterSpacing: 1, }}
                             placeholder="分享一篇游记吧 "
+                            onChangeText={(text)=>{
+                                this.setState({words:text});
+                                console.log(this.state.words)
+                            }}
                         />
                     </View>
                     <TouchableWithoutFeedback >
@@ -108,7 +126,7 @@ export default class spread extends Component {
                                 {
                                     this.state.avatarSource.map((item) => {
                                         if (item.key == 9) {
-                                            Alert.alert("11111")
+                                            console.log(this.state.title)
                                         }
                                         return (
                                             <View style={{ width: '31%', marginLeft: '2%', flexDirection: "row" }}>

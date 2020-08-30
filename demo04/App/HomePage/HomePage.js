@@ -19,7 +19,7 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Details from '../navigation/HomePageNavigation';
+import {HomePageDetails} from '../App02';
 import {
   MapView,
   MapTypes,
@@ -140,7 +140,7 @@ export default class Home extends Component {
             {/* <View style={{ width: 50, height: 20, borderRadius: 20, }}>
 
           </View> */}
-            <Details />
+            <HomePageDetails />
           </View>
           {/* 第二部分完 */}
         </ScrollView>

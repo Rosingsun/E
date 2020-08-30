@@ -43,8 +43,8 @@ export default class dakaAll extends Component {
             errInfo: null,
             demoOneValue: '',
             touchFlag: true,
-            // fadeAnim: new Animated.Value(-(Dimensions.get('window').height / 1.8 - 70)),
-            fadeAnim: new Animated.Value(0),
+            fadeAnim: new Animated.Value(-(Dimensions.get('window').height / 1.8 - 70)),
+            // fadeAnim: new Animated.Value(0),
             Vertical: new Animated.Value(0),
             disPlayFlag: "none",
             // fadeAnim: new Animated.Value(-Dimensions.get('window').height+),
@@ -204,7 +204,13 @@ export default class dakaAll extends Component {
                                     <View style={{ height: '100%', width: '100%' }}>
                                         {/* <TouchableWithoutFeedback> */}
                                         <ScrollView style={{ height: '100%', width: "100%", backgroundColor: "#efefef" }}>
-                                            <RadioGroup style={{}} onSelect={(index, value) => console.log(index)} >
+                                            <RadioGroup 
+                                             size={20}
+                                             thickness={1}
+                                             color='#000'
+                                             highlightColor='#fff'
+                                             selectedIndex={2}
+                                             onSelect={(index, value) => console.log(index)} >
                                                 {
                                                     CityName.map((item) => {
                                                         return (
@@ -231,11 +237,20 @@ export default class dakaAll extends Component {
                                             console.log("!111");
                                         }}>
                                         <ScrollView style={{ height: '100%', width: "100%", backgroundColor: "#efefef" }}>
-                                            <RadioGroup style={{}} onSelect={(index, value) => console.log(value)} >
+                                            <RadioGroup
+                                                size={20}
+                                                thickness={1}
+                                                color='#000'
+                                                highlightColor='#fff'
+                                                selectedIndex={2}
+                                                onSelect={(index, value) => console.log(value)}//获取用户选区的哪一个
+                                                 >
                                                 {
                                                     CityName.map((item) => {
                                                         return (
-                                                            <RadioButton style={{ padding: 10, alignItems: "center", marginTop: 20, borderRadius: 20, width: '90%', marginLeft: "5%", backgroundColor: "#fff" }} value={item.name}>
+                                                            <RadioButton
+                                                             style={{padding: 10, alignItems: "center", marginTop: 20, borderRadius: 20, width: '90%', marginLeft: "5%", backgroundColor: "#fff" }}
+                                                              value={item.name}>
                                                                 <View>
                                                                     <Text>{item.name}</Text>
                                                                 </View>
@@ -294,7 +309,7 @@ const styles = StyleSheet.create({
     },
     mainBox: {
         width: "90%",
-        height: 118 * biLi,
+        height: 118 ,
         backgroundColor: "#fff",
         marginLeft: "5%",
         flexDirection: "row",
@@ -319,7 +334,7 @@ const styles = StyleSheet.create({
 
     },
     button: {
-        width: 190 * biLi,
+        width: '110%',
         height: 20 * biLi,
         backgroundColor: "#EFEFEF"
     },
