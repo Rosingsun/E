@@ -30,6 +30,7 @@ export default class changePersonalInfoMation extends Component {
             userSex: "男"
         }
     }
+    
     componentDidMount() {
         storage.load('userInfo', (data) => {
             this.setState({
@@ -62,6 +63,29 @@ export default class changePersonalInfoMation extends Component {
         })
     }
 
+    _onClickupdataPersonal = () => {
+        var navigation=this.props.navigation; 
+        fetch('http://192.168.56.1:3000/api/users/updataPersonal', {
+                method: 'POST',
+                credentials: "include",
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json,multipart/form-data',
+                },
+                body: JSON.stringify({
+                  username:this.state.username,
+                  PersonalSignature: this.state.PersonalSignature,
+              })
+            }).then(function (res) {
+                return res.json();
+            }).then(function (json) {
+                     let obj = {}
+                     obj.username = this.state.username
+                     obj.PersonalSignature = this.state.PersonalSignature
+                     storage.save('userInfo',obj)
+                        navigation.goBack();
+            })  
+      };
     render() {
         return (
             <View style={[styles.container]}>
@@ -73,9 +97,7 @@ export default class changePersonalInfoMation extends Component {
                         }} />
                         {/* </View> */}
                         <Text style={{ color: "#000", fontSize: 20, marginRight: 25 }}>编辑资料</Text>
-                        <Text style={{ color: "#000", fontSize: 15, marginRight: 25 }} onPress={() => {
-                            this.props.navigation.goBack();
-                        }}>保存</Text>
+                        <Text style={{ color: "#000", fontSize: 15, marginRight: 25 }} onPress={this._onClickupdataPersonal}>保存</Text>
                         {/* <View>
 
                         </View> */}
@@ -113,6 +135,7 @@ export default class changePersonalInfoMation extends Component {
                         <View style={{ flexDirection: "row", alignItems: "center", paddingRight: 20 }}>
                             <TextInput
                                 placeholder={this.state.username}
+                                onChangeText={(text)=>{this.setState({username:text})}}
                             />
                             <AntDesign name={'right'} size={20} color={'#999999'} />
                         </View>

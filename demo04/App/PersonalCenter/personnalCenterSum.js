@@ -6,6 +6,7 @@ import {
     StatusBar,
     Image,
     StyleSheet,
+    ScrollView,
     Alert,
     ScrollView
 } from 'react-native';
@@ -43,10 +44,10 @@ export default class PersonalCenterSum extends Component {
     _onScroll(event) {
         let y = event.nativeEvent.contentOffset.y;
         console.log(y);
-        Alert.alert("111")
-        if (y == 200) {
-            this.setState = { scrollowAble: false }
-        }
+        // Alert.alert("111")
+        // if (y == 200) {
+        //     this.setState = { scrollowAble: false }
+        // }
         // if (this.state.oldPostion <y) {
         //     this.state.oldPostion=y;
         //     this.refs.title.setNativeProps({

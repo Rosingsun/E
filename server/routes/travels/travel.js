@@ -10,9 +10,9 @@ const {
 const { nowDate } = require("../../public/utils/main")
 
 router.post('/release', (req, res, next) => {
-  const { title, words, username,showUserImg} = req.body
+  const { title, words, username,showUserImg,user_id} = req.body
   const createTime = nowDate()
-  const result = release(title, words, username, createTime, showUserImg)
+  const result = release(title, words, username, createTime, showUserImg,user_id)
   const resultData = result.then(data => {
     console.log(data)
     if (data) {
