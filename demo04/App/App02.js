@@ -68,6 +68,7 @@ import trade from './News/trade';
 import MainText from './News/NewsDetails/MainText';
 import ChatInfoMation from'./Chat/ChatInfoMation';
 import ChatRecord from'./Chat/ChatRecord';
+import complaint from './News/NewsDetails/complaint';
 
 //定义各类导航栏的变量
 
@@ -338,7 +339,8 @@ function MyStack() {
       <Stack.Screen name="MainText" component={MainText} />
       {/* /。。/消息页面详情 */}
       <Stack.Screen name="chating" component={chating} />
-
+      <Stack.Screen name="complaint" component={complaint} />
+      
       {/* /。/个人中心页面 */}
       <Stack.Screen name="Eline" component={Eline} />
       <Stack.Screen name="Exianlu" component={Exianlu} />

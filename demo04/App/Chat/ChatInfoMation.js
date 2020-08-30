@@ -96,7 +96,7 @@ export default ChatInfoMation = ({navigation}) => {
                     <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>投诉</Text>
                     <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }}
                         onPress={() => {
-                            Alert.alert("这是通往投诉的路")
+                            navigation.navigate("complaint");
                         }} />
                 </View>
             </View>
