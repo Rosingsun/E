@@ -43,8 +43,8 @@ export default class dakaAll extends Component {
             errInfo: null,
             demoOneValue: '',
             touchFlag: true,
-            // fadeAnim: new Animated.Value(-(Dimensions.get('window').height / 1.8 - 70)),
-            fadeAnim: new Animated.Value(0),
+            fadeAnim: new Animated.Value(-(Dimensions.get('window').height / 1.8 - 70)),
+            // fadeAnim: new Animated.Value(0),
             Vertical: new Animated.Value(0),
             disPlayFlag: "none",
             // fadeAnim: new Animated.Value(-Dimensions.get('window').height+),
@@ -231,7 +231,13 @@ export default class dakaAll extends Component {
                                             console.log("!111");
                                         }}>
                                         <ScrollView style={{ height: '100%', width: "100%", backgroundColor: "#efefef" }}>
-                                            <RadioGroup style={{}} onSelect={(index, value) => console.log(value)} >
+                                            <RadioGroup
+                                                size={20}
+                                                thickness={1}
+                                                color='#000'
+                                                highlightColor='#fff'
+                                                selectedIndex={2}
+                                                onSelect={(index, value) => console.log(value)} >
                                                 {
                                                     CityName.map((item) => {
                                                         return (

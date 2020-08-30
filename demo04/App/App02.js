@@ -75,9 +75,62 @@ const HomaPageTabNavigation = createMaterialTopTabNavigator();
 const PersonalTabNavigation = createMaterialTopTabNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
+const TopTab = createMaterialTopTabNavigator();
 // 各类导航的编写
-//个人中心页面
+//首页顶部导航
+export function HomePageDetails() {
+  return (
+      <TopTab.Navigator
+        tabBarOptions={{
+          labelStyle: {
+            fontSize: 20,
+            padding:0,
+            height:'100%',
+          },
+          tabStyle: {
+            width: 80,
+            padding:0,
+            borderBottomColor: "#000000",
+            height:30,
 
+          },
+          style: {
+            backgroundColor: '#EFEFEF',
+            height:30,
+            padding:0,
+            elevation: 0,
+          },
+          indicatorStyle: {
+            backgroundColor: "#FFB16C",
+            height: 3,
+            width: 30,
+            borderRadius: 111,
+            marginLeft: 25,
+          },
+        }}
+      >
+        <TopTab.Screen
+          name="recommend"
+          component={recommend}
+          options={{
+            title: '推荐',
+          }}
+        />
+        <TopTab.Screen
+          name="focus"
+          component={focus}
+          options={{ title: '关注' }}
+        />
+        <TopTab.Screen
+          name="local"
+          component={local}
+          options={{ title: '本地' }}
+        />
+      </TopTab.Navigator>
+  );
+}
+
+//个人中心页面
 export function PersonalTab() {
   return (
     <PersonalTabNavigation.Navigator
@@ -305,6 +358,7 @@ function MyStack() {
       <Stack.Screen name="ChatInfoMation" component={ChatInfoMation} />
       <Stack.Screen name="ChatRecord" component={ChatRecord} />
       {/* 首页 */}
+      <Stack.Screen name="exchange" component={exchange} />
     </Stack.Navigator>
   );
 }
