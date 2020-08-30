@@ -50,11 +50,14 @@ export default class changePersonalInfoMation extends Component {
 
         let formData = new FormData();
         formData.append('file', head); // 这里的 file 要与后台名字对应。
-
+        formData.append('data',JSON.stringify({
+            username:this.state.username,
+            PersonalSignature: this.state.PersonalSignature,}));
         fetch(url, {
             method: 'POST',
             headers: {
-                'Content-Type': 'multipart/form-data',
+               'Accept': 'application/json',
+                  'Content-Type': 'application/json,multipart/form-data',
             },
             body: formData,
         }).then(function (response) {

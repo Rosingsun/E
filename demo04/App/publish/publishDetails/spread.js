@@ -29,7 +29,7 @@ export default class spread extends Component {
     }
     _fetchImage(image) {
 
-        let url = "http://192.168.56.1:3000/api/users/updataPersonal"
+        let url = "http://192.168.56.1:3000/api/travels/travel/"
         let head = { uri: image.path, type: 'multipart/form-data', name: 'image.png' };
 
         let formData = new FormData();
