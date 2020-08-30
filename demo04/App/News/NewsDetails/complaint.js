@@ -10,7 +10,7 @@ export default class complaint extends Component {
     multiList: [
       {
         "id": "0",
-        "text": "垃圾营销",
+        "name": "垃圾营销",
         select: false
       },
       {
@@ -61,7 +61,8 @@ export default class complaint extends Component {
     super(props);
     this.state = {
       isPress: true,
-
+      multiData: this.props.multiList,
+      selectMultiItem: [],
     }
   }
   onPress = () => {
@@ -100,8 +101,10 @@ export default class complaint extends Component {
           //选中状态
           <TouchableOpacity
             onPress={() => this._selectMultiItemPress(item)}
-            style={[styles.markRow, styles.markChecked]}>
-            <Text style={styles.markCheckedText}>{item.name}</Text>
+            style={{flexDirection:"row"}}>
+           <View  style={[styles.button,{backgroundColor:"#2F3843"}]}>
+              <Text style={{ fontSize: 12,color:"#fff" }}>{item.name}</Text>
+            </View>
           </TouchableOpacity>
         )
       } else {
@@ -109,31 +112,22 @@ export default class complaint extends Component {
           // 未选中状态
           <TouchableOpacity
             onPress={() => this._selectMultiItemPress(item)}
-            style={[styles.markRow, styles.markUnCheck]}>
-            <Text style={styles.markUnCheckText}>{item.name}</Text>
+            style={{flexDirection:"row"}}>
+           <View style={[styles.button]}>
+              <Text style={{ fontSize: 12,color:"#000" }}>{item.name}</Text>
+            </View>
           </TouchableOpacity>
         )
       }
     }
     return (
       //讲各类状态框输出到前端页面
-      <View style={styles.multiBox}>
+      <View style={{flexDirection:"row",height:120,alignContent:"space-between",flexWrap:"wrap",width:"94%",marginLeft:'3%',justifyContent:"space-between"}}>
         {menuArr}
       </View>
     );
   }
   render() {
-    var test = [
-      { id: 1 },
-      { id: 2 },
-      { id: 3 },
-      { id: 4 },
-      { id: 5 },
-      { id: 6 },
-      { id: 7 },
-      { id: 8 },
-      { id: 9 },
-    ]
     return (
       <View style={styles.container}>
         {/* TOP */}
@@ -172,9 +166,7 @@ export default class complaint extends Component {
           </View>
           <Text style={{ fontSize: 15, paddingLeft: '3%', paddingTop: 18 }}>请选择你想要投诉的类型</Text>
           <View style={[styles.buttonBox]}>
-            <View style={styles.button}>
-              <Text style={{ fontSize: 12 }}>垃圾营销</Text>
-            </View>
+             {this._renderMultiMark()}
           </View>
         </View>
 
@@ -259,16 +251,12 @@ const styles = StyleSheet.create({
     height: 34,
     borderRadius: 15,
     alignItems: "center",
-    justifyContent: "center"
-
+    justifyContent: "center",
+    flexDirection:"row"
   },
   buttonBox: {
-    flexDirection: "row",
-    marginTop: 10,
-    width:'90%',
-    backgroundColor:"red",
-    marginLeft:'5%',
-
+    flexDirection:"row",
+    width:'100%',
   },
 });
 
