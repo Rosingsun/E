@@ -25,8 +25,8 @@ export default class spread extends Component {
             addPicState: "flex",
             avatarSource: [],
             source: new Array(9),
-            title:'',
-            words:'',
+            title: '',
+            words: '',
         };
     }
     _fetchImage(image) {
@@ -94,7 +94,7 @@ export default class spread extends Component {
                     <View style={[styles.top_container]}>
                         <FontAwesome name='angle-left' size={32} color="#000" />
                         <Text style={{ color: "#000" }}>你他妈关老子</Text>
-                        <Text style={{ paddingHorizontal: 20, backgroundColor: "#6C9575", color: "#fff", paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20, }} 
+                        <Text style={{ paddingHorizontal: 20, backgroundColor: "#6C9575", color: "#fff", paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20, }}
                         > 发送 </Text>
                     </View>
                 </View>
@@ -104,8 +104,8 @@ export default class spread extends Component {
                         <TextInput
                             style={{ width: "100%", height: 40, letterSpacing: 1, }}
                             placeholder="标题 "
-                            onChangeText={(text)=>{
-                                this.setState({title:text});
+                            onChangeText={(text) => {
+                                this.setState({ title: text });
                             }}
                         />
                     </View>
@@ -114,8 +114,8 @@ export default class spread extends Component {
                         <TextInput
                             style={{ width: "100%", height: 40, letterSpacing: 1, }}
                             placeholder="分享一篇游记吧 "
-                            onChangeText={(text)=>{
-                                this.setState({words:text});
+                            onChangeText={(text) => {
+                                this.setState({ words: text });
                                 console.log(this.state.words)
                             }}
                         />
