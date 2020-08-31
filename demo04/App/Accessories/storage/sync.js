@@ -22,10 +22,10 @@ const sync = {
       if(json && json.user){
         storage.save({
           key: 'user',
-          data: json.user
+          data: json.user,
         })
 
-        if (username) {
+        if (head) {
           // 根据syncParams中的额外参数做对应处理
         }
 

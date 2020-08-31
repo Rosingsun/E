@@ -33,7 +33,7 @@ export default class load extends Component {
 
     _onClickLogin = () => {
         var navigation = this.props.navigation;
-        fetch('http://127.0.0.1:3000/api/users/login', {
+        fetch('http://192.168.1.151:3000/api/users/login', {
             method: 'POST',
             credentials: "include",
             headers: {
@@ -55,7 +55,7 @@ export default class load extends Component {
                 obj.token = json.data.token
                 obj.head = json.data.head
                 storage.save('userInfo', obj)
-
+                 
                 // 登录成功
                 //  console.log(json)
                 navigation.navigate("bottomTab");

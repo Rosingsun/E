@@ -8,7 +8,7 @@ if (env === 'development') {
         user: "root",
         password: "root",
         port: "3306",
-        database: "shop",
+        database: "user",
         dateStrings: true
     }
 }
@@ -19,7 +19,7 @@ if (env === 'production') {
         user: "root",
         password: "root",
         port: "3306",
-        database: "shop",
+        database: "user",
         dateStrings: true
     }
 }

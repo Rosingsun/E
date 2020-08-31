@@ -27,7 +27,8 @@ export default class changePersonalInfoMation extends Component {
             PersonalSignature: "写一段话介绍自己吧！",
             username: "用户名",
             avatarSource: '',
-            userSex: "男"
+            userSex: "男",
+            source: '',
         }
     }
     
@@ -37,8 +38,9 @@ export default class changePersonalInfoMation extends Component {
                 username: data.username,
                 PersonalSignature: data.PersonalSignature,
                 head: data.head,
+                token:data.token,
+                avatarSource: data.head,
             })
-
         })
     }
 
@@ -68,25 +70,33 @@ export default class changePersonalInfoMation extends Component {
 
     _onClickupdataPersonal = () => {
         var navigation=this.props.navigation; 
-        fetch('http://192.168.56.1:3000/api/users/updataPersonal', {
+        fetch('http://192.168.1.151:3000/api/users/updataPersonal', {
                 method: 'POST',
                 credentials: "include",
                 headers: {
                   'Accept': 'application/json',
-                  'Content-Type': 'application/json,multipart/form-data',
+                  'Content-Type': 'application/json',
+                  'token':this.state.token
                 },
                 body: JSON.stringify({
                   username:this.state.username,
                   PersonalSignature: this.state.PersonalSignature,
+                  head:this.state.avatarSource,
               })
             }).then(function (res) {
                 return res.json();
             }).then(function (json) {
-                     let obj = {}
-                     obj.username = this.state.username
-                     obj.PersonalSignature = this.state.PersonalSignature
-                     storage.save('userInfo',obj)
-                        navigation.goBack();
+                console.log(json)
+                if (json.errno == 0) {
+                    alert("保存成功")
+                } else if (json.errno == -1) {
+                    alert("保存失败")
+                }
+                    //  let obj = {}
+                    //  obj.username = this.state.username
+                    //  obj.PersonalSignature = this.state.PersonalSignature
+                    //  storage.save('userInfo',obj)
+                    //     navigation.goBack();
             })  
       };
     render() {
@@ -100,14 +110,18 @@ export default class changePersonalInfoMation extends Component {
                         }} />
                         {/* </View> */}
                         <Text style={{ color: "#000", fontSize: 20, marginRight: 25 }}>编辑资料</Text>
-                        <Text style={{ color: "#000", fontSize: 15, marginRight: 25 }} onPress={this._onClickupdataPersonal}>保存</Text>
+                        <Text style={{ color: "#000", fontSize: 15, marginRight: 25 }} 
+                        onPress={()=>{
+                            this._onClickupdataPersonal();
+
+                        }}>保存</Text>
                         {/* <View>
 
                         </View> */}
                     </View>
                 </View>
                 <View style={{ width: '100%', height: '26%', justifyContent: "center", alignItems: "center" }}>
-                    <Image style={{ height: 100, width: 100, borderRadius: 50 }} source={this.state.avatarSource} />
+                    <Image style={{ height: 100, width: 100, borderRadius: 50 }} source={{uri:this.state.avatarSource}} />
                     <Text style={{ color: "#999999", marginTop: 10 }}
                         onPress={() => {
                             // 从本地相册选择单幅图像
@@ -119,12 +133,14 @@ export default class changePersonalInfoMation extends Component {
                                 cropping: true,
                                 // showCropGuidelines :true
                             }).then(image => {
-                                let source = { uri: image.path };
+                                let source =(image.path);
+                                console.log(source)
                                 // console.log(images);
-                                this._fetchImage(image);
+                                this._onClickupdataPersonal;
                                 this.setState({
                                     avatarSource: source
                                 });
+                                console.log(this.state.avatarSource)
                             });
                         }}
                     >点击更新图像</Text>
