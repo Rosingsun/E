@@ -24,7 +24,7 @@ export default class PersonalCenterSum extends Component {
             username: '',
             PersonalSignature: '',
             head: '',
-            scrollowAble: false,
+            scrollowAble: true,
         }
     }
 
@@ -44,26 +44,9 @@ export default class PersonalCenterSum extends Component {
         let y = event.nativeEvent.contentOffset.y;
         console.log(y);
         // Alert.alert("111")
-        // if (y == 200) {
-        //     this.setState = { scrollowAble: false }
-        // }
-        // if (this.state.oldPostion <y) {
-        //     this.state.oldPostion=y;
-        //     this.refs.title.setNativeProps({
-        //         style: {
-        //             opacity: 0,
-        //             // height: 0
-        //         },
-        //     });
-        // } else {
-        //     this.state.oldPostion=y;
-        //     this.refs.title.setNativeProps({
-        //         style: {
-        //             opacity: 1,
-        //             // height: 40
-        //         },
-        //     });
-        // }
+        if (y >= 180) {
+            this.setState({ scrollowAble: false })
+        }
     }
     render() {
         return (
@@ -71,7 +54,6 @@ export default class PersonalCenterSum extends Component {
                 onScroll={(event) => this._onScroll(event)}
                 style={{ height: '80%', backgroundColor: "#6C9575" }}
                 scrollEnabled={this.state.scrollowAble}
-
             >
                 <View style={{ flex: 1, backgroundColor: "#6C9575" }}>
                     {/* <ScrollView> */}
@@ -84,7 +66,6 @@ export default class PersonalCenterSum extends Component {
                                 }}
                             />
                             <Feather name='more-horizontal' size={30} color="#fff"
-
                                 onPress={() => {
                                     this.props.navigation.navigate("UserSetting")
                                 }} />

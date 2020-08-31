@@ -150,7 +150,7 @@ export default class recommend extends Component {
     }
     return (
       <View style={{ backgroundColor: "#EFEFEF", borderRadius: 200, }}>
-        <View style={{ flexDirection: "row", width: "94%", marginLeft: '3%' }}>
+        <View style={{ flexDirection: "row", width: "94%", marginLeft: '3%',height:200,backgroundColor:"red" }}>
           {/* 左边这一侧的用户商品信息 */}
           <View style={{ width: "50%", flexDirection: "column", }}>
             {/* 试一下用flatlist */}
@@ -178,7 +178,11 @@ export default class recommend extends Component {
             </View>
           </View>
         </View>
-
+        <ActivityIndicator
+          animating={true}
+          color='#999999'
+          size="large"
+          style={{ height: 40, width: '100%', marginTop: 20, }} />
       </View>
     );
   }

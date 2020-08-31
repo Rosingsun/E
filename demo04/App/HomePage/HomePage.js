@@ -24,8 +24,6 @@ import {
   MapTypes,
   Geolocation
 } from 'react-native-baidu-map';
-const { width, scale } = Dimensions.get("window");
-const biLi = width * scale / 1300;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -78,7 +76,7 @@ export default class Home extends Component {
           <View style={[styles.firstBox]}>
             <View style={[styles.imgShow]}>
               <View style={[styles.imgShowBox]}>
-                <Image style={{ height: 140 * biLi, width: "94%", marginLeft: "3%" }} source={require('../img/a.jpg')} />
+                <Image style={{ height: 140 , width: "94%", marginLeft: "3%" }} source={require('../img/a.jpg')} />
                 <View style={{ width: "100%", flexDirection: "row", padding: 6, justifyContent: "center" }}>
                   <Text style={{ fontSize: 15, }}>今日热议：</Text>
                   <Text style={{ fontSize: 12, lineHeight: 20, color: "#FFB16C" }}>#横看成岭侧成峰，远近高低各不同#</Text>
@@ -138,18 +136,11 @@ export default class Home extends Component {
 
           {/* 第二个框 */}
           <View style={[styles.userShopBox]}>
-            {/* <View style={{ width: 50, height: 20, borderRadius: 20, }}>
-
-          </View> */}
             <HomePageDetails />
-            <ActivityIndicator
-          animating={true}
-          color='#999999'
-          size="large"
-          style={{ height:0,width: '100%', marginTop: 20 }} />
           </View>
           {/* 第二部分完 */}
         </ScrollView>
+        
       </View>
     )
   }
@@ -160,7 +151,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   showContainer: {
-    width: 185 * biLi,
+    width: 185,
     borderRadius: 3,
     marginTop: 5,
     backgroundColor: "#fff",
@@ -203,7 +194,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   imgShow: {
-    height: 290 * biLi,
+    height: 290,
     width: '100%',
   },
   mainBox: {
@@ -226,12 +217,12 @@ const styles = StyleSheet.create({
     width: '70%',
     borderRadius: 20,
     padding: 0,
-    height: 35 * biLi,
+    height: 35 ,
     fontSize: 12,
     flexDirection: "row",
   },
   top: {
-    height: (78) * biLi,
+    height:78,
     width: "100%",
     backgroundColor: "#fff",
     borderRadius: 0,
@@ -245,7 +236,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginLeft: "3%",
-    backgroundColor:"pink"
   },
 });
 
