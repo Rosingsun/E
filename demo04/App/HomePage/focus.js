@@ -178,7 +178,11 @@ export default class focus extends Component {
             </View>
           </View>
         </View>
-
+        <ActivityIndicator
+          animating={true}
+          color='#999999'
+          size="large"
+          style={{ height: 40, width: '100%', marginTop: 20, }} />
       </View>
     );
   }

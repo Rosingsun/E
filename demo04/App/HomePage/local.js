@@ -3,11 +3,9 @@ import {
   View,
   StyleSheet,
   Image,
-  ScrollView,
   Dimensions,
   Text,
   FlatList,
-  Alert,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -57,11 +55,7 @@ export default class local extends Component {
             <Image style={{ height: 20, width: 20, borderRadius: 25, }} source={{ uri: userHead }} />
             <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{name}</Text>
             <View style={{ position: "absolute", right: 10, bottom: 5 }}>
-              <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
-                onPress={() => {
-                  Alert.alert("you press me ")
-                }}
-              >
+              <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>
                 <AntDesign name={'like2'} size={12} color={like} />
                 {countNum}
               </Text>
