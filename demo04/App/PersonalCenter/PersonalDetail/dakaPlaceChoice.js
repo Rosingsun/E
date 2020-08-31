@@ -13,8 +13,19 @@ import {
 import StarRating from 'react-native-star-rating';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-
+import Picker from 'react-native-picker';
+//底部选择框
+let cityData = [
+  {
+    '杭州': [1, 2, 3, 4]
+  },
+  {
+    '温州': [1, 2, 3, 4]
+  },
+];
+let choiceType = ['人气最高', '历史气息', '情侣圣地'];
 export default class dakaPlaceChoice extends Component {
 
   constructor(props) {
@@ -22,6 +33,10 @@ export default class dakaPlaceChoice extends Component {
     this.state = {
       starCount: '2',
       placeSumCount: 0,
+      choiceCitye: "杭州",
+      choiceType: "人气最高",
+      addPlace: 0,
+      addOpacity: 0,
     };
   }
 
@@ -30,7 +45,19 @@ export default class dakaPlaceChoice extends Component {
       starCount: rating
     });
   }
+
+
   render() {
+    var infoDate = [
+      { key: "1.5" },
+      { key: "1.5" },
+      { key: "1.5" },
+      { key: "1.5" },
+      { key: "1.5" },
+      { key: "1.5" },
+      { key: "1.5" },
+      { key: "1.5" },
+    ]
     return (
       <View style={[styles.container]}>
         <View style={styles.Top}>
@@ -41,7 +68,6 @@ export default class dakaPlaceChoice extends Component {
           <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, padding: 2, paddingHorizontal: 5 }}
             onPress={() => {
               this.props.navigation.navigate("improveInformation")
-              Alert.alert("you click me ");
             }}
           >下一步(2/3)</Text>
         </View>
@@ -52,8 +78,24 @@ export default class dakaPlaceChoice extends Component {
           <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
             <View style={{ flexDirection: "row" }}>
               <Ionicons name={'md-location-sharp'} size={30} color={'#000'} />
-              <Text style={{ lineHeight: 30, marginLeft: 0, color: "#000", fontWeight: "bold" }}>杭州
-              <View style={{ borderWidth: 4, borderBottomColor: "#ffffff00", borderLeftColor: "#ffffff00", borderRightColor: "#ffffff00", borderTopColor: "#000000" }}></View>
+              <Text style={{ lineHeight: 30, marginLeft: 0, color: "#000", fontWeight: "bold" }}
+                onPress={() => {
+                  Picker.init({
+                    pickerData: cityData,
+                    onPickerConfirm: data => {
+                      this.setState({ choiceCitye: data })
+                    },
+                    onPickerCancel: data => {
+                      console.log(data);
+                    },
+                    onPickerSelect: data => {
+                      this.setState({ choiceCitye: data })
+                    }
+                  });
+                  Picker.show();
+                }}
+              >{this.state.choiceCitye}
+                <View style={{ borderWidth: 4, borderBottomColor: "#ffffff00", borderLeftColor: "#ffffff00", borderRightColor: "#ffffff00", borderTopColor: "#000000" }}></View>
               </Text>
             </View>
             <View style={{ width: '60%', flexDirection: "row", backgroundColor: "#fff", borderRadius: 20 }}>
@@ -64,18 +106,34 @@ export default class dakaPlaceChoice extends Component {
               </TextInput>
               <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
             </View>
-            <Text>人气最高
-<View style={{ borderWidth: 4, borderBottomColor: "#ffffff00", borderLeftColor: "#ffffff00", borderRightColor: "#ffffff00", borderTopColor: "#000000" }}></View>
+
+            <Text
+              onPress={() => {
+                Picker.init({
+                  pickerData: choiceType,
+                  onPickerConfirm: data => {
+                    this.setState({ choiceType: data })
+                  },
+                  onPickerCancel: data => {
+                    console.log(data);
+                  },
+                  onPickerSelect: data => {
+                    this.setState({ choiceType: data })
+                  }
+                });
+                Picker.show();
+              }}
+            >{this.state.choiceType}
+              <View style={{ borderWidth: 4, borderBottomColor: "#ffffff00", borderLeftColor: "#ffffff00", borderRightColor: "#ffffff00", borderTopColor: "#000000" }}></View>
             </Text>
           </View>
         </View>
         <FlatList
           style={{ height: '80%' }}
-          scrollEnabled={false}
-          data={[
-            { key: "1.5" },
-          ]}
+          scrollEnabled={true}
+          data={infoDate}
           renderItem={({ item }) =>
+
             <View style={[styles.userEBox]}>
               {/* pic box */}
               <View>
@@ -112,7 +170,7 @@ export default class dakaPlaceChoice extends Component {
                 <View style={{ position: "absolute", right: -10, top: '45%' }}>
                   <AntDesign name={'pluscircle'} size={22} color='#6C9575'
                     onPress={() => {
-
+                      this.setState({ addOpacity: 1, addPlace: this.state.addPlace + 1 })
                     }}
                   />
                 </View>
@@ -120,9 +178,16 @@ export default class dakaPlaceChoice extends Component {
             </View>
           }
         />
+        <View style={{ position: "absolute", justifyContent: "center", alignItems: "center", height: 60, width: 60, borderRadius: 100, right: 20, bottom: 40, backgroundColor: "#2F3843" }}>
+          <View style={{ opacity: this.state.addOpacity, height: 20, position: "absolute", right: -1, top: -5, width: 20, borderRadius: 10, backgroundColor: "red" }}>
+            <Text style={{ textAlign: "center", color: "#fff", fontWeight: "bold" }}>{this.state.addPlace}</Text>
+          </View>
+          <MaterialCommunityIcons name={'clipboard-list-outline'} size={40} color={'#fff'}
 
-        <View style={{ position: "absolute", top: 0, right: 0 }}>
-          <Ionicons name={'list-circle'} size={22} color='red' />
+            onPress={() => {
+              Alert.alert('11212');
+            }}
+          />
         </View>
       </View>
     );

@@ -101,7 +101,6 @@ export default class MyCustomCarousel extends PureComponent {
                     onPress={() => {
                         Alert.alert(item.title)
                         this.props.navigation.navigate("qiandao");
-
                     }}>
 
                     <View style={{
@@ -116,9 +115,7 @@ export default class MyCustomCarousel extends PureComponent {
                         <Image style={{
                             borderRadius: 5,
                             height: '48%',
-                            //   图片宽度要小一点
                             width: '100%',
-                            //   padding: 50,
                         }} source={{ uri: item.illustration }} />
                         <View style={{ height: '22%', width: '100%' }}>
                             <Text style={{ fontSize: 24, marginTop: 10, textAlign: "center", width: '100%' }}>{item.title}</Text>
@@ -128,39 +125,27 @@ export default class MyCustomCarousel extends PureComponent {
                             <Image style={{
                                 borderRadius: 5,
                                 height: '100%',
-                                //   图片宽度要小一点
                                 width: '30%',
-                                //   padding: 50,
                             }} source={{ uri: item.illustration }} />
                             <Image style={{
                                 borderRadius: 5,
                                 height: '100%',
-                                //   图片宽度要小一点
                                 width: '30%',
-                                //   padding: 50,
                             }} source={{ uri: item.illustration }} />
                             <Image style={{
                                 borderRadius: 5,
                                 height: '100%',
-                                //   图片宽度要小一点
                                 width: '30%',
-                                
-                                //   padding: 50,
                             }} source={{ uri: item.illustration }} />
                         </View>
                     </View>
                 </TouchableOpacity>
-            // </View>
-
         )
     }
 
 
     render() {
         return (
-     
-            
-                // {/* 卡片显示出来的高度 */}
                 <View style={{
                    width: '100%',
                    justifyContent: 'center', alignItems: 'center'
@@ -180,10 +165,5 @@ export default class MyCustomCarousel extends PureComponent {
             
         );
     }
-    // render () {
-    //     return (
-    //         <View style={{height:100,width:'100%',backgroundColor:"pink"}}></View>
-    //     );
-    // }
 
 }

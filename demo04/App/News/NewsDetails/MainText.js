@@ -22,9 +22,9 @@ export default class MainText extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      content:'',
-       data:[],
-       isLoading:true
+      content: '',
+      data: [],
+      isLoading: true
     }
   }
   componentDidMount() {
@@ -38,8 +38,8 @@ export default class MainText extends Component {
         this.setState({ isLoading: false });
       });
   }
-   
-  _onClickSendContent=()=>{
+
+  _onClickSendContent = () => {
     fetch('http://192.168.56.1:3000/users/list', {
       method: 'POST',
       headers: {
@@ -51,15 +51,27 @@ export default class MainText extends Component {
       })
     }).then(function (res) {
       return res.json();
-  }).then(function (json) {
+    }).then(function (json) {
       if (json.code == "200") {
-          alert("发送成功")
-      }else if (json.code == "400") {
-          alert("发送失败")
+        alert("发送成功")
+      } else if (json.code == "400") {
+        alert("发送失败")
       }
-  })  
+    })
   }
+
   render() {
+
+    var imgData = [
+      { photo: '../../img/1.jpg' },
+      { photo: '../../img/1.jpg' },
+      { photo: '../../img/1.jpg' },
+      { photo: '../../img/1.jpg' },
+      { photo: '../../img/1.jpg' },
+      { photo: '../../img/1.jpg' },
+      { photo: '../../img/1.jpg' },
+      { photo: '../../img/1.jpg' },
+    ]
     const { data, isLoading } = this.state;
     return (
 
@@ -77,7 +89,7 @@ export default class MainText extends Component {
         {/* 内容 */}
         <View style={{ height: '80%' }}>
           <ScrollView style={{ backgroundColor: "#EFEFEF", borderBottomRightRadius: 15, borderBottomLeftRadius: 15, }}>
-     
+
             {/* 九宫格 */}
             <View style={styles.ninePicture}>
               {/* 九宫格信息 */}
@@ -104,22 +116,17 @@ export default class MainText extends Component {
                 <Text style={{ color: "#FFB16C", fontSize: 15 }}>#话题：论如何迷倒万千少女#</Text>
                 <Text style={{ fontSize: 15 }}>文字:成为杰哥。这段话要凑到三行，我也不知道杰哥怎么想的，咱也不敢说咱也不敢问,咱只能默默码代码，希望杰哥饶了我。</Text>
               </View>
-              <FlatList
-                data={[
-                  { photo: '../../img/1.jpg' },
-                  { photo: '../../img/1.jpg' },
-                  { photo: '../../img/1.jpg' },
-                  { photo: '../../img/1.jpg' },
-                  { photo: '../../img/1.jpg' },
-                  { photo: '../../img/1.jpg' },
-                ]}
-
-                numColumns={3}
-                renderItem={({ item }) =>
-                  <View style={styles.photolist}>
-                    <Image style={styles.ninephoto} source={require('../../img/1.jpg')} />
-                  </View>
-                } />
+              <View style={{ backgroundColor: "pink", width: '96%', marginLeft: '2%', flexDirection: "row", flexWrap: "wrap" }}>
+                {
+                  imgData.map((item) => {
+                    return (
+                      <View style={styles.photolist}>
+                        <Image style={styles.ninephoto} source={require('../../img/1.jpg')} />
+                      </View>
+                    )
+                  })
+                }
+              </View>
               {/* 九宫格底部的定位 */}
               <View style={{ width: "100%", flexDirection: 'row', justifyContent: 'space-around' }}>
                 <Text style={{ fontSize: 50, color: '#EFEFEF', marginTop: -25, marginBottom: -20 }}>·····························</Text></View>
@@ -209,11 +216,11 @@ export default class MainText extends Component {
         <View style={styles.bottomText}>
           <View style={{ height: '75%', width: '75%', backgroundColor: '#FFFFFF', borderRadius: 20, marginLeft: '3%' }}>
             <TextInput style={{ justifyContent: 'center', fontSize: 15, marginLeft: '3%' }} placeholder='评论'
-             onChangeText={(text) => {this.setState({ content: text });}}/>
+              onChangeText={(text) => { this.setState({ content: text }); }} />
           </View>
           <View style={{ width: "20%", height: '76%', marginBottom: '1%', backgroundColor: "#6C9575", borderRadius: 20, justifyContent: "center", alignItems: "center" }}>
             <Text style={{ color: "#fff", fontSize: 15, letterSpacing: 2 }}
-            onPress={() => { this._onClickSendContent();}}>发送</Text>
+              onPress={() => { this._onClickSendContent(); }}>发送</Text>
           </View>
         </View>
       </View>
@@ -293,12 +300,12 @@ const styles = StyleSheet.create({
   },
   photolist: {
     paddingTop: 6,
-    marginLeft: 9 * biLi,
-    flexDirection: "row",
+    width: '30%',
+    marginLeft: '2%'
   },
   ninephoto: {
-    width: 117 * biLi,
-    height: 117 * biLi,
+    width: 117,
+    height: 117,
   },
   map: {
     width: "94%",

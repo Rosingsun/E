@@ -14,9 +14,9 @@ var app = express();
 const ENV = process.env.NODE_ENV || 'production'
 
 if (ENV === 'development') {
-  global.baseUrl = 'http://localhost:3000'
+  global.baseUrl = 'http://127.0.0.1:3000'
 }else if (ENV === 'production') {
-  global.baseUrl = 'http://localhost:3000'
+  global.baseUrl = 'http://127.0.0.1:3000'
 }
 
 app.all('*', function (req, res, next) {    

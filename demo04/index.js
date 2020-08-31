@@ -2,10 +2,12 @@
  * @format
  */
 
-import {AppRegistry} from 'react-native';
+import { AppRegistry } from 'react-native';
 //正常主页
 import App from './App/App02';
-// import App from './App/App';
+// import App from './App/App02';
+// import App from './App/图片放大';
+
 //复选框
 // import App from './App/src/page/demo01'
 
@@ -14,6 +16,8 @@ import App from './App/App02';
 
 // testPage
 // import App from './App';
-import {name as appName} from './app.json';
+// import App from './App/test/testcardvvv';
+import { name as appName } from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
+                               

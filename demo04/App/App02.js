@@ -26,6 +26,7 @@ import Search from './HomePage/detail/Ranking';
 import focus from './HomePage/focus';
 import local from './HomePage/local';
 import recommend from './HomePage/recommend';
+import exchange from './HomePage/detail/exchange';
 //发布页面
 import Section from './publish/publishDetails/Section';
 import spread from './publish/publishDetails/spread';
@@ -65,7 +66,9 @@ import leaveMessage from './News/leaveMessage';
 import Message from './News/Message';
 import trade from './News/trade';
 import MainText from './News/NewsDetails/MainText';
-
+import ChatInfoMation from'./Chat/ChatInfoMation';
+import ChatRecord from'./Chat/ChatRecord';
+import complaint from './News/NewsDetails/complaint';
 
 //定义各类导航栏的变量
 
@@ -73,9 +76,62 @@ const HomaPageTabNavigation = createMaterialTopTabNavigator();
 const PersonalTabNavigation = createMaterialTopTabNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
+const TopTab = createMaterialTopTabNavigator();
 // 各类导航的编写
-//个人中心页面
+//首页顶部导航
+export function HomePageDetails() {
+  return (
+      <TopTab.Navigator
+        tabBarOptions={{
+          labelStyle: {
+            fontSize: 20,
+            padding:0,
+            height:'100%',
+          },
+          tabStyle: {
+            width: 80,
+            padding:0,
+            borderBottomColor: "#000000",
+            height:30,
 
+          },
+          style: {
+            backgroundColor: '#EFEFEF',
+            height:30,
+            padding:0,
+            elevation: 0,
+          },
+          indicatorStyle: {
+            backgroundColor: "#FFB16C",
+            height: 3,
+            width: 30,
+            borderRadius: 111,
+            marginLeft: 25,
+          },
+        }}
+      >
+        <TopTab.Screen
+          name="recommend"
+          component={recommend}
+          options={{
+            title: '推荐',
+          }}
+        />
+        <TopTab.Screen
+          name="focus"
+          component={focus}
+          options={{ title: '关注' }}
+        />
+        <TopTab.Screen
+          name="local"
+          component={local}
+          options={{ title: '本地' }}
+        />
+      </TopTab.Navigator>
+  );
+}
+
+//个人中心页面
 export function PersonalTab() {
   return (
     <PersonalTabNavigation.Navigator
@@ -244,20 +300,22 @@ function bottomTab() {
     </Tab.Navigator>
   );
 }
+
+
 // 堆栈导航
 function MyStack() {
   return (
     <Stack.Navigator headerMode="none">
       {/* 底部导航栏 */}
-
-      {/* 欢迎页面 */}
       <Stack.Screen name="dengru" component={dengru} />
+<Stack.Screen name="bottomTab" component={bottomTab} />
+      {/* 欢迎页面 */}
       <Stack.Screen name="load" component={load} />
       <Stack.Screen name="MainFadeView" component={MainFadeView} />
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Register" component={Register} />
       {/* 还未定义 */}
-      <Stack.Screen name="bottomTab" component={bottomTab} />
+      
       <Stack.Screen name="MessageTopTab" component={MessageTopTab} />
       <Stack.Screen name="Search" component={Search} />
       <Stack.Screen name="BaiduMap" component={BaiduMap} />
@@ -281,7 +339,8 @@ function MyStack() {
       <Stack.Screen name="MainText" component={MainText} />
       {/* /。。/消息页面详情 */}
       <Stack.Screen name="chating" component={chating} />
-
+      <Stack.Screen name="complaint" component={complaint} />
+      
       {/* /。/个人中心页面 */}
       <Stack.Screen name="Eline" component={Eline} />
       <Stack.Screen name="Exianlu" component={Exianlu} />
@@ -298,7 +357,10 @@ function MyStack() {
       <Stack.Screen name="PersonalCenterSum" component={PersonalCenterSum} />
       <Stack.Screen name="qiandao" component={qiandao} />
       <Stack.Screen name="MyCustomCarousel" component={MyCustomCarousel} />
-
+      <Stack.Screen name="ChatInfoMation" component={ChatInfoMation} />
+      <Stack.Screen name="ChatRecord" component={ChatRecord} />
+      {/* 首页 */}
+      <Stack.Screen name="exchange" component={exchange} />
     </Stack.Navigator>
   );
 }

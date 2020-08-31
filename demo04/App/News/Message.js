@@ -25,6 +25,39 @@ const Item = ({ item, onPress, style }) => (
 );
 
 export default class Message extends Component {
+
+  static defaultProps = {
+    multiList: [
+      {
+        id: 1,
+        name: 'JK&妹',
+        time: "2020/08/12",
+        userHead: require('../img/a.png'),
+        sendContainer: "交个朋21321友吧",
+        messageNum: 13,
+      },
+      {
+        id: 2,
+        name: 'JK&妹',
+        time: "2020/08/12",
+        userHead: require('../img/a.png'),
+        sendContainer: "交个朋友吧",
+        messageNum: 13,
+      },
+      {
+        id: 3,
+        name: 'JK&妹',
+        time: "2020/08/12",
+        userHead: require('../img/a.png'),
+        sendContainer: "交个朋友吧",
+        messageNum: 13,
+      },
+    ]
+  };
+
+
+
+
   constructor(props) {
     super(props)
     this.state = {
@@ -33,9 +66,77 @@ export default class Message extends Component {
       BmessageMarginLeft: '3%',
       choiceColor: "#FAAF3D",
       selectedId: null,
+      multiData: this.props.multiList,
+      selectMultiItem: [],
     }
   }
 
+  //多选
+  _selectMultiItemPress(item) {
+    if (item.select) {
+      this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
+        return x === item.id;
+      }), 1);
+    } else {
+      this.state.selectMultiItem.push(item.id);
+    }
+    this.state.multiData[item.id].select = !item.select;
+    this.setState({ multiData: this.state.multiData });
+  }
+  //递交 选中 
+  _submitMultiPress() {
+    alert(`选中了${JSON.stringify(this.state.selectMultiItem)}`)
+  }
+  //渲染多选标记
+  _renderMultiMark() {
+    let multiData = this.state.multiData;
+    let len = multiData.length;
+    let menuArr = [];
+    for (let i = 0; i < len; i++) {
+      let item = multiData[i];
+      if (item.select) {
+        menuArr.push(
+          //选中状态
+          <TouchableOpacity
+            onPress={() => this._selectMultiItemPress(item)}
+            style={[styles.markRow, styles.markChecked]}
+          >
+            <View style={[styles.Citystyle, { borderColor: this.state.borderColor }]} >
+              <View style={{ height: '100%', width: '100%' }}>
+                <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={item.backImgSrc} />
+                <Text style={styles.photoWord} pointerEvents="none">{item.CcityName}</Text>
+                <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        )
+      } else {
+        menuArr.push(
+          // 未选中状态
+          <TouchableOpacity
+            onPress={() => this._selectMultiItemPress(item)}
+            style={[styles.markRow, styles.markChecked]}
+          >
+            <TouchableWithoutFeedback>
+              <View style={[styles.Citystyle, { borderColor: "#fff" }]} >
+                <View style={{ height: '100%', width: '100%' }}>
+                  <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={item.backImgSrc} />
+                  <Text style={styles.photoWord} pointerEvents="none">{item.CcityName}</Text>
+                  <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
+                </View>
+              </View>
+            </TouchableWithoutFeedback>
+          </TouchableOpacity>
+        )
+      }
+    }
+    return (
+      //讲各类状态框输出到前端页面
+      <View style={styles.multiBox}>
+        {menuArr}
+      </View>
+    );
+  }
   renderItem = ({ item }) => {
     // 前面的是选中状态。后面的是未选中状态
     const backgroundColor = item.id === selectedId ? "#FAAF3D" : "#FFFFFF";
@@ -48,8 +149,6 @@ export default class Message extends Component {
       />
     );
   };
-
-
   render() {
     return (
       <View style={[styles.container]}>
@@ -58,9 +157,30 @@ export default class Message extends Component {
         <View style={{ paddingTop: 0, height: '100%', paddingBottom: 10 }}>
           <FlatList
             data={[
-              { name: 'JK&妹' },
-              { name: 'JK&妹' },
-              { name: 'JK&妹' },
+              {
+                id: 1,
+                name: 'JK&妹',
+                time: "2020/08/12",
+                userHead: require('../img/a.png'),
+                sendContainer: "交个朋21321友吧",
+                messageNum: 13,
+              },
+              {
+                id: 2,
+                name: 'JK&妹',
+                time: "2020/08/12",
+                userHead: require('../img/a.png'),
+                sendContainer: "交个朋友吧",
+                messageNum: 13,
+              },
+              {
+                id: 3,
+                name: 'JK&妹',
+                time: "2020/08/12",
+                userHead: require('../img/a.png'),
+                sendContainer: "交个朋友吧",
+                messageNum: 13,
+              },
             ]}
             renderItem={({ item }) =>
               <TouchableNativeFeedback
@@ -110,10 +230,10 @@ export default class Message extends Component {
                       <View style={{ flexDirection: "column", marginLeft: 10, justifyContent: "space-between", width: '65%' }}>
                         <Text style={{ fontSize: 15 }}>{item.name}</Text>
                         {/* 用户发送未读消息 */}
-                        <Text style={{ color: "#999999", width: '100%', fontSize: 12 }}>你好</Text>
+                        <Text style={{ color: "#999999", width: '100%', fontSize: 12 }}>{item.sendContainer}</Text>
                       </View>
                       <View style={{ position: "absolute", right: 30, top: 15, alignItems: "flex-end" }}>
-                        <Text style={{ fontSize: 10, color: "#999999" }}>14分钟前</Text>
+                        <Text style={{ fontSize: 10, color: "#999999" }}>{item.time}</Text>
                         <Text style={[styles.userSend]}>1</Text>
                       </View>
                     </View>

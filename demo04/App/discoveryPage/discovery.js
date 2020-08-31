@@ -9,8 +9,11 @@ import {
   FlatList,
   Image,
   Alert,
+  StatusBar
 } from 'react-native';
-
+StatusBar.setBackgroundColor("transparent");
+StatusBar.setTranslucent(true);
+StatusBar.setBarStyle('dark-content');
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -312,30 +315,29 @@ const styles = StyleSheet.create({
     backgroundColor: "#EFEFEF",
   },
   inputBox: {
-    backgroundColor: "#efefef",
+    backgroundColor: "#EFEFEF",
     width: '70%',
     borderRadius: 20,
     padding: 0,
-    height: 35 * biLi,
+    height: 30 * biLi,
     fontSize: 12,
     flexDirection: "row",
-    marginTop: 0,
   },
   top: {
     height: (78) * biLi,
     width: "100%",
     backgroundColor: "#fff",
-    borderBottomRightRadius: 3,
-    borderBottomLeftRadius: 3,
-    elevation: 8,
+    borderRadius: 0,
+    elevation: 1,
   },
   nav_container: {
     flex: 0.7,
     marginTop: '8%',
     flexDirection: "row",
-    width: "90%",
+    width: "96%",
     justifyContent: "space-between",
     alignItems: "center",
-    marginLeft: "5%",
+    marginLeft: "3%",
+    backgroundColor:"pink"
   },
 });

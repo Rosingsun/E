@@ -24,7 +24,7 @@ StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
 // export default class Search extends Component {
-export default ChatInfoMation = () => {
+export default ChatInfoMation = ({navigation}) => {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     // const [isEnabled, setIsEnabled] = useState(false);
@@ -33,11 +33,11 @@ export default ChatInfoMation = () => {
             <View style={[styles.top]}>
                 <View style={[styles.nav_container]}>
                     <View style={{ flexDirection: "row" }}>
-                        <AntDesign name={'leftcircle'} size={30} color={'#fff'} onPress={() => {
-                            Alert.alert("返回")
+                        <AntDesign name={'left'} size={30} color={'#000'} onPress={() => {
+                            navigation.goBack();
                         }} />
                     </View>
-                    <Text style={{ color: "#fff", fontSize: 20, marginRight: 20 }}>聊天信息</Text>
+                    <Text style={{ color: "#000", fontSize: 20, marginRight: 20 }}>聊天信息</Text>
                     <View>
                     </View>
                 </View>
@@ -65,30 +65,30 @@ export default ChatInfoMation = () => {
                 <View style={styles.button}>
                     <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>查找聊天记录</Text>
                     <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }} onPress={() => {
-                        Alert.alert("这是通往查找聊天记录的路")
+                        navigation.navigate("ChatRecord")
                     }} />
                 </View>
                 <View style={styles.button}>
                     <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>消息免打扰</Text>
                     <Switch
-                        trackColor={{ false: "#999999", true: "#43949B" }}
+                        trackColor={{ false: "#999999", true: "#6C9575" }}
                         style={{
                             transform: [{ scale: 1.2 }],
                             position: "absolute",
                             right: 13,
-                            shadowColor:"#66666600"
+                            shadowColor:"#66666690",
                         }}
                         onValueChange={toggleSwitch}
                         value={isEnabled}
-
-
                     />
                 </View>
                 <View style={styles.button}>
                     <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>清空聊天记录</Text>
                     <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }}
                         onPress={() => {
-                            Alert.alert("这是通往清空聊天记录的路")
+                            setTimeout(() => {
+                                    Alert.alert("消息清空完毕")
+                            }, 300);
                         }}
                     />
                 </View>
@@ -96,7 +96,7 @@ export default ChatInfoMation = () => {
                     <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>投诉</Text>
                     <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }}
                         onPress={() => {
-                            Alert.alert("这是通往投诉的路")
+                            navigation.navigate("complaint");
                         }} />
                 </View>
             </View>
@@ -108,15 +108,15 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: "#43949B",
+        backgroundColor: "#EFEFEF",
         flexDirection: "column"
     },
     top: {
         position: "absolute",
         top: 0,
-        height: (100) * biLi,
+        height: (78) * biLi,
         width: "100%",
-        backgroundColor: "#FFB16C",
+        backgroundColor: "#FFFFFF",
         borderBottomRightRadius: 20,
         borderBottomLeftRadius: 20,
         elevation: 8,
