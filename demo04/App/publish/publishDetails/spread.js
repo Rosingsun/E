@@ -10,6 +10,7 @@ import {
     Image,
     TouchableWithoutFeedback,
     Alert,
+
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Foundation from 'react-native-vector-icons/Foundation';
@@ -17,6 +18,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import ImagePicker from 'react-native-image-crop-picker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {storage} from '../../Accessories/storage/index'
 export default class spread extends Component {
 
     constructor(props) {
@@ -29,65 +31,52 @@ export default class spread extends Component {
             words: '',
         };
     }
-    _fetchImage(image) {
+    componentDidMount() {
+        storage.load('userInfo', (data) => {
+            this.setState({
+                user_id:data.user_id,
+                username:data.username,
+                PersonalSignature:data.PersonalSignature,
+                head:data.head,
+                token:data.token
+            })
+            let url = "http://192.168.56.1:3000/api/travels/travel/"
+            let head = { uri: image.path, type: 'multipart/form-data', name: 'image.png' };
+          })
+        }
 
-        let url = "http://192.168.56.1:3000/api/travels/travel/"
-        let head = { uri: image.path, type: 'multipart/form-data', name: 'image.png' };
+    _onClickSharetravel = () => {
+        var navigation=this.props.navigation; 
+        fetch('http://192.168.1.151:3000/api/travels/travel/release', {
+                method: 'POST',
+                credentials: "include",
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'token':this.state.token
+                  
+                },
+                body: JSON.stringify({
+                  title:this.state.title,
+                  words: this.state.words,
+                  showUserImg:this.state.avatarSource,
+                  username:this.state.username,
+                  user_id:this.state.user_id,
 
-        let formData = new FormData();
-        formData.append('file', head); // 这里的 file 要与后台名字对应。
-
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-            body: formData,
-        }).then(function (response) {
-            console.log("response", response);
-            return response.json();
-        })
-    }
+              })
+            }).then(function (res) {
+                return res.json();
+            }).then(function (json) {
+                if (json.errno == 0) {
+                    navigation.navigate("bottomTab");
+                    alert("保存成功")
+                } else if (json.errno == -1) {
+                    alert("保存失败")
+                }
+                        // navigation.goBack();
+            })  
+      };
     render() {
-
-        var imgDate = [
-            {
-                key: 1,
-                imgSrc: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f2117d18bec2.png!/fh/270/quality/90/unsharp/true/compress/true"
-            },
-            {
-                key: 2,
-                imgSrc: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f2117d18bec2.png!/fh/270/quality/90/unsharp/true/compress/true"
-            },
-            {
-                key: 3,
-                imgSrc: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f2117d18bec2.png!/fh/270/quality/90/unsharp/true/compress/true"
-            },
-            {
-                key: 4,
-                imgSrc: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f2117d18bec2.png!/fh/270/quality/90/unsharp/true/compress/true"
-            },
-            {
-                key: 5,
-                imgSrc: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f2117d18bec2.png!/fh/270/quality/90/unsharp/true/compress/true"
-            },
-            {
-                key: 6,
-                imgSrc: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f2117d18bec2.png!/fh/270/quality/90/unsharp/true/compress/true"
-            },
-            {
-                key: 7,
-                imgSrc: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f2117d18bec2.png!/fh/270/quality/90/unsharp/true/compress/true"
-            },
-            {
-                key: 8,
-                imgSrc: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f2117d18bec2.png!/fh/270/quality/90/unsharp/true/compress/true"
-            },
-            {
-                key: 1,
-                imgSrc: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f2117d18bec2.png!/fh/270/quality/90/unsharp/true/compress/true"
-            },
-        ]
         return (
             <View style={[styles.container]}>
                 <View style={[styles.top]}>
@@ -95,7 +84,7 @@ export default class spread extends Component {
                         <FontAwesome name='angle-left' size={32} color="#000" />
                         <Text style={{ color: "#000" }}>你他妈关老子</Text>
                         <Text style={{ paddingHorizontal: 20, backgroundColor: "#6C9575", color: "#fff", paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20, }}
-                        > 发送 </Text>
+                        onPress={this._onClickSharetravel}> 发送 </Text>
                     </View>
                 </View>
                 <View style={{ backgroundColor: "#fff", marginTop: 20, width: '90%', marginLeft: '5%', paddingBottom: 10, borderRadius: 15 }}>
@@ -170,7 +159,7 @@ export default class spread extends Component {
                                 source = images.map(item => { return item.path });
                                 console.log(source);
                                 // console.log(images);
-                                this._fetchImage(images);
+                                this._onClickSharetravel;
                                 this.setState({
                                     avatarSource: source
                                 });

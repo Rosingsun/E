@@ -250,7 +250,7 @@ export default class dakaAll extends Component {
                                                     CityName.map((item) => {
                                                         return (
                                                                 <View style={{width:'45%',height:'45%',backgroundColor:"#fff"}}>
-                                                                    <Text>{item.name}</Text>
+                                                                   <Image source={}/>
                                                                 </View>
                                                         )
                                                     })
