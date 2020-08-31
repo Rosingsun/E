@@ -12,151 +12,173 @@ import {
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
+
 var Data = [
   {
+    id: 1,
     name: 'JK妹',
-    userHead: "http://pic.51yuansu.com/pic3/cover/03/99/29/5efda46aa675b_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+    userHead: "../img/a.png",
     userWords: '一袖青衣，晚风吹彼岸。',
     place: '杭州西湖风景区',
-    countNum: 4,
+    countNum: '11',
     showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/99/29/5efda46aa675b_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
-    like: false,
+    like: 'red',
     height: 122,
   },
   {
+    id: 2,
     name: 'JK妹123213',
     userHead: "../img/a.png",
     userWords: '一袖青衣，晚风吹彼岸。',
     place: '杭州西湖风景区',
-    countNum: 3,
+    countNum: '11',
     showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/98/90/5ec62c32e30b4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
-    like: false,
-    height: 132,
-  },
-  {
-    name: 'JK妹123213',
-    userHead: "../img/a.png",
-    userWords: '一袖青衣，晚风吹彼岸。',
-    place: '杭州西湖风景区',
-    countNum: 1,
-    showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/98/90/5ec62c32e30b4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
-    like: false,
+    like: 'gray',
     height: 202,
   },
   {
-    name: 'JK妹123213',
+    id: 3,
+    name: 'JK妹',
     userHead: "../img/a.png",
     userWords: '一袖青衣，晚风吹彼岸。',
     place: '杭州西湖风景区',
-    countNum: 11,
+    countNum: '11',
     showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/98/90/5ec62c32e30b4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
-    like: true,
-    height: 102,
+    like: 'gray',
+    height: 202,
   },
+  {
+    id: 4,
+    name: 'JK妹',
+    userHead: "../img/a.png",
+    userWords: '一袖青衣，晚风吹彼岸。',
+    place: '杭州西湖风景区',
+    countNum: '11',
+    showUserImg: 'http://pic.51yuansu.com/pic3/cover/03/98/90/5ec62c32e30b4_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+    like: 'gray',
+    height: 202,
+  },
+
 ];
 export default class recommend extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      islike: false,
-      countNum:0,
+      isLoading: true,
+      data: []
     }
   }
-
-  //后台获取数据
-  componentDidMount(){
-
+  componentDidMount() {
+    fetch('http://192.168.1.151:3000/api/travels/travel/release')
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({ data: json.data });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
   }
-  _picList(name, userHead, userWords, place, countNum, showUserImg, like, height) {
-    return (
-      <View style={[styles.showContainer]}>
-        {/* 图片框 */}
-        <TouchableWithoutFeedback
-          onPress={()=>{
-            this.props.navigation.navigate("exchange");
-          }}
-        >
-        <Image style={{ height: height, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg }} /></TouchableWithoutFeedback>
-        {/* 定位 */}
-        <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
-          <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
-          {place}
-        </Text>
-        {/* 用户发言 */}
-        <Text style={{ fontSize: 16, color: "#000000", lineHeight: 20, paddingHorizontal: 5 }}>
-          {userWords}
-        </Text>
-        {/* 用户信息框 */}
-        <View style={{ flexDirection: "row", backgroundColor: "pink", paddingHorizontal: 5, paddingVertical: 8 }}>
-          <Image style={{ height: 20, width: 20, borderRadius: 25, }} source={{ uri: userHead }} />
-          <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{name}</Text>
-          <View style={{ position: "absolute", right: 10, bottom: 5 }}>
-            <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
-            >
-              <AntDesign name={'like2'} size={12} color={like ? 'red' : 'green'} />
-              {this.state.countNum}
-            </Text>
-          </View>
-        </View>
-      </View>
-    )
-  }
-
   render() {
-    return (
-      <View style={{ backgroundColor: "#EFEFEF", borderRadius: 200, paddingBottom: 20 }}>
-        <View style={{ flexDirection: "row", width: "94%", marginLeft: '3%' }}>
-          {/* 左边这一侧的用户商品信息 */}
-          <View style={{ width: "100%", flexDirection: "column", }}>
-            {/* 试一下用flatlist */}
-            <View style={styles.showUserlist}>
-              {
-                Data.map((item) => {
-                  return (
-                    <View style={[styles.showContainer]}>
-        {/* 图片框 */}
-        <TouchableWithoutFeedback
-          onPress={()=>{
-            this.props.navigation.navigate("exchange");
-          }}
-        >
-        <Image style={{ height:item.height, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: item.showUserImg }} /></TouchableWithoutFeedback>
-        {/* 定位 */}
-        <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
-          <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
-          {item.place}
-        </Text>
-        {/* 用户发言 */}
-        <Text style={{ fontSize: 16, color: "#000000", lineHeight: 20, paddingHorizontal: 5 }}>
-          {item.userWords}
-        </Text>
-        {/* 用户信息框 */}
-        <View style={{ flexDirection: "row", backgroundColor: "pink", paddingHorizontal: 5, paddingVertical: 8 }}>
-          <Image style={{ height: 20, width: 20, borderRadius: 25, }} source={{ uri: item.userHead }} />
-          <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{item.name}</Text>
-          <View style={{ position: "absolute", right: 10, bottom: 5 }}>
-            <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
-            >
-              <AntDesign name={'like2'} size={12} color={item.like ? 'red' : 'green'} />
-              {this.state.countNum}
+    function _picList(id,choice, name, userHead, userWords, place, countNum, showUserImg, like, height) {
+      if (id % 2 == 0 & choice == 1) {
+        return (
+          <View style={[styles.showContainer]}>
+            {/* 图片框 */}
+            <Image style={{ height: height, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg }} />
+            {/* 定位 */}
+            <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
+              <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
+              {place}
             </Text>
+            {/* 用户发言 */}
+            <Text style={{ fontSize: 16, color: "#000000", lineHeight: 20, paddingHorizontal: 5 }}>
+              {userWords}
+            </Text>
+            {/* 用户信息框 */}
+            <View style={{ flexDirection: "row", paddingHorizontal: 5, paddingVertical: 8 }}>
+              <Image style={{ height: 20, width: 20, borderRadius: 25, }} source={{ uri: userHead }} />
+              <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{name}</Text>
+              <View style={{ position: "absolute", right: 10, bottom: 5 }}>
+                <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
+                  onPress={() => {
+                    Alert.alert("you press me ")
+                  }}
+                >
+                  <AntDesign name={'like2'} size={12} color={like} />
+                  {countNum}
+                </Text>
+              </View>
+            </View>
           </View>
-        </View>
-      </View>
-                  )
-                })}
+        )
+      } else if (id % 2 == 1 & choice == 2) {
+        return (
+        <View style={[styles.showContainer]}>
+          {/* 图片框 */}
+          <Image style={{ height: height, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg }} />
+          {/* 定位 */}
+          <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
+            <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
+            {place}
+          </Text>
+          {/* 用户发言 */}
+          <Text style={{ fontSize: 16, color: "#000000", lineHeight: 20, paddingHorizontal: 5 }}>
+            {userWords}
+          </Text>
+          {/* 用户信息框 */}
+          <View style={{ flexDirection: "row", paddingHorizontal: 5, paddingVertical: 8 }}>
+            <Image style={{ height: 20, width: 20, borderRadius: 25, }} source={{ uri: userHead }} />
+            <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{name}</Text>
+            <View style={{ position: "absolute", right: 10, bottom: 5 }}>
+              <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
+                onPress={() => {
+                  Alert.alert("you press me ")
+                }}
+              >
+                <AntDesign name={'like2'} size={12} color={like} />
+                {countNum}
+              </Text>
             </View>
           </View>
         </View>
-        <ActivityIndicator
-          animating={true}
-          color='pink'
-          size="large"
-          style={{ width: '100%', backgroundColor: "pink" }} />
+      )
+      }
+    }
+    return (
+      <View style={{ backgroundColor: "#EFEFEF", borderRadius: 200, }}>
+        <View style={{ flexDirection: "row", width: "94%", marginLeft: '3%' }}>
+          {/* 左边这一侧的用户商品信息 */}
+          <View style={{ width: "50%", flexDirection: "column", }}>
+            {/* 试一下用flatlist */}
+            <View style={styles.showUserlist}>
+              <FlatList
+                numColumns={true}
+                data={Data}
+                renderItem={({ item }) =>
+                  _picList(item.id,1,item.name, item.userHead, item.userWords, item.place, item.countNum, item.showUserImg, item.like, item.height)
+                }
+              />
+            </View>
+          </View>
+          {/* 右边这一侧的用户信息 */}
+          <View style={{ width: "50%", flexDirection: "column", marginLeft: "2%" }}>
+            <View style={styles.showUserlist}>
+
+              <FlatList
+                numColumns={true}
+                data={Data}
+                renderItem={({ item }) =>
+                  _picList(item.id,2,item.name, item.userHead, item.userWords, item.place, item.countNum, item.showUserImg, item.like, item.height)
+                }
+              />
+            </View>
+          </View>
+        </View>
+
       </View>
     );
   }
@@ -165,12 +187,9 @@ const styles = StyleSheet.create({
   showUserlist: {
     width: '100%',
     borderRadius: 3,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
   },
   showContainer: {
-    width: '49%',
+    width: '100%',
     borderRadius: 3,
     marginTop: 10,
     backgroundColor: "#fff",

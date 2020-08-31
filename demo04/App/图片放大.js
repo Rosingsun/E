@@ -52,7 +52,9 @@ export default () => (
       />
     </Lightbox>
     <View style={styles.text}><Text>L1111111111111111111orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </Text></View>
-    <Lightbox springConfig={{tension: 15, friction: 7}} swipeToDismiss={false} renderContent={renderCarousel}>
+    <Lightbox springConfig={{tension: 15, friction: 7}}
+     swipeToDismiss={false} 
+     renderContent={renderCarousel}>
       <Image
         style={styles.carousel}
         resizeMode="contain"

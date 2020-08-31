@@ -13,8 +13,7 @@ import {
   StatusBar,
   ImageBackground,
   TouchableWithoutFeedback,
-  TouchableWithoutFeedbackBase,
-  SafeAreaView
+  ActivityIndicator,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -72,7 +71,9 @@ export default class Home extends Component {
 
 
         {/* 中部自己写 */}
-        <ScrollView style={[styles.mainBox]} showsVerticalScrollIndicator={false}>
+        <ScrollView style={[styles.mainBox]}
+         showsVerticalScrollIndicator={false}
+         >
           {/* 第一大框 */}
           <View style={[styles.firstBox]}>
             <View style={[styles.imgShow]}>
@@ -141,6 +142,11 @@ export default class Home extends Component {
 
           </View> */}
             <HomePageDetails />
+            <ActivityIndicator
+          animating={true}
+          color='#999999'
+          size="large"
+          style={{ height:0,width: '100%', marginTop: 20 }} />
           </View>
           {/* 第二部分完 */}
         </ScrollView>

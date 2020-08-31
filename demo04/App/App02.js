@@ -307,9 +307,9 @@ function MyStack() {
   return (
     <Stack.Navigator headerMode="none">
       {/* 底部导航栏 */}
+      <Stack.Screen name="dengru" component={dengru} />
 <Stack.Screen name="bottomTab" component={bottomTab} />
       {/* 欢迎页面 */}
-      <Stack.Screen name="dengru" component={dengru} />
       <Stack.Screen name="load" component={load} />
       <Stack.Screen name="MainFadeView" component={MainFadeView} />
       <Stack.Screen name="Splash" component={Splash} />
