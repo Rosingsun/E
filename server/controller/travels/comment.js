@@ -27,7 +27,16 @@ const deleteComment = (comment_id) => {
     })
   }
 
+const queryCommentId = (answer_id)=>{
+  let sql = `SELECT a.*, b.answer_id FROM comment as a LEFT JOIN travel as b ON a.answer_id=b.answer_id WHERE a.answer_id=${answer_id}`
+  return exec(sql).then(row=>{
+    return row || {}
+  })
+}
+
   module.exports={
       addComment,
       deleteComment,
+      queryCommentId,
+
   }

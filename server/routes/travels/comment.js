@@ -4,6 +4,7 @@ const { SuccessModel, ErrorModel } = require("../../model/resModel");
 const {
   addComment,
   deleteComment,
+  queryCommentId,
 } =require('../../controller/travels/comment');
 
 const { nowDate } = require("../../public/utils/main")
@@ -27,6 +28,20 @@ router.post('/addComment', (req, res, next) => {
 router.post('/deleteComment', (req, res, next) => {
   const { comment_id } = req.body
   const result = deleteRelease(comment_id)
+  const resultData = result.then(data => {
+    if (data) {
+      return new SuccessModel(data)
+    }
+    return new ErrorModel('异常错误')
+  })
+  resultData.then(data => {
+    res.json(data)
+  })
+})
+
+router.post('/queryCommentId', (req, res, next) => {
+  const { answer_id } = req.body
+  const result = deleteRelease(answer_id)
   const resultData = result.then(data => {
     if (data) {
       return new SuccessModel(data)
