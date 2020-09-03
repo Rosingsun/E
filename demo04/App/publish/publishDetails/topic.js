@@ -10,6 +10,7 @@ import {
     Image,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 var topicLine = [
     {
         key: 1,
@@ -110,6 +111,11 @@ export default class topic extends Component {
                             {
                                 topicChoice.map((item) => {
                                     return (
+                                        <TouchableWithoutFeedback
+                                            onPress={()=>{
+                                                this.props.navigation.navigate("spread",{topicWords:item.topicWords});
+                                            }}
+                                        >
                                         <View style={{ flexDirection: "row", width: '100%', height: 62, borderRadius: 3, marginTop: 10, backgroundColor: "#fff" }}>
                                             <Image style={{ height: '100%', width: 62 }} source={{ uri: item.image }} />
                                             <View style={{ justifyContent: "center", marginLeft: 10, }}>
@@ -117,6 +123,7 @@ export default class topic extends Component {
                                                 <Text style={{ textAlign: "center", fontSize: 12 }}>讨论{item.talkNum}</Text>
                                             </View>
                                         </View>
+                                        </TouchableWithoutFeedback>
                                     )
                                 })
                             }

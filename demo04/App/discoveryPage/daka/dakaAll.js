@@ -83,6 +83,7 @@ export default class dakaAll extends Component {
     }
 
     render() {
+        
         var circlePath = Path()
             .moveTo(0, 70)
             .arc(Dimensions.get('window').width, 0, this.state.circlePathHeight);
@@ -106,6 +107,29 @@ export default class dakaAll extends Component {
             {
                 key: 5,
                 name: "杭州"
+            },
+        ]
+
+        var CityType = [
+            {
+                id: 1,
+                name: "观赏类",
+                src:require("../photo/sign.png")
+            },
+            {
+                id: 2,
+                name: "游玩类",
+                src:require("../photo/play.png")
+            },
+            {
+                id: 3,
+                name: "美食类",
+                src:require("../photo/food.png")
+            },
+            {
+                id: 4,
+                name: "活动类",
+                src:require("../photo/active.png")
             },
         ]
         return (
@@ -203,13 +227,13 @@ export default class dakaAll extends Component {
                                 <Animated.View style={{ width: '50%', height: '100%', marginLeft: this.state.Vertical, }}>
                                     <View style={{ height: '100%', width: '100%' }}>
                                         {/* <TouchableWithoutFeedback> */}
-                                        <ScrollView style={{ height: '100%', width: "100%", backgroundColor: "#efefef" }}>
+                                        <ScrollView style={{ height: '100%', width: "96%", backgroundColor: "#efefef" }}>
                                             <RadioGroup 
                                              size={20}
                                              thickness={1}
-                                             color='#000'
+                                             color='#FAAF3D'
                                              highlightColor='#fff'
-                                             selectedIndex={2}
+                                             selectedIndex={0}
                                              onSelect={(index, value) => console.log(index)} >
                                                 {
                                                     CityName.map((item) => {
@@ -230,33 +254,42 @@ export default class dakaAll extends Component {
                                         {/* </TouchableWithoutFeedback> */}
                                     </View>
                                 </Animated.View>
-                                <Animated.View style={{ width: '50%', height: '100%', }}>
+                                <Animated.View style={{ width: '100%',backgroundColor:"#efefef", height: '100%', }}>
                                     {/* 右边的框 */}
                                     <TouchableWithoutFeedback
                                         onPress={() => {
                                             console.log("!111");
                                         }}>
-                                        <ScrollView
-                                         style={{ height: '100%', width: "100%", backgroundColor: "#efefef" }}>
-                                            {/* <RadioGroup
-                                                size={20}
-                                                thickness={1}
-                                                color='#000'
-                                                highlightColor='#fff'
-                                                selectedIndex={2}
-                                                onSelect={(index, value) => console.log(value)}//获取用户选区的哪一个
-                                                 > */}
+                                        <View
+                                         style={{ height: '100%', width: "96%", marginLeft:"2%",}}>
+                                               <RadioGroup 
+                                             size={20}
+                                             thickness={1}
+                                             color='#FAAF3D'
+                                             highlightColor='#efefef'
+                                             style={{width:'100%',flexDirection:"row",flexWrap:"wrap"}} 
+                                             selectedIndex={0}
+                                             onSelect={(index, value) => console.log(value)} >
                                                 {
-                                                    CityName.map((item) => {
+                                                    CityType.map((item) => {
                                                         return (
-                                                                <View style={{width:'45%',height:'45%',backgroundColor:"#fff"}}>
-                                                                   <Image source={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2399377501,2221360822&fm=26&gp=0.jpg'}/>
+                                                            <RadioButton
+                                                            style={{width:'100%',height:'45%',backgroundColor:"#efefef",}}  
+                                                            value={item.name}>
+                                                                <View style={{width:'100%',height:'45%',backgroundColor:"#efefef",}}>
+                                                                    <Image style={{height:"75%",width:'94%',marginLeft:"3%"}} source={item.src}/>
+                                                                    <View style={{ flexDirection: "row", alignItems: "center",marginTop:5,marginLeft:"3%" }}>
+                                                                    <Text style={{ height: 19, width: 19, textAlign: "center", lineHeight: 19, fontWeight: "bold", color: "#FFF", borderRadius: 20, backgroundColor: "#6C9575" }}>
+                                                                        {item.id}
+                                                                    </Text>
+                                                                    <Text style={{ marginLeft: 8 }}>{item.name}</Text>
                                                                 </View>
+                                                                </View></RadioButton>
                                                         )
                                                     })
                                                 }
-                                            {/* </RadioGroup> */}
-                                        </ScrollView>
+                                            </RadioGroup>
+                                        </View>
                                     </TouchableWithoutFeedback>
                                 </Animated.View>
                             </View>
