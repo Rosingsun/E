@@ -249,9 +249,7 @@ export default class dakaAll extends Component {
                                                 {
                                                     CityName.map((item) => {
                                                         return (
-                                                                <View style={{width:'45%',height:'45%',backgroundColor:"#fff"}}>
-                                                                   <Image source={'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2399377501,2221360822&fm=26&gp=0.jpg'}/>
-                                                                </View>
+                                                                <Text>11</Text>
                                                         )
                                                     })
                                                 }

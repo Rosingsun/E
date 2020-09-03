@@ -8,19 +8,15 @@ import {
     StyleSheet,
     ScrollView,
 } from 'react-native';
-import PersonalCenterNavigation from './daohangxiding/PersonalNavigation';
+import {EOPersonalTab} from '../../App02';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 import Feather from 'react-native-vector-icons/Feather';
-
-
-// import { ScrollView } from 'react-native-gesture-handler';
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
 
-export default class PersonalCenterSum extends Component {
+export default class EPersonalCenterSum extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -33,7 +29,11 @@ export default class PersonalCenterSum extends Component {
                 {/* <ScrollView> */}
                 <ImageBackground source={{ uri: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595925017886&di=bd63cd65db75bc8f3f44adaa4f88d08b&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fent%2Fcrawl%2F20170904%2FRwyS-fykqmrv9115948.jpg" }} style={{ width: '100%', height: 250, }} >
                     <View style={{position:"absolute",width:"85%",marginLeft:'8%',zIndex:1,marginTop:30,flexDirection:"row",justifyContent:"space-between"}}>
-                        <FontAwesome name='angle-left' size={32} color="white"/>
+                        <FontAwesome name='angle-left' size={32} color="white"
+                            onPress={()=>{
+                                this.props.navigation.goBack();
+                            }}
+                        />
                         <Feather name='more-horizontal' size={32} color="white" />
                     </View>
                     {/*返回与设置 */}
@@ -63,7 +63,8 @@ export default class PersonalCenterSum extends Component {
                     </View>
                 </ImageBackground>
                 <View style={{ width: '100%', height: '100%', backgroundColor: "red" }}>
-                    <PersonalCenterNavigation />
+                    {/* <PersonalCenterNavigation /> */}
+                    <EOPersonalTab/>
                 </View>
                 {/* </ScrollView> */}
             </View>

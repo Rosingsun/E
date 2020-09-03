@@ -40,8 +40,6 @@ export default class spread extends Component {
                 head:data.head,
                 token:data.token
             })
-            let url = "http://192.168.56.1:3000/api/travels/travel/"
-            let head = { uri: image.path, type: 'multipart/form-data', name: 'image.png' };
           })
         }
 

@@ -56,7 +56,7 @@ export default class PersonalCenterSum extends Component {
             >
                 <View style={{ flex: 1, backgroundColor: "#6C9575" }}>
                     {/* <ScrollView> */}
-                    <ImageBackground source={{ uri:this.state.head}} style={{ width: '100%', height: 250, tintColor: "#ffffff90",opacity:1}} >
+                    <ImageBackground source={{ uri:this.state.head}} style={{ width: '100%', height: 250, tintColor: "#ffffff90"}} >
                         {/*返回与设置 */}
                         <View style={{ position: "absolute", width: "85%", marginLeft: '8%', zIndex: 1, marginTop: 30, flexDirection: "row", justifyContent: "space-between" }}>
                             <FontAwesome name='angle-left' size={30} color="#fff" 
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
         borderColor: "#fff"
     },
     userBox: {
-        backgroundColor: "#ffffff00",
+        backgroundColor: "#ffffff",
         bottom: 0,
         marginTop: 150,
         height: 100,

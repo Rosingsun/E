@@ -3,12 +3,9 @@ import Carousel, { getInputRangeFromIndexes, ParallaxImage } from 'react-native-
 import {
     Text,
     View,
-    SafeAreaView,
-    ImageBackground,
     TouchableOpacity,
-    Alert,
     Image,
-    ScrollView
+    Alert,
 } from 'react-native';
 
 export default class MyCustomCarousel extends PureComponent {
@@ -96,10 +93,6 @@ export default class MyCustomCarousel extends PureComponent {
             //     {/* 此高度要和下面第一个VIEW的高度一样哦，不然alart点不出来 */}
             <TouchableOpacity style={{ width: '80%', height: 400, backgroundColor: 'transparent', justifyContent: 'center', marginLeft: '10%', }}
                 activeOpacity={0}
-                onPress={() => {
-                    Alert.alert(item.title,index)
-                    // this.props.navigation.navigate("qiandao");
-                }}
             >
                 <View style={{
                     backgroundColor: 'white',
@@ -143,6 +136,7 @@ export default class MyCustomCarousel extends PureComponent {
 
 
     render() {
+        const{navigation}=this.props;
         return (
             <View style={{
                 width: '100%',
@@ -158,10 +152,10 @@ export default class MyCustomCarousel extends PureComponent {
                     renderItem={({item})=>
                     <TouchableOpacity style={{ width: '80%', height: 400, backgroundColor: 'transparent', justifyContent: 'center', marginLeft: '10%', }}
                     activeOpacity={0}
-                    onPress={() => {
-                        Alert.alert(item.title)
-                    }}
-                >
+                        onPress={()=>{
+                            this.props.navigation.push("MainText")
+                        }}
+                    >
                     <View style={{
                         backgroundColor: 'white',
                         borderRadius: 5,

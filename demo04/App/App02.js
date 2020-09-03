@@ -60,20 +60,27 @@ import renderCalendarWithCustomMarkingType from './PersonalCenter/PersonalDetail
 import ProductionRoute from './PersonalCenter/PersonalDetail/ProductionRoute';
 import dakaPlaceChoice from './PersonalCenter/PersonalDetail/dakaPlaceChoice';
 import improveInformation from './PersonalCenter/PersonalDetail/ImproveInformation';
+//其他人的个人中心
+import EPersonalCenterSum from './PersonalCenter/OtherPersion/EOpersonnalCenterSum';
+import EOline from './PersonalCenter/OtherPersion/EOline';
+import EOxianlu from './PersonalCenter/OtherPersion/EOxianlu';
+import EOshouchang from './PersonalCenter/OtherPersion/EOshouchang';
+import EOdaka from './PersonalCenter/OtherPersion/EOdaka';
 //消息页面
 import thumbs from './News/thumbs';
 import leaveMessage from './News/leaveMessage';
 import Message from './News/Message';
 import trade from './News/trade';
 import MainText from './News/NewsDetails/MainText';
-import ChatInfoMation from'./Chat/ChatInfoMation';
-import ChatRecord from'./Chat/ChatRecord';
+import ChatInfoMation from './Chat/ChatInfoMation';
+import ChatRecord from './Chat/ChatRecord';
 import complaint from './News/NewsDetails/complaint';
 
 //定义各类导航栏的变量
 
 const HomaPageTabNavigation = createMaterialTopTabNavigator();
 const PersonalTabNavigation = createMaterialTopTabNavigator();
+const EOPersonalTabNavigation = createMaterialTopTabNavigator();
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -81,56 +88,85 @@ const TopTab = createMaterialTopTabNavigator();
 //首页顶部导航
 export function HomePageDetails() {
   return (
-      <TopTab.Navigator
-        tabBarOptions={{
-          labelStyle: {
-            fontSize: 20,
-            padding:0,
-            height:'100%',
-          },
-          tabStyle: {
-            width: 80,
-            padding:0,
-            borderBottomColor: "#000000",
-            height:30,
+    <TopTab.Navigator
+      tabBarOptions={{
+        labelStyle: {
+          fontSize: 20,
+          padding: 0,
+          height: '100%',
+        },
+        tabStyle: {
+          width: 80,
+          padding: 0,
+          borderBottomColor: "#000000",
+          height: 30,
 
-          },
-          style: {
-            backgroundColor: '#EFEFEF',
-            height:30,
-            padding:0,
-            elevation: 0,
-          },
-          indicatorStyle: {
-            backgroundColor: "#FFB16C",
-            height: 3,
-            width: 30,
-            borderRadius: 111,
-            marginLeft: 25,
-          },
+        },
+        style: {
+          backgroundColor: '#EFEFEF',
+          height: 30,
+          padding: 0,
+          elevation: 0,
+        },
+        indicatorStyle: {
+          backgroundColor: "#FFB16C",
+          height: 3,
+          width: 30,
+          borderRadius: 111,
+          marginLeft: 25,
+        },
+      }}
+    >
+      <TopTab.Screen
+        name="recommend"
+        component={recommend}
+        options={{
+          title: '推荐',
         }}
-      >
-        <TopTab.Screen
-          name="recommend"
-          component={recommend}
-          options={{
-            title: '推荐',
-          }}
-        />
-        <TopTab.Screen
-          name="focus"
-          component={focus}
-          options={{ title: '关注' }}
-        />
-        <TopTab.Screen
-          name="local"
-          component={local}
-          options={{ title: '本地' }}
-        />
-      </TopTab.Navigator>
+      />
+      <TopTab.Screen
+        name="focus"
+        component={focus}
+        options={{ title: '关注' }}
+      />
+      <TopTab.Screen
+        name="local"
+        component={local}
+        options={{ title: '本地' }}
+      />
+    </TopTab.Navigator>
   );
 }
-
+//其他人个人中心页面
+export function EOPersonalTab() {
+  return (
+    <PersonalTabNavigation.Navigator
+      tabBarOptions={{
+        //底部横线样式
+        indicatorStyle: {
+          height: 2,
+          backgroundColor: "#FFB16C",
+          width: 20,
+          marginLeft: 40,
+          marginBottom: 5,
+        },
+        labelStyle: {
+          fontSize: 20,
+          borderRadius: 20,
+        },
+        tabStyle: {
+          height: 45,
+        },
+        activeBackgroundColor: "red",
+        headerShown: false
+      }}>
+      <PersonalTabNavigation.Screen name="EOline" component={EOline} options={{ title: 'E游记' }} />
+      <PersonalTabNavigation.Screen name="EOxianlu" component={EOxianlu} options={{ title: 'E线路', }} />
+      <PersonalTabNavigation.Screen name="EOshouchang" component={EOshouchang} options={{ title: 'E收藏' }} />
+      <PersonalTabNavigation.Screen name="EOdaka" component={EOdaka} options={{ title: 'E打卡' }} />
+    </PersonalTabNavigation.Navigator>
+  );
+}
 //个人中心页面
 export function PersonalTab() {
   return (
@@ -308,14 +344,14 @@ function MyStack() {
     <Stack.Navigator headerMode="none">
       {/* 底部导航栏 */}
       <Stack.Screen name="dengru" component={dengru} />
-<Stack.Screen name="bottomTab" component={bottomTab} />
+      <Stack.Screen name="bottomTab" component={bottomTab} />
       {/* 欢迎页面 */}
       <Stack.Screen name="load" component={load} />
       <Stack.Screen name="MainFadeView" component={MainFadeView} />
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Register" component={Register} />
       {/* 还未定义 */}
-      
+
       <Stack.Screen name="MessageTopTab" component={MessageTopTab} />
       <Stack.Screen name="Search" component={Search} />
       <Stack.Screen name="BaiduMap" component={BaiduMap} />
@@ -340,7 +376,7 @@ function MyStack() {
       {/* /。。/消息页面详情 */}
       <Stack.Screen name="chating" component={chating} />
       <Stack.Screen name="complaint" component={complaint} />
-      
+
       {/* /。/个人中心页面 */}
       <Stack.Screen name="Eline" component={Eline} />
       <Stack.Screen name="Exianlu" component={Exianlu} />
@@ -352,8 +388,10 @@ function MyStack() {
       <Stack.Screen name="ProductionRoute" component={ProductionRoute} />
       <Stack.Screen name="dakaPlaceChoice" component={dakaPlaceChoice} />
       <Stack.Screen name="improveInformation" component={improveInformation} />
-      {/* 发现 */}
+      {/* 观看其他用户的个人中心 */}
+      <Stack.Screen name="EPersonalCenterSum" component={EPersonalCenterSum} />
 
+      {/* 发现 */}
       <Stack.Screen name="PersonalCenterSum" component={PersonalCenterSum} />
       <Stack.Screen name="qiandao" component={qiandao} />
       <Stack.Screen name="MyCustomCarousel" component={MyCustomCarousel} />
