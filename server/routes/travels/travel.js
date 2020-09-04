@@ -5,14 +5,17 @@ const {
     release,
   deleteRelease,
   updataRelease,
+  queryAllRelease,
+  queryReleaseLocation,
+  queryReleaseUserId,
 } = require("../../controller/travels/travel");
 
 const { nowDate } = require("../../public/utils/main")
 
 router.post('/release', (req, res, next) => {
-  const { title, words, username,showUserImg} = req.body
+  const { title, words, username,showUserImg,user_id,location} = req.body
   const createTime = nowDate()
-  const result = release(title, words, username, createTime, showUserImg)
+  const result = release(title, words, username, createTime, showUserImg,user_id,location)
   const resultData = result.then(data => {
     console.log(data)
     if (data) {
@@ -52,4 +55,47 @@ router.post('/updataRelease', (req, res, next) => {
       res.json(data)
     })
   })
+  
+router.post('/queryAllRelease', (req, res, next) => {
+    const result = queryAllRelease()
+    const resultData = result.then(data => {
+      if (data) {
+        return new SuccessModel(data)
+      }
+      return new ErrorModel('异常错误')
+    })
+    resultData.then(data => {
+      res.json(data)
+    })
+  })
+
+  router.post('/queryReleaseLocation', (req, res, next) => {
+    const { location } = req.body
+    const result =  queryReleaseLocation(location)
+    const resultData = result.then(data => {
+      if (data) {
+        return new SuccessModel(data)
+      }
+      return new ErrorModel('异常错误')
+    })
+    resultData.then(data => {
+      res.json(data)
+    })
+  })
+
+  router.post('/queryReleaseUserId', (req, res, next) => {
+    const { user_id } = req.body
+    const result =  queryReleaseUserId(user_id)
+    const resultData = result.then(data => {
+      if (data) {
+        return new SuccessModel(data)
+      }
+      return new ErrorModel('异常错误')
+    })
+    resultData.then(data => {
+      res.json(data)
+    })
+  })
+
+  
 module.exports = router;

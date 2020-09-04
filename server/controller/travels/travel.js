@@ -8,10 +8,11 @@ const { exec } = require('../../db/mysql')
  * @param {*} createTime 创建时间
  * @param {*} showUserImg 图片url
  * @param {*} user_id  用户id
+ * @param {*} location  定位
  */
-const release = (title, words, username, createTime, showUserImg,user_id) => {
-    let sql = `INSERT INTO travels (title, words ,username, createTime,showUserImg,user_id) 
-              VALUES ( ${title} , ${words}, ${username}, '${createTime}', '${showUserImg}',${user_id})`
+const release = (title, words, username, createTime, showUserImg,user_id,location) => {
+    let sql = `INSERT INTO travels (title, words ,username, createTime,showUserImg,user_id,location) 
+              VALUES ( '${title}' , '${words}', '${username}', '${createTime}', '${showUserImg}',${user_id},'${location}')`
     return exec(sql).then(row => {
       return row || {}
     })
@@ -52,14 +53,44 @@ const updataRelease = (title, words, showUserImg, answer_id) => {
       return row || {}
     })
   }
-  
-  
+    
 /**
- * 查询
+ * 查询全部
  */
+const queryAllRelease = () => {
+  let sql = `SELECT * FROM travels`
+  return exec(sql).then(row => {
+    return row || []
+  })
+}
+ 
+/**
+ * 根据定位查询文章
+ * @param {*} location
+ */
+const queryReleaseLocation = (location) => {
+  let sql = `SELECT * FROM travels WHERE location=${location}`
+  return exec(sql).then(row => {
+    return row || {}
+  })
+}
+
+/**
+ * 根据关注的用户查询文章
+ * @param {*} user_id
+ */
+const queryReleaseUserId = (user_id) => {
+  let sql = `SELECT a.*, b.followed_user FROM travels as a LEFT JOIN follow as b ON a.user_id=b.follow_user WHERE a.user_id=${user_id}`
+  return exec(sql).then(row => {
+    return row || {}
+  })
+}
 
   module.exports = {
     release,
     deleteRelease,
     updataRelease,
+    queryAllRelease,
+    queryReleaseLocation,
+    queryReleaseUserId
   }

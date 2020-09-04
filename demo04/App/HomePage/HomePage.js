@@ -13,20 +13,17 @@ import {
   StatusBar,
   ImageBackground,
   TouchableWithoutFeedback,
-  TouchableWithoutFeedbackBase,
-  SafeAreaView
+  ActivityIndicator,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Details from '../navigation/HomePageNavigation';
+import {HomePageDetails} from '../App02';
 import {
   MapView,
   MapTypes,
   Geolocation
 } from 'react-native-baidu-map';
-const { width, scale } = Dimensions.get("window");
-const biLi = width * scale / 1300;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -41,11 +38,9 @@ export default class Home extends Component {
   _Gps() {
     Geolocation.getCurrentPosition()
       .then(data => {
-        console.log('getCurrentPosition', data);
         this.setState({ Gps: data.city });
       })
       .catch(e => {
-        console.warn(e, 'error');
       })
   }
 
@@ -58,8 +53,9 @@ export default class Home extends Component {
         <View style={[styles.top]}>
           <View style={[styles.nav_container]}>
             <View style={{ flexDirection: "row" }}>
+              {/* <FontAwesome name={'map-marker'} size={30} color={'#fff'} /> */}
               <Ionicons name={'md-location-sharp'} size={30} color={'#000'} />
-              <Text style={{ lineHeight: 30, marginLeft: 0, color: "#000", fontWeight: "bold" }}>{this.state.Gps}</Text>
+              <Text style={{ lineHeight: 30, color: "#000", fontWeight: "bold" }}>杭州</Text>
             </View>
             <TouchableWithoutFeedback
                     onPress={() => {
@@ -67,11 +63,7 @@ export default class Home extends Component {
                     }}
                   >
             <View style={[styles.inputBox]}>
-              <TextInput
-                placeholder="去哪玩111"
-                style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '83%', lineHeight: -2, }}
-              >
-              </TextInput>
+              <TextInput placeholder="搜索" style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }} />
               <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
             </View>
             </TouchableWithoutFeedback>
@@ -81,12 +73,14 @@ export default class Home extends Component {
 
 
         {/* 中部自己写 */}
-        <ScrollView style={[styles.mainBox]} showsVerticalScrollIndicator={false}>
+        <ScrollView style={[styles.mainBox]}
+         showsVerticalScrollIndicator={false}
+         >
           {/* 第一大框 */}
           <View style={[styles.firstBox]}>
             <View style={[styles.imgShow]}>
               <View style={[styles.imgShowBox]}>
-                <Image style={{ height: 140 * biLi, width: "94%", marginLeft: "3%" }} source={require('../img/a.jpg')} />
+                <Image style={{ height: 140 , width: "94%", marginLeft: "3%" }} source={require('../img/a.jpg')} />
                 <View style={{ width: "100%", flexDirection: "row", padding: 6, justifyContent: "center" }}>
                   <Text style={{ fontSize: 15, }}>今日热议：</Text>
                   <Text style={{ fontSize: 12, lineHeight: 20, color: "#FFB16C" }}>#横看成岭侧成峰，远近高低各不同#</Text>
@@ -146,13 +140,11 @@ export default class Home extends Component {
 
           {/* 第二个框 */}
           <View style={[styles.userShopBox]}>
-            {/* <View style={{ width: 50, height: 20, borderRadius: 20, }}>
-
-          </View> */}
-            <Details />
+            <HomePageDetails />
           </View>
           {/* 第二部分完 */}
         </ScrollView>
+        
       </View>
     )
   }
@@ -163,7 +155,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   showContainer: {
-    width: 185 * biLi,
+    width: 185,
     borderRadius: 3,
     marginTop: 5,
     backgroundColor: "#fff",
@@ -206,7 +198,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   imgShow: {
-    height: 290 * biLi,
+    height: 290,
     width: '100%',
   },
   mainBox: {
@@ -229,12 +221,12 @@ const styles = StyleSheet.create({
     width: '70%',
     borderRadius: 20,
     padding: 0,
-    height: 35 * biLi,
+    height: 35 ,
     fontSize: 12,
     flexDirection: "row",
   },
   top: {
-    height: (80) * biLi,
+    height:78,
     width: "100%",
     backgroundColor: "#fff",
     borderRadius: 0,
@@ -248,7 +240,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginLeft: "3%",
-    backgroundColor: "pink"
   },
 });
 

@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Dimensions, ScrollView, Image, StatusBar, FlatList, ItemDivideComponent, TextInput, Alert, TouchableHighlight } from 'react-native';
+import {
+    Text,
+    View,
+    StyleSheet,
+    Dimensions,
+} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 const { width, scale } = Dimensions.get("window");
@@ -7,10 +12,10 @@ const biLi = width * scale / 1080;
 import Picker from 'react-native-picker';
 let choiceTime = [
     {
-        '1天': [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        '1天': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     },
     {
-        '2天': [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        '2天': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     },
     {
         '3天': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -35,7 +40,7 @@ export default class improveInformation extends Component {
         this.state = {
             turnOn: true,
             turnOff: false,
-            preTime:"1天3"
+            preTime: "1天3"
         }
     }
     render() {
@@ -62,13 +67,13 @@ export default class improveInformation extends Component {
                     <View style={{ flexDirection: "row", width: '94%', marginTop: 15, marginLeft: '3%' }}>
                         <Text style={{ backgroundColor: "#2F3843", color: "#fff", lineHeight: 40, borderRadius: 20, paddingHorizontal: 12 }}>预计时常</Text>
                         <Text
-                            style={{ width: '65%', height: 40,lineHeight:40,textAlign:"center", backgroundColor: "#fff", marginLeft: 10, borderRadius: 3 }}
+                            style={{ width: '65%', height: 40, lineHeight: 40, textAlign: "center", backgroundColor: "#fff", marginLeft: 10, borderRadius: 3 }}
                             onPress={() => {
                                 Picker.init({
                                     pickerData: choiceTime,
-                                    pickerTitleText:"时间",
-                                    pickerConfirmBtnText:"确定",
-                                    pickerCancelBtnText:"取消",
+                                    pickerTitleText: "时间",
+                                    pickerConfirmBtnText: "确定",
+                                    pickerCancelBtnText: "取消",
                                     onPickerConfirm: data => {
                                         this.setState({ preTime: data })
                                     },

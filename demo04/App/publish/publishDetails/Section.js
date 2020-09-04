@@ -100,11 +100,12 @@ export default class Section extends React.Component {
                         sectionListData={this.state.dataArray}
                         initialNumToRender={this.state.dataArray.length}
                         showsVerticalScrollIndicator={false}
-                        SectionListClickCallback={(item, index) => {
-                            console.log('---SectionListClickCallback--:', item, index)
+                        SectionListClickCallback={(atName, index) => {
+                            // console.log(atName)
+                            console.log(index,atName);
+                            this.props.navigation.navigate("spread",{atName:atName.name,show:'flex'});
                         }}
                         sectionItemViewStyle={{ marginTop: 4, borderRadius: 20, width: '90%', padding: 10, height: 36, }}
-                        // sectionHeaderTextStyle ={{width:'90%',borderRadius:20}}
                         sectionHeaderViewStyle={{ color: "red", width: '10%' }}
                         otherAlphabet="#"
                     /></View>

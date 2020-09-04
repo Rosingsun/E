@@ -24,7 +24,7 @@ StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
 // export default class Search extends Component {
-export default ChatInfoMation = ({navigation}) => {
+export default ChatInfoMation = ({ navigation }) => {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     // const [isEnabled, setIsEnabled] = useState(false);
@@ -58,7 +58,7 @@ export default ChatInfoMation = ({navigation}) => {
                     </View>
                 </TouchableWithoutFeedback>
                 <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }} onPress={() => {
-                    Alert.alert("这是通往天堂的路")
+                    navigation.navigate("EPersonalCenterSum")
                 }} />
             </View>
             <View style={{ marginTop: 10 }}>
@@ -76,7 +76,7 @@ export default ChatInfoMation = ({navigation}) => {
                             transform: [{ scale: 1.2 }],
                             position: "absolute",
                             right: 13,
-                            shadowColor:"#66666690",
+                            shadowColor: "#66666690",
                         }}
                         onValueChange={toggleSwitch}
                         value={isEnabled}
@@ -87,7 +87,7 @@ export default ChatInfoMation = ({navigation}) => {
                     <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }}
                         onPress={() => {
                             setTimeout(() => {
-                                    Alert.alert("消息清空完毕")
+                                Alert.alert("消息清空完毕")
                             }, 300);
                         }}
                     />
@@ -96,7 +96,7 @@ export default ChatInfoMation = ({navigation}) => {
                     <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>投诉</Text>
                     <AntDesign name={'right'} size={20} color={'#999999'} style={{ position: "absolute", right: 20 }}
                         onPress={() => {
-                            Alert.alert("这是通往投诉的路")
+                            navigation.navigate("complaint");
                         }} />
                 </View>
             </View>

@@ -151,7 +151,7 @@ export default class BaiduMap extends Component {
                     sliderWidth={sliderWidth}
                     itemWidth={sliderWidth / 1.5}
                     hasParallaxImages={true}
-                    firstItem={SLIDER_1_FIRST_ITEM}
+                    firstItem={0}
                     inactiveSlideScale={0.85}
                     inactiveSlideOpacity={0.5}
                     containerCustomStyle={styles.slider}
@@ -208,7 +208,11 @@ export default class BaiduMap extends Component {
                             }} />
                         <View style={{ flexDirection: "row", width: '30%', justifyContent: "space-around" }}>
                             <Ionicons name={'heart-outline'} size={30} color={'#000'} />
-                            <MaterialCommunityIcons name={'swap-horizontal-circle-outline'} size={30} color={'#000'} />
+                            <MaterialCommunityIcons name={'swap-horizontal-circle-outline'} size={30} color={'#000'} 
+                                onPress={()=>{
+                                   this.props.navigation.navigate("exchange");
+                                }}
+                            />
                             <Feather name={'more-horizontal'} size={30} color={'#000'} />
                         </View>
                     </View>

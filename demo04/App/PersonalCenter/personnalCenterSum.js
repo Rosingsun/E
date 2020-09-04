@@ -6,8 +6,8 @@ import {
     StatusBar,
     Image,
     StyleSheet,
+    ScrollView,
     Alert,
-    ScrollView
 } from 'react-native';
 import { PersonalTab } from "../App02";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -24,7 +24,7 @@ export default class PersonalCenterSum extends Component {
             username: '',
             PersonalSignature: '',
             head: '',
-            scrollowAble: false,
+            scrollowAble: true,
         }
     }
 
@@ -34,7 +34,6 @@ export default class PersonalCenterSum extends Component {
                 username:data.username,
                 PersonalSignature:data.PersonalSignature,
                 head:data.head,
-
             })
 
           })
@@ -43,27 +42,10 @@ export default class PersonalCenterSum extends Component {
     _onScroll(event) {
         let y = event.nativeEvent.contentOffset.y;
         console.log(y);
-        Alert.alert("111")
-        if (y == 200) {
-            this.setState = { scrollowAble: false }
+        // Alert.alert("111")
+        if (y >= 180) {
+            this.setState({ scrollowAble: false })
         }
-        // if (this.state.oldPostion <y) {
-        //     this.state.oldPostion=y;
-        //     this.refs.title.setNativeProps({
-        //         style: {
-        //             opacity: 0,
-        //             // height: 0
-        //         },
-        //     });
-        // } else {
-        //     this.state.oldPostion=y;
-        //     this.refs.title.setNativeProps({
-        //         style: {
-        //             opacity: 1,
-        //             // height: 40
-        //         },
-        //     });
-        // }
     }
     render() {
         return (
@@ -71,16 +53,18 @@ export default class PersonalCenterSum extends Component {
                 onScroll={(event) => this._onScroll(event)}
                 style={{ height: '80%', backgroundColor: "#6C9575" }}
                 scrollEnabled={this.state.scrollowAble}
-
             >
                 <View style={{ flex: 1, backgroundColor: "#6C9575" }}>
                     {/* <ScrollView> */}
-                    <ImageBackground source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} style={{ width: '100%', height: 250, tintColor: "#ffffff90", }} >
+                    <ImageBackground source={{ uri:this.state.head}} style={{ width: '100%', height: 250, tintColor: "#ffffff90"}} >
                         {/*返回与设置 */}
                         <View style={{ position: "absolute", width: "85%", marginLeft: '8%', zIndex: 1, marginTop: 30, flexDirection: "row", justifyContent: "space-between" }}>
-                            <FontAwesome name='angle-left' size={30} color="#fff" />
+                            <FontAwesome name='angle-left' size={30} color="#fff" 
+                                onPress={()=>{
+                                    console.log(this.state.head)
+                                }}
+                            />
                             <Feather name='more-horizontal' size={30} color="#fff"
-
                                 onPress={() => {
                                     this.props.navigation.navigate("UserSetting")
                                 }} />
@@ -90,7 +74,7 @@ export default class PersonalCenterSum extends Component {
                         {/* 用户信息 */}
                         <View style={[styles.userBox]}>
                             <View style={{ width: '40%', alignItems: "center" }}>
-                                <Image style={[styles.userHead]} source={{ uri: "http://pic.51yuansu.com/pic3/cover/03/96/47/5d9e8f31ccd2e_610.jpg" }} />
+                                <Image style={[styles.userHead]} source={{uri:this.state.head}} />
                                 <FontAwesome style={{ position: "absolute", top: 25, right: 30, zIndex: 1 }} name='camera' size={20} color="#2F3843"
                                     onPress={() => {
                                         this.props.navigation.navigate("changePersonalInfoMation")
@@ -110,7 +94,6 @@ export default class PersonalCenterSum extends Component {
                                 <View style={{ height: '100%', justifyContent: "center", alignItems: "flex-end", marginTop: 24 }}>
                                     <Text style={[styles.vipText]}
                                         onPress={() => {
-                                            // this.props.navigation.navigate("renderCalendarWithCustomMarkingType")
                                             this.props.navigation.navigate("mylevel")
                                         }}
                                     >LV2  查看收益</Text>
@@ -142,12 +125,13 @@ const styles = StyleSheet.create({
         borderColor: "#fff"
     },
     userBox: {
-        backgroundColor: "#fff",
+        backgroundColor: "#ffffff",
         bottom: 0,
         marginTop: 150,
         height: 100,
         width: "100%",
         flexDirection: "row",
+        
     },
     vipText: {
         color: '#fff',
