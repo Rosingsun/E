@@ -38,11 +38,9 @@ export default class Home extends Component {
   _Gps() {
     Geolocation.getCurrentPosition()
       .then(data => {
-        console.log('getCurrentPosition', data);
         this.setState({ Gps: data.city });
       })
       .catch(e => {
-        console.warn(e, 'error');
       })
   }
 

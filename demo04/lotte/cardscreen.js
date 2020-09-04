@@ -41,7 +41,6 @@ class ProjectsScreen extends React.Component {
                 const positionY = this.state.pan.y.__getValue();
                 const positionX = this.state.pan.x.__getValue();
                 Animated.timing(this.state.opacity, { toValue: 0 }).start();
-                console.log(positionY + ' ' + positionY);
                 if (positionY > -400) {
                     Animated.timing(this.state.pan, {
                         toValue: { x: positionX * 10, y: positionY * 10 }

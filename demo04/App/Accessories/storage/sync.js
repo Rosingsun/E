@@ -36,7 +36,6 @@ const sync = {
         reject && reject(new Error('data parse error'))
       }
     }).catch(err => {
-      console.warn(err)
       reject && reject(err)
     })
   }

@@ -50,6 +50,10 @@ export default class recommend extends Component {
   render() {
     const { data, isLoading } = this.state;
     const { navigation } = this.props;
+    function randomNum() {
+      let num =Math.random() * 180 + 120;
+      return (num)
+    }
     function _picList(id, choice, username, head, title, location, showUserImg, prase_count) {
       if (id % 2 == 0 & choice == 1) {
         return (
@@ -57,10 +61,10 @@ export default class recommend extends Component {
             {/* 图片框 */}
             <TouchableWithoutFeedback
               onPress={() => {
-                navigation.push("MainText",{data:data[id]})
+                navigation.push("MainText", { data: data[id] })
               }}
             >
-              <Image style={{ height: 120, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg }} /></TouchableWithoutFeedback>
+              <Image style={{ height: randomNum(), width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg }} /></TouchableWithoutFeedback>
             {/* 定位 */}
             <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
               <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
@@ -93,11 +97,11 @@ export default class recommend extends Component {
           <View style={[styles.showContainer]}>
             {/* 图片框 */}
             <TouchableWithoutFeedback
-             onPress={() => {
-              navigation.push("MainText",{data:data[id]})
-            }}
+              onPress={() => {
+                navigation.push("MainText", { data: data[id] })
+              }}
             >
-              <Image style={{ height: 150, width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg }} />
+              <Image style={{ height: randomNum(), width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg }} />
             </TouchableWithoutFeedback>
             {/* 定位 */}
             <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>

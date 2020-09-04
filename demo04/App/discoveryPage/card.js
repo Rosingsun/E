@@ -136,7 +136,7 @@ export default class MyCustomCarousel extends PureComponent {
 
 
     render() {
-        const{navigation}=this.props;
+        // const{navigation}=this.props;
         return (
             <View style={{
                 width: '100%',
@@ -153,7 +153,8 @@ export default class MyCustomCarousel extends PureComponent {
                     <TouchableOpacity style={{ width: '80%', height: 400, backgroundColor: 'transparent', justifyContent: 'center', marginLeft: '10%', }}
                     activeOpacity={0}
                         onPress={()=>{
-                            this.props.navigation.push("MainText")
+                            // this.props.navigation.navigate("MainText")
+                            Alert.alert(item.title);
                         }}
                     >
                     <View style={{
