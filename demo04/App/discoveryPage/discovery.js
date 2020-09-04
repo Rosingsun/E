@@ -238,16 +238,6 @@ export default class Discovery extends Component {
             {/* 卡片 */}
             <View>
               <MyCustomCarousel />
-              {/* <View style={{ height: '100%', width: '100%', overflow: "hidden" }}>
-                <TouchableWithoutFeedback
-                  style={{ height: '100%', width: '100%' }}
-                  onPress={() => {
-                    Alert.alert("you touch me");
-                  }}
-                >
-                  <ProjectsScreen />
-                </TouchableWithoutFeedback>
-              </View> */}
             </View>
           </View>
           {/* 第三部分 */}
@@ -260,11 +250,6 @@ export default class Discovery extends Component {
                 }}
               >更多路线<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
             </View>
-            {/* <ScrollView
-              horizontal={false}
-              showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}
-            > */}
             {
               userMap.map((item) => {
                 return (

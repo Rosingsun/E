@@ -18,7 +18,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import ImagePicker from 'react-native-image-crop-picker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {storage} from '../../Accessories/storage/index'
+import { storage } from '../../Accessories/storage/index'
 export default class spread extends Component {
 
     constructor(props) {
@@ -34,48 +34,63 @@ export default class spread extends Component {
     componentDidMount() {
         storage.load('userInfo', (data) => {
             this.setState({
-                user_id:data.user_id,
-                username:data.username,
-                PersonalSignature:data.PersonalSignature,
-                head:data.head,
-                token:data.token
+                user_id: data.user_id,
+                username: data.username,
+                PersonalSignature: data.PersonalSignature,
+                head: data.head,
+                token: data.token
             })
-          })
-        }
+        })
+    }
 
     _onClickSharetravel = () => {
-        var navigation=this.props.navigation; 
+        var navigation = this.props.navigation;
         fetch('http://192.168.1.151:3000/api/travels/travel/release', {
-                method: 'POST',
-                credentials: "include",
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                  'token':this.state.token
-                  
-                },
-                body: JSON.stringify({
-                  title:this.state.title,
-                  words: this.state.words,
-                  showUserImg:this.state.avatarSource,
-                  username:this.state.username,
-                  user_id:this.state.user_id,
+            method: 'POST',
+            credentials: "include",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'token': this.state.token
 
-              })
-            }).then(function (res) {
-                return res.json();
-            }).then(function (json) {
-                if (json.errno == 0) {
-                    navigation.navigate("bottomTab");
-                    alert("保存成功")
-                } else if (json.errno == -1) {
-                    alert("保存失败")
-                }
-                        // navigation.goBack();
-            })  
-      };
+            },
+            body: JSON.stringify({
+                title: this.state.title,
+                words: this.state.words,
+                showUserImg: this.state.avatarSource,
+                username: this.state.username,
+                user_id: this.state.user_id,
+
+            })
+        }).then(function (res) {
+            return res.json();
+        }).then(function (json) {
+            if (json.errno == 0) {
+                navigation.navigate("bottomTab");
+                alert("保存成功")
+            } else if (json.errno == -1) {
+                alert("保存失败")
+            }
+            // navigation.goBack();
+        })
+    };
     render() {
-        const {navigation,route}=this.props;
+        const { navigation, route } = this.props;
+        function showAtPeople() {
+            if (route.params.topicWords) {
+                return (
+                    <Text style={{ borderRadius: 2, color: "#FAAF3D", fontSize: 14, backgroundColor: "#FAAF3D60", paddingVertical: 2, paddingHorizontal: 3 }}>#{route.params.topicWords}#</Text>
+                )
+            }
+        }
+        function showTopic() {
+            if (route.params.atName) {
+                return (
+                    <Text style={{ borderRadius: 2, marginTop: 5, color: "green", fontSize: 12, backgroundColor: "#FAAF3D90", paddingVertical: 2, paddingHorizontal: 3, }}>@{route.params.atName}</Text>
+                )
+            }
+        }
+        
         return (
             <View style={[styles.container]}>
                 <View style={[styles.top]}>
@@ -83,7 +98,7 @@ export default class spread extends Component {
                         <FontAwesome name='angle-left' size={32} color="#000" />
                         <Text style={{ color: "#000" }}>你他妈关老子</Text>
                         <Text style={{ paddingHorizontal: 20, backgroundColor: "#6C9575", color: "#fff", paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20, }}
-                        onPress={this._onClickSharetravel}> 发送 </Text>
+                            onPress={this._onClickSharetravel}> 发送 </Text>
                     </View>
                 </View>
                 <View style={{ backgroundColor: "#fff", marginTop: 20, width: '90%', marginLeft: '5%', paddingBottom: 10, borderRadius: 15 }}>
@@ -107,6 +122,15 @@ export default class spread extends Component {
                                 console.log(this.state.words)
                             }}
                         />
+                        <View style={{ flexDirection: "column", paddingHorizontal: 5, justifyContent: "space-between", alignSelf: 'flex-start' }}>
+                            {
+                                showAtPeople()
+                            }
+                            {
+                                showTopic()
+                            }
+                            
+                            </View>
                     </View>
                     <TouchableWithoutFeedback >
                         <View>
@@ -118,7 +142,6 @@ export default class spread extends Component {
                                         }
                                         return (
                                             <View style={{ width: '31%', marginLeft: '2%', flexDirection: "row" }}>
-                                                {/* <Text>{item}</Text> */}
                                                 <Image style={{ height: 72, width: '100%', backgroundColor: "yellow", marginTop: 10 }} source={{ uri: item }} />
                                             </View>
                                         )
@@ -133,16 +156,12 @@ export default class spread extends Component {
                     </TouchableWithoutFeedback>
                     {/* 定位 */}
                     <TouchableWithoutFeedback >
-                        <View>
-                        <View style={{ flexDirection: "row", alignSelf: 'flex-start', marginLeft: '3%', paddingVertical: 2, paddingHorizontal: 8, marginTop: 15, backgroundColor: "#2F3843", borderRadius: 15, width: "auto" }}>
-                            <Ionicons name='md-location-sharp' size={20} color="#fff" />
-                            <Text style={{ color: "#fff", textAlign: "center" }}>杭州</Text>
-                           
-                        </View>
-                        <View>
-                        <Text>{route.params.topicWords}</Text>
-                        </View>
-                        <Text>{route.params.index}</Text>
+                        <View style={{ flexDirection: "row" }}>
+                            <View style={[styles.signBox]}>
+                                <Ionicons name='md-location-sharp' size={20} color="#fff" />
+                                <Text style={{ fontSize: 16, color: "#fff", textAlign: "center" }}>杭州</Text>
+
+                            </View>
                         </View>
                     </TouchableWithoutFeedback>
 
@@ -231,4 +250,18 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 15,
     },
+    signBox: {
+        flexDirection: "row",
+        alignSelf: 'flex-start',
+        marginLeft: '3%',
+        paddingVertical: 2,
+        paddingHorizontal: 8,
+        lineHeight: 30,
+        // height:30,
+        marginTop: 15,
+        backgroundColor: "#2F3843",
+        borderRadius: 15,
+        width: "auto",
+    },
+
 });
