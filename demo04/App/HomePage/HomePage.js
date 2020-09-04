@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  Dimensions,
+   Dimensions,
   Text,
   KeyboardAvoidingView,
   TextInput,
@@ -61,14 +61,20 @@ export default class Home extends Component {
               <Ionicons name={'md-location-sharp'} size={30} color={'#000'} />
               <Text style={{ lineHeight: 30, marginLeft: 0, color: "#000", fontWeight: "bold" }}>{this.state.Gps}</Text>
             </View>
+            <TouchableWithoutFeedback
+                    onPress={() => {
+                      this.props.navigation.navigate('research');
+                    }}
+                  >
             <View style={[styles.inputBox]}>
               <TextInput
-                placeholder="去哪玩"
+                placeholder="去哪玩111"
                 style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '83%', lineHeight: -2, }}
               >
               </TextInput>
               <FontAwesome style={{ lineHeight: 35, marginLeft: 5 }} name={'search'} size={15} color={'#6C6C6C'} />
             </View>
+            </TouchableWithoutFeedback>
             <AntDesign name={'calendar'} size={25} color={'#000'} />
           </View>
         </View>
