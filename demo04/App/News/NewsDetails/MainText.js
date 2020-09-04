@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {storage} from '../../Accessories/storage/index'
 
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1080;
@@ -18,7 +19,10 @@ function bottomLine() {
     </View>
   );
 };
+
 export default class MainText extends Component {
+
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -28,10 +32,19 @@ export default class MainText extends Component {
     }
   }
   componentDidMount() {
-    fetch('http://192.168.56.1:3000/list')
+    storage.load('userInfo', (data) => {
+      this.setState({
+          username:data.username,
+          head:data.head,
+          token:data.token,
+          user_id:data.user_id
+      })
+    })
+    fetch('http://192.168.1.151:3000/api/travels/comment/queryCommentId')
       .then((response) => response.json())
       .then((json) => {
-        this.setState({ data: json.list });
+        console.log(json)
+        this.setState({ data: json.data });
       })
       .catch((error) => console.error(error))
       .finally(() => {
@@ -39,29 +52,11 @@ export default class MainText extends Component {
       });
   }
 
-  _onClickSendContent = () => {
-    fetch('http://192.168.56.1:3000/users/list', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        content: this.state.content,
-      })
-    }).then(function (res) {
-      return res.json();
-    }).then(function (json) {
-      if (json.code == "200") {
-        alert("发送成功")
-      } else if (json.code == "400") {
-        alert("发送失败")
-      }
-    })
-  }
+
 
   render() {
 
+    const{route}=this.props;
     var imgData = [
       { photo: '../../img/1.jpg' },
       { photo: '../../img/1.jpg' },
@@ -73,6 +68,31 @@ export default class MainText extends Component {
       { photo: '../../img/1.jpg' },
     ]
     const { data, isLoading } = this.state;
+
+    const _onClickSendContent = () => {
+      fetch('http://192.168.1.151:3000/api/travels/comment/addComment', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'token':this.state.token,
+        },
+        body: JSON.stringify({
+          content: this.state.content,
+          user_id:this.state.user_id,
+          answer_id:route.params.data.answer_id,
+    
+        })
+      }).then(function (res) {
+        return res.json();
+      }).then(function (json) {
+        if (json.errno == 0) {
+          alert("保存成功")
+      } else if (json.errno == -1) {
+          alert("保存失败")
+      }
+      })
+    }
     return (
 
       // TOP
@@ -97,12 +117,12 @@ export default class MainText extends Component {
                 {/* 用户头像设置，注意，因为是网络图片，所以引用的时候需要规定大小 */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <View style={styles.userHead}>
-                    <Image source={{ uri: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595171534094&di=3c41f9bdff8f3feef2ead6f9bc39ccff&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201709%2F03%2F20170903163511_rwWLJ.jpeg' }}
+                    <Image source={{ uri: route.params.data.head}}
                       style={{ width: 40 * biLi, height: 40 * biLi, borderRadius: 30 * biLi, }}></Image>
                   </View>
                   <View style={styles.userId}>
-                    <Text style={{ fontSize: 15, color: '#000000', }}>石原里美</Text>
-                    <Text style={{ fontSize: 10, color: '#999999', }}>2020.7.19.20:25</Text>
+                    <Text style={{ fontSize: 15, color: '#000000', }}>{route.params.data.username}</Text>
+                    <Text style={{ fontSize: 10, color: '#999999', }}>{route.params.data.createTime}</Text>
                   </View>
                   <Ionicons name="eye-outline" size={25} color="#000000" style={{ position: "absolute", right: 20 * biLi }}
                     onPress={() => {
@@ -114,14 +134,14 @@ export default class MainText extends Component {
               {/* 九宫格下面的用户文字 */}
               <View style={styles.word}>
                 <Text style={{ color: "#FFB16C", fontSize: 15 }}>#话题：论如何迷倒万千少女#</Text>
-                <Text style={{ fontSize: 15 }}>文字:成为杰哥。这段话要凑到三行，我也不知道杰哥怎么想的，咱也不敢说咱也不敢问,咱只能默默码代码，希望杰哥饶了我。</Text>
+                <Text style={{ fontSize: 15 }}>{route.params.data.words}</Text>
               </View>
               <View style={{ backgroundColor: "pink", width: '96%', marginLeft: '2%', flexDirection: "row", flexWrap: "wrap" }}>
                 {
                   imgData.map((item) => {
                     return (
                       <View style={styles.photolist}>
-                        <Image style={styles.ninephoto} source={require('../../img/1.jpg')} />
+                        <Image style={styles.ninephoto} source={{uri:route.params.data.showUserImg}} />
                       </View>
                     )
                   })
@@ -150,11 +170,11 @@ export default class MainText extends Component {
                 <Feather name="map-pin" size={25} color="#999999" onPress={() => {
                   Alert.alert("查看定位")
                 }}>
-                  <Text style={{ fontSize: 15, color: '#999999' }}>杭州西湖风景区</Text>
+                  <Text style={{ fontSize: 15, color: '#999999' }}>{route.params.data.location}</Text>
                 </Feather>
                 <View style={{ justifyContent: "flex-end" }}>
                   <AntDesign name="like2" size={25} color="#999999">
-                    <Text style={{ fontSize: 15, }}>111</Text>
+                    <Text style={{ fontSize: 15, }}>{route.params.data.prase_count}</Text>
                   </AntDesign>
                 </View>
               </View>
@@ -180,7 +200,7 @@ export default class MainText extends Component {
                       <View style={{ flexDirection: 'row' }}>
                         <Image style={styles.headView} source={require('../../img/1.jpg')} />
                         <View style={{ marginLeft: 10, width: '85%' }}>
-                          <Text style={{ fontSize: 12, color: '#4F4F4F' }}>{item.id}</Text>
+                          <Text style={{ fontSize: 12, color: '#4F4F4F' }}>{item.comment_id}</Text>
                           <Text style={{ fontSize: 15 }}>{item.content}</Text>
 
                           {/* {item.ddttaa.map((item) => {
@@ -192,7 +212,7 @@ export default class MainText extends Component {
                             )
                           })} */}
                           <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', width: "100%", marginBottom: 5 }}>
-                            <Text style={{ fontSize: 10, color: '#999999' }}>{item.createtime}</Text>
+                            <Text style={{ fontSize: 10, color: '#999999' }}>{item.createTime}</Text>
                             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', }}>
                               <Ionicons name="chatbox-ellipses-outline" size={15} color="#999999" style={{ paddingRight: 12 * biLi, }} onPress={() => { Alert.alert("评论") }}></Ionicons>
                               <AntDesign name="like2" size={15} color="#999999" onPress={() => {
@@ -220,13 +240,15 @@ export default class MainText extends Component {
           </View>
           <View style={{ width: "20%", height: '76%', marginBottom: '1%', backgroundColor: "#6C9575", borderRadius: 20, justifyContent: "center", alignItems: "center" }}>
             <Text style={{ color: "#fff", fontSize: 15, letterSpacing: 2 }}
-              onPress={() => { this._onClickSendContent(); }}>发送</Text>
+              onPress={() => { _onClickSendContent(); }}>发送</Text>
           </View>
         </View>
       </View>
     )
   }
 }
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

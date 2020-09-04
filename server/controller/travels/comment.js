@@ -9,10 +9,24 @@ const { exec } = require('../../db/mysql')
  * @param {*} prase_count 点赞数
  */
 const addComment = (answer_id, user_id, content, createTime,prase_count) => {
-    let sql = `INSERT INTO comment (answer_id, user_id ,content, createTime,showUserImg) 
-              VALUES ( ${answer_id} , ${user_id}, ${content}, '${createTime}', '${prase_count}')`
-    return exec(sql).then(row => {
-      return row || {}
+    let querySql = `SELECT a.answer_id, b.answer_id FROM comment as a LEFT JOIN travel as b WHERE a.answer_id=${answer_id}`
+    let isHave = exec(querySql).then(row=>{
+      if(row.length < 0){
+          return false
+      }else{
+          return true
+      }
+  })
+  return isHave.then(data =>{
+    if(data){
+      let sql = `INSERT INTO comment (answer_id, user_id ,content, createTime,showUserImg) 
+      VALUES ( ${answer_id} , ${user_id}, '${content}', '${createTime}', '${prase_count}')`
+        return exec(sql).then(row =>{
+            return row || {}
+        })
+    }else {
+        return '不能评论'
+    }
     })
   }
 
@@ -27,7 +41,16 @@ const deleteComment = (comment_id) => {
     })
   }
 
+const queryCommentId = (answer_id)=>{
+  let sql = `SELECT a.*, b.answer_id FROM comment as a LEFT JOIN travel as b ON a.answer_id=b.answer_id WHERE a.answer_id=${answer_id}`
+  return exec(sql).then(row=>{
+    return row || {}
+  })
+}
+
   module.exports={
       addComment,
       deleteComment,
+      queryCommentId,
+
   }

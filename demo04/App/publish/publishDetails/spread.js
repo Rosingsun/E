@@ -39,9 +39,7 @@ export default class spread extends Component {
                 PersonalSignature:data.PersonalSignature,
                 head:data.head,
                 token:data.token
-
             })
-
           })
         }
 
@@ -77,6 +75,7 @@ export default class spread extends Component {
             })  
       };
     render() {
+        const {navigation,route}=this.props;
         return (
             <View style={[styles.container]}>
                 <View style={[styles.top]}>
@@ -134,9 +133,16 @@ export default class spread extends Component {
                     </TouchableWithoutFeedback>
                     {/* 定位 */}
                     <TouchableWithoutFeedback >
+                        <View>
                         <View style={{ flexDirection: "row", alignSelf: 'flex-start', marginLeft: '3%', paddingVertical: 2, paddingHorizontal: 8, marginTop: 15, backgroundColor: "#2F3843", borderRadius: 15, width: "auto" }}>
                             <Ionicons name='md-location-sharp' size={20} color="#fff" />
                             <Text style={{ color: "#fff", textAlign: "center" }}>杭州</Text>
+                           
+                        </View>
+                        <View>
+                        <Text>{route.params.topicWords}</Text>
+                        </View>
+                        <Text>{route.params.index}</Text>
                         </View>
                     </TouchableWithoutFeedback>
 

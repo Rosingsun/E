@@ -3,16 +3,12 @@ import Carousel, { getInputRangeFromIndexes, ParallaxImage } from 'react-native-
 import {
     Text,
     View,
-    SafeAreaView,
-    ImageBackground,
     TouchableOpacity,
-    Alert,
     Image,
-    ScrollView
+    Alert,
 } from 'react-native';
+
 export default class MyCustomCarousel extends PureComponent {
-
-
     constructor(props) {
         super(props);
         this.state = {
@@ -37,7 +33,6 @@ export default class MyCustomCarousel extends PureComponent {
                     title: '西湖',
                     subtitle: 'West Lake',
                     illustration: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597766449537&di=0d45f9687757722ba383e1ccf051a1a0&imgtype=0&src=http%3A%2F%2Fimg3.doubanio.com%2Fview%2Fgroup_topic%2Fl%2Fpublic%2Fp90995552.jpg',
-                    // illustration: 'https://i.imgur.com/KZsmUi2l.jpg',
                 },
                 {
                     title: '西湖',
@@ -96,13 +91,71 @@ export default class MyCustomCarousel extends PureComponent {
         return (
             // <View style={{ width: '80%', height:370, }}>
             //     {/* 此高度要和下面第一个VIEW的高度一样哦，不然alart点不出来 */}
-                <TouchableOpacity style={{ width: '80%', height:400,backgroundColor: 'transparent',justifyContent:'center', marginLeft: '10%', }}
-                    activeOpacity={0}
-                    onPress={() => {
-                        Alert.alert(item.title)
-                        this.props.navigation.navigate("qiandao");
-                    }}>
+            <TouchableOpacity style={{ width: '80%', height: 400, backgroundColor: 'transparent', justifyContent: 'center', marginLeft: '10%', }}
+                activeOpacity={0}
+            >
+                <View style={{
+                    backgroundColor: 'white',
+                    borderRadius: 5,
+                    height: '75%',
+                    width: '100%',
+                    alignItems: 'center',
+                    marginRight: 40,
+                    elevation: 15
+                }}>
+                    <Image style={{
+                        borderRadius: 5,
+                        height: '48%',
+                        width: '100%',
+                    }} source={{ uri: item.illustration }} />
+                    <View style={{ height: '22%', width: '100%' }}>
+                        <Text style={{ fontSize: 24, marginTop: 10, textAlign: "center", width: '100%' }}>{item.title}</Text>
+                        <Text style={{ fontSize: 15, marginTop: 5, textAlign: "center", width: '100%' }}>{item.subtitle}</Text>
+                    </View>
+                    <View style={{ flexDirection: "row", justifyContent: "space-around", height: '28%', width: '100%' }}>
+                        <Image style={{
+                            borderRadius: 5,
+                            height: '100%',
+                            width: '30%',
+                        }} source={{ uri: item.illustration }} />
+                        <Image style={{
+                            borderRadius: 5,
+                            height: '100%',
+                            width: '30%',
+                        }} source={{ uri: item.illustration }} />
+                        <Image style={{
+                            borderRadius: 5,
+                            height: '100%',
+                            width: '30%',
+                        }} source={{ uri: item.illustration }} />
+                    </View>
+                </View>
+            </TouchableOpacity>
+        )
+    }
 
+
+    render() {
+        const{navigation}=this.props;
+        return (
+            <View style={{
+                width: '100%',
+                justifyContent: 'center', alignItems: 'center'
+            }}>
+                <Carousel
+                    scrollInterpolator={this._scrollInterpolator}
+                    slideInterpolatedStyle={this._animatedStyles}
+                    useScrollView={true}
+                    sliderWidth={380}
+                    itemWidth={380}
+                    data={this.state.carouselItems}
+                    renderItem={({item})=>
+                    <TouchableOpacity style={{ width: '80%', height: 400, backgroundColor: 'transparent', justifyContent: 'center', marginLeft: '10%', }}
+                    activeOpacity={0}
+                        onPress={()=>{
+                            this.props.navigation.push("MainText")
+                        }}
+                    >
                     <View style={{
                         backgroundColor: 'white',
                         borderRadius: 5,
@@ -140,29 +193,11 @@ export default class MyCustomCarousel extends PureComponent {
                         </View>
                     </View>
                 </TouchableOpacity>
-        )
-    }
+                    }
+                    loop={true}
+                />
+            </View>
 
-
-    render() {
-        return (
-                <View style={{
-                   width: '100%',
-                   justifyContent: 'center', alignItems: 'center'
-                }}>
-                    <Carousel
-                        // other props
-                        scrollInterpolator={this._scrollInterpolator}
-                        slideInterpolatedStyle={this._animatedStyles}
-                        useScrollView={true}
-                        sliderWidth={380}
-                        itemWidth={380}
-                        data={this.state.carouselItems}
-                        renderItem={this._renderItem}
-                       loop={true}
-                    />
-                </View>
-            
         );
     }
 
