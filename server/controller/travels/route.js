@@ -24,7 +24,7 @@ const create_route = (choose_city,add_punch,route_name,expected_duration,remarks
 const queryRouteId = (id) => {
     let sql = `SELECT a.* , b.username AS username FROM create_route AS a LEFT JOIN user AS b ON a.user_id=b.user_id where a.id=${id}`
     return exec(sql).then(row => {
-      return row[0] || {}
+      return row[0] || []
     })
   }
 

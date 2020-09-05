@@ -28,7 +28,8 @@ export default class MainText extends Component {
     this.state = {
       content: '',
       data: [],
-      isLoading: true
+      isLoading: true,
+      
     }
   }
   componentDidMount() {
@@ -50,6 +51,7 @@ export default class MainText extends Component {
       },
     }).then((response) => response.json())
       .then((json) => {
+        console.log(json.data)
         this.setState({ data: json.data });
       })
       .catch((error) => console.error(error))
@@ -61,6 +63,7 @@ export default class MainText extends Component {
 
 
   render() {
+
 
     const{route}=this.props;
     var imgData = [
@@ -133,7 +136,7 @@ export default class MainText extends Component {
                   </View>
                   <Ionicons name="eye-outline" size={25} color="#000000" style={{ position: "absolute", right: 20 * biLi }}
                     onPress={() => {
-                      Alert.alert("查看详情")
+                      Alert.alert(route.params.data.answer_id);
                     }}
                   />
                 </View>
@@ -199,7 +202,7 @@ export default class MainText extends Component {
                 <FlatList
                   extraData={this.state}
                   data={data}
-                  keyExtractor={({ id }, index) => id}
+                  keyExtractor={({ answer_id }, index) => answer_id}
                   ItemSeparatorComponent={bottomLine}
                   // numColumns ={3}
                   renderItem={({ item }) =>
@@ -207,7 +210,7 @@ export default class MainText extends Component {
                       <View style={{ flexDirection: 'row' }}>
                         <Image style={styles.headView} source={{uri:route.params.data.head}} />
                         <View style={{ marginLeft: 10, width: '85%' }}>
-                          <Text style={{ fontSize: 12, color: '#4F4F4F' }}>{item.user_id}</Text>
+                          <Text style={{ fontSize: 12, color: '#4F4F4F' }}>{item.username}</Text>
                           <Text style={{ fontSize: 15 }}>{item.content}</Text>
 
                           {/* {item.ddttaa.map((item) => {
