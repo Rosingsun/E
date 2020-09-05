@@ -5,13 +5,14 @@ const {
   addComment,
   deleteComment,
   queryCommentId,
+  queryAllcomment,
 } =require('../../controller/travels/comment');
 const { nowDate } = require("../../public/utils/main")
 
 router.post('/addComment', (req, res, next) => {
-  const {answer_id, user_id, content,prase_count} = req.body
+  const {answer_id, user_id, content} = req.body
   const createTime = nowDate()
-  const result = addComment(answer_id, user_id, content, createTime,prase_count)
+  const result = addComment(answer_id, user_id, content, createTime)
   const resultData = result.then(data => {
     console.log(data)
     if (data) {
@@ -51,5 +52,19 @@ router.post('/queryCommentId', (req, res, next) => {
     res.json(data)
   })
 })
+
+router.post('/queryAllcomment', (req, res, next) => {
+  const result = queryAllcomment()
+  const resultData = result.then(data => {
+    if (data) {
+      return new SuccessModel(data)
+    }
+    return new ErrorModel('异常错误')
+  })
+  resultData.then(data => {
+    res.json(data)
+  })
+})
+
 
 module.exports = router;

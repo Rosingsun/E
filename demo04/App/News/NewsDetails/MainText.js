@@ -40,17 +40,23 @@ export default class MainText extends Component {
           user_id:data.user_id
       })
     })
-    fetch('http://192.168.1.151:3000/api/travels/comment/queryCommentId')
-      .then((response) => response.json())
+    fetch('http://192.168.1.151:3000/api/travels/comment/queryAllcomment', {
+      method: 'POST',
+      credentials: "include",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'token': this.state.token
+      },
+    }).then((response) => response.json())
       .then((json) => {
-        console.log(json)
         this.setState({ data: json.data });
       })
       .catch((error) => console.error(error))
       .finally(() => {
         this.setState({ isLoading: false });
       });
-  }
+  };
 
 
 
@@ -81,6 +87,7 @@ export default class MainText extends Component {
           content: this.state.content,
           user_id:this.state.user_id,
           answer_id:route.params.data.answer_id,
+          username:this.state.username,
     
         })
       }).then(function (res) {
@@ -198,9 +205,9 @@ export default class MainText extends Component {
                   renderItem={({ item }) =>
                     <View style={styles.talkList}>
                       <View style={{ flexDirection: 'row' }}>
-                        <Image style={styles.headView} source={require('../../img/1.jpg')} />
+                        <Image style={styles.headView} source={{uri:route.params.data.head}} />
                         <View style={{ marginLeft: 10, width: '85%' }}>
-                          <Text style={{ fontSize: 12, color: '#4F4F4F' }}>{item.comment_id}</Text>
+                          <Text style={{ fontSize: 12, color: '#4F4F4F' }}>{item.user_id}</Text>
                           <Text style={{ fontSize: 15 }}>{item.content}</Text>
 
                           {/* {item.ddttaa.map((item) => {

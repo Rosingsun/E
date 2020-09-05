@@ -59,7 +59,7 @@ export default class Home extends Component {
             </View>
             <TouchableWithoutFeedback
                     onPress={() => {
-                      this.props.navigation.navigate('research');
+                      // this.props.navigation.navigate('research');
                     }}
                   >
             <View style={[styles.inputBox]}>

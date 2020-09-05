@@ -74,7 +74,7 @@ import trade from './News/trade';
 import MainText from './News/NewsDetails/MainText';
 import ChatInfoMation from'./Chat/ChatInfoMation';
 import ChatRecord from'./Chat/ChatRecord';
-import research from './research/research';
+// import research from './research/research';
 import complaint from './News/NewsDetails/complaint';
 
 //定义各类导航栏的变量
@@ -400,10 +400,12 @@ function MyStack() {
       <Stack.Screen name="ChatRecord" component={ChatRecord} />
       {/* 首页 */}
 
-      <Stack.Screen name="research" component={research} />
+      {/* <Stack.Screen name="research" component={research} /> */}
       {/* 搜索 */}
 
       <Stack.Screen name="exchange" component={exchange} />
+      <Stack.Screen name="Discovery" component={Discovery} />
+      
     </Stack.Navigator>
   );
 }

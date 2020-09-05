@@ -14,24 +14,48 @@ import {
   Switch
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Entypo from 'react-native-vector-icons/Entypo'
-import Feather from 'react-native-vector-icons/Feather'
-import { ScrollView } from 'react-native-gesture-handler';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Feather from 'react-native-vector-icons/Feather';
+import { MapView, MapTypes, Geolocation, Overlay } from 'react-native-baidu-map';
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
 
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
+const { Marker, Cluster, Arc, Circle, Polyline, Polygon, InfoWindow, HeatMap } = Overlay;
 export default class exchange extends Component {
   constructor(props) {
     super(props);
     this.state = {
       turnOn: true,
-      turnOff: false
+      turnOff: false,
+      slider1ActiveSlide: 1,
+      activeIndex: 0,
+      zoomControlsVisible: false,
+      trafficEnabled: true,
+      baiduHeatMapEnabled: false,
+      mapType: MapTypes.NORMAL,
+      index: 0,
+      zoom: 19,
+      center: {
+          longitude: 117.465175,
+          latitude: 39.938522,
+      },
+      // markers: [
+      //     {
+      //         longitude: 117.465175,
+      //         latitude: 39.938522,
+      //         title: 'my name',
+      //     }
+      // ],
+      clickMessage: '10221',
+      poiMessage: '109',
     }
   }
+
   render() {
+    const { navigation, route } = this.props;
     return (
 
       <View style={styles.container}>
@@ -50,13 +74,18 @@ export default class exchange extends Component {
               uri: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2399377501,2221360822&fm=26&gp=0.jpg'
             }} />
             <View style={{ marginLeft: '3%', marginTop: '3%' }}>
-              <Text style={{ fontSize: 15 }}>您的路线</Text>
+              <Text style={{ fontSize: 15 }}>jk妹 的路线</Text>
             </View>
           </View>
           <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
             <View style={styles.littleBox}>
-              <Entypo name={'plus'} size={90} color='#999999' style={{ marginLeft: '3%' }} />
-            </View></View>
+              <Entypo name={'plus'} size={90} color='#999999' style={{ marginLeft: '3%' }}
+                onPress={() => {
+                  Alert.alert('1')
+                }}
+              />
+            </View>
+          </View>
         </View>
         <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
           <View style={{ transform: [{ rotate: "90deg" }], width: 50, marginTop: 5, marginBottom: 5 }}>
@@ -69,16 +98,41 @@ export default class exchange extends Component {
               uri: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2399377501,2221360822&fm=26&gp=0.jpg'
             }} />
             <View style={{ marginLeft: '3%', marginTop: '3%' }}>
-              <Text style={{ fontSize: 15 }}>JK妹 的路线</Text>
+              <Text style={{ fontSize: 15 }}>您的路线</Text>
             </View>
           </View>
-          <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ width: '100%',justifyContent: 'center', alignItems: 'center' }}>
             <View style={styles.littleBox}>
-              <Entypo name={'plus'} size={90} color='#999999' style={{ marginLeft: '3%' }} 
-                onPress={()=>{
-                  
+              {/* <Entypo name={'plus'} size={90} color='#999999' style={{ marginLeft: '3%' }}
+                onPress={() => {
+
                 }}
-              />
+              /> */}
+              <MapView
+                zoomControlsVisible={this.state.zoomControlsVisible} //默认true,是否显示缩放控件,仅支持android
+                trafficEnabled={this.state.trafficEnabled} //默认false,是否显示交通线
+                baiduHeatMapEnabled={this.state.baiduHeatMapEnabled} //默认false,是否显示热力图
+                mapType={this.state.mapType} //地图模式,NORMAL普通 SATELLITE卫星图
+                zoom={15} //缩放等级,默认为10
+                center={this.state.center} // 地图中心位置
+                markers={this.state.markers} //地图多个标记点
+                onMarkerClick={(e) => { //标记点点击事件
+                  console.log(e)
+                }}
+                style={{height:'94%',width:'94%',borderRadius:100}}
+              >
+                {/* 用来画点 */}
+                {/* {
+                  ENTRIES1.map((item) => {
+                    return ( */}
+                <Marker
+                  title='中心4'
+                  location={{ longitude: 110.465175, latitude: 39.938522 }} />
+                {/* ) */}
+                {/* })
+                } */}
+              </MapView>
+
             </View>
           </View>
         </View>
@@ -116,7 +170,7 @@ const styles = StyleSheet.create({
   box: {
     marginLeft: '3%',
     width: 387,
-    height: 175,
+    height:'28%',
     borderRadius: 15,
     backgroundColor: '#FFFFFF',
 
@@ -132,7 +186,7 @@ const styles = StyleSheet.create({
   },
   littleBox: {
     width: 355,
-    height: 109,
+    height: '80%',
     borderWidth: 8,
     borderStyle: 'dashed',
     borderColor: '#99999950',
