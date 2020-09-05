@@ -399,6 +399,8 @@ function MyStack() {
       <Stack.Screen name="ChatRecord" component={ChatRecord} />
       {/* 首页 */}
       <Stack.Screen name="exchange" component={exchange} />
+      <Stack.Screen name="Discovery" component={Discovery} />
+      
     </Stack.Navigator>
   );
 }

@@ -101,7 +101,7 @@ export default class spread extends Component {
                             onPress={this._onClickSharetravel}> 发送 </Text>
                     </View>
                 </View>
-                <View style={{ backgroundColor: "#fff", marginTop: 20, width: '90%', marginLeft: '5%', paddingBottom: 10, borderRadius: 15 }}>
+                <View style={{ backgroundColor: "#fff", marginTop: 20, width: '90%', marginLeft: '5%',  borderRadius: 15 }}>
                     <View style={{ width: '94%', height: 40, backgroundColor: "#efefef", marginLeft: '3%', marginTop: 10, borderRadius: 15 }}>
 
                         <TextInput
@@ -112,11 +112,12 @@ export default class spread extends Component {
                             }}
                         />
                     </View>
-                    <View style={{ width: '94%', height: 110, backgroundColor: "#efefef", marginLeft: '3%', marginTop: 10, borderRadius: 15 }}>
+                    <View style={{ width: '94%', minHeight:80, backgroundColor: "#efefef", marginLeft: '3%', marginTop: 10,paddingBottom:10, borderRadius: 15 }}>
 
                         <TextInput
-                            style={{ width: "100%", height: 40, letterSpacing: 1, }}
+                            style={{ width: "100%", minHeight: 80, letterSpacing: 1,alignSelf:"flex-start"}}
                             placeholder="分享一篇游记吧 "
+                            multiline={true}
                             onChangeText={(text) => {
                                 this.setState({ words: text });
                                 console.log(this.state.words)

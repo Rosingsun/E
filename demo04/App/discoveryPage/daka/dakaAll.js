@@ -30,11 +30,39 @@ import {
 // 单选
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 import { Value } from 'react-native-reanimated';
+import { SceneView } from 'react-navigation';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 // 定义路径
 
 export default class dakaAll extends Component {
+
+    static defaultProps = {
+        multiList: [
+            {
+                id: 0,
+                name: "观赏类",
+                src: require("../photo/sign.png")
+            },
+            {
+                id: 1,
+                name: "游玩类",
+                src: require("../photo/play.png")
+            },
+            {
+                id: 2,
+                name: "美食类",
+                src: require("../photo/food.png")
+            },
+            {
+                id: 3,
+                name: "活动类",
+                src: require("../photo/active.png")
+            },
+        ]
+    };
+
+
     constructor(props) {
         super(props);
         this.state = {
@@ -48,7 +76,9 @@ export default class dakaAll extends Component {
             Vertical: new Animated.Value(0),
             disPlayFlag: "none",
             // fadeAnim: new Animated.Value(-Dimensions.get('window').height+),
-            circlePathHeight: 400,//400-700
+            circlePathHeight: 400,//400-700,
+            multiData: this.props.multiList,
+            selectMultiItem: [],
         }
     };
 
@@ -82,6 +112,79 @@ export default class dakaAll extends Component {
         }).start();
     }
 
+    //多选
+    _selectMultiItemPress(item) {
+        if (item.select) {
+            this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
+                return x === item.id;
+            }), 1);
+        } else {
+            this.state.selectMultiItem.push(item.id);
+        }
+        this.state.multiData[item.id].select = !item.select;
+        this.setState({ multiData: this.state.multiData });
+    }
+    //递交 选中 
+    _submitMultiPress() {
+        alert(`选中了${JSON.stringify(this.state.selectMultiItem)}`)
+    }
+    //渲染多选标记
+    _renderMultiMark() {
+        let multiData = this.state.multiData;
+        let len = multiData.length;
+        let menuArr = [];
+        for (let i = 0; i < len; i++) {
+            let item = multiData[i];
+            if (item.select) {
+                menuArr.push(
+                    //选中状态
+                    <TouchableOpacity
+                        onPress={() => this._selectMultiItemPress(item)}
+                        style={{ width: '50%', height: '50%' }}
+                    >
+                        <View style={{ width: '100%', height: '100%', backgroundColor: "#efefef", }}>
+                            <Image style={{ height: "75%", width: '94%', marginLeft: "3%" }} source={item.src} />
+                            <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5, marginLeft: "3%" }}>
+                                <Text style={{ height: 19, width: 19, textAlign: "center", lineHeight: 19, fontWeight: "bold", color: "#FFF", borderRadius: 20, backgroundColor: "#6C9575" }}>
+                                    {item.id}
+                                </Text>
+                                
+                                <Text style={{ marginLeft: 8 }}>{item.name}</Text>
+                                <View style={{position:"absolute",right:20,height:20,width:20,borderRadius:10,backgroundColor:"#FAAF3D"}}></View>
+                            </View>
+                            
+                        </View>
+                    </TouchableOpacity>
+                )
+            } else {
+                menuArr.push(
+
+                    // 未选中状态
+                    <TouchableOpacity
+                        onPress={() => this._selectMultiItemPress(item)}
+                        style={{ width: '50%', height: '50%' }}
+                    >
+                        <View style={{ width: '100%', height: '100%', backgroundColor: "#efefef", }}>
+                            <Image style={{ height: "75%", width: '94%', marginLeft: "3%" }} source={item.src} />
+                            <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5, marginLeft: "3%" }}>
+                                <Text style={{ height: 19, width: 19, textAlign: "center", lineHeight: 19, fontWeight: "bold", color: "#FFF", borderRadius: 20, backgroundColor: "#6C9575" }}>
+                                    {item.id}
+                                </Text>
+                                <Text style={{ marginLeft: 8 }}>{item.name}</Text>
+                            </View>
+                        </View>
+                    </TouchableOpacity>
+                )
+            }
+        }
+        return (
+            //讲各类状态框输出到前端页面
+            <View style={{ flexDirection: "row", width: '50%', flexWrap: "wrap" }}>
+                {menuArr}
+            </View>
+        );
+    }
+
     render() {
 
         var circlePath = Path()
@@ -107,29 +210,6 @@ export default class dakaAll extends Component {
             {
                 key: 5,
                 name: "杭州"
-            },
-        ]
-
-        var CityType = [
-            {
-                id: 1,
-                name: "观赏类",
-                src: require("../photo/sign.png")
-            },
-            {
-                id: 2,
-                name: "游玩类",
-                src: require("../photo/play.png")
-            },
-            {
-                id: 3,
-                name: "美食类",
-                src: require("../photo/food.png")
-            },
-            {
-                id: 4,
-                name: "活动类",
-                src: require("../photo/active.png")
             },
         ]
         return (
@@ -227,7 +307,7 @@ export default class dakaAll extends Component {
                                 <Animated.View style={{ width: '50%', height: '100%', marginLeft: this.state.Vertical, }}>
                                     <View style={{ height: '100%', width: '100%' }}>
                                         {/* <TouchableWithoutFeedback> */}
-                                        <ScrollView style={{ height: '100%', width: "96%", backgroundColor: "#efefef" }}>
+                                        <ScrollView style={{ height: '100%', width: "100%", backgroundColor: "#efefef" }}>
                                             <RadioGroup
                                                 size={20}
                                                 thickness={1}
@@ -254,43 +334,9 @@ export default class dakaAll extends Component {
                                         {/* </TouchableWithoutFeedback> */}
                                     </View>
                                 </Animated.View>
-                                <Animated.View style={{ width: '100%', backgroundColor: "#efefef", height: '100%', }}>
+                                <Animated.View style={{ width: '100%', backgroundColor: "#efefef", height: '100%', flexDirection: "row", flexWrap: "wrap" }}>
                                     {/* 右边的框 */}
-                                    <TouchableWithoutFeedback
-                                        onPress={() => {
-                                            console.log("!111");
-                                        }}>
-                                        <View
-                                            style={{ height: '100%', width: "96%", marginLeft: "2%", }}>
-                                            <RadioGroup
-                                                size={20}
-                                                thickness={1}
-                                                color='#FAAF3D'
-                                                highlightColor='#efefef'
-                                                style={{ width: '100%', flexDirection: "row", flexWrap: "wrap" }}
-                                                selectedIndex={0}
-                                                onSelect={(index, value) => console.log(value)} >
-                                                {
-                                                    CityType.map((item) => {
-                                                        return (
-                                                            <RadioButton
-                                                                style={{ width: '100%', height: '45%', backgroundColor: "#efefef", }}
-                                                                value={item.name}>
-                                                                <View style={{ width: '100%', height: '45%', backgroundColor: "#efefef", }}>
-                                                                    <Image style={{ height: "75%", width: '94%', marginLeft: "3%" }} source={item.src} />
-                                                                    <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5, marginLeft: "3%" }}>
-                                                                        <Text style={{ height: 19, width: 19, textAlign: "center", lineHeight: 19, fontWeight: "bold", color: "#FFF", borderRadius: 20, backgroundColor: "#6C9575" }}>
-                                                                            {item.id}
-                                                                        </Text>
-                                                                        <Text style={{ marginLeft: 8 }}>{item.name}</Text>
-                                                                    </View>
-                                                                </View></RadioButton>
-                                                        )
-                                                    })
-                                                }
-                                            </RadioGroup>
-                                        </View>
-                                    </TouchableWithoutFeedback>
+                                    {this._renderMultiMark()}
                                 </Animated.View>
                             </View>
                         </View>
