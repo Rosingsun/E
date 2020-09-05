@@ -210,7 +210,7 @@ export default class BaiduMap extends Component {
                             <Ionicons name={'heart-outline'} size={30} color={'#000'} />
                             <MaterialCommunityIcons name={'swap-horizontal-circle-outline'} size={30} color={'#000'} 
                                 onPress={()=>{
-                                   this.props.navigation.navigate("exchange");
+                                   this.props.navigation.navigate("exchange",{ENTRIES1:ENTRIES1});
                                 }}
                             />
                             <Feather name={'more-horizontal'} size={30} color={'#000'} />
