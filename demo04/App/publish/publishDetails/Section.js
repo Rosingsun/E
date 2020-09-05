@@ -82,7 +82,7 @@ export default class Section extends React.Component {
                                 this.props.navigation.goBack();
                             }}
                         />
-                        <Text style={{ color: "#000" }}>你他妈关老子</Text>
+                        <Text style={{ color: "#000" }}>联系人</Text>
                         <Text >  </Text>
                     </View>
                 </View>

@@ -14,6 +14,7 @@ import {
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
+import Example from './Rowcard';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -107,40 +108,48 @@ var userInfo = [
   },
 ]
 
-var weakMainTitle = [
-  {
-    key: 'a',
-    pic: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
-    newsTitle: "杭州西湖以茶会友，小阁相聚风景极好",
-    newsTitleTow: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
-    num: 1,
-    titleContain: "随白居易钱塘江春行",
-  },
-  {
-    key: 'a',
-    pic: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
-    newsTitle: "杭州西湖以茶会友，小阁相聚风景极好",
-    newsTitleTow: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
-    num: 2,
-    titleContain: "随李白登黄鹤楼",
-  },
-  {
-    key: 'a',
-    pic: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
-    newsTitle: "杭州西湖以茶会友，小阁相聚风景极好",
-    newsTitleTow: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
-    num: 3,
-    titleContain: "随李白登黄鹤楼",
-  },
-  {
-    key: 'a',
-    pic: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
-    newsTitle: "杭州西湖以茶会友，小阁相聚风景极好",
-    newsTitleTow: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
-    num: 4,
-    titleContain: "随李白登黄鹤楼",
-  },
-]
+// var ENTRIES1 = [
+//   {
+//     key: 'a',
+//     illustration: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
+//     subtitle1: "杭州西湖以茶会友，小阁相聚风景极好",
+//     subtitle2: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
+//     num: 1,
+//     title: "随白居易钱塘江春行",
+//   },
+//   {
+//     key: 'a',
+//     illustration: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2588053483,3183865902&fm=26&gp=0.jpg',
+//     subtitle1: "杭州西湖以茶会友，小阁相聚风景极好",
+//     subtitle2: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
+//     num: 2,
+//     title: "随李白登黄鹤楼",
+//   },
+//   {
+//     key: 'a',
+//     illustration:  'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2186063278,2492408580&fm=26&gp=0.jpg',
+//     subtitle1: "杭州西湖以茶会友，小阁相聚风景极好",
+//     subtitle2: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
+//     num: 3,
+//     title: "随李白登黄鹤楼",
+//   },
+//   {
+//     key: 'a',
+//     illustration:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2705126453,2771950995&fm=26&gp=0.jpg',
+//     subtitle1: "杭州西湖以茶会友，小阁相聚风景极好",
+//     subtitle2: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
+//     num: 4,
+//     title: "随李白登黄鹤楼",
+//   },
+//   {
+//     key: 'a',
+//     illustration:  'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2753143250,2580091861&fm=26&gp=0.jpg',
+//     subtitle1: "杭州西湖以茶会友，小阁相聚风景极好",
+//     subtitle2: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
+//     num: 5,
+//     title: "随李白登黄鹤楼",
+//   },
+// ]
 export default class Discovery extends Component {
   constructor(props) {
     super(props);
@@ -175,7 +184,10 @@ export default class Discovery extends Component {
         >
           <View style={{ width: "100%", height: 198, marginTop: 20, paddingLeft: 5, }}>
             <Text style={{ marginLeft: 10, fontSize: 20 }}>每周专题</Text>
-            <ScrollView
+          
+          
+          
+            {/* <ScrollView
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             >
@@ -186,7 +198,8 @@ export default class Discovery extends Component {
                   )
                 })
               }
-            </ScrollView>
+            </ScrollView> */}
+            <Example/>
           </View>
 
 
