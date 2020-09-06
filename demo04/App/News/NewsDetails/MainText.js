@@ -61,7 +61,6 @@ export default class MainText extends Component {
 
 
   render() {
-
     const{route}=this.props;
     var imgData = [
       { photo: '../../img/1.jpg' },
