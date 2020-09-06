@@ -3,6 +3,7 @@ import {
     Text,
     View,
     StyleSheet,
+    TextInput,
     Dimensions,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
