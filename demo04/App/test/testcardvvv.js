@@ -95,25 +95,34 @@ const MyCarousel = props => {
         <View style={styles.container}>
          <ScrollView >
             <View style={{height:300,backgroundColor:'pink'}}/>
-            <Carousel
+          
+          {/* <View> */}
+               <Carousel
                 ref={carouselRef}
                 sliderWidth={screenWidth}
-                sliderHeight={screenWidth}
+                sliderHeight={200}
                 // 内部宽度
                 // 260
                 // 可以设置中间两个卡片的间隔
                 itemWidth={screenWidth*0.7}
+                itemHeight={200}
                 data={entries}
                 renderItem={renderItem}
                 hasParallaxImages={true}
                 loop={true}
-                 loopClonesPerSide={5}
+                 loopClonesPerSide={2}
                 autoplay={true}
                 itemHeight={screenWidth*0.7}
                 vertical={true}
+                backgroundColor={'red'}
+                 useScrollView={true}
+                firstItem={0}
+                 enableSnap = {false}
+                 enableMomentum = {false}
             />
+            {/* </View>  */}
             {/* </View> */}
-            <View style={{height:300,backgroundColor:'pink'}}/>
+            <View style={{height:300,backgroundColor:'blue'}}/>
       </ScrollView>
         </View>
     );
