@@ -195,7 +195,7 @@ export default class Search extends Component {
                                 this.props.navigation.goBack()
                             }} />
                         </View>
-                        <Text style={{ color: "#000", fontSize: 20 }}>排行榜</Text>
+                        <Text style={{ color: "#000", fontSize: 18}}>排行榜</Text>
                         <View>
                             <AntDesign name={'questioncircle'} size={25} color={'#000'} onPress={() => {
                                 Alert.alert("不要点我")

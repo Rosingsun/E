@@ -66,13 +66,13 @@ export default class qiandao extends Component {
         {/* top */}
         <View style={[styles.top]}>
           <View style={[styles.nav_container]}>
-            <View style={{ flexDirection: "row" }}>
-              <AntDesign name={'left'} size={25} color={'#000000'}
+            {/* <View style={{ flexDirection: "row" }}> */}
+              <AntDesign name={'left'} size={25} color={'#fff'}
                 onPress={() => {
                   Alert.alert("goback")
                   this.props.navigation.goBack();
                 }} />
-            </View>
+            {/* </View> */}
             <Text style={{ fontSize: 20, color: '#000000', marginLeft: '10%' }}>西湖</Text>
             <View style={{ flexDirection: 'row' }}>
               <SimpleLineIcons name={'notebook'} size={25} color={'#000000'} style={{ marginRight: 15 }}
@@ -169,11 +169,9 @@ export default class qiandao extends Component {
               })
             }
             <View style={{ flexDirection: "row", justifyContent: "flex-end", marginRight: 5 }}>
-              {/* <Text> */}
               <Text>地点报错</Text>
               <Text> | </Text>
               <Text>内容举报</Text>
-              {/* </Text> */}
             </View>
           </View>
         </ScrollView>

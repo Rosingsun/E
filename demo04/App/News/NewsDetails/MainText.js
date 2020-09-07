@@ -51,7 +51,7 @@ export default class MainText extends Component {
       },
     }).then((response) => response.json())
       .then((json) => {
-        console.log(json.data)
+        // console.log(json.data)
         this.setState({ data: json.data });
       })
       .catch((error) => console.error(error))
@@ -104,8 +104,6 @@ export default class MainText extends Component {
       })
     }
     return (
-
-      // TOP
       <View style={styles.container}>
         <View style={styles.Top}>
           <View style={[styles.nav_container]}>
@@ -114,11 +112,11 @@ export default class MainText extends Component {
                 this.props.navigation.goBack()
               }} />
             </View>
-            <Text style={{ color: "#000", fontSize: 10 }}>游记详情</Text>
+            <Text style={{ color: "#000", fontSize: 18 }}>游记详情</Text>
             <View>
-            <Feather name="more-horizontal" size={25} color="#000" onPress={() => {
-            Alert.alert("更多")
-          }} />
+              <Feather name="more-horizontal" size={25} color="#000" onPress={() => {
+                Alert.alert("更多")
+              }} />
             </View>
           </View>
         </View>
@@ -135,13 +133,13 @@ export default class MainText extends Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <View style={styles.userHead}>
                     <Image source={{ uri: route.params.data.head }}
-                      style={{ width: 40 * biLi, height: 40 * biLi, borderRadius: 30 * biLi, }}></Image>
+                      style={{ width: 40, height: 40, borderRadius: 30}}></Image>
                   </View>
                   <View style={styles.userId}>
                     <Text style={{ fontSize: 15, color: '#000000', }}>{route.params.data.username}</Text>
                     <Text style={{ fontSize: 10, color: '#999999', }}>{route.params.data.createTime}</Text>
                   </View>
-                  <Ionicons name="eye-outline" size={25} color="#000000" style={{ position: "absolute", right: 20 * biLi }}/>
+                  <Ionicons name="eye-outline" size={25} color="#000000" style={{ position: "absolute", right: 20 * biLi }} />
                 </View>
               </View>
               {/* 九宫格下面的用户文字 */}
@@ -152,7 +150,7 @@ export default class MainText extends Component {
               <View style={{ backgroundColor: "pink", width: '96%', marginLeft: '2%', flexDirection: "row", flexWrap: "wrap" }}>
                 {
                   imgData.map((item) => {
-                    console.log(route.params.data.showUserImg)
+                    console.log(route.params.data)
                     return (
                       <View style={styles.photolist}>
                         <Image style={styles.ninephoto} source={{ uri: route.params.data.showUserImg }} />
@@ -201,7 +199,6 @@ export default class MainText extends Component {
                   <Text style={{ fontSize: 50, color: '#EFEFEF', marginTop: -25, marginBottom: -15 }}>·····························</Text></View>
               </View>
               {/* 需要数据库开始用评论 */}
-              {/* <View style={styles.uesrTalk}> */}
               <View >
                 <FlatList
                   extraData={this.state}
