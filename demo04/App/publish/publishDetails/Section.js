@@ -10,7 +10,9 @@ import {
 } from "react-native";
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import SectionListContacts from 'react-native-sectionlist-contacts'
+import SectionListContacts from 'react-native-sectionlist-contacts';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
 
 export default class Section extends React.Component {
 
@@ -77,13 +79,12 @@ export default class Section extends React.Component {
             <View style={styles.container}>
                 <View style={[styles.top]}>
                     <View style={[styles.top_container]}>
-                        <FontAwesome name='angle-left' size={32} color="#000"
+                        <AntDesign name='left' size={25} color="#000" 
                             onPress={() => {
                                 this.props.navigation.goBack();
                             }}
                         />
-                        <Text style={{ color: "#000" }}>联系人</Text>
-                        <Text >  </Text>
+                        <Text style={{ color: "#000",fontSize:18 }}>联系人</Text>
                     </View>
                 </View>
                 {/* <ScrollView> */}
@@ -130,9 +131,11 @@ const styles = StyleSheet.create({
         alignContent: "center",
     },
     top_container: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        backgroundColor: "#fff",
-        alignItems: "center"
+        width:'55%',
+    marginLeft:'3%',
+    marginTop: '6%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     },
 })

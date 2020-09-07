@@ -41,7 +41,7 @@ export default function dengru({navigation}) {
                                     navigation.navigate('load')
                                  }}
                                 >
-                                <Text style={{ fontSize: 20, color: '#2F3843', textAlign: 'center' }}>登入</Text>
+                                <Text style={{ fontSize: 20, color: '#2F3843', textAlign: 'center' }}>登录</Text>
                             </TouchableHighlight>
                         </View>
                         <View>

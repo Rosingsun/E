@@ -1,9 +1,10 @@
 import React from 'react';
+import { Image, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -72,17 +73,19 @@ import leaveMessage from './News/leaveMessage';
 import Message from './News/Message';
 import trade from './News/trade';
 import MainText from './News/NewsDetails/MainText';
-import ChatInfoMation from'./Chat/ChatInfoMation';
-import ChatRecord from'./Chat/ChatRecord';
+import ChatInfoMation from './Chat/ChatInfoMation';
+import ChatRecord from './Chat/ChatRecord';
 import research from './research/research';
 import complaint from './News/NewsDetails/complaint';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 //定义各类导航栏的变量
 
 const HomaPageTabNavigation = createMaterialTopTabNavigator();
 const PersonalTabNavigation = createMaterialTopTabNavigator();
 const EOPersonalTabNavigation = createMaterialTopTabNavigator();
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
+// const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
 // 各类导航的编写
@@ -158,7 +161,6 @@ export function EOPersonalTab() {
         tabStyle: {
           height: 45,
         },
-        activeBackgroundColor: "red",
         headerShown: false
       }}>
       <PersonalTabNavigation.Screen name="EOline" component={EOline} options={{ title: 'E游记' }} />
@@ -202,12 +204,12 @@ export function PersonalTab() {
 export function MessageTopTab() {
   return (
     <HomaPageTabNavigation.Navigator
+
       tabBarOptions={{
         labelStyle: {
           backgroundColor: "#fff"
         },
         //选中状态的选项卡的文本颜色
-        activeTintColor: "#6C9575",
         activeTintColor: "#43949B",
         // 未选中的选项卡的颜色
         inactiveTintColor: "#000000",
@@ -215,6 +217,7 @@ export function MessageTopTab() {
         // 导航栏状态
         tabStyle: {
           // backgroundColor: "red",
+
         },
         // 样式设置
         style: {
@@ -281,40 +284,21 @@ export function MessageTopTab() {
 }
 // 底部导航
 function bottomTab() {
-
   return (
     <Tab.Navigator
       //刚进入时候的第一个可见页面
       initialRouteName="home"
-      //激活状态的图标颜色
-      activeColor="#6C9575"
-      //熄灭状态图标颜色
-      inactiveColor="#fff"
       //底部导航栏样式设置
-      barStyle={{
-        backgroundColor: '#2F3843',
-        borderTopRightRadius: 20,
-        borderTopLeftRadius: 20,
-        width: "102%",
-        marginLeft: "-1%",
-        padding: 0,
-        margin: 0,
-      }}
       tabBarOptions={{
         style: {
-          overflow: "hidden",
-          borderBottomRightRadius: 20,
-          borderBottomLeftRadius: 20,
+          overflow: "visible",
           height: 50,
-          elevation: 10,
-          marginTop: 10,
-          elevation: 0,
-          activeBackgroundColor: "red"
+          backgroundColor: '#2F3843',
+          padding: 0,
+          margin: 0,
         },
-        // 选中状态的背景颜色
-        activeBackgroundColor: "black",
-        // 未选中状态的颜色
-        inactiveBackgroundColor: "green",
+        activeTintColor: "#6C9575",
+        inactiveTintColor: "#999"
       }}>
       <Tab.Screen name="Home"
         component={Home}
@@ -325,10 +309,22 @@ function bottomTab() {
         options={{ tabBarLabel: '发现', tabBarIcon: ({ color }) => (<FontAwesome name={'binoculars'} size={20} color={color} />), }}>
       </Tab.Screen>
       <Tab.Screen name="choicePhoto" component={choicePhoto}
-        options={{ tabBarLabel: '发一个', tabBarIcon: ({ color }) => (<FontAwesome name={'plus'} size={25} color={color} />), }} />
+        options={{
+          tabBarBadge: 1,
+          tabBarLabel: '发一个',
+
+          // activeBackgroundColor: "red",
+          // inactiveBackgroundColor: "#fff",
+          tabBarIcon: ({ color }) => (
+            <View style={{ backgroundColor: "#2F3843", borderRadius: 20, paddingVertical: 5, width: '135%', alignItems: "center", marginTop: -10, position: "absolute", justifyContent: "center" }}>
+              <AntDesign name={'plus'} size={50} color={color} />
+              {/* <Image source={require("./img/1.jpg")} style={{height:50,width:50}}/> */}
+            </View>
+          ),
+        }} />
       <Tab.Screen name="MessageSum"
         component={MessageSum}
-        options={{ tabBarLabel: '消息', tabBarIcon: ({ color }) => (<FontAwesome name={'twitch'} size={25} color={color} />), }}>
+        options={{ tabBarLabel: '消息', tabBarIcon: ({ color }) => (<FontAwesome name={'twitch'} size={23} color={color} />), }}>
       </Tab.Screen>
       <Tab.Screen name="PersonalCenterSum"
         component={PersonalCenterSum}
@@ -337,22 +333,23 @@ function bottomTab() {
     </Tab.Navigator>
   );
 }
-
-
 // 堆栈导航
 function MyStack() {
   return (
-    <Stack.Navigator headerMode="none">
+    <Stack.Navigator
+      headerMode="none"
+      mode="card"
+      animationEnabled={false}
+    >
+      <Stack.Screen name="MainFadeView" component={MainFadeView} />
+      <Stack.Screen name="Splash" component={Splash} />
       {/* 底部导航栏 */}
       <Stack.Screen name="dengru" component={dengru} />
       <Stack.Screen name="bottomTab" component={bottomTab} />
       {/* 欢迎页面 */}
       <Stack.Screen name="load" component={load} />
-      <Stack.Screen name="MainFadeView" component={MainFadeView} />
-      <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Register" component={Register} />
       {/* 还未定义 */}
-
       <Stack.Screen name="MessageTopTab" component={MessageTopTab} />
       <Stack.Screen name="Search" component={Search} />
       <Stack.Screen name="BaiduMap" component={BaiduMap} />
@@ -405,7 +402,7 @@ function MyStack() {
 
       <Stack.Screen name="exchange" component={exchange} />
       <Stack.Screen name="Discovery" component={Discovery} />
-      
+
     </Stack.Navigator>
   );
 }

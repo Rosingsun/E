@@ -32,24 +32,24 @@ export default class Line extends Component {
 
   _onScroll(event) {
     let y = event.nativeEvent.contentOffset.y;
-    if (this.state.oldPostion <y) {
-        this.state.oldPostion=y;
-        this.refs.title.setNativeProps({
-            style: {
-                opacity: 0,
-                // height: 0
-            },
-        });
+    if (this.state.oldPostion < y) {
+      this.state.oldPostion = y;
+      this.refs.title.setNativeProps({
+        style: {
+          opacity: 0,
+          // height: 0
+        },
+      });
     } else {
-        this.state.oldPostion=y;
-        this.refs.title.setNativeProps({
-            style: {
-                opacity: 1,
-                // height: 40
-            },
-        });
+      this.state.oldPostion = y;
+      this.refs.title.setNativeProps({
+        style: {
+          opacity: 1,
+          // height: 40
+        },
+      });
     }
-}
+  }
   render() {
     const { cityName } = this.props.route.params;
     var Data = [
@@ -150,17 +150,18 @@ export default class Line extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.topStyle}>
-          <AntDesign name="left" size={28} color="#000000" onPress={() => {
-            this.props.navigation.navigate("choiceCity")
-          }} style={{ marginLeft: '3%' }}></AntDesign>
-          <Text style={{ fontSize: 20, color: '#000000' }}>线路</Text>
-          <View style={{ width: 25 }}></View>
+        <View style={styles.Top}>
+          <View style={ styles.nav_container }>
+            <AntDesign name={'left'} size={25} color='#000000' style={{ marginLeft: '3%' }} onPress={() => {
+              this.props.navigation.goBack()
+            }} />
+            <Text style={{ fontSize: 20, color: '#000000', marginLeft: '30%' }}>线路</Text>
+          </View>
         </View>
         <View style={styles.list}>
-          
+
           <ScrollView
-            style={{paddingTop:40,}}
+            style={{ paddingTop: 40, }}
             onScroll={(event) => this._onScroll(event)}
           >
             <FlatList
@@ -169,12 +170,12 @@ export default class Line extends Component {
               renderItem={({ item }) => drawLine(item.longitude, item.latitude, item.place, item.id)}
             />
           </ScrollView>
-          
-        <View ref='title' style={{top:0,position:"absolute",backgroundColor:"#fff",opacity: 1, height: 40, width: '100%', opacity: 1, marginLeft: '3%', justifyContent: 'center' }}>
-              <Text style={{ fontSize: 20, color: '#000000' }}>{cityName}</Text>
-            </View>
+
+          <View ref='title' style={{ top: 0, position: "absolute", backgroundColor: "#fff", opacity: 1, height: 40, width: '100%', opacity: 1, marginLeft: '3%', justifyContent: 'center' }}>
+            <Text style={{ fontSize: 20, color: '#000000' }}>{cityName}</Text>
+          </View>
         </View>
-        
+
       </View>
     );
   }
@@ -185,7 +186,24 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#EFEFEF',
   },
-
+  Top: {
+    height: 78,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
+    elevation: 10,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+  },
+  nav_container: {
+    width:'53%',
+    marginLeft:'3%',
+    marginTop: '6%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
   title_text: {
     fontSize: 20,
     color: 'white'
@@ -219,9 +237,10 @@ const styles = StyleSheet.create({
     height: 78,
     backgroundColor: '#FFFFFF',
     justifyContent: 'space-between',
-    alignItems: 'center',
     flexDirection: 'row',
     fontWeight: '200',
+    width:'60%',
+    backgroundColor:"red",
     borderBottomRightRadius: 15,
     borderBottomLeftRadius: 15,
     elevation: 10

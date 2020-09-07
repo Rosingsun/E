@@ -13,7 +13,6 @@ import {
 
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Foundation from 'react-native-vector-icons/Foundation';
 import Feather from 'react-native-vector-icons/Feather';
 import ImagePicker from 'react-native-image-crop-picker';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -90,18 +89,18 @@ export default class spread extends Component {
                 )
             }
         }
-        
+
         return (
             <View style={[styles.container]}>
                 <View style={[styles.top]}>
-                    <View style={[styles.top_container]}>
-                        <FontAwesome name='angle-left' size={32} color="#000" />
-                        <Text style={{ color: "#000" }}>你他妈关老子</Text>
-                        <Text style={{ paddingHorizontal: 20, backgroundColor: "#6C9575", color: "#fff", paddingHorizontal: 10, paddingVertical: 5, borderRadius: 20, }}
+                    <View style={[styles.nav_container]}>
+                        <AntDesign name='left' size={25} color="#000" />
+                        <Text style={{ color: "#000" ,fontSize:18,position:"absolute",width:'100%',textAlign:"center"}}>发布游记</Text>
+                        <Text style={{ paddingHorizontal: 20, backgroundColor: "#6C9575", color: "#fff", paddingHorizontal: 10, paddingVertical: 2, borderRadius: 20, }}
                             onPress={this._onClickSharetravel}> 发送 </Text>
                     </View>
                 </View>
-                <View style={{ backgroundColor: "#fff", marginTop: 20, width: '90%', marginLeft: '5%',  borderRadius: 15 }}>
+                <View style={{ backgroundColor: "#fff",paddingBottom:10, marginTop: 20, width: '90%', marginLeft: '5%', borderRadius: 15 }}>
                     <View style={{ width: '94%', height: 40, backgroundColor: "#efefef", marginLeft: '3%', marginTop: 10, borderRadius: 15 }}>
 
                         <TextInput
@@ -112,10 +111,10 @@ export default class spread extends Component {
                             }}
                         />
                     </View>
-                    <View style={{ width: '94%', minHeight:80, backgroundColor: "#efefef", marginLeft: '3%', marginTop: 10,paddingBottom:10, borderRadius: 15 }}>
+                    <View style={{ width: '94%', minHeight: 80, backgroundColor: "#efefef", marginLeft: '3%', marginTop: 10, paddingBottom: 10, borderRadius: 15 }}>
 
                         <TextInput
-                            style={{ width: "100%", minHeight: 80, letterSpacing: 1,alignSelf:"flex-start"}}
+                            style={{ width: "100%", minHeight: 80, letterSpacing: 1, alignSelf: "flex-start" }}
                             placeholder="分享一篇游记吧 "
                             multiline={true}
                             onChangeText={(text) => {
@@ -130,8 +129,8 @@ export default class spread extends Component {
                             {
                                 showTopic()
                             }
-                            
-                            </View>
+
+                        </View>
                     </View>
                     <TouchableWithoutFeedback >
                         <View>
@@ -161,7 +160,6 @@ export default class spread extends Component {
                             <View style={[styles.signBox]}>
                                 <Ionicons name='md-location-sharp' size={20} color="#fff" />
                                 <Text style={{ fontSize: 16, color: "#fff", textAlign: "center" }}>杭州</Text>
-
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
@@ -232,12 +230,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignContent: "center",
     },
-    top_container: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        backgroundColor: "#fff",
-        alignItems: "center"
-    },
     addPicBox: {
         height: 72,
         width: 72,
@@ -263,6 +255,16 @@ const styles = StyleSheet.create({
         backgroundColor: "#2F3843",
         borderRadius: 15,
         width: "auto",
+    },
+
+    nav_container: {
+        flex: 0.7,
+        marginTop: '8%',
+        flexDirection: "row",
+        width: "94%",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginLeft: "3%",
     },
 
 });

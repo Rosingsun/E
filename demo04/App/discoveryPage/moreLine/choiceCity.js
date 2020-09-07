@@ -92,10 +92,12 @@ export default class choiceCity extends Component {
       <View style={styles.container}>
 
         <View style={styles.Top}>
-          <AntDesign name={'left'} size={32} color='#000000' style={{ marginLeft: '3%' }} onPress={() => {
-            this.props.navigation.goBack()
-          }} />
-          <Text style={{ fontSize: 20, color: '#000000', marginLeft: '30%' }}>选择城市</Text>
+          <View style={ styles.nav_container }>
+            <AntDesign name={'left'} size={25} color='#000000' style={{ marginLeft: '3%' }} onPress={() => {
+              this.props.navigation.goBack()
+            }} />
+            <Text style={{ fontSize: 20, color: '#000000', marginLeft: '30%' }}>选择城市</Text>
+          </View>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
 
@@ -171,5 +173,13 @@ const styles = StyleSheet.create({
     zIndex: 100,
     color: '#FFFFFF',
     fontSize: 15
+  },
+  nav_container: {
+    width:'58%',
+    marginLeft:'3%',
+    marginTop: '6%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 })
