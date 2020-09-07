@@ -21,15 +21,13 @@ function bottomLine() {
 };
 
 export default class MainText extends Component {
-
-
   constructor(props) {
     super(props);
     this.state = {
       content: '',
       data: [],
       isLoading: true,
-
+      selectMultiItem: [],
     }
   }
   componentDidMount() {
@@ -60,24 +58,13 @@ export default class MainText extends Component {
       });
   };
 
-
-
   render() {
-
-
     const { route } = this.props;
-    var imgData = [
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-    ]
+    route.params.data.showUserImg.split(',').map((word) => this.state.selectMultiItem.push(word))  
+    
+    console.log(route.params.data.showUserImg)
+    var imgData = this.state.selectMultiItem
     const { data, isLoading } = this.state;
-
     const _onClickSendContent = () => {
       fetch('http://192.168.1.151:3000/api/travels/comment/addComment', {
         method: 'POST',
@@ -103,6 +90,7 @@ export default class MainText extends Component {
         }
       })
     }
+
     return (
       <View style={styles.container}>
         <View style={styles.Top}>
@@ -149,11 +137,10 @@ export default class MainText extends Component {
               </View>
               <View style={{ backgroundColor: "pink", width: '96%', marginLeft: '2%', flexDirection: "row", flexWrap: "wrap" }}>
                 {
-                  imgData.map((item) => {
-                    console.log(route.params.data)
+                this.state.selectMultiItem.map((item) => {
                     return (
                       <View style={styles.photolist}>
-                        <Image style={styles.ninephoto} source={{ uri: route.params.data.showUserImg }} />
+                        <Image style={styles.ninephoto} source={{ uri:item[1]}} />
                       </View>
                     )
                   })
@@ -235,7 +222,6 @@ export default class MainText extends Component {
                         </View>
                       </View >
                       <View style={{ height: 10 }}></View>
-
                     </View>
                   } />
               </View>
@@ -343,6 +329,7 @@ const styles = StyleSheet.create({
   ninephoto: {
     width: 117,
     height: 117,
+    backgroundColor:"#efefef"
   },
   map: {
     width: "94%",
