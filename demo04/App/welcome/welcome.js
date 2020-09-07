@@ -49,6 +49,10 @@ class FadeView extends React.Component {
 }
 // 然后你就可以在组件中像使用`View`那样去使用`FadeInView`了
 export default class MainFadeView extends React.Component {
+    constructor(props){
+        super(props)
+        this.state={}
+    }
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -65,7 +69,7 @@ export default class MainFadeView extends React.Component {
                         }, 3000)
                     }
                     >
-                        <Splash />
+                        <Splash {...this.props} />
                 </TouchableNativeFeedback >
             </View>
         );

@@ -152,6 +152,7 @@ export default class MainText extends Component {
               <View style={{ backgroundColor: "pink", width: '96%', marginLeft: '2%', flexDirection: "row", flexWrap: "wrap" }}>
                 {
                   imgData.map((item) => {
+                    console.log(route.params.data.showUserImg)
                     return (
                       <View style={styles.photolist}>
                         <Image style={styles.ninephoto} source={{ uri: route.params.data.showUserImg }} />
