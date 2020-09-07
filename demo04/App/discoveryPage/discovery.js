@@ -49,14 +49,16 @@ function activityUser(userBackGroundPic, userHeardImg, userName, lineNum, userLv
     <View style={{ width: 260, height: 350, marginLeft: 20 }}>
       <Image style={{ height: 184, width: '100%', }} source={{ uri: userBackGroundPic }} />
       <View style={{ height: '40%', width: '100%', backgroundColor: "#fff", paddingHorizontal: 10, elevation: 2 }}>
-        <Image style={{ height: 50, width: 50, borderRadius: 25, marginTop: -25, borderWidth: 2, borderColor: "#fff" }} source={{ uri: userHeardImg }} />
-        <Text style={{ backgroundColor: "#fff", fontSize: 20, }}>{userName}</Text>
-        <View style={{ width: 110, flexDirection: "row", justifyContent: "space-between" }}>
+        <Image style={{ height: 50, width: 50, borderRadius: 50, marginTop: -25, borderWidth: 2, borderColor: "#fff",marginLeft:'3%' }} source={{ uri: userHeardImg }} />
+        <Text style={{ backgroundColor: "#fff", fontSize: 20, marginLeft:'3%',marginTop:6 }}>{userName}</Text>
+        <View style={{ width: 110, flexDirection: "row",marginLeft:'3%',marginTop:2  }}>
           <Text style={{ fontSize: 10, color: "#999" }}>{lineNum}条游记</Text>
-          <Text style={{ fontSize: 10, color: "#999999" }} >{lineNum}条路线</Text>
+          <Text style={{ fontSize: 10, color: "#999999",marginLeft:10 }} >{lineNum}条路线</Text>
         </View>
-        <Text style={{ fontSize: 15, color: "#999", marginTop: 10, }}>{userLv}</Text>
-        <Text style={{ borderWidth: 1, borderColor: "green", width: 70, paddingVertical: 5, height: 30, paddingHorizontal: 5, textAlign: "center" }}>关注</Text>
+        <View style={{marginLeft:'3%'}}>
+        <Text style={{ fontSize: 10, color: "#999", marginTop: 10,marginTop:6 }}>{userLv}</Text>
+        <Text style={{ borderWidth: 1,borderRadius:2,alignSelf:"flex-start", borderColor: "#6C9575", color:'#6C9575',fontSize:10,paddingHorizontal:25,paddingVertical:5,marginTop:10}}>关注</Text>
+        </View>
       </View>
     </View>
   )
@@ -207,30 +209,33 @@ export default class Discovery extends Component {
           {/* 第二部分 */}
           <View style={{ width: '94%', marginTop: 20, paddingBottom: 10, marginLeft: '3%', backgroundColor: "#fff", borderRadius: 15, }}>
             {/* title line */}
-            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: 'center', paddingHorizontal: 10, paddingTop: 10, }}>
-              <Text>随诗打卡</Text>
-              <Text
+            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: 'center', paddingHorizontal:'3%', paddingTop: 10, }}>
+              <Text style={{fontSize:15}}>随诗打卡</Text>
+              
+            <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+              <Text style={{color:'#999999',fontSize:12,marginRight:5}}
                 onPress={() => {
                   this.props.navigation.navigate("dakaAll");
                 }}
-              >查看更多<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
+              >查看更多</Text><FontAwesome name={'angle-right'} size={20} color={'#999999'} />
+            </View>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10, }}>
-              <Text style={{ width: '20%', textAlign: "center", backgroundColor: this.state.One, color: "#fff", borderRadius: 3 }}
+              <Text style={{ width: '20%', textAlign: "center", backgroundColor: this.state.One, color: "#fff", borderRadius: 3,fontSize:15,padding:5  }}
                 onPress={() => {
                   this.setState({ One: '#6C9575', Two: '#6C957550', Three: '#6C957550', Four: '#6C957550' })
                 }}>我的专属</Text>
-              <Text style={{ width: '20%', textAlign: "center", backgroundColor: this.state.Two, color: "#fff", borderRadius: 3 }}
+              <Text style={{ width: '20%', textAlign: "center", backgroundColor: this.state.Two, color: "#fff", borderRadius: 3,fontSize:15,padding:5  }}
                 onPress={() => {
                   this.setState({ One: '#6C957550', Two: '#6C9575', Three: '#6C957550', Four: '#6C957550' })
                 }}
               >历史故事</Text>
-              <Text style={{ width: '20%', textAlign: "center", backgroundColor: this.state.Three, color: "#fff", borderRadius: 3, }}
+              <Text style={{ width: '20%', textAlign: "center", backgroundColor: this.state.Three, color: "#fff", borderRadius: 3,fontSize:15,padding:5  }}
                 onPress={() => {
                   this.setState({ One: '#6C957550', Two: '#6C957550', Three: '#6C9575', Four: '#6C957550' })
                 }}
               >附近地点</Text>
-              <Text style={{ width: '20%', textAlign: "center", backgroundColor: this.state.Four, color: "#fff", borderRadius: 3, textAlign: "center" }}
+              <Text style={{ width: '20%', textAlign: "center", backgroundColor: this.state.Four, color: "#fff", borderRadius: 3, textAlign: "center",fontSize:15,padding:5 }}
                 onPress={() => {
                   this.setState({ One: '#6C957550', Two: '#6C957550', Three: '#6C957550', Four: '#6C9575' })
                 }}
@@ -246,11 +251,13 @@ export default class Discovery extends Component {
           <View style={{ marginTop: 50, padding: 10,width: '94%', marginTop: 20, marginLeft: '3%', backgroundColor: "#fff", borderRadius: 15, }}>
         
             <View style={{ width: '100%', height: 20, alignItems: "flex-end", backgroundColor: "#fff" }}>
-              <Text
+            <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+              <Text style={{ fontSize: 12, color: "#999999",marginRight:5 }}
                 onPress={() => {
                   this.props.navigation.navigate("choiceCity")
                 }}
-              >更多路线<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
+              >更多路线</Text><FontAwesome name={'angle-right'} size={20} color={'#999999'} />
+            </View>
             </View>
             {/* {
               userMap.map((item) => {
@@ -270,19 +277,25 @@ export default class Discovery extends Component {
           </View>
 
           {/* 第四部分 */}
-          <View style={{ marginTop: 20, padding: 10, backgroundColor: "#fff", }}>
-            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-              <Text style={{ fontSize: 20 }}>活跃玩家</Text>
-              <Text style={{ fontSize: 15, color: "#999999" }}
+          <View style={{ marginTop: 20,  backgroundColor: "#fff", }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between",paddingHorizontal: '5%',paddingVertical:'3%',}}>
+              <Text style={{ fontSize: 15 }}>活跃玩家</Text>
+              <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+              <Text style={{ fontSize: 12, color: "#999999",marginRight:5 }}
                 onPress={() => {
                   this.props.navigation.navigate("Search");
                 }}
-              >排行榜 <FontAwesome name={'angle-right'} size={20} color={'#999999'} /></Text>
+              >排行榜 
+              </Text>
+              <FontAwesome name={'angle-right'} size={20} color={'#999999'} />
+              </View>
             </View>
-
+              
             <ScrollView
-              style={{ height: '100%' }}
+              style={{ height: '100%',width:'100%' }}
               horizontal={true}
+       
+          
             >
               {
                 userInfo.map((item) => {

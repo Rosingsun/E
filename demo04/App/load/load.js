@@ -104,8 +104,8 @@ export default class load extends Component {
 
                         <View style={[styles.inputBox]}>
                             <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>密码</Text>
-                            <View style={{ flexDirection: "row" }}>
-                                <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 18 }} name={'lock'} size={25} color={'#999999'} />
+                            <View style={{ flexDirection: "row",}}>
+                                <FontAwesome style={{ alignItems: "center",marginLeft: 15, marginTop: 15 }} name={'lock'} size={25} color={'#999999'} />
                                 <TextInput
                                     style={styles.password}
                                     placeholder='请输入密码'

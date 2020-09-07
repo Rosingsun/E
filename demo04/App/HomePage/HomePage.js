@@ -82,7 +82,7 @@ export default class Home extends Component {
               <View style={[styles.imgShowBox]}>
                 <Image style={{ height: 140 , width: "94%", marginLeft: "3%" }} source={require('../img/a.jpg')} />
                 <View style={{ width: "100%", flexDirection: "row", padding: 6, justifyContent: "center" }}>
-                  <Text style={{ fontSize: 15, }}>今日热议：</Text>
+                  <Text style={{ fontSize: 15, }}>今日热E：</Text>
                   <Text style={{ fontSize: 12, lineHeight: 20, color: "#FFB16C" }}>#横看成岭侧成峰，远近高低各不同#</Text>
                 </View>
               </View>
@@ -93,10 +93,10 @@ export default class Home extends Component {
                     alert("you want to change your page")
                   }}
                 >
-                  <View style={{ width: '49%', height: '100%' }}>
-                    <ImageBackground style={{ height: 110, marginTop: 10, width: '100%', borderRadius: 3 }} source={require('../img/Photo/hangzhou.jpg')} />
-                    <Image source={require("../img/dakaBottom.png")} style={{ height: '50%', width: '100%', position: "absolute", bottom: 0, }}></Image>
-                    <Text style={{ position: "absolute", bottom: 5, textAlign: "center", width: '100%', }}>每周必去打卡排行榜</Text>
+                  <View style={{ width: '49%', height: '100%', }}>
+                    <Image style={{ height: 110, marginTop: 10, width: '100%', borderRadius:3 }} source={require('../img/Photo/hangzhou.jpg')} />
+                    <Image source={require("../img/dakaBottom.png")} style={{ height: '50%', width: '100%', position: "absolute", bottom: 0,  borderRadius:3}}></Image>
+                    <Text style={{ position: "absolute", bottom: 5, textAlign: "center", width: '100%',fontSize:12}}>每周必去打卡 排行榜</Text>
                   </View>
                 </TouchableWithoutFeedback>
                 <View style={{ width: "49%", flexDirection: "column", justifyContent: "space-around", alignItems: 'center', marginLeft: '2%' }}>
@@ -110,8 +110,8 @@ export default class Home extends Component {
                       {/* 用户头像 */}
                       <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../img/a.jpg')} />
                       <View style={{ alignItems: "center", marginHorizontal: 10 }}>
-                        <Text>每周活跃用户</Text>
-                        <Text>排行榜</Text>
+                        <Text style={{fontSize:12}}>每周活跃用户</Text>
+                        <Text style={{fontSize:12}}>排行榜</Text>
                       </View>
                     </View>
                   </TouchableWithoutFeedback>
@@ -125,8 +125,8 @@ export default class Home extends Component {
                       {/* 用户头像 */}
                       <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../img/a.png')} />
                       <View style={{ alignItems: "center", marginHorizontal: 10 }}>
-                        <Text>每周活跃用户</Text>
-                        <Text>排行榜</Text>
+                        <Text style={{fontSize:12}}>每周热门路线</Text>
+                        <Text style={{fontSize:12}}>排行榜</Text>
                       </View>
                     </View>
                   </TouchableWithoutFeedback>
@@ -196,6 +196,7 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 0,
     backgroundColor: "#fff",
+    borderRadius:3,
   },
   imgShow: {
     height: 290,
@@ -204,13 +205,13 @@ const styles = StyleSheet.create({
   mainBox: {
     width: "100%",
     height: 250,
-    borderRadius: 3,
+    borderRadius: 0,
   },
   firstBox: {
     width: "100%",
     backgroundColor: "#6C9575",
     padding: 13,
-    borderRadius: 0,
+    borderRadius: 3,
   },
   container: {
     flex: 1,
