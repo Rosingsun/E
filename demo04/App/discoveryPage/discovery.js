@@ -18,7 +18,8 @@ import Example from './Rowcard';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MyCustomCarousel from './card'
+import MyCustomCarousel from './card';
+import VerticalMyCarousel from './Verticalcard'
 import ProjectsScreen from '../../lotte/cardscreen';
 import Swiper from 'react-native-swiper';
 //底部颜色
@@ -242,7 +243,8 @@ export default class Discovery extends Component {
           </View>
           {/* 第三部分 */}
           {/* 竖向轮播 */}
-          <View style={{ marginTop: 50, padding: 10, width: '100%', height: 400, }}>
+          <View style={{ marginTop: 50, padding: 10,width: '94%', marginTop: 20, marginLeft: '3%', backgroundColor: "#fff", borderRadius: 15, }}>
+        
             <View style={{ width: '100%', height: 20, alignItems: "flex-end", backgroundColor: "#fff" }}>
               <Text
                 onPress={() => {
@@ -250,7 +252,7 @@ export default class Discovery extends Component {
                 }}
               >更多路线<FontAwesome name={'angle-right'} size={20} color={'#000'} /></Text>
             </View>
-            {
+            {/* {
               userMap.map((item) => {
                 return (
                   <Text style={{ backgroundColor: item.backgroundColor, height: '30%', width: 200, color: "#fff", marginLeft: 12 }}
@@ -260,8 +262,11 @@ export default class Discovery extends Component {
                   >{item.key}</Text>
                 )
               })
-            }
+            } */}
             {/* </ScrollView> */}
+            <View style={{backgroundColor:'#fff',borderRadius:15,}}>
+            <VerticalMyCarousel/>
+            </View>
           </View>
 
           {/* 第四部分 */}
