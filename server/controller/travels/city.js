@@ -28,12 +28,12 @@ const queryScenic_Spots = (Name, City, Scenic_Spots, Position) => {
     })
 }
 
-const queryAllScenic_Spots =()=>{
-  let sql = 'SELECT id,Name,City,Scenic_Spots, Position,imgView FROM city'
-  return exec(sql).then(row=>{
+const queryAllScenic_Spots = () => {
+    let sql = `SELECT * FROM city`
+    return exec(sql).then(row => {
       return row || []
-  })
-}
+    })
+  }
 module.exports={
     queryScenic_Spots,  
     queryAllScenic_Spots 

@@ -76,7 +76,7 @@ export default class load extends Component {
                                 this.props.navigation.goBack()
                             }} />
                         </View>
-                        <Text style={{ color: "#000", fontSize: 20 }}>登陆</Text>
+                        <Text style={{ color: "#000", fontSize: 20 }}>登录</Text>
                         <View>
                             <Entypo name={'home'} size={25} color={'#000'} onPress={() => {
                                 this.props.navigation.navigate("dengru");
@@ -168,9 +168,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff"
     },
     top: {
-        // position: "absolute",
-
-        height: (78) * biLi,
+        height:78,
         width: "100%",
         backgroundColor: "#FFFFFF",
         borderBottomRightRadius: 15,
@@ -179,7 +177,7 @@ const styles = StyleSheet.create({
     },
     nav_container: {
         flex: 0.7,
-        marginTop: '5%',
+        marginTop: '8%',
         flexDirection: "row",
         width: "90%",
         justifyContent: "space-between",

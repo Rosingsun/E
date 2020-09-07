@@ -191,13 +191,13 @@ export default class Search extends Component {
                 <View style={[styles.top]}>
                     <View style={[styles.nav_container]}>
                         <View style={{ flexDirection: "row" }}>
-                            <AntDesign name={'left'} size={30} color={'#000'} onPress={() => {
+                            <AntDesign name={'left'} size={25} color={'#000'} onPress={() => {
                                 this.props.navigation.goBack()
                             }} />
                         </View>
                         <Text style={{ color: "#000", fontSize: 20 }}>排行榜</Text>
                         <View>
-                            <AntDesign name={'questioncircle'} size={30} color={'#000'} onPress={() => {
+                            <AntDesign name={'questioncircle'} size={25} color={'#000'} onPress={() => {
                                 Alert.alert("不要点我")
                             }} />
                         </View>

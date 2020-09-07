@@ -201,7 +201,7 @@ export default class BaiduMap extends Component {
         return (
             <ScrollView style={styles.container}>
                 <View style={[styles.top]}>
-                    <View style={{ flexDirection: "row", width: '90%', marginLeft: '5%', height: 39, marginTop: 30, justifyContent: "space-between" }}>
+                    <View style={{ flexDirection: "row", width: '94%', marginLeft: '3%',  marginTop: '8%', justifyContent: "space-between" }}>
                         <AntDesign name={'left'} size={20} color={'#000'}
                             onPress={() => {
                                 this.props.navigation.goBack()
@@ -210,7 +210,7 @@ export default class BaiduMap extends Component {
                             <Ionicons name={'heart-outline'} size={30} color={'#000'} />
                             <MaterialCommunityIcons name={'swap-horizontal-circle-outline'} size={30} color={'#000'} 
                                 onPress={()=>{
-                                   this.props.navigation.navigate("exchange");
+                                   this.props.navigation.navigate("exchange",{ENTRIES1:ENTRIES1});
                                 }}
                             />
                             <Feather name={'more-horizontal'} size={30} color={'#000'} />

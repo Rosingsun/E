@@ -237,7 +237,7 @@ export default class Discovery extends Component {
             </View>
             {/* 卡片 */}
             <View>
-              <MyCustomCarousel />
+              <MyCustomCarousel {...this.props}/>
             </View>
           </View>
           {/* 第三部分 */}
@@ -290,9 +290,7 @@ export default class Discovery extends Component {
           </View>
         </ScrollView>
         {/* 底部选择弹窗 */}
-
         <View >
-
         </View>
       </View >
     )

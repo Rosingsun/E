@@ -8,9 +8,9 @@ const { exec } = require('../../db/mysql')
  * @param {*} createTime 创建时间
  * @param {*} prase_count 点赞数
  */
-const addComment = (answer_id, user_id, content, createTime,prase_count) => {
-      let sql = `INSERT INTO comment (answer_id, user_id ,content, createTime,prase_count) 
-      VALUES ( ${answer_id} , ${user_id}, '${content}', '${createTime}', '${prase_count}')`
+const addComment = (answer_id, user_id, content, createTime) => {
+      let sql = `INSERT INTO comment (answer_id, user_id ,content, createTime) 
+      VALUES ( ${answer_id} , ${user_id}, '${content}', '${createTime}')`
       console.log(sql)
         return exec(sql).then(row =>{
             return row || {}
@@ -20,7 +20,7 @@ const addComment = (answer_id, user_id, content, createTime,prase_count) => {
 /**
  * 删除
  * @param {*} comment_id 
- */
+ */   
 const deleteComment = (comment_id) => {
     let sql = `DELETE FROM comment WHERE comment_id = ${comment_id}`
     return exec(sql).then(row => {
@@ -29,8 +29,19 @@ const deleteComment = (comment_id) => {
   }
 
 const queryCommentId = (answer_id)=>{
-  let sql = `SELECT a.*, b.answer_id FROM comment as a LEFT JOIN travel as b ON a.answer_id=b.answer_id WHERE a.answer_id=${answer_id}`
+  let sql = `SELECT * FROM comment WHERE answer_id = '${answer_id}'`
+  console.log(sql)
   return exec(sql).then(row=>{
+    return row || []
+  })
+}
+
+/**
+ * 查询全部
+ */
+const queryAllcomment = () => {
+  let sql = `SELECT * FROM comment`
+  return exec(sql).then(row => {
     return row || []
   })
 }
@@ -39,4 +50,5 @@ const queryCommentId = (answer_id)=>{
       addComment,
       deleteComment,
       queryCommentId,
+      queryAllcomment,
   }
