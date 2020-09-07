@@ -33,66 +33,77 @@ export default class ProductionRoute extends Component {
                 CcityName: "杭州",
                 EcityName: "Hang Zhou",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/hangzhou.jpg"),
+                select: false,
             },
             {
                 id: 1,
                 CcityName: "宁波",
                 EcityName: "Ning Bo",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/ningbo.jpg"),
+                select: false,
             },
             {
                 id: 2,
                 CcityName: "嘉兴",
                 EcityName: "Jia Xing",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/jiaxing.jpg"),
+                select: false,
             },
             {
                 id: 3,
                 CcityName: "绍兴",
                 EcityName: "Shao Xing",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/shaoxing.jpg"),
+                select: false,
             },
             {
                 id: 4,
                 CcityName: "舟山",
                 EcityName: "Zhou Shan",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/zhoushan.jpg"),
+                select: false,
             },
             {
                 id: 5,
                 CcityName: "温州",
                 EcityName: "Wen Zhou",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/wenzhou.jpg"),
+                select: false,
             },
             {
                 id: 6,
                 CcityName: "湖州",
                 EcityName: "Hu Zhou",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/huzhou.jpg"),
+                select: false,
             },
             {
                 id: 7,
                 CcityName: "丽水",
                 EcityName: "Li Shui",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/lishui.jpg"),
+                select: false,
             },
             {
                 id: 8,
                 CcityName: "金华",
                 EcityName: "Jin Hua",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/jinhua.jpg"),
+                select: false,
             },
             {
                 id: 9,
                 CcityName: "衢州",
                 EcityName: "Qu Zhou",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/quzhou.jpg"),
+                select: false,
             },
             {
                 id: 10,
                 CcityName: "台州",
                 EcityName: "Tai Zhou",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/taizhou.jpg"),
+                select: false,
             },
         ]
     };
@@ -113,10 +124,12 @@ export default class ProductionRoute extends Component {
     }
     //多选
     _selectMultiItemPress(item) {
+        //如果找到同样的ID，返回
         if (item.select) {
             this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
                 return x === item.id;
             }), 1);
+            //找不到同样的id，则将其存入数组。
         } else {
             this.state.selectMultiItem.push(item.id);
         }
@@ -184,15 +197,15 @@ export default class ProductionRoute extends Component {
 
             <View style={styles.container}>
                 <View style={styles.Top}>
-                    <View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: "space-between", alignContent: "center" }}>
-                        <AntDesign name={'left'} size={32} color='#000000' onPress={() => {
+                    <View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: "space-between", marginTop:'8%' }}>
+                        <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
                             this.props.navigation.goBack()
                         }} />
                         <Text style={{ fontSize: 20, color: '#000000', marginLeft: '12%' }}>选择城市</Text>
-                        <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, padding: 2, paddingHorizontal: 5 }}
+                        <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15,  paddingHorizontal: 3 }}
                             onPress={() => {
-                                this.props.navigation.navigate("dakaPlaceChoice")
-                                this._submitMultiPress()
+                                this.props.navigation.navigate("dakaPlaceChoice",{})
+                                // this._submitMultiPress()
                             }}
                         >下一步(1/3)</Text>
                     </View>

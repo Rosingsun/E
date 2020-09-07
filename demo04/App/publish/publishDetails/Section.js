@@ -79,12 +79,12 @@ export default class Section extends React.Component {
             <View style={styles.container}>
                 <View style={[styles.top]}>
                     <View style={[styles.top_container]}>
-                        <AntDesign name='left' size={25} color="#000" 
+                        <AntDesign name='left' size={25} color="#000"
                             onPress={() => {
                                 this.props.navigation.goBack();
                             }}
                         />
-                        <Text style={{ color: "#000",fontSize:18 }}>联系人</Text>
+                        <Text style={{ color: "#000", fontSize: 18 }}>联系人</Text>
                     </View>
                 </View>
                 {/* <ScrollView> */}
@@ -103,8 +103,8 @@ export default class Section extends React.Component {
                         showsVerticalScrollIndicator={false}
                         SectionListClickCallback={(atName, index) => {
                             // console.log(atName)
-                            console.log(index,atName);
-                            this.props.navigation.navigate("spread",{atName:atName.name,show:'flex'});
+                            console.log(index, atName);
+                            this.props.navigation.navigate("spread", { atName: atName.name, show: 'flex' });
                         }}
                         sectionItemViewStyle={{ marginTop: 4, borderRadius: 20, width: '90%', padding: 10, height: 36, }}
                         sectionHeaderViewStyle={{ color: "red", width: '10%' }}
@@ -131,11 +131,11 @@ const styles = StyleSheet.create({
         alignContent: "center",
     },
     top_container: {
-        width:'55%',
-    marginLeft:'3%',
-    marginTop: '6%',
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+        width: '55%',
+        marginLeft: '3%',
+        marginTop: '6%',
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
     },
 })
