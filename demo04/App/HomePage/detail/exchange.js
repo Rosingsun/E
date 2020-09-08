@@ -39,8 +39,8 @@ export default class exchange extends Component {
       index: 0,
       zoom: 19,
       center: {
-          longitude: 117.465175,
-          latitude: 39.938522,
+        longitude: 117.465175,
+        latitude: 39.938522,
       },
       // markers: [
       //     {
@@ -57,9 +57,7 @@ export default class exchange extends Component {
   render() {
     const { navigation, route } = this.props;
     return (
-
       <View style={styles.container}>
-
         <View style={styles.Top}>
           <AntDesign name={'left'} size={32} color='#000000' style={{ marginLeft: '3%' }} onPress={() => {
             this.props.navigation.goBack()
@@ -79,11 +77,23 @@ export default class exchange extends Component {
           </View>
           <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
             <View style={styles.littleBox}>
-              <Entypo name={'plus'} size={90} color='#999999' style={{ marginLeft: '3%' }}
-                onPress={() => {
-                  Alert.alert('1')
+
+              <MapView
+                zoomControlsVisible={this.state.zoomControlsVisible} //默认true,是否显示缩放控件,仅支持android
+                trafficEnabled={this.state.trafficEnabled} //默认false,是否显示交通线
+                baiduHeatMapEnabled={this.state.baiduHeatMapEnabled} //默认false,是否显示热力图
+                mapType={this.state.mapType} //地图模式,NORMAL普通 SATELLITE卫星图
+                zoom={15} //缩放等级,默认为10
+                center={this.state.center} // 地图中心位置
+                markers={this.state.markers} //地图多个标记点
+                onMarkerClick={(e) => { //标记点点击事件
+                  console.log(e)
                 }}
-              />
+                style={{ height: '94%', width: '94%', borderRadius: 100 }}>
+                <Marker
+                  title='中心4'
+                  location={{ longitude: 110.465175, latitude: 39.938522 }} />
+              </MapView>
             </View>
           </View>
         </View>
@@ -101,38 +111,14 @@ export default class exchange extends Component {
               <Text style={{ fontSize: 15 }}>您的路线</Text>
             </View>
           </View>
-          <View style={{ width: '100%',justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
             <View style={styles.littleBox}>
-              {/* <Entypo name={'plus'} size={90} color='#999999' style={{ marginLeft: '3%' }}
+
+              <Entypo name={'plus'} size={90} color='#999999' style={{ marginLeft: '3%' }}
                 onPress={() => {
-
+                  this.props.navigation.navigate("wishlist");
                 }}
-              /> */}
-              <MapView
-                zoomControlsVisible={this.state.zoomControlsVisible} //默认true,是否显示缩放控件,仅支持android
-                trafficEnabled={this.state.trafficEnabled} //默认false,是否显示交通线
-                baiduHeatMapEnabled={this.state.baiduHeatMapEnabled} //默认false,是否显示热力图
-                mapType={this.state.mapType} //地图模式,NORMAL普通 SATELLITE卫星图
-                zoom={15} //缩放等级,默认为10
-                center={this.state.center} // 地图中心位置
-                markers={this.state.markers} //地图多个标记点
-                onMarkerClick={(e) => { //标记点点击事件
-                  console.log(e)
-                }}
-                style={{height:'94%',width:'94%',borderRadius:100}}
-              >
-                {/* 用来画点 */}
-                {/* {
-                  ENTRIES1.map((item) => {
-                    return ( */}
-                <Marker
-                  title='中心4'
-                  location={{ longitude: 110.465175, latitude: 39.938522 }} />
-                {/* ) */}
-                {/* })
-                } */}
-              </MapView>
-
+              />
             </View>
           </View>
         </View>
@@ -170,7 +156,7 @@ const styles = StyleSheet.create({
   box: {
     marginLeft: '3%',
     width: 387,
-    height:'28%',
+    height: '28%',
     borderRadius: 15,
     backgroundColor: '#FFFFFF',
 

@@ -32,7 +32,6 @@ import exchange from './HomePage/detail/exchange';
 import Section from './publish/publishDetails/Section';
 import spread from './publish/publishDetails/spread';
 import topic from './publish/publishDetails/topic';
-
 // import 
 import BaiduMap from './Map/baiduMap';
 // 发现页面
@@ -43,14 +42,12 @@ import chating from './News/chating/chating';
 import qiandao from './discoveryPage/daka/qiandao';
 import MyCustomCarousel from './discoveryPage/card';
 import VerticalMyCarousel from './discoveryPage/Verticalcard';
+import wishlist from './discoveryPage/RowThings/Wishlist';
 //个人中心页面
 import Eline from './PersonalCenter/Eline';
 import Exianlu from './PersonalCenter/Exianlu';
 import Eshouchang from './PersonalCenter/Eshouchang';
 import Edaka from './PersonalCenter/Edaka';
-
-
-
 // 个人中心详细页面
 import PersonalCenterSum from './PersonalCenter/personnalCenterSum';
 import UserSetting from './PersonalCenter/PersonalDetail/Setting';
@@ -78,7 +75,6 @@ import ChatInfoMation from './Chat/ChatInfoMation';
 import ChatRecord from './Chat/ChatRecord';
 import research from './research/research';
 import complaint from './News/NewsDetails/complaint';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 //定义各类导航栏的变量
 
@@ -402,9 +398,10 @@ function MyStack() {
 
       {/* <Stack.Screen name="research" component={research} /> */}
       {/* 搜索 */}
-
       <Stack.Screen name="exchange" component={exchange} />
       <Stack.Screen name="Discovery" component={Discovery} />
+      <Stack.Screen name="wishlist" component={wishlist} />
+      
 
     </Stack.Navigator>
   );

@@ -189,8 +189,6 @@ export default class dakaPlaceChoice extends Component {
       </View>
     );
   }
-
-
   render() {
     return (
       <View style={[styles.container]}>
@@ -213,18 +211,7 @@ export default class dakaPlaceChoice extends Component {
               </View>
         </View>
         </View>
-
-
-                    
-
-
-
-
-
-
-
         <View>
-
           <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
             <View style={{ flexDirection: "row" }}>
               <Ionicons name={'md-location-sharp'} size={30} color={'#000'} />
