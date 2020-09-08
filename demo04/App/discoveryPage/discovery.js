@@ -246,6 +246,7 @@ export default class Discovery extends Component {
             </View>
             {/* 卡片 */}
             <View>
+              {/* <MyCustomCarousel {...this.props} /> */}
               <MyCustomCarousel {...this.props} />
             </View>
           </View>

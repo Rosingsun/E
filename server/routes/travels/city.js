@@ -6,22 +6,9 @@ const {
   queryScenic_Spots
 } =require('../../controller/travels/city');
 
-router.post('/queryAllScenic_Spots',function(req,res,next){
-    const result = queryAllScenic_Spots()
-    const resultData = result.then(data => {
-        if (data) {
-            return new SuccessModel(data)
-        }
-        return new ErrorModel('异常错误')
-    })
-    resultData.then(data => {
-        res.json(data)
-    })
-})
-
 router.post('/queryScenic_Spots',function(req,res,next){
-    const {Name, City, Scenic_Spots, Position} = req.body
-    const result = queryScenic_Spots(Name, City, Scenic_Spots, Position);
+    const {Name, City, Scenic_Spots, longitude,latitude} = req.body
+    const result = queryScenic_Spots(Name, City, Scenic_Spots, longitude,latitude);
     const resultData = result.then(data=>{
         if(data){
             return new SuccessModel(data)
@@ -32,5 +19,19 @@ router.post('/queryScenic_Spots',function(req,res,next){
         res.json(data)
     })
 })
+
+router.post('/queryAllScenic_Spots', (req, res, next) => {
+    const result = queryAllScenic_Spots()
+    const resultData = result.then(data => {
+      if (data) {
+        return new SuccessModel(data)
+      }
+      return new ErrorModel('异常错误')
+    })
+    resultData.then(data => {
+      res.json(data)
+    })
+  })
+
 
 module.exports = router;

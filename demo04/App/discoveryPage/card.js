@@ -154,7 +154,6 @@ export default class MyCustomCarousel extends PureComponent {
                             activeOpacity={0}
                             onPress={() => {
                                 this.props.navigation.navigate("qiandao");
-                                Alert.alert(item.title);
                             }}
                         >
                             <View style={{
