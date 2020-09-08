@@ -251,12 +251,12 @@ export default class Discovery extends Component {
           </View>
           {/* 第三部分 */}
           {/* 竖向轮播 */}
-          <View style={{ marginTop: 50, padding: 10, width: '94%', marginTop: 20, marginLeft: '3%', backgroundColor: "#fff", borderRadius: 15, }}>
+          <View style={{ padding: 10, width: '94%', marginTop: 20, marginLeft: '3%', backgroundColor: "#fff", borderRadius: 15, }}>
 
             {/* <View style={{ width: '100%', height: 20, alignItems: "flex-end", backgroundColor: "#fff" }}> */}
             {/* <View style={{ flexDirection: "row", justifyContent: "space-between",paddingHorizontal: '5%',paddingVertical:'3%',}}>
               <Text style={{ fontSize: 15 }}>活跃玩家</Text> */}
-            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: 'center', paddingTop: 10, }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: 'center', paddingTop: 5, }}>
               <Text style={{ fontSize: 15 }}>浙E路线</Text>
               <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={{ fontSize: 12, color: "#999999", marginRight: 5 }}
@@ -286,7 +286,7 @@ export default class Discovery extends Component {
             </View>
 
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-              {/* <Text style={{ letterSpacing:-2}}>----------------------------------------------------------------------------------</Text> */}
+  
               <View style={{ height: 1, width: '80%', backgroundColor: '#70707038' }} />
               <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 6 }}>
                 <Ionicons name={'add-circle-outline'} size={25} color={'#000000'}
