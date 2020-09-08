@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var followRouter = require('./routes/follow');
 var collectionRouter = require('./routes/collection')
 var clockRouter = require('./routes/clock');
+var messageRouter = require('./routes/message');
 var travelRouter = require('./routes/travels/travel');
 var commentRouter = require('./routes/travels/comment');
 var cityRouter = require('./routes/travels/city');
@@ -66,6 +67,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/follow', followRouter);
 app.use('/api/collection', collectionRouter);
 app.use('/api/clock', clockRouter);
+app.use('/api/message', messageRouter);
 app.use('/api/travels/travel',travelRouter);
 app.use('/api/travels/comment',commentRouter);
 app.use('/api/travels/city',cityRouter);
