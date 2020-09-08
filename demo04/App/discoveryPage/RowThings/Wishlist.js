@@ -11,7 +11,6 @@ import { MapView, MapTypes, Geolocation, Overlay } from 'react-native-baidu-map'
 const { Marker, Cluster, Arc, Circle, Polyline, Polygon, InfoWindow, HeatMap } = Overlay;
 //获取用户屏幕高低
 const { width, scale } = Dimensions.get("window");
-const biLi = width * scale / 1080;
 
 //设置顶部状态栏
 StatusBar.setBackgroundColor("transparent");
@@ -26,10 +25,9 @@ export default class wishlist extends Component {
     super(props);
     this.state = {
       oldPostion: 0,
-      stateName:"管理",
-      stateFlag:true,
-      mapBoxWidth:width * 0.9,
-      marginLeft:width * 0.05,
+      stateName: "管理",
+      stateFlag: true,
+      mapBoxWidth: width * 0.9,
     }
   }
   render() {
@@ -97,9 +95,10 @@ export default class wishlist extends Component {
       },
     ]
 
-    function drawLine(longitude, latitude, place, id,width,marginLeft) {
+    function drawLine(longitude, latitude, place, id, width) {
       return (
-        <View style={{ height: 110, backgroundColor: '#6C9575', borderWidth: 10, borderColor: "#00000030", marginBottom: 20, borderRadius:3,marginLeft:marginLeft }}>
+        <View style={{ height: 120, backgroundColor: '#6C9575', width: width + 20, borderWidth: 10, borderColor: "#00000030", marginBottom: 20, borderRadius: 3 }}>
+          <View style={{height:20,width:20,borderWidth:1,backgroundColor:"red",borderColor:"#fff",borderRadius:20,}}></View>
           <MapView
             zoomControlsVisible={false} //默认true,是否显示缩放控件,仅支持android
             trafficEnabled={true} //默认false,是否显示交通线
@@ -111,7 +110,7 @@ export default class wishlist extends Component {
             //根据不同传入值 更换地图中心位置
             center={{ longitude: longitude, latitude: latitude }}
             // center={20} // 地图中心位置
-            style={{ width:width, height: 100 }}>
+            style={{ width: width, height: 100 }}>
             <Polyline
               stroke={{ width: 5, color: 'AA000000' }}
               points={[
@@ -137,31 +136,29 @@ export default class wishlist extends Component {
             <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
               this.props.navigation.goBack()
             }} />
-            <Text style={{ fontSize: 18, color: '#000000',position:"absolute",width:'100%',textAlign:"center"  }}>愿望单</Text>
-          <Text style={{ fontSize: 15, color: '#fff',backgroundColor:"#2F3843",paddingVertical:2,paddingHorizontal:10,borderRadius:10 }}
-            onPress={()=>{
-             if(this.state.stateFlag){
-               this.setState({stateName:"管理",mapBoxWidth:width*0.7,stateFlag:false})
-             }else{
-              this.setState({stateName:"完成",mapBoxWidth:width*0.9,stateFlag:true})
-             }
-              
-            }}
-          >{this.state.stateName}</Text>
+            <Text style={{ fontSize: 18, color: '#000000', position: "absolute", width: '100%', textAlign: "center" }}>愿望单</Text>
+            <Text style={{ fontSize: 15, color: '#fff', backgroundColor: "#2F3843", paddingVertical: 2, paddingHorizontal: 10, borderRadius: 10 }}
+              onPress={() => {
+                if (this.state.stateFlag) {
+                  this.setState({ stateName: "完成", mapBoxWidth: width * 0.8, stateFlag: false })
+                } else {
+                  this.setState({ stateName: "管理", mapBoxWidth: width * 0.9, stateFlag: true })
+                }
+
+              }}
+            >{this.state.stateName}</Text>
           </View>
         </View>
-        <View style={styles.list}>
+        <View style={[styles.list, { alignSelf: "flex-end", marginRight: (width * 0.1 - 20) / 2 }]}>
 
           <ScrollView
-            style={{ paddingTop: 10, }}
-            // onScroll={(event) => this._onScroll(event)}
+            style={{ paddingTop: 10 }}
             showsVerticalScrollIndicator={false}
           >
             <FlatList
               data={Data}
-             
               showsVerticalScrollIndicator={false}
-              renderItem={({ item }) => drawLine(item.longitude, item.latitude, item.place, item.id,this.state.mapBoxWidth,this.state.marginLeft)}
+              renderItem={({ item }) => drawLine(item.longitude, item.latitude, item.place, item.id, this.state.mapBoxWidth,)}
             />
           </ScrollView>
         </View>
@@ -200,8 +197,6 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   placeStyle: {
     // padding: 10,
