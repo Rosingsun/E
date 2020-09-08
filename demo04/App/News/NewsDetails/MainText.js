@@ -26,6 +26,7 @@ export default class MainText extends Component {
     this.state = {
       content: '',
       data: [],
+      isSplit:true,
       isLoading: true,
       selectMultiItem: [],
     }
@@ -60,12 +61,11 @@ export default class MainText extends Component {
 
   render() {
     const { route } = this.props;
-    console.log(route.params.data.showUserImg);
-    route.params.data.showUserImg.split(',').map((word) =>{
-      this.state.selectMultiItem.push(word);
-      console.log(this.state.selectMultiItem,this.state.selectMultiItem.length)
-    })  
-    // this.state.selectMultiItem.push(route.params.data.showUserImg);
+    if(this.state.isSplit){
+   route.params.data.showUserImg.split(',').map((word) =>{
+      this.state.selectMultiItem.push(word)
+      this.setState({isSplit:false})
+   })}
     var imgData = this.state.selectMultiItem
     const { data, isLoading } = this.state;
     const _onClickSendContent = () => {

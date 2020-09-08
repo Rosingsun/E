@@ -26,6 +26,8 @@ export default class recommend extends Component {
     this.state = {
       isLoading: true,
       data: [],
+      imgData:[],
+      selectMultiItem:[],
     }
   }
 
@@ -64,14 +66,16 @@ export default class recommend extends Component {
                 navigation.push("MainText", { data: data[id] })
               }}
             >
-              <Image style={{ height: randomNum(), width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg }} /></TouchableWithoutFeedback>
+              <Image style={{ height: randomNum(), width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg.split(',')[0] }} />
+              </TouchableWithoutFeedback>
             {/* 定位 */}
             <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
-              <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
+              <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'}/>
               {location}
             </Text>
             {/* 用户发言 */}
-            <Text style={{ fontSize: 16, color: "#000000", lineHeight: 20, paddingHorizontal: 5 }}>
+            <Text style={{ fontSize: 16, color: "#000000", lineHeight: 20, paddingHorizontal: 5 }}
+            >
               {title}
             </Text>
             {/* 用户信息框 */}
@@ -128,6 +132,7 @@ export default class recommend extends Component {
         )
       }
     }
+    
     return (
       <View style={{ backgroundColor: "#EFEFEF", borderRadius: 200, }}>
         <View style={{ flexDirection: "row", width: "94%", marginLeft: '3%' }}>
