@@ -152,10 +152,10 @@ export default class Line extends Component {
       <View style={styles.container}>
         <View style={styles.Top}>
           <View style={ styles.nav_container }>
-            <AntDesign name={'left'} size={25} color='#000000' style={{ marginLeft: '3%' }} onPress={() => {
+            <AntDesign name={'left'} size={25} color='#000000'  onPress={() => {
               this.props.navigation.goBack()
             }} />
-            <Text style={{ fontSize: 20, color: '#000000', marginLeft: '30%' }}>线路</Text>
+            <Text style={{  color: "#000", fontSize: 20,position:"absolute",width:'100%',textAlign:"center"}}>线路</Text>
           </View>
         </View>
         <View style={styles.list}>
@@ -188,20 +188,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#EFEFEF',
   },
   Top: {
-    height: 78,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    flexDirection: 'row',
-    elevation: 10,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
+   
+      height: 78,
+      width: "100%",
+      backgroundColor: "#fff",
+      borderBottomLeftRadius: 15,
+      borderBottomRightRadius: 15,
+      elevation: 6,
+
   },
   nav_container: {
-    width:'53%',
-    marginLeft:'3%',
-    marginTop: '6%',
+    flex: 0.7,
+    marginTop: '8%',
     flexDirection: "row",
+    width: "94%",
+    marginLeft:'3%',
     justifyContent: "space-between",
     alignItems: "center",
   },
