@@ -60,9 +60,12 @@ export default class MainText extends Component {
 
   render() {
     const { route } = this.props;
-    route.params.data.showUserImg.split(',').map((word) => this.state.selectMultiItem.push(word))  
-    
-    console.log(route.params.data.showUserImg)
+    console.log(route.params.data.showUserImg);
+    route.params.data.showUserImg.split(',').map((word) =>{
+      this.state.selectMultiItem.push(word);
+      console.log(this.state.selectMultiItem,this.state.selectMultiItem.length)
+    })  
+    // this.state.selectMultiItem.push(route.params.data.showUserImg);
     var imgData = this.state.selectMultiItem
     const { data, isLoading } = this.state;
     const _onClickSendContent = () => {
@@ -121,7 +124,7 @@ export default class MainText extends Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <View style={styles.userHead}>
                     <Image source={{ uri: route.params.data.head }}
-                      style={{ width: 40, height: 40, borderRadius: 30}}></Image>
+                      style={{ width: 40, height: 40, borderRadius: 30 }}></Image>
                   </View>
                   <View style={styles.userId}>
                     <Text style={{ fontSize: 15, color: '#000000', }}>{route.params.data.username}</Text>
@@ -137,10 +140,10 @@ export default class MainText extends Component {
               </View>
               <View style={{ backgroundColor: "pink", width: '96%', marginLeft: '2%', flexDirection: "row", flexWrap: "wrap" }}>
                 {
-                this.state.selectMultiItem.map((item) => {
+                  imgData.map((item) => {
                     return (
                       <View style={styles.photolist}>
-                        <Image style={styles.ninephoto} source={{ uri:item[1]}} />
+                        <Image style={styles.ninephoto} source={{ uri: item }} />
                       </View>
                     )
                   })
@@ -329,7 +332,7 @@ const styles = StyleSheet.create({
   ninephoto: {
     width: 117,
     height: 117,
-    backgroundColor:"#efefef"
+    backgroundColor: "#efefef"
   },
   map: {
     width: "94%",

@@ -163,6 +163,7 @@ export default class Line extends Component {
           <ScrollView
             style={{ paddingTop: 40, }}
             onScroll={(event) => this._onScroll(event)}
+            showsVerticalScrollIndicator={false}
           >
             <FlatList
               data={Data}
@@ -214,24 +215,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   placeStyle: {
-    padding: 10,
+    // padding: 10,
     fontSize: 15,
-    height: 44,
+    // height: 44,
     position: 'absolute',
-    fontWeight: "900",
+    // fontWeight: "900",
     color: '#000',
-    top: 5,
-    left: 5,
+    top: 3,
+    left: 3,
   },
   idStyle: {
-    padding: 10,
+    // padding: 10,
     fontSize: 15,
-    height: 44,
+    // height: 44,
     position: 'absolute',
     color: '#000',
-    fontWeight: '200',
-    top: 5,
-    right: 5,
+    // fontWeight: '200',
+    top: 3,
+    right:3,
   },
   topStyle: {
     height: 78,

@@ -7,12 +7,6 @@ import {
     ScrollView,
     Image,
     StatusBar,
-    FlatList,
-    ItemDivideComponent,
-    TextInput,
-    Alert,
-    TouchableHighlight,
-    Button,
     TouchableOpacity
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -153,6 +147,7 @@ export default class ProductionRoute extends Component {
                     <TouchableOpacity
                         onPress={() => this._selectMultiItemPress(item)}
                         style={[styles.markRow, styles.markChecked]}
+                        activeOpacity={1}
                     >
                         <View style={[styles.Citystyle, { borderColor: this.state.borderColor }]} >
                             <View style={{ height: '100%', width: '100%' }}>
@@ -169,8 +164,9 @@ export default class ProductionRoute extends Component {
                     <TouchableOpacity
                         onPress={() => this._selectMultiItemPress(item)}
                         style={[styles.markRow, styles.markChecked]}
+                        activeOpacity={1}
                     >
-                        <TouchableWithoutFeedback>
+                        {/* <TouchableWithoutFeedback> */}
                             <View style={[styles.Citystyle, { borderColor: "#fff" }]} >
                                 <View style={{ height: '100%', width: '100%' }}>
                                     <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={item.backImgSrc} />
@@ -178,7 +174,7 @@ export default class ProductionRoute extends Component {
                                     <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
                                 </View>
                             </View>
-                        </TouchableWithoutFeedback>
+                        {/* </TouchableWithoutFeedback> */}
                     </TouchableOpacity>
                 )
             }
@@ -197,21 +193,25 @@ export default class ProductionRoute extends Component {
 
             <View style={styles.container}>
                 <View style={styles.Top}>
-                    <View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: "space-between", marginTop:'8%' }}>
+                    <View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: 'space-between', marginTop:'8%' }}>
                         <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
                             this.props.navigation.goBack()
                         }} />
-                        <Text style={{ fontSize: 20, color: '#000000', marginLeft: '12%' }}>选择城市</Text>
-                        <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15,  paddingHorizontal: 3 }}
+                        <Text style={{ fontSize: 20, color: '#000000',position:"absolute",width:'100%',textAlign:"center"}}>选择城市</Text>
+                        <View style={{backgroundColor: "#6C9575", borderRadius: 15,justifyContent:'center',paddingHorizontal:10,alignItems:'flex-start'}}>
+                            
+                        <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15,justifyContent:'center',alignItems:'center' }}
                             onPress={() => {
                                 this.props.navigation.navigate("dakaPlaceChoice",{})
                                 // this._submitMultiPress()
                             }}
-                        >下一步(1/3)</Text>
+                        >下一步</Text>
+                        <View style={{height:2,width:10,backgroundColor:'#FAAF3D',}}/>
+                        </View>
                     </View>
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <View style={styles.someTouch}>
+                    <View style={[styles.someTouch,{paddingBottom:20}]}>
                         {this._renderMultiMark()}
                     </View>
                 </ScrollView>

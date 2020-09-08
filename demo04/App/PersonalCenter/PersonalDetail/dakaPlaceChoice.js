@@ -195,16 +195,32 @@ export default class dakaPlaceChoice extends Component {
     return (
       <View style={[styles.container]}>
         <View style={styles.Top}>
-          <AntDesign name={'left'} size={32} color='#000000' onPress={() => {
+        <View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: 'space-between', marginTop:'5%' }}>
+          <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
             this.props.navigation.goBack()
           }} />
-          <Text style={{ fontSize: 20, color: '#000000', marginLeft: '12%' }}>选择城市</Text>
-          <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, padding: 2, paddingHorizontal: 5 }}
+          <Text style={{ fontSize: 20, color: '#000000',position:"absolute",width:'100%',textAlign:"center" }}>选择城市</Text>
+          <View style={{backgroundColor: "#6C9575", borderRadius: 15,justifyContent:'center',paddingHorizontal:10,alignItems:'flex-start'}}>
+          <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, justifyContent:'center',alignItems:'center' }}
             onPress={() => {
               this.props.navigation.navigate("improveInformation")
             }}
-          >下一步(2/3)</Text>
+          >下一步</Text>
+          <View style={{flexDirection:'row'}}>
+              <View style={{height:2,width:10,backgroundColor:'#FAAF3D',}}/>
+              <View style={{height:2,width:10,backgroundColor:'#FAAF3D',marginLeft:2}}/>
+              </View>
+              </View>
         </View>
+        </View>
+
+
+                    
+
+
+
+
+
 
 
         <View>

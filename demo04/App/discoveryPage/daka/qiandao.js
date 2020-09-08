@@ -66,13 +66,10 @@ export default class qiandao extends Component {
         {/* top */}
         <View style={[styles.top]}>
           <View style={[styles.nav_container]}>
-            {/* <View style={{ flexDirection: "row" }}> */}
-              <AntDesign name={'left'} size={25} color={'#fff'}
+              <AntDesign name={'left'} size={25} color={'#000'}
                 onPress={() => {
-                  Alert.alert("goback")
                   this.props.navigation.goBack();
                 }} />
-            {/* </View> */}
             <Text style={{ fontSize: 20, color: '#000000', marginLeft: '10%' }}>西湖</Text>
             <View style={{ flexDirection: 'row' }}>
               <SimpleLineIcons name={'notebook'} size={25} color={'#000000'} style={{ marginRight: 15 }}
@@ -89,9 +86,9 @@ export default class qiandao extends Component {
         <ScrollView
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-          style={{ paddingBottom: 200 }}
+          style={{marginTop:-10 }}
         >
-          <View style={{ height: 200, marginTop: 70 }}>
+          <View style={{ height: 200,}}>
             <Image source={{ uri: "http://bpic.51yuansu.com/activity/20200724/5f1a52f00ffc7.jpg" }} style={{ height: "100%", width: '100%' }} />
           </View>
 
@@ -190,7 +187,7 @@ const styles = StyleSheet.create({
     flexDirection: "column"
   },
   top: {
-    position: "absolute",
+    
     top: 0,
     height: 78,
     width: "100%",

@@ -42,6 +42,7 @@ import dakaAll from './discoveryPage/daka/dakaAll';
 import chating from './News/chating/chating';
 import qiandao from './discoveryPage/daka/qiandao';
 import MyCustomCarousel from './discoveryPage/card';
+import VerticalMyCarousel from './discoveryPage/Verticalcard';
 //个人中心页面
 import Eline from './PersonalCenter/Eline';
 import Exianlu from './PersonalCenter/Exianlu';
@@ -371,6 +372,8 @@ function MyStack() {
       <Stack.Screen name="leaveMessage" component={leaveMessage} />
       <Stack.Screen name="trade" component={trade} />
       <Stack.Screen name="MainText" component={MainText} />
+      <Stack.Screen name="VerticalMyCarousel" component={VerticalMyCarousel} />
+      
       {/* /。。/消息页面详情 */}
       <Stack.Screen name="chating" component={chating} />
       <Stack.Screen name="complaint" component={complaint} />

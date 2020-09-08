@@ -154,10 +154,12 @@ const styles = StyleSheet.create({
     borderWidth: 6,
     borderRadius: 3,
     borderColor: "#6C9575",
-    marginTop: 20
+    marginTop: 20,
+    // marginBottom:5,
   },
   someTouch: {
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom:20
   },
   photoWord: {
     marginTop: '-18%',

@@ -51,7 +51,7 @@ export default class recommend extends Component {
     const { data, isLoading } = this.state;
     const { navigation } = this.props;
     function randomNum() {
-      let num =Math.random() * 180 + 120;
+      let num = Math.random() * 150 + 110;
       return (num)
     }
     function _picList(id, choice, username, head, title, location, showUserImg, prase_count) {
@@ -79,8 +79,7 @@ export default class recommend extends Component {
               <Image style={{ height: 20, width: 20, borderRadius: 25, }} source={{ uri: head }} />
               <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{username}</Text>
               <View style={{ position: "absolute", right: 10, bottom: 5 }}>
-                <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
-                >
+                <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>
                   <AntDesign name={'like2'} size={12} color={"#000"}
                     onPress={() => {
                       prase_count++;
@@ -99,8 +98,7 @@ export default class recommend extends Component {
             <TouchableWithoutFeedback
               onPress={() => {
                 navigation.push("MainText", { data: data[id] })
-              }}
-            >
+              }}>
               <Image style={{ height: randomNum(), width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg }} />
             </TouchableWithoutFeedback>
             {/* 定位 */}
@@ -119,8 +117,7 @@ export default class recommend extends Component {
               <View style={{ position: "absolute", right: 10, bottom: 5 }}>
                 <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
                   onPress={() => {
-                  }}
-                >
+                  }}>
                   <AntDesign name={'like2'} size={12} color={"red"} />
                   {prase_count}
 
@@ -192,6 +189,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 8,
     color: "#484848",
-  },
+  }, 
 });
 
