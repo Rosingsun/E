@@ -15,13 +15,11 @@ import {
   ScrollView
 } from 'react-native';
 import StarRating from 'react-native-star-rating';
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
-// import { TextInput, Button } from 'react-native-paper';
-// import { text } from 'express';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 
@@ -68,30 +66,29 @@ export default class qiandao extends Component {
         {/* top */}
         <View style={[styles.top]}>
           <View style={[styles.nav_container]}>
-            <View style={{ flexDirection: "row" }}>
-              <AntDesign name={'leftcircle'} size={30} color={'#000000'} onPress={() => {
-                Alert.alert("返回")
-              }} />
-            </View>
+              <AntDesign name={'left'} size={25} color={'#000'}
+                onPress={() => {
+                  this.props.navigation.goBack();
+                }} />
             <Text style={{ fontSize: 20, color: '#000000', marginLeft: '10%' }}>西湖</Text>
             <View style={{ flexDirection: 'row' }}>
-              <SimpleLineIcons name={'notebook'} size={30} color={'#000000'} style={{ marginRight: 15 }}
+              <SimpleLineIcons name={'notebook'} size={25} color={'#000000'} style={{ marginRight: 15 }}
                 onPress={() => {
                   this.setState({ picChoice: require('../photo/pngc2.png') })
                   console.log(this.state.picChoice)
                 }} />
-              <Ionicons name={'md-share-social-outline'} size={30} color={'#000000'} onPress={() => {
+              <Ionicons name={'md-share-social-outline'} size={25} color={'#000000'} onPress={() => {
                 Alert.alert("分享")
               }} />
             </View>
           </View>
         </View>
         <ScrollView
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        style={{paddingBottom:200}}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          style={{marginTop:-10 }}
         >
-          <View style={{ height: 200, marginTop: 70 }}>
+          <View style={{ height: 200,}}>
             <Image source={{ uri: "http://bpic.51yuansu.com/activity/20200724/5f1a52f00ffc7.jpg" }} style={{ height: "100%", width: '100%' }} />
           </View>
 
@@ -168,16 +165,14 @@ export default class qiandao extends Component {
                 )
               })
             }
-            <View style={{flexDirection:"row",justifyContent:"flex-end",marginRight:5}}>
-              {/* <Text> */}
-                <Text>地点报错</Text>
-                <Text> | </Text>
-                <Text>内容举报</Text>
-              {/* </Text> */}
+            <View style={{ flexDirection: "row", justifyContent: "flex-end", marginRight: 5 }}>
+              <Text>地点报错</Text>
+              <Text> | </Text>
+              <Text>内容举报</Text>
             </View>
-          </View> 
+          </View>
         </ScrollView>
-       
+
       </View>
 
 
@@ -192,13 +187,13 @@ const styles = StyleSheet.create({
     flexDirection: "column"
   },
   top: {
-    position: "absolute",
+    
     top: 0,
-    height: 90,
+    height: 78,
     width: "100%",
     backgroundColor: "#FFFFFF",
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
     elevation: 8,
     flexDirection: 'row'
   },
@@ -206,7 +201,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "90%",
     justifyContent: 'space-between',
-    alignItems: "center",
     marginLeft: "5%",
+    marginTop: '8%',
   },
 });

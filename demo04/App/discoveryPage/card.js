@@ -11,7 +11,6 @@ import {
 export default class MyCustomCarousel extends PureComponent {
     constructor(props) {
         super(props);
-        const navigation=this.props;
         this.state = {
             activeIndex: 0,
             carouselItems: [
@@ -137,7 +136,7 @@ export default class MyCustomCarousel extends PureComponent {
     1
 
     render() {
-        
+
         return (
             <View style={{
                 width: '100%',
@@ -150,51 +149,50 @@ export default class MyCustomCarousel extends PureComponent {
                     sliderWidth={380}
                     itemWidth={380}
                     data={this.state.carouselItems}
-                    renderItem={({item})=>
-                    <TouchableOpacity style={{ width: '80%', height: 400, backgroundColor: 'transparent', justifyContent: 'center', marginLeft: '10%', }}
-                    activeOpacity={0}
-                        onPress={()=>{
-                                this.navigation.navigate("MainText")
-                            Alert.alert(item.title);
-                        }}
-                    >
-                    <View style={{
-                        backgroundColor: 'white',
-                        borderRadius: 5,
-                        height: '75%',
-                        width: '100%',
-                        alignItems: 'center',
-                        marginRight: 40,
-                        elevation: 15
-                    }}>
-                        <Image style={{
-                            borderRadius: 5,
-                            height: '48%',
-                            width: '100%',
-                        }} source={{ uri: item.illustration }} />
-                        <View style={{ height: '22%', width: '100%' }}>
-                            <Text style={{ fontSize: 24, marginTop: 10, textAlign: "center", width: '100%' }}>{item.title}</Text>
-                            <Text style={{ fontSize: 15, marginTop: 5, textAlign: "center", width: '100%' }}>{item.subtitle}</Text>
-                        </View>
-                        <View style={{ flexDirection: "row", justifyContent: "space-around", height: '28%', width: '100%' }}>
-                            <Image style={{
+                    renderItem={({ item }) =>
+                        <TouchableOpacity style={{ width: '80%', height: 400, backgroundColor: 'transparent', justifyContent: 'center', marginLeft: '10%', }}
+                            activeOpacity={0}
+                            onPress={() => {
+                                this.props.navigation.navigate("qiandao");
+                            }}
+                        >
+                            <View style={{
+                                backgroundColor: 'white',
                                 borderRadius: 5,
-                                height: '100%',
-                                width: '30%',
-                            }} source={{ uri: item.illustration }} />
-                            <Image style={{
-                                borderRadius: 5,
-                                height: '100%',
-                                width: '30%',
-                            }} source={{ uri: item.illustration }} />
-                            <Image style={{
-                                borderRadius: 5,
-                                height: '100%',
-                                width: '30%',
-                            }} source={{ uri: item.illustration }} />
-                        </View>
-                    </View>
-                </TouchableOpacity>
+                                height: '75%',
+                                width: '100%',
+                                alignItems: 'center',
+                                marginRight: 40,
+                                elevation: 15
+                            }}>
+                                <Image style={{
+                                    borderRadius: 5,
+                                    height: '48%',
+                                    width: '100%',
+                                }} source={{ uri: item.illustration }} />
+                                <View style={{ height: '22%', width: '100%' }}>
+                                    <Text style={{ fontSize: 24, marginTop: 10, textAlign: "center", width: '100%' }}>{item.title}</Text>
+                                    <Text style={{ fontSize: 15, marginTop: 5, textAlign: "center", width: '100%' }}>{item.subtitle}</Text>
+                                </View>
+                                <View style={{ flexDirection: "row", justifyContent: "space-around", height: '28%', width: '100%' }}>
+                                    <Image style={{
+                                        borderRadius: 5,
+                                        height: '100%',
+                                        width: '30%',
+                                    }} source={{ uri: item.illustration }} />
+                                    <Image style={{
+                                        borderRadius: 5,
+                                        height: '100%',
+                                        width: '30%',
+                                    }} source={{ uri: item.illustration }} />
+                                    <Image style={{
+                                        borderRadius: 5,
+                                        height: '100%',
+                                        width: '30%',
+                                    }} source={{ uri: item.illustration }} />
+                                </View>
+                            </View>
+                        </TouchableOpacity>
                     }
                     loop={true}
                 />

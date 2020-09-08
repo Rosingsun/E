@@ -68,11 +68,6 @@ export default class changePersonalInfoMation extends Component {
                 } else if (json.errno == -1) {
                     alert("保存失败")
                 }
-                    //  let obj = {}
-                    //  obj.username = this.state.username
-                    //  obj.PersonalSignature = this.state.PersonalSignature
-                    //  storage.save('userInfo',obj)
-                    //     navigation.goBack();
             })  
       };
     render() {
@@ -89,7 +84,6 @@ export default class changePersonalInfoMation extends Component {
                         <Text style={{ color: "#000", fontSize: 15, marginRight: 25 }} 
                         onPress={()=>{
                             this._onClickupdataPersonal();
-
                         }}>保存</Text>
                         {/* <View>
 

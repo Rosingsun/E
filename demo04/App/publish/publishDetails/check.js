@@ -54,7 +54,7 @@ export default class TestMarkCheck extends Component {
             selectMultiItem: [],
         }
     }
-//多选
+    //多选
     _selectMultiItemPress(item) {
         if (item.select) {
             this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
@@ -66,11 +66,11 @@ export default class TestMarkCheck extends Component {
         this.state.multiData[item.id].select = !item.select;
         this.setState({ multiData: this.state.multiData });
     }
-//递交 选中 
+    //递交 选中 
     _submitMultiPress() {
         alert(`选中了${JSON.stringify(this.state.selectMultiItem)}`)
     }
-//渲染多选标记
+    //渲染多选标记
     _renderMultiMark() {
         let multiData = this.state.multiData;
         let len = multiData.length;
@@ -81,7 +81,7 @@ export default class TestMarkCheck extends Component {
                 menuArr.push(
                     //选中状态
                     <TouchableOpacity
-                        onPress={() => this._selectMultiItemPress(item)} 
+                        onPress={() => this._selectMultiItemPress(item)}
                         style={[styles.markRow, styles.markChecked]}>
                         <Text style={styles.markCheckedText}>{item.name}</Text>
                     </TouchableOpacity>
@@ -92,7 +92,7 @@ export default class TestMarkCheck extends Component {
                     // 未选中状态
                     <TouchableOpacity
                         onPress={() => this._selectMultiItemPress(item)}
-                         style={[styles.markRow, styles.markUnCheck]}>
+                        style={[styles.markRow, styles.markUnCheck]}>
                         <Text style={styles.markUnCheckText}>{item.name}</Text>
                     </TouchableOpacity>
                 )
@@ -111,7 +111,7 @@ export default class TestMarkCheck extends Component {
         return (
             <View style={styles.container}>
                 <ScrollView
-                    style={{flexDirection:"row"}}
+                    style={{ flexDirection: "row" }}
                     horizontal={true}
                 >{this._renderMultiMark()}</ScrollView>
                 <Button title={"确定"} onPress={() => this._submitMultiPress()} />
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         paddingLeft: 20,
         paddingRight: 20,
-        flexDirection:"column"
+        flexDirection: "column"
     },
     markRow: {
         width: 90,
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: "white",
         textAlign: "center",
-        flexDirection:"row"
+        flexDirection: "row"
     },
     markUnCheckText: {
         fontSize: 15,

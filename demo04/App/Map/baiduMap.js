@@ -201,7 +201,7 @@ export default class BaiduMap extends Component {
         return (
             <ScrollView style={styles.container}>
                 <View style={[styles.top]}>
-                    <View style={{ flexDirection: "row", width: '90%', marginLeft: '5%', height: 39, marginTop: 30, justifyContent: "space-between" }}>
+                    <View style={{ flexDirection: "row", width: '94%', marginLeft: '3%',  marginTop: '8%', justifyContent: "space-between" }}>
                         <AntDesign name={'left'} size={20} color={'#000'}
                             onPress={() => {
                                 this.props.navigation.goBack()

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions, ScrollView, Image, StatusBar, FlatList, ItemDivideComponent, TextInput, Alert } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {storage} from '../../Accessories/storage/index'
+import { storage } from '../../Accessories/storage/index'
 
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1080;
@@ -21,24 +21,22 @@ function bottomLine() {
 };
 
 export default class MainText extends Component {
-
-  
   constructor(props) {
     super(props);
     this.state = {
       content: '',
       data: [],
       isLoading: true,
-      
+      selectMultiItem: [],
     }
   }
   componentDidMount() {
     storage.load('userInfo', (data) => {
       this.setState({
-          username:data.username,
-          head:data.head,
-          token:data.token,
-          user_id:data.user_id
+        username: data.username,
+        head: data.head,
+        token: data.token,
+        user_id: data.user_id
       })
     })
     fetch('http://192.168.1.151:3000/api/travels/comment/queryAllcomment', {
@@ -51,7 +49,7 @@ export default class MainText extends Component {
       },
     }).then((response) => response.json())
       .then((json) => {
-        console.log(json.data)
+        // console.log(json.data)
         this.setState({ data: json.data });
       })
       .catch((error) => console.error(error))
@@ -60,62 +58,60 @@ export default class MainText extends Component {
       });
   };
 
-
-
   render() {
-
-
-    const{route}=this.props;
-    var imgData = [
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-      { photo: '../../img/1.jpg' },
-    ]
+    const { route } = this.props;
+    console.log(route.params.data.showUserImg);
+    route.params.data.showUserImg.split(',').map((word) =>{
+      this.state.selectMultiItem.push(word);
+      console.log(this.state.selectMultiItem,this.state.selectMultiItem.length)
+    })  
+    // this.state.selectMultiItem.push(route.params.data.showUserImg);
+    var imgData = this.state.selectMultiItem
     const { data, isLoading } = this.state;
-
     const _onClickSendContent = () => {
       fetch('http://192.168.1.151:3000/api/travels/comment/addComment', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'token':this.state.token,
+          'token': this.state.token,
         },
         body: JSON.stringify({
           content: this.state.content,
-          user_id:this.state.user_id,
-          answer_id:route.params.data.answer_id,
-          username:this.state.username,
-    
+          user_id: this.state.user_id,
+          answer_id: route.params.data.answer_id,
+          username: this.state.username,
+
         })
       }).then(function (res) {
         return res.json();
       }).then(function (json) {
         if (json.errno == 0) {
           alert("保存成功")
-      } else if (json.errno == -1) {
+        } else if (json.errno == -1) {
           alert("保存失败")
-      }
+        }
       })
     }
-    return (
 
-      // TOP
+    return (
       <View style={styles.container}>
         <View style={styles.Top}>
-          <AntDesign name='left' size={32} color='#000' onPress={() => {
-            this.props.navigation.goBack();
-          }} />
-          <Text style={{ fontSize: 20, color: "#000" }}>游记正文</Text>
-          <Feather name="more-horizontal" size={40} color="#000" onPress={() => {
-            Alert.alert("更多")
-          }} />
+          <View style={[styles.nav_container]}>
+            <View style={{ flexDirection: "row" }}>
+              <AntDesign name={'left'} size={25} color={'#000'} onPress={() => {
+                this.props.navigation.goBack()
+              }} />
+            </View>
+            <Text style={{ color: "#000", fontSize: 18 }}>游记详情</Text>
+            <View>
+              <Feather name="more-horizontal" size={25} color="#000" onPress={() => {
+                Alert.alert("更多")
+              }} />
+            </View>
+          </View>
         </View>
+
         {/* 内容 */}
         <View style={{ height: '80%' }}>
           <ScrollView style={{ backgroundColor: "#EFEFEF", borderBottomRightRadius: 15, borderBottomLeftRadius: 15, }}>
@@ -127,18 +123,14 @@ export default class MainText extends Component {
                 {/* 用户头像设置，注意，因为是网络图片，所以引用的时候需要规定大小 */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <View style={styles.userHead}>
-                    <Image source={{ uri: route.params.data.head}}
-                      style={{ width: 40 * biLi, height: 40 * biLi, borderRadius: 30 * biLi, }}></Image>
+                    <Image source={{ uri: route.params.data.head }}
+                      style={{ width: 40, height: 40, borderRadius: 30 }}></Image>
                   </View>
                   <View style={styles.userId}>
                     <Text style={{ fontSize: 15, color: '#000000', }}>{route.params.data.username}</Text>
                     <Text style={{ fontSize: 10, color: '#999999', }}>{route.params.data.createTime}</Text>
                   </View>
-                  <Ionicons name="eye-outline" size={25} color="#000000" style={{ position: "absolute", right: 20 * biLi }}
-                    onPress={() => {
-                      Alert.alert(route.params.data.answer_id);
-                    }}
-                  />
+                  <Ionicons name="eye-outline" size={25} color="#000000" style={{ position: "absolute", right: 20 * biLi }} />
                 </View>
               </View>
               {/* 九宫格下面的用户文字 */}
@@ -151,7 +143,7 @@ export default class MainText extends Component {
                   imgData.map((item) => {
                     return (
                       <View style={styles.photolist}>
-                        <Image style={styles.ninephoto} source={{uri:route.params.data.showUserImg}} />
+                        <Image style={styles.ninephoto} source={{ uri: item }} />
                       </View>
                     )
                   })
@@ -197,7 +189,6 @@ export default class MainText extends Component {
                   <Text style={{ fontSize: 50, color: '#EFEFEF', marginTop: -25, marginBottom: -15 }}>·····························</Text></View>
               </View>
               {/* 需要数据库开始用评论 */}
-              {/* <View style={styles.uesrTalk}> */}
               <View >
                 <FlatList
                   extraData={this.state}
@@ -208,7 +199,7 @@ export default class MainText extends Component {
                   renderItem={({ item }) =>
                     <View style={styles.talkList}>
                       <View style={{ flexDirection: 'row' }}>
-                        <Image style={styles.headView} source={{uri:route.params.data.head}} />
+                        <Image style={styles.headView} source={{ uri: route.params.data.head }} />
                         <View style={{ marginLeft: 10, width: '85%' }}>
                           <Text style={{ fontSize: 12, color: '#4F4F4F' }}>{item.username}</Text>
                           <Text style={{ fontSize: 15 }}>{item.content}</Text>
@@ -234,7 +225,6 @@ export default class MainText extends Component {
                         </View>
                       </View >
                       <View style={{ height: 10 }}></View>
-
                     </View>
                   } />
               </View>
@@ -266,19 +256,23 @@ const styles = StyleSheet.create({
   },
   Top: {
     height: 78,
+    width: "100%",
     backgroundColor: "#FFFFFF",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: 'space-between',
-    borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
-    elevation: 10,
-    paddingLeft: '3%',
-    paddingRight: '3%'
+    borderBottomLeftRadius: 15,
+    elevation: 8,
+  },
+  nav_container: {
+    // flex: 0.7,
+    marginTop: '8%',
+    flexDirection: "row",
+    width: "90%",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginLeft: "5%",
   },
   userNote: {
     alignItems: "center",
-
   },
   ninePicture: {
     width: '94%',
@@ -338,6 +332,7 @@ const styles = StyleSheet.create({
   ninephoto: {
     width: 117,
     height: 117,
+    backgroundColor: "#efefef"
   },
   map: {
     width: "94%",

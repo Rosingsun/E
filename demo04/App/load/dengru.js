@@ -20,31 +20,31 @@ export default function dengru({navigation}) {
                 <View style={styles.topText}>
                     {/* 标签按钮 */}
                     <View style={{ paddingTop: 60, width: 40 }}>
-                            <FontAwesome name='angle-left' size={30} color="white" backgroundColor=" #43949B00 "
+                            <FontAwesome name='angle-left' size={30} color="#000000" backgroundColor=" #43949B00 "
                             onPress={()=>{
                                 navigation.navigate('bottomTab')
                             }}
                             />
                     </View>
-                    <View>
-                        <Text style={{ fontSize: 50, color: '#000000', paddingTop: 20 }}>欢迎来E</Text>
-                        <Text style={{ fontSize: 15, color: '#000000', paddingTop: 6 }}>E交换，E旅行，E起玩</Text>
+                    <View >
+                        <Text style={{ fontSize: 60, color: '#000000', paddingTop: 20 }}>欢迎来E</Text>
+                        <Text style={{ fontSize: 15, color: '#000000', paddingTop: 8,}}>E交换，E旅行，E起玩</Text>
                     </View>
                 </View>
                 {/* 按钮打包 */}
                 <View style={{ position:"absolute" ,bottom:"17%",right:"6%"}}>
                     <View style={styles.buttonLocation}>
-                        <View>
+                        <View style={{justifyContent:'center',alignItems:'center'}}>
                             <TouchableHighlight activeOpacity={0.5}
                                 style={[styles.touchButtonup]}
                                 onPress={() => { 
                                     navigation.navigate('load')
                                  }}
                                 >
-                                <Text style={{ fontSize: 20, color: '#2F3843', textAlign: 'center' }}>登入</Text>
+                                <Text style={{ fontSize: 20, color: '#2F3843', textAlign: 'center' }}>登录</Text>
                             </TouchableHighlight>
                         </View>
-                        <View>
+                        <View style={{justifyContent:'center',alignItems:'center'}}>
                             <TouchableHighlight activeOpacity={0.5}
                                 style={[styles.touchButtonnew]}
                                 onPress={() => {navigation.navigate('Register') }}>
@@ -54,10 +54,11 @@ export default function dengru({navigation}) {
                     </View>
                 </View>
                 {/* 底部文字 */}
+       
                 <View style={styles.downText}>
-                    <Text style={{ fontSize: 15, color: '#000000', width: 65 * biLi, height: 40 * biLi }}>_________</Text>
+                    <Text style={{ fontSize: 15, color: '#000000',  letterSpacing:-1 }}>---------------</Text>
                     <Text style={{ fontSize: 15, color: '#000000' }}>E起旅行让终点更温暖</Text>
-                    <Text style={{ fontSize: 15, color: '#000000', width: 65 * biLi, height: 40 * biLi }}>_________</Text>
+                    <Text style={{ fontSize: 15, color: '#000000', letterSpacing:-1 }}>---------------</Text>
                 </View>
 
 
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        bottom:'5%',
+        bottom:'8%',
         paddingTop: 60 * biLi,
     }
 })

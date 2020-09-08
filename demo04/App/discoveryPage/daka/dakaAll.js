@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import StarRating from 'react-native-star-rating';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 // 用ART来画顶部的圆
 import {
     Surface, //  一个矩形可渲染的区域，是其他元素的容器
@@ -140,8 +141,7 @@ export default class dakaAll extends Component {
                     //选中状态
                     <TouchableOpacity
                         onPress={() => this._selectMultiItemPress(item)}
-                        style={{ width: '50%', height: '50%' }}
-                    >
+                        style={{ width: '50%', height: '50%' }}>
                         <View style={{ width: '100%', height: '100%', backgroundColor: "#efefef", }}>
                             <Image style={{ height: "75%", width: '94%', marginLeft: "3%" }} source={item.src} />
                             <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5, marginLeft: "3%" }}>
@@ -152,18 +152,15 @@ export default class dakaAll extends Component {
                                 <Text style={{ marginLeft: 8 }}>{item.name}</Text>
                                 <View style={{position:"absolute",right:20,height:20,width:20,borderRadius:10,backgroundColor:"#FAAF3D"}}></View>
                             </View>
-                            
                         </View>
                     </TouchableOpacity>
                 )
             } else {
                 menuArr.push(
-
                     // 未选中状态
                     <TouchableOpacity
                         onPress={() => this._selectMultiItemPress(item)}
-                        style={{ width: '50%', height: '50%' }}
-                    >
+                        style={{ width: '50%', height: '50%' }}>
                         <View style={{ width: '100%', height: '100%', backgroundColor: "#efefef", }}>
                             <Image style={{ height: "75%", width: '94%', marginLeft: "3%" }} source={item.src} />
                             <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5, marginLeft: "3%" }}>
@@ -217,14 +214,11 @@ export default class dakaAll extends Component {
                 <View style={[styles.top]}>
                     <View style={[styles.nav_container]}>
                         <View style={{ flexDirection: "row", }}>
-                            <AntDesign name={'left'} size={30} color={'#000'} onPress={() => {
+                            <AntDesign name={'left'} size={25} color={'#000'} onPress={() => {
                                 this.props.navigation.goBack();
                             }} />
                         </View>
-                        <Text style={{ color: "#000", fontSize: 20, marginLeft: 30 }}>打卡全部</Text>
-                        <View>
-                            <Text style={{ fontSize: 15, color: '#000' }}>{this.state.openStatus}</Text>
-                        </View>
+                        <Text style={{ color: "#000", fontSize: 20,position:"absolute",width:'100%',textAlign:"center"}}>打卡全部</Text>
                     </View>
                 </View>
                 <FlatList
@@ -360,7 +354,7 @@ const styles = StyleSheet.create({
         flexDirection: "column"
     },
     top: {
-        height: (78) * biLi,
+        height: 78,
         width: "100%",
         backgroundColor: "#fff",
         borderBottomLeftRadius: 15,
@@ -371,10 +365,10 @@ const styles = StyleSheet.create({
         flex: 0.7,
         marginTop: '8%',
         flexDirection: "row",
-        width: "90%",
+        width: "94%",
+        marginLeft:'3%',
         justifyContent: "space-between",
         alignItems: "center",
-        marginLeft: "5%",
     },
     words: {
         color: "#fff",

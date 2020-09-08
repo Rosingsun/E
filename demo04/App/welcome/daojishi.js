@@ -55,6 +55,9 @@ export default class Splash extends Component {
                         height: 25,
                         alignItems: 'center',
                     }}
+                    onPress={()=>{
+                        this.props.navigation.navigate("dengru");
+                    }}
                 >
                     <Text style={{ fontSize: 14, color: '#fff' }}>跳过{this.state.time}s</Text>
                 </TouchableOpacity>

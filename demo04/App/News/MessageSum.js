@@ -24,7 +24,6 @@ const MessageSum = ({ navigation }) => {
     <View style={[styles.container]}>
       {/* 顶部输入框 */}
       <View style={[styles.top]}>
-        <View style={{ width: '100%', backgroundColor: "#fff", }}>
           <View style={[styles.nav_container]}>
             <View style={{ flexDirection: "row" }}>
               <Ionicons name={'md-location-sharp'} size={30} color={'#000000'} />
@@ -32,7 +31,7 @@ const MessageSum = ({ navigation }) => {
             </View>
             <View style={[styles.inputBox]}>
               <TextInput
-                placeholder="看什么"
+                placeholder="搜索"
                 style={{ fontSize: 15, padding: 0, letterSpacing: 1, marginLeft: 10, width: '85%', lineHeight: -2, }}
               >
               </TextInput>
@@ -42,12 +41,10 @@ const MessageSum = ({ navigation }) => {
           </View>
         </View>
 
-
         <View style={{ height: '90%', width: '100%', borderBottomRightRadius: 20, borderBottomRightRadius: 20, }}>
             <MessageTopTab/>
         </View>
       </View>
-    </View>
   )
 }
 export default MessageSum;
@@ -61,20 +58,24 @@ const styles = StyleSheet.create({
     width: '70%',
     borderRadius: 20,
     padding: 0,
-    height: 35 * biLi,
+    height: 35 ,
     fontSize: 12,
     flexDirection: "row",
   },
-  top: {
-    backgroundColor: "#00000000",
-  },
   nav_container: {
+    flex: 0.7,
     marginTop: '8%',
     flexDirection: "row",
-    width: "90%",
+    width: "96%",
     justifyContent: "space-between",
     alignItems: "center",
-    marginLeft: "5%",
-    
+    marginLeft: "3%",
+  },
+  top: {
+    height:78,
+    width: "100%",
+    backgroundColor: "#fff",
+    borderRadius: 0,
+    elevation: 1,
   },
 });

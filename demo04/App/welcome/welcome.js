@@ -1,14 +1,13 @@
 import React from 'react';
 import {
     Animated,
-    Text,
     View,
-    Easing,
-    InteractionManager,
     Image,
-    TouchableOpacity,
     StatusBar,
-    TouchableNativeFeedback
+    TouchableNativeFeedback,
+    TouchableWithoutFeedback,
+    Alert,
+    TouchableOpacity,
 } from 'react-native';
 import Splash from './daojishi';
 StatusBar.setBackgroundColor("transparent");
@@ -50,6 +49,10 @@ class FadeView extends React.Component {
 }
 // 然后你就可以在组件中像使用`View`那样去使用`FadeInView`了
 export default class MainFadeView extends React.Component {
+    constructor(props){
+        super(props)
+        this.state={}
+    }
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -61,11 +64,12 @@ export default class MainFadeView extends React.Component {
                 <TouchableNativeFeedback
                     style={{ backgroundColor: "red", height: 20, width: 20, }}
                     onPress={
-                        setTimeout(()=>{
-                        this.props.navigation.navigate('dengru')
-                    },3000)
-                    }>
-                    <Splash />
+                        setTimeout(() => {
+                            this.props.navigation.navigate('dengru')
+                        }, 3000)
+                    }
+                    >
+                        <Splash {...this.props} />
                 </TouchableNativeFeedback >
             </View>
         );
