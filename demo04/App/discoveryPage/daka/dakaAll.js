@@ -23,7 +23,7 @@ import {
     Surface, //  一个矩形可渲染的区域，是其他元素的容器
     Group, // 可容纳多个形状、文本和其他的分组
     Shape, // 形状定义，可填充
-    Path, // 路径
+    Path, // 路径 
     LinearGradient, // 渐变色
     Pattern, // 填充图片
     ClippingRectangle, // 剪辑
@@ -73,7 +73,9 @@ export default class dakaAll extends Component {
             demoOneValue: '',
             touchFlag: true,
             fadeAnim: new Animated.Value(-(Dimensions.get('window').height / 1.8 - 70)),
-            // fadeAnim: new Animated.Value(0),
+
+            kuandu: new Animated.Value(50),
+            xiaokuandu: new Animated.Value(0),
             Vertical: new Animated.Value(0),
             disPlayFlag: "none",
             // fadeAnim: new Animated.Value(-Dimensions.get('window').height+),
@@ -112,7 +114,29 @@ export default class dakaAll extends Component {
             duration: 400
         }).start();
     }
+    //消息框收回
+    biankuan = () => {
+        Animated.spring(this.state.kuandu, {
+            toValue: 50,
+            duration: 400
+        }).start();
+        Animated.spring(this.state.xiaokuandu, {
+            toValue: 0,
+            duration: 400
+        }).start();
 
+    };
+    //消息框弹出
+    bianzhai = () => {
+        Animated.spring(this.state.kuandu, {
+            toValue: 0,
+            duration: 400
+        }).start();
+        Animated.spring(this.state.xiaokuandu, {
+            toValue: 50,
+            duration: 400
+        }).start();
+    };
     //多选
     _selectMultiItemPress(item) {
         if (item.select) {
@@ -143,14 +167,15 @@ export default class dakaAll extends Component {
                         onPress={() => this._selectMultiItemPress(item)}
                         style={{ width: '50%', height: '50%' }}>
                         <View style={{ width: '100%', height: '100%', backgroundColor: "#efefef", }}>
-                            <Image style={{ height: "75%", width: '94%', marginLeft: "3%" }} source={item.src} />
+                            <Image style={{ height: "70%", width: '94%', marginLeft: "3%" }} source={item.src} />
                             <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5, marginLeft: "3%" }}>
                                 <Text style={{ height: 19, width: 19, textAlign: "center", lineHeight: 19, fontWeight: "bold", color: "#FFF", borderRadius: 20, backgroundColor: "#6C9575" }}>
                                     {item.id}
                                 </Text>
-                                
                                 <Text style={{ marginLeft: 8 }}>{item.name}</Text>
-                                <View style={{position:"absolute",right:20,height:20,width:20,borderRadius:10,backgroundColor:"#FAAF3D"}}></View>
+                                <View style={{ position: "absolute", right: 20, height: 20, width: 20, borderRadius: 10, justifyContent: "center", alignItems: "center", borderWidth: 2, borderColor: "#FAAF3D" }}>
+                                    <View style={{ height: '80%', width: '80%', backgroundColor: "#FAAF3D", borderRadius: 20 }} />
+                                </View>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -162,12 +187,13 @@ export default class dakaAll extends Component {
                         onPress={() => this._selectMultiItemPress(item)}
                         style={{ width: '50%', height: '50%' }}>
                         <View style={{ width: '100%', height: '100%', backgroundColor: "#efefef", }}>
-                            <Image style={{ height: "75%", width: '94%', marginLeft: "3%" }} source={item.src} />
+                            <Image style={{ height: "70%", width: '94%', marginLeft: "3%" }} source={item.src} />
                             <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5, marginLeft: "3%" }}>
                                 <Text style={{ height: 19, width: 19, textAlign: "center", lineHeight: 19, fontWeight: "bold", color: "#FFF", borderRadius: 20, backgroundColor: "#6C9575" }}>
                                     {item.id}
                                 </Text>
                                 <Text style={{ marginLeft: 8 }}>{item.name}</Text>
+                                <View style={{ position: "absolute", right: 20, height: 20, width: 20, borderRadius: 10, borderWidth: 2, borderColor: "#FAAF3D" }}></View>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -208,6 +234,10 @@ export default class dakaAll extends Component {
                 key: 5,
                 name: "杭州"
             },
+            {
+                key: 6,
+                name: "杭州"
+            },
         ]
         return (
             <View style={[styles.container]}>
@@ -218,7 +248,7 @@ export default class dakaAll extends Component {
                                 this.props.navigation.goBack();
                             }} />
                         </View>
-                        <Text style={{ color: "#000", fontSize: 20,position:"absolute",width:'100%',textAlign:"center"}}>打卡全部</Text>
+                        <Text style={{ color: "#000", fontSize: 20, position: "absolute", width: '100%', textAlign: "center" }}>打卡全部</Text>
                     </View>
                 </View>
                 <FlatList
@@ -246,7 +276,7 @@ export default class dakaAll extends Component {
                     ]}
                     renderItem={({ item }) =>
                         <View style={[styles.mainBox]}>
-                            <Image style={{ height: '100%', width: 118 * biLi }} source={{
+                            <Image style={{ height: '100%', width: 118 * biLi,borderTopLeftRadius:3,borderTopRightRadius:3 }} source={{
                                 uri: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2399377501,2221360822&fm=26&gp=0.jpg'
                             }} />
                             <View style={{ flexDirection: "column", justifyContent: "space-around", marginLeft: 15 }}>
@@ -282,48 +312,82 @@ export default class dakaAll extends Component {
                         }
                     }}
                 >
+
                     {/* 底部弹窗 */}
                     <Animated.View style={[styles.bottomCircle, { bottom: this.state.fadeAnim, width: '100%', }]}>
-                        <Surface width={'100%'} height={70} style={{ position: "absolute", top: 0, left: 0 }}>
-                            <Shape d={circlePath} fill="#fff" stroke="#fff" strokeWidth={10} />
+                        {/* <LinearGradient colors={['#FFD801', '#FF8040', '#F75D59']} style={styles.linearGradient}> */}
+                        {/* <Text style={{color:'#fff'}}>
+    Sign in with Facebook
+  </Text>
+</LinearGradient> */}
+                        <Surface width={'100%'} height={70} style={{ position: "absolute", top: 0, left: 0, }}>
+
+                            <Shape d={circlePath} fill="#fff" stroke="#EFEFEF" strokeWidth={10} >
+                            </Shape>
+                            {/* 需要加点样式 */}
                         </Surface>
+
                         <View style={{ height: Dimensions.get('window').height / 2 - 70, marginTop: 70 }}>
+
 
                             <View style={{ width: '100%', backgroundColor: "#fff", flexDirection: "row", top: 0, zIndex: 10, }}>
                                 <View style={{ width: '60%', flexDirection: "row", justifyContent: "space-around", alignContent: "flex-end", marginLeft: "20%" }}>
-                                    <Text onPress={() => { this.fadeVerticalright(); }}
-                                        style={{ width: '40%', height: 40, textAlign: "center", }}>全部地点</Text>
-                                    <Text onPress={() => { this.fadeVerticalleft(); }}
-                                        style={{ width: '40%', height: 40, textAlign: "center" }}>全部种类</Text>
+                                    <View style={{ alignItems: 'center' }}>
+                                        <Text onPress={() => {
+                                            this.fadeVerticalright();
+                                            this.biankuan();
+                                        }}
+                                            style={{ marginTop: 30, fontSize: 15 }}>全部地点</Text>
+                                        <Animated.View style={{ height: 3, width: this.state.kuandu, borderRadius: 5, backgroundColor: "#FAAF3D", marginBottom: 5, }} />
+                                    </View>
+                                    <View style={{ marginTop: -20 }} >
+                                        <Entypo name={'chevron-thin-down'} size={25} color={'#6C957525'} />
+                                        <Entypo name={'chevron-thin-down'} size={25} color={'#6C957550'} style={{ marginTop: -15 }} />
+                                        <Entypo name={'chevron-thin-down'} size={25} color={'#6C9575'} style={{ marginTop: -15 }} />
+                                    </View>
+                                    <View style={{ alignItems: 'center' }}>
+                                        <Text onPress={() => {
+                                            this.fadeVerticalleft();
+                                            // this.biankuan();
+                                            this.bianzhai();
+                                        }}
+                                            style={{ textAlign: "center", marginTop: 30, fontSize: 15 }}>全部种类</Text>
+                                        <Animated.View style={{ height: 3, width: this.state.xiaokuandu, borderRadius: 5, backgroundColor: "#FAAF3D", marginBottom: 5, }} />
+                                    </View>
                                 </View>
+
                             </View>
                             <View style={{ width: '200%', backgroundColor: "#fff", height: '100%', flexDirection: "row" }}>
                                 <Animated.View style={{ width: '50%', height: '100%', marginLeft: this.state.Vertical, }}>
-                                    <View style={{ height: '100%', width: '100%' }}>
-                                        {/* <TouchableWithoutFeedback> */}
-                                        <ScrollView style={{ height: '100%', width: "100%", backgroundColor: "#efefef" }}>
-                                            <RadioGroup
-                                                size={20}
-                                                thickness={1}
-                                                color='#FAAF3D'
-                                                highlightColor='#fff'
-                                                selectedIndex={0}
-                                                onSelect={(index, value) => console.log(index)} >
-                                                {
-                                                    CityName.map((item) => {
-                                                        return (
-                                                            <View style={{ padding: 10, alignItems: "center", marginTop: 20, borderRadius: 20, width: '90%', marginLeft: "5%", backgroundColor: "#fff" }}>
-                                                                <View style={{ flexDirection: "row", alignItems: "center", }}>
-                                                                    <Text style={{ height: 19, width: 19, textAlign: "center", lineHeight: 19, fontWeight: "bold", color: "#FFF", borderRadius: 20, backgroundColor: "#6C9575" }}>
-                                                                        {item.key}
-                                                                    </Text>
-                                                                    <Text style={{ marginLeft: 8 }}>{item.name}</Text>
+                                    <View style={{ height: '100%', width: '100%', }}>
+                                        <ScrollView style={{ height: '100%', width: "100%", backgroundColor: "#efefef", }}>
+                                            <View style={{ paddingBottom: 40 }}>
+
+                                                <RadioGroup
+                                                    size={20}
+                                                    thickness={1}
+                                                    color='#FAAF3D'
+                                                    highlightColor='#fff'
+                                                    selectedIndex={0}
+                                                    onSelect={(index, value) => console.log(index)} >
+
+                                                    {
+                                                        CityName.map((item) => {
+                                                            return (
+                                                                <View style={{ padding: 10, alignItems: "center", marginTop: 20, borderRadius: 20, width: '90%', marginLeft: "5%", backgroundColor: "#fff", }}>
+                                                                    <View style={{ flexDirection: "row", alignItems: "center", }}>
+                                                                        <Text style={{ height: 19, width: 19, textAlign: "center", lineHeight: 19, fontWeight: "bold", color: "#FFF", borderRadius: 20, backgroundColor: "#6C9575" }}>
+                                                                            {item.key}
+                                                                        </Text>
+                                                                        <Text style={{ marginLeft: 8 }}>{item.name}</Text>
+                                                                    </View>
                                                                 </View>
-                                                            </View>
-                                                        )
-                                                    })
-                                                }
-                                            </RadioGroup>
+                                                            )
+                                                        })
+                                                    }
+
+                                                </RadioGroup>
+                                            </View>
                                         </ScrollView>
                                         {/* </TouchableWithoutFeedback> */}
                                     </View>
@@ -366,7 +430,7 @@ const styles = StyleSheet.create({
         marginTop: '8%',
         flexDirection: "row",
         width: "94%",
-        marginLeft:'3%',
+        marginLeft: '3%',
         justifyContent: "space-between",
         alignItems: "center",
     },
@@ -404,14 +468,25 @@ const styles = StyleSheet.create({
 
     },
     button: {
-        width: '110%',
-        height: 20 * biLi,
-        backgroundColor: "#EFEFEF"
+        backgroundColor: "#EFEFEF50",
+        paddingHorizontal: 6,
+        paddingVertical: 4,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     demeOneBtn: {
         padding: 25,
         borderRadius: 5,
         marginTop: 20,
+    },
+    linearGradient: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 200,
+        height: 50,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 5
     },
 
 })

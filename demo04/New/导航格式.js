@@ -1,5 +1,73 @@
+<View style={{ position: "absolute", backgroundColor: "#2F3843", top: -45, left:'3%' ,paddingHorizontal:10,paddingVertical:4,borderRadius:3}}>
+<Text style={{ color: "#fff", fontSize: 20, }}
+    onPress={() => {
+        this.setState({
+            center: {
+                longitude: 0,
+                latitude: 0,
+            },
+            markers: [{
+                longitude: 0,
+                latitude: 0,
+                title: 'haha',
+            }],
+        })
+    }}
+>杭州·西溪湿地风景区</Text>
+</View>
+             <View style={[styles.top]}>
+             <View style={ styles.nav_container }>
+                 <AntDesign name={'left'} size={25} color={'#000'}
+                     onPress={() => {
+                         this.props.navigation.goBack()
+                     }} />
+                 <View style={{ flexDirection: "row", width: '30%', justifyContent: "space-around" }}>
+                     <Ionicons name={'heart-outline'} size={30} color={'#000'} />
+                     <MaterialCommunityIcons name={'swap-horizontal-circle-outline'} size={30} color={'#000'} 
+                         onPress={()=>{
+                            this.props.navigation.navigate("exchange",{ENTRIES1:ENTRIES1});
+                         }}
+                     />
+                     <Feather name={'more-horizontal'} size={30} color={'#000'} />
+                 </View>
+             </View>
+         </View>
+    nav_container: {
+      flex: 0.7,
+      marginTop: '8%',
+      flexDirection: "row",
+      width: "94%",
+      marginLeft:'3%',
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    top: {
+      height: 78,
+      width: "100%",
+      backgroundColor: "#fff",
+      borderBottomLeftRadius: 15,
+      borderBottomRightRadius: 15,
+      elevation:10,
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <View style={styles.Top}>
-<View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: 'space-between', marginTop:'5%' }}>
+<View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: 'space-between', marginTop:'8%' }}>
   <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
     this.props.navigation.goBack()
   }} />
@@ -46,7 +114,7 @@ Top: {
 </View>
  nav_container: {
   flex: 0.7,
-  marginTop: '5%',
+  marginTop: '8%',
   flexDirection: "row",
   width: "94%",
   marginLeft:'3%',
@@ -59,5 +127,5 @@ top: {
   backgroundColor: "#fff",
   borderBottomLeftRadius: 15,
   borderBottomRightRadius: 15,
-  elevation: 6,
+  elevation:10,
 },

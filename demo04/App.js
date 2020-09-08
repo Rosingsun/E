@@ -53,14 +53,14 @@ export default class dakaAll extends Component {
                 <View style={[styles.top]}>
                     <View style={[styles.nav_container]}>
                         <View style={{ flexDirection: "row" }}>
-                            <AntDesign name={'left'} size={30} color={'#000'} onPress={() => {
+                            <AntDesign name={'left'} size={25} color={'#000'} onPress={() => {
                                 this.props.navigation.goBack();
                             }} />
                         </View>
-                        <Text style={{ color: "#000", fontSize: 20, marginLeft: 30 }}>打卡全部</Text>
-                        <View>
-                            <Text style={{ fontSize: 15, color: '#000' }}>{this.state.openStatus}</Text>
-                        </View>
+                        <Text style={{color: "#000", fontSize: 20,position:"absolute",width:'100%',textAlign:"center" }}>打卡全部</Text>
+                        {/* <View> */}
+                            {/* <Text style={{ fontSize: 15, color: '#000' }}>{this.state.openStatus}</Text> */}
+                        {/* </View> */}
                     </View>
                 </View>
                 <FlatList
@@ -147,21 +147,21 @@ const styles = StyleSheet.create({
         flexDirection: "column"
     },
     top: {
-        height: (78) * biLi,
-        width: "100%",
-        backgroundColor: "#fff",
-        borderBottomLeftRadius: 15,
-        borderBottomRightRadius: 15,
-        elevation: 6,
+        height: 78,
+  width: "100%",
+  backgroundColor: "#fff",
+  borderBottomLeftRadius: 15,
+  borderBottomRightRadius: 15,
+  elevation: 6,
     },
     nav_container: {
         flex: 0.7,
-        marginTop: '8%',
+        marginTop: '5%',
         flexDirection: "row",
-        width: "90%",
+        width: "94%",
+        marginLeft:'3%',
         justifyContent: "space-between",
         alignItems: "center",
-        marginLeft: "5%",
     },
     words: {
         color: "#fff",
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
         width: "90%",
         height: 118 * biLi,
         backgroundColor: "#fff",
-        marginLeft: "5%",
+        marginLeft: "8%",
         flexDirection: "row",
         marginTop: 10,
         borderRadius: 3,
@@ -197,9 +197,12 @@ const styles = StyleSheet.create({
 
     },
     button: {
-        width: 190 * biLi,
-        height: 20 * biLi,
-        backgroundColor: "#EFEFEF"
+       
+        backgroundColor: "#EFEFEF",
+        paddingHorizontal:6,
+        paddingVertical:4,
+        justifyContent:'center',
+        alignItems:'center'
     },
     demeOneBtn: {
         padding: 25,

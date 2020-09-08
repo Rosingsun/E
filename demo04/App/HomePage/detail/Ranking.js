@@ -128,26 +128,27 @@ export default class Search extends Component {
                 menuArr.push(
                     //选中状态
                     <View style={[styles.button2]}>
-                        <View style={{ flexDirection: "row", alignItems: "center" }}>
+                        <View style={{ flexDirection: "row", alignItems: "center" ,}}>
                             <Text style={{ fontSize: 20, color: "#fff", left: -5, position: "absolute" }}>{item.sort}</Text>
-                            <Image style={{ height: 60, width: 60, borderRadius: 50, marginLeft: 20, borderColor: "#ffffff", borderWidth: 1 }} source={{
+                            <Image style={{ height: 60, width: 60, borderRadius: 50, marginLeft: 25, borderColor: "#ffffff", borderWidth: 1 }} source={{
                                 uri: 'https://img2.woyaogexing.com/2020/07/20/385782310bca4d2896a91e58a5cd2f8c!400x400.jpeg'
                             }} />
                             <View style={{ marginLeft: 15 }}>
                                 <Text style={{ fontSize: 15, color: "#fff" }}>{item.userName}</Text>
-                                <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-end" }}>
-                                    <FontAwesome5 name={'fire'} size={20} color={'#FAAF3D'} />
-                                    <Text style={{ color: "#Fff", fontSize: 12 }}>121412</Text>
+                                <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center",marginTop:5 }}>
+                                    <FontAwesome5 name={'fire'} size={12} color={'#FAAF3D'} />
+                                    <Text style={{ color: "#FFFFFF", fontSize: 10,marginLeft:2 }}>121412</Text>
                                 </View>
                             </View>
                             <TouchableOpacity
-                                style={{ backgroundColor: "#FFB16C00", justifyContent: "center", alignItems: "center", height: 25, width: 60, borderWidth: 2, borderColor: "#FAAF3D", position: "absolute", right: 15 }}
+                                style={{ backgroundColor: "#FFB16C00", justifyContent: "center", alignItems: "center", paddingHorizontal:4,paddingVertical:3, borderWidth: 2, borderColor: "#FAAF3D", position: "absolute", right: 15 }}
                                 onPress={() => {
                                     this._selectMultiItemPress(item)
                                 }}>
                                 <Text style={{ fontSize: 12, color: "#FAAF3D", }}>已关注</Text>
                             </TouchableOpacity>
                         </View>
+                        <View style={{width:'100%',height:1,backgroundColor:'#FFFFFF',marginTop:10,marginLeft:-5}}/>
                     </View>
                 )
             } else {
@@ -156,24 +157,25 @@ export default class Search extends Component {
                     <View style={[styles.button2]}>
                         <View style={{ flexDirection: "row", alignItems: "center" }}>
                             <Text style={{ fontSize: 20, color: "#fff", left: -5, position: "absolute" }}>{item.sort}</Text>
-                            <Image style={{ height: 60, width: 60, borderRadius: 50, marginLeft: 20, borderColor: "#ffffff", borderWidth: 1 }} source={{
+                            <Image style={{ height: 60, width: 60, borderRadius: 50, marginLeft: 25, borderColor: "#ffffff", borderWidth: 1 }} source={{
                                 uri: 'https://img2.woyaogexing.com/2020/07/20/385782310bca4d2896a91e58a5cd2f8c!400x400.jpeg'
                             }} />
                             <View style={{ marginLeft: 15 }}>
                                 <Text style={{ fontSize: 15, color: "#fff" }}>{item.userName}</Text>
-                                <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "flex-end" }}>
-                                    <FontAwesome5 name={'fire'} size={20} color={'#FAAF3D'} />
-                                    <Text style={{ color: "#Fff", fontSize: 12 }}>121412</Text>
+                                <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center",marginTop:5 }}>
+                                    <FontAwesome5 name={'fire'} size={12} color={'#FAAF3D'} />
+                                    <Text style={{ color: "#FFFFFF", fontSize: 10,marginLeft:2 }}>121412</Text>
                                 </View>
                             </View>
                             <TouchableOpacity
                                 onPress={() => {
                                     this._selectMultiItemPress(item)
                                 }}
-                                style={{ backgroundColor: "#FFB16C", justifyContent: "center", alignItems: "center", height: 25, width: 60, position: "absolute", right: 15 }}>
+                                style={[styles.button,{  position: "absolute", right: 15 }]}>
                                 <Text style={{ fontSize: 12, color: "#fff" }}>关注</Text>
                             </TouchableOpacity>
                         </View>
+                        <View style={{width:'100%',height:1,backgroundColor:'#FFFFFF',marginTop:10,marginLeft:-5}}/>
                     </View>
                 )
             }
@@ -195,9 +197,9 @@ export default class Search extends Component {
                                 this.props.navigation.goBack()
                             }} />
                         </View>
-                        <Text style={{ color: "#000", fontSize: 18}}>排行榜</Text>
+                        <Text style={{ color: "#000", fontSize: 20,position:"absolute",width:'100%',textAlign:"center"}}>排行榜</Text>
                         <View>
-                            <AntDesign name={'questioncircle'} size={25} color={'#000'} onPress={() => {
+                            <AntDesign name={'questioncircleo'} size={25} color={'#000'} onPress={() => {
                                 Alert.alert("不要点我")
                             }} />
                         </View>
@@ -218,7 +220,11 @@ export default class Search extends Component {
                                         <Text style={{ fontSize: 10, color: "#FFFFFF" }}>2</Text>
                                     </View>
                                 </View>
-                                <Text style={{ fontSize: 15, marginTop: 15 }}>云生1</Text>
+                                <Text style={{ fontSize: 15, marginTop: 10 }}>云生1</Text>
+                                <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
+                                    <FontAwesome5 name={'fire'} size={14} color={'#FAAF3D'} />
+                                    <Text style={{ color: "#999999", fontSize: 12,marginLeft:2 }}>121412</Text>
+                                </View>
                                 <TouchableOpacity
                                     style={styles.button}
                                     onPress={() => {
@@ -236,7 +242,11 @@ export default class Search extends Component {
                                         <Text style={{ fontSize: 15, color: "#FFFFFF" }}>1</Text>
                                     </View>
                                 </View>
-                                <Text style={{ fontSize: 15, marginTop: 15 }}>云生2</Text>
+                                <Text style={{ fontSize: 15, marginTop: 10 }}>云生2</Text>
+                                <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
+                                    <FontAwesome5 name={'fire'} size={14} color={'#FAAF3D'} />
+                                    <Text style={{ color: "#999999", fontSize: 12,marginLeft:2 }}>121412</Text>
+                                </View>
                                 <TouchableOpacity
                                     style={styles.button}
                                     onPress={() => { Alert.alert("关注成功") }}>
@@ -252,7 +262,11 @@ export default class Search extends Component {
                                         <Text style={{ fontSize: 10, color: "#FFFFFF" }}>3</Text>
                                     </View>
                                 </View>
-                                <Text style={{ fontSize: 15, marginTop: 15 }}>云生3</Text>
+                                <Text style={{ fontSize: 15, marginTop: 10 }}>云生3</Text>
+                                <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
+                                    <FontAwesome5 name={'fire'} size={14} color={'#FAAF3D'} />
+                                    <Text style={{ color: "#999999", fontSize: 12,marginLeft:2 }}>121412</Text>
+                                </View>
                                 <TouchableOpacity
                                     style={styles.button}
                                     onPress={() => { Alert.alert("关注成功") }}>
@@ -279,21 +293,21 @@ const styles = StyleSheet.create({
         flexDirection: "column"
     },
     top: {
-        height: (78),
+        height: 78,
         width: "100%",
         backgroundColor: "#fff",
-        borderBottomRightRadius: 15,
         borderBottomLeftRadius: 15,
-        elevation: 8,
+        borderBottomRightRadius: 15,
+        elevation:10,
     },
     nav_container: {
-        flex: 0.7,
+     
         marginTop: '8%',
         flexDirection: "row",
         width: "94%",
+        marginLeft:'3%',
         justifyContent: "space-between",
         alignItems: "center",
-        marginLeft: "3%",
     },
     button1: {
         width: '100%',
@@ -318,15 +332,17 @@ const styles = StyleSheet.create({
         backgroundColor: "#FAAF3D",
         justifyContent: "center",
         alignItems: "center",
-        height: 25,
-        width: 60,
-        marginTop: 10
+        marginTop: 5,
+        paddingHorizontal:12,
+        paddingVertical:3,
 
     },
     button2: {
-        marginTop: 13,
+        marginTop: 10,
         width: "90%",
-        marginLeft: "5%",
+        marginLeft:'5%',
+       paddingLeft:'5%',
+     
     },
     text2: {
         paddingBottom: 20

@@ -97,8 +97,8 @@ export default class wishlist extends Component {
 
     function drawLine(longitude, latitude, place, id, width) {
       return (
-        <View style={{ height: 120, backgroundColor: '#6C9575', width: width + 20, borderWidth: 10, borderColor: "#00000030", marginBottom: 20, borderRadius: 3 }}>
-          <View style={{height:20,width:20,borderWidth:1,backgroundColor:"red",borderColor:"#fff",borderRadius:20,}}></View>
+        <View style={{ height: 120, backgroundColor: '#6C9575', width: width + 20, borderWidth: 10, borderColor: "#FFFFFF60", marginBottom: 20, borderRadius: 3 }}>
+          {/* <View style={{height:20,width:20,borderWidth:1,backgroundColor:"red",borderColor:"#fff",borderRadius:20,}}></View> */}
           <MapView
             zoomControlsVisible={false} //默认true,是否显示缩放控件,仅支持android
             trafficEnabled={true} //默认false,是否显示交通线
@@ -136,8 +136,8 @@ export default class wishlist extends Component {
             <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
               this.props.navigation.goBack()
             }} />
-            <Text style={{ fontSize: 18, color: '#000000', position: "absolute", width: '100%', textAlign: "center" }}>愿望单</Text>
-            <Text style={{ fontSize: 15, color: '#fff', backgroundColor: "#2F3843", paddingVertical: 2, paddingHorizontal: 10, borderRadius: 10 }}
+            <Text style={{ fontSize: 20, color: '#000000', position: "absolute", width: '100%', textAlign: "center" }}>愿望单</Text>
+            <Text style={{ fontSize: 15, color: '#fff', backgroundColor: "#2F3843", paddingVertical:5, paddingHorizontal:15, borderRadius:24}}
               onPress={() => {
                 if (this.state.stateFlag) {
                   this.setState({ stateName: "完成", mapBoxWidth: width * 0.8, stateFlag: false })
@@ -175,19 +175,17 @@ const styles = StyleSheet.create({
   },
   Top: {
     height: 78,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    flexDirection: 'row',
-    elevation: 10,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
+  width: "100%",
+  backgroundColor: "#fff",
+  borderBottomLeftRadius: 15,
+  borderBottomRightRadius: 15,
+  elevation:10,
   },
   nav_container: {
-    width: '94%',
-    marginLeft: '3%',
-    marginTop: '6%',
+    marginTop: '8%',
     flexDirection: "row",
+    width: "94%",
+    marginLeft:'3%',
     justifyContent: "space-between",
     alignItems: "center",
   },

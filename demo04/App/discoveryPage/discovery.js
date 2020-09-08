@@ -257,7 +257,7 @@ export default class Discovery extends Component {
             {/* <View style={{ width: '100%', height: 20, alignItems: "flex-end", backgroundColor: "#fff" }}> */}
             {/* <View style={{ flexDirection: "row", justifyContent: "space-between",paddingHorizontal: '5%',paddingVertical:'3%',}}>
               <Text style={{ fontSize: 15 }}>活跃玩家</Text> */}
-            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: 'center', paddingTop: 5, }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: 'center',  }}>
               <Text style={{ fontSize: 15 }}>浙E路线</Text>
               <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={{ fontSize: 12, color: "#999999", marginRight: 5 }}
