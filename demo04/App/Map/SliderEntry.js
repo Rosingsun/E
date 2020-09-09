@@ -35,14 +35,14 @@ export default class SliderEntry extends Component {
     return parallax ? (
       <ParallaxImage
         source={{ uri: illustration }}
-        containerStyle={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
+        containerStyle={[styles.imageContainer]}
         style={styles.image}
         //   视差因子
         parallaxFactor={0.35}
         //   显示轮转 必须要,否则点击跳转后和自动跳转时间有点差别.
         showSpinner={true}
-        //   点点的颜色
-        spinnerColor={even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'}
+        // //   点点的颜色
+        // spinnerColor={even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'}
         {...parallaxProps}
       />
     ) : (
@@ -60,11 +60,11 @@ export default class SliderEntry extends Component {
       // 涉及到文字的行数?
       <View style={{ backgroundColor: 'GREEN' }}>
         <Text
-          style={[styles.title, even ? styles.titleEven : {}]}
+          style={[styles.title]}
           numberOfLines={1}
         >
           {title.toUpperCase()}
-        </Text>21111</View>
+        </Text></View>
 
 
     ) : false;
@@ -76,7 +76,7 @@ export default class SliderEntry extends Component {
         onPress={() => { alert(`You've clicked '${title}'`); }}
       >
         {/* <View style={styles.shadow} /> */}
-        <View style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}>
+        <View style={[styles.imageContainer]}>
           {this.image}
           {/* <View style={[styles.radiusMask, even ? styles.radiusMaskEven : {}]} /> */}
           {/* <ImageBackground
@@ -96,10 +96,10 @@ export default class SliderEntry extends Component {
           </View>
           {/* </ImageBackground> */}
         </View>
-        <View style={{ borderBottomRightRadius: 8, borderBottomLeftRadius: 8, overflow: "hidden", backgroundColor: "#6C9575", width: ITEM_WIDTH, height: '20%', justifyContent: "center" }}>
+        <View style={{ borderBottomRightRadius: 8, borderBottomLeftRadius: 8, overflow: "hidden", backgroundColor: "#6C9575", width: 138, height: '20%', justifyContent: "center" }}>
           <ImageBackground style={{
-            height: '100%',
-            width: ITEM_WIDTH,
+            height: 90,
+            width: 138,
             position: "absolute",
             top: 0,
             left: 0,
@@ -140,11 +140,11 @@ const styles = StyleSheet.create({
     // backgroundColor: 'white',
     backgroundColor: 'transparent',
   },
-  // 图片下面，文字上面的那一条框
-  radiusMaskEven: {
-    backgroundColor: 'yellow'
-    // backgroundColor:'transparent',
-  },
+  // // 图片下面，文字上面的那一条框
+  // radiusMaskEven: {
+  //   backgroundColor: 'yellow'
+  //   // backgroundColor:'transparent',
+  // },
   textContainer: {
     justifyContent: 'center',
     paddingTop: 20 - 8,
@@ -165,10 +165,12 @@ const styles = StyleSheet.create({
     borderRadius: IS_IOS ? 8 : 0,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
+
   },
   slideInnerContainer: {
-    width: SLIDER_WIDTH / 1.84,
+    width: 150,
     height: ITEM_WIDTH - 30,
-    paddingHorizontal: 16,
+    //  paddingHorizontal: 16,
+   
   },
 })
