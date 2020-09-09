@@ -162,7 +162,7 @@ export default class Message extends Component {
                 name: 'JK&妹',
                 time: "2020/08/12",
                 userHead: require('../img/a.png'),
-                sendContainer: "交个朋21321友吧",
+                sendContainer: "交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧交个朋21321友吧",
                 messageNum: 13,
               },
               {
@@ -230,7 +230,7 @@ export default class Message extends Component {
                       <View style={{ flexDirection: "column", marginLeft: 10, justifyContent: "space-between", width: '65%' }}>
                         <Text style={{ fontSize: 15 }}>{item.name}</Text>
                         {/* 用户发送未读消息 */}
-                        <Text style={{ color: "#999999", width: '100%', fontSize: 12 }}>{item.sendContainer}</Text>
+                        <Text style={{ color: "#999999", width: '100%', fontSize: 12 }} numberOfLines={3}>{item.sendContainer}</Text>
                       </View>
                       <View style={{ position: "absolute", right: 30, top: 15, alignItems: "flex-end" }}>
                         <Text style={{ fontSize: 10, color: "#999999" }}>{item.time}</Text>
