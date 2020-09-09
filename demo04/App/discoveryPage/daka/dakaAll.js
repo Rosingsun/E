@@ -244,11 +244,12 @@ export default class dakaAll extends Component {
                 <View style={[styles.top]}>
                     <View style={[styles.nav_container]}>
                         <View style={{ flexDirection: "row", }}>
-                            <AntDesign name={'left'} size={25} color={'#000'} onPress={() => {
+                            <AntDesign name={'left'} size={25} color={'#000'}
+                             onPress={() => {
                                 this.props.navigation.goBack();
                             }} />
                         </View>
-                        <Text style={{ color: "#000", fontSize: 20, position: "absolute", width: '100%', textAlign: "center" }}>打卡全部</Text>
+                        <Text pointerEvents="none" style={{ color: "#000", fontSize: 20, position: "absolute", width: '100%',zIndex:-1, textAlign: "center" }}>打卡全部</Text>
                     </View>
                 </View>
                 <FlatList

@@ -63,7 +63,7 @@ export default class exchange extends Component {
           <AntDesign name={'left'} size={25} color='#000000'  onPress={() => {
             this.props.navigation.goBack()
           }} />
-          <Text style={{color: "#000", fontSize: 20,position:"absolute",width:'100%',textAlign:"center"}}>与 杰哥 进行交易</Text>
+          <Text style={{color: "#000", fontSize: 20,position:"absolute",width:'100%',zIndex:-1,textAlign:"center"}}>与 杰哥 进行交易</Text>
      
           </View>
           </View>
