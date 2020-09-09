@@ -62,13 +62,7 @@ export default class MainFadeView extends React.Component {
                         style={{ width: 800, height: 1000 }} />
                 </FadeView>
                 <TouchableNativeFeedback
-                    style={{ backgroundColor: "red", height: 20, width: 20, }}
-                    onPress={
-                        setTimeout(() => {
-                            this.props.navigation.navigate('dengru')
-                        }, 3000)
-                    }
-                    >
+                    style={{ backgroundColor: "red", height: 20, width: 20, }}>
                         <Splash {...this.props} />
                 </TouchableNativeFeedback >
             </View>

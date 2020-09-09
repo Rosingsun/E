@@ -11,19 +11,83 @@ import {
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Fontisto from 'react-native-vector-icons/Fontisto';
+import Entypo from 'react-native-vector-icons/Entypo';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
 const trade = ({ navigation }) => {
-
-  function tradeBox(type, name,OplaceName,MplaceName) {
-
-    /*
-      type01 未完成
-      type02 未履约
-      type03
+/*
+      tfinish 0为未交易，1为完成交易
+      MyJob   0为，我未守约，1为完守约
+      OtherJob 0 为未完成，1为完成
     */
-    if (type == 1) {
+  function tradeBox(finish,MyJob,OtherJob, name,OplaceName,MplaceName) { 
+   //交易是否已完成
+    function finishYet(finish){
+      if(finish==1){
+      return(
+<View style={{ alignItems: "center", flexDirection: "row", width: '30%', justifyContent: "flex-end" }}>
+                <AntDesign name={'sync'} size={20} color={'#999999'} />
+                <Text style={{ fontSize: 10, color: "#484848", paddingLeft: 10 }}>已完成</Text>
+              </View>
+      )}else{
+        return(
+        <View style={{ alignItems: "center", flexDirection: "row", width: '30%', justifyContent: "flex-end" }}>
+                <Entypo name={'back-in-time'} size={20} color={'#999999'} />
+                <Text style={{ fontSize: 10, color: "#484848", paddingLeft: 10 }}>未完成</Text>
+              </View>
+        )
+      }
+    }
+    // 自己是否已经完成
+    function myfinishYet(finish,MyJob){
+      //交易完成，自己已经履约
+      if(finish==1&&MyJob==1){
+        return(
+          <View style={{ alignItems: "center", flexDirection: "row", width: "25%", justifyContent: "flex-end" }}>
+          <Text style={{ fontSize: 12, color: "#999999", paddingRight: 5, }}>已履约</Text>
+          <AntDesign name={'checkcircleo'} size={12} color={'#999999'} />
+        </View>
+        //交易完成，自己未履约
+        )}else if(finish==1&&MyJob==0){
+          return(
+            <View style={{ alignItems: "center", flexDirection: "row", width: "25%", justifyContent: "flex-end" }}>
+            <Text style={{ fontSize: 12, color: "#999999", paddingRight:3, }}>已违约</Text>
+            <EvilIcons name={'close-o'} size={20} color={'red'} />
+          </View>
+          // 交易未完成
+          )}else if(finish==0){
+            return(
+              <View style={{ alignItems: "center", flexDirection: "row", width: "25%", justifyContent: "flex-end" }}>
+              <Text style={{ fontSize: 12, color: "#fff",backgroundColor:"#6C9575",marginRight:5,paddingHorizontal:8,borderRadius:10 ,paddingVertical:3}}>我已履约</Text>
+            </View>
+            )}
+    }
+        // 他人否已经完成
+        function OtherYet(finish,OtherJob){
+          //交易完成，他人也完成
+          if(finish==1&&OtherJob==1){
+            return(
+              <View style={{ alignItems: "center", flexDirection: "row", width: "25%" }}>
+                <Text style={{ fontSize: 12, color: "#999999" }}>已履约</Text>
+                <AntDesign name={'checkcircleo'} size={12} color={'#999999'} />
+              </View>
+              // 交易完成，他人未履约
+            )}else if(finish==1&&OtherJob==0){
+              return(
+                <View style={{ alignItems: "center", flexDirection: "row", width: "25%" }}>
+                <Text style={{ fontSize: 12, color: "#999999" }}>已违约</Text>
+                <EvilIcons name={'close-o'} size={20} color={'red'} />
+              </View>
+              // 交易未完成
+              )}else if(finish==0){
+                return(
+                  <View style={{ alignItems: "center", flexDirection: "row", width: "25%", justifyContent:"flex-start" }}>
+                  <Text style={{ fontSize: 12, color: "#fff",backgroundColor:"#6C9575",marginRight:5,paddingHorizontal:8,borderRadius:10 ,paddingVertical:3}}>Ta已履约</Text>
+                </View>
+                )}
+        }
       return (
         <View style={[styles.tradeMainBox]}>
           {/* 第一个用户信息框 */}
@@ -36,10 +100,9 @@ const trade = ({ navigation }) => {
                   <Text style={{ fontSize: 15 }}>{name}</Text>
                 </View>
               </View>
-              <View style={{ alignItems: "center", flexDirection: "row", width: '30%', justifyContent: "flex-end" }}>
-                <AntDesign name={'sync'} size={20} color={'#999999'} />
-                <Text style={{ fontSize: 10, color: "#484848", paddingLeft: 10 }}>已完成</Text>
-              </View>
+              {
+                finishYet(finish)
+              }
             </View>
             {/* 第二行消息详情框 */}
             <View style={{ width: '100%', justifyContent: "space-between", marginTop: 5 }}>
@@ -47,10 +110,9 @@ const trade = ({ navigation }) => {
                 <View style={{ width: '75%', height: 40, backgroundColor: "#EFEFEF", justifyContent: "center" }}>
                   <Text style={{ fontSize: 15, color: "#999999", marginLeft: 10, }}>{OplaceName}</Text>
                 </View>
-                <View style={{ alignItems: "center", flexDirection: "row", width: "25%", justifyContent: "flex-end" }}>
-                  <Text style={{ fontSize: 12, color: "#999999", paddingRight: 5, }}>已履约</Text>
-                  <AntDesign name={'checkcircleo'} size={12} color={'#999999'} />
-                </View>
+                {
+                  myfinishYet(finish,MyJob)
+                }
               </View>
             </View>
           </View>
@@ -64,10 +126,10 @@ const trade = ({ navigation }) => {
           <View >
             {/* 成交详情 */}
             <View style={[styles.dealD]}>
-              <View style={{ alignItems: "center", flexDirection: "row", width: "25%" }}>
-                <Text style={{ fontSize: 12, color: "#999999" }}>已履约</Text>
-                <AntDesign name={'checkcircleo'} size={12} color={'#999999'} />
-              </View>
+              
+              {
+                OtherYet(finish,OtherJob)
+              }
               <View style={{ width: '75%', height: 40, backgroundColor: "#EFEFEF", justifyContent: "center", alignItems: "flex-end" }}>
                 <Text style={{ fontSize: 15, color: "#999999", marginRight: 10 }}>{MplaceName}</Text>
               </View>
@@ -90,143 +152,6 @@ const trade = ({ navigation }) => {
           </View>
         </View>
       )
-    }
-    else if (type == 2) {
-      return (
-        <View style={[styles.tradeMainBox]}>
-          {/* 第一个用户信息框 */}
-          <View >
-            <View style={{ paddingHorizontal: 10, marginTop: 5, flexDirection: "row", justifyContent: "space-between" }}>
-              <View style={{ flexDirection: "row" }}>
-                <Image style={{ height: 40, width: 40, borderRadius: 30 }} source={require('../img/a.png')} />
-                {/* 用户信息 */}
-                <View style={{ marginLeft: 5, justifyContent: "flex-end" }}>
-                  <Text style={{ fontSize: 15 }}>{name}</Text>
-                </View>
-              </View>
-              <View style={{ alignItems: "center", flexDirection: "row", width: '30%', justifyContent: "flex-end" }}>
-                <AntDesign name={'sync'} size={20} color={'#999999'} />
-                <Text style={{ fontSize: 10, color: "#484848", paddingLeft: 10 }}>未完成</Text>
-              </View>
-            </View>
-            {/* 第二行消息详情框 */}
-            <View style={{ width: '100%', justifyContent: "space-between", marginTop: 5 }}>
-              <View style={styles.dealD}>
-                <View style={{ width: '75%', height: 40, backgroundColor: "#EFEFEF", justifyContent: "center" }}>
-                  <Text style={{ fontSize: 15, color: "#999999", marginLeft: 10, }}>杭州市西溪湿地风景区</Text>
-                </View>
-                <View style={{ alignItems: "center", flexDirection: "row", width: "25%", justifyContent: "flex-end" }}>
-                  <Text style={{ fontSize: 12, color: "#999999", paddingRight: 5, }}>已履约</Text>
-                  <AntDesign name={'checkcircleo'} size={12} color={'#999999'} />
-                </View>
-              </View>
-            </View>
-          </View>
-          {/* 将下面的符号旋转90度 */}
-          <View style={{ width: '100%', alignItems: "center", marginTop: 3 }}>
-            <View style={{ width: 20, transform: [{ rotate: "90deg" }] }}>
-              <FontAwesome5 name={'exchange-alt'} size={15} color={'#999999'} />
-            </View>
-          </View>
-          {/* 第二个用户信息框 */}
-          <View >
-            {/* 成交详情 */}
-            <View style={[styles.dealD]}>
-              <View style={{ alignItems: "center", flexDirection: "row", width: "25%" }}>
-                <Text style={{ fontSize: 12, color: "#999999" }}>已履约</Text>
-                <AntDesign name={'checkcircleo'} size={12} color={'#999999'} />
-              </View>
-              <View style={{ width: '75%', height: 40, backgroundColor: "#EFEFEF", justifyContent: "center", alignItems: "flex-end" }}>
-                <Text style={{ fontSize: 15, color: "#999999", marginRight: 10 }}>杭州市宋城风景区</Text>
-              </View>
-            </View>
-            {/* 用户信息 */}
-            <View style={{ paddingHorizontal: 10, flexDirection: "row", justifyContent: "space-between", marginTop: 5 }}>
-              <View style={{ alignItems: "center", flexDirection: "row", width: '50%', justifyContent: "space-around" }}>
-                <Text style={[styles.sealCost]}>取消订单</Text>
-                <Text style={[styles.dealEndChoice]}>投诉</Text>
-                <Text style={[styles.dealEndChoice]}>申述</Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ marginLeft: 5, justifyContent: "flex-start" }}>
-                  <Text style={{ fontSize: 15, }}>{name}</Text>
-                </View>
-                <Image style={{ height: 40, width: 40, borderRadius: 30 }} source={require('../img/a.png')} />
-                {/* 用户信息 */}
-              </View>
-            </View>
-          </View>
-        </View>
-      )
-    }
-    else if (type == 3) {
-      return (
-        <View style={[styles.tradeMainBox]}>
-          {/* 第一个用户信息框 */}
-          <View >
-            <View style={{ paddingHorizontal: 10, marginTop: 5, flexDirection: "row", justifyContent: "space-between" }}>
-              <View style={{ flexDirection: "row" }}>
-                <Image style={{ height: 40, width: 40, borderRadius: 30 }} source={require('../img/a.png')} />
-                {/* 用户信息 */}
-                <View style={{ marginLeft: 5, justifyContent: "flex-end" }}>
-                  <Text style={{ fontSize: 15 }}>{name}</Text>
-                </View>
-              </View>
-              <View style={{ alignItems: "center", flexDirection: "row", width: '30%', justifyContent: "flex-end" }}>
-                <AntDesign name={'sync'} size={20} color={'#999999'} />
-                <Text style={{ fontSize: 10, color: "#484848", paddingLeft: 10 }}>未完成</Text>
-              </View>
-            </View>
-            {/* 第二行消息详情框 */}
-            <View style={{ width: '100%', justifyContent: "space-between", marginTop: 5 }}>
-              <View style={styles.dealD}>
-                <View style={{ width: '75%', height: 40, backgroundColor: "#EFEFEF", justifyContent: "center" }}>
-                  <Text style={{ fontSize: 15, color: "#999999", marginLeft: 10, }}>杭州市西溪湿地风景区</Text>
-                </View>
-                <View style={{ alignItems: "center", flexDirection: "row", width: "25%", justifyContent: "flex-end" }}>
-                  <Text style={{ fontSize: 12, color: "#999999", paddingRight: 5, }}>已履约</Text>
-                  <AntDesign name={'checkcircleo'} size={12} color={'#999999'} />
-                </View>
-              </View>
-            </View>
-          </View>
-          {/* 将下面的符号旋转90度 */}
-          <View style={{ width: '100%', alignItems: "center", marginTop: 3 }}>
-            <View style={{ width: 20, transform: [{ rotate: "90deg" }] }}>
-              <FontAwesome5 name={'exchange-alt'} size={15} color={'#999999'} />
-            </View>
-          </View>
-          {/* 第二个用户信息框 */}
-          <View >
-            {/* 成交详情 */}
-            <View style={[styles.dealD]}>
-              <View style={{ alignItems: "center", flexDirection: "row", width: "25%" }}>
-                <Text style={{ fontSize: 12, color: "#999999" }}>已履约</Text>
-                <AntDesign name={'checkcircleo'} size={12} color={'#999999'} />
-              </View>
-              <View style={{ width: '75%', height: 40, backgroundColor: "#EFEFEF", justifyContent: "center", alignItems: "flex-end" }}>
-                <Text style={{ fontSize: 15, color: "#999999", marginRight: 10 }}>杭州市宋城风景区</Text>
-              </View>
-            </View>
-            {/* 用户信息 */}
-            <View style={{ paddingHorizontal: 10, flexDirection: "row", justifyContent: "space-between", marginTop: 5 }}>
-              <View style={{ alignItems: "center", flexDirection: "row", width: '50%', justifyContent: "space-around" }}>
-                <Text style={[styles.sealCost]}>取消订单</Text>
-                <Text style={[styles.dealEndChoice]}>投诉</Text>
-                <Text style={[styles.dealEndChoice]}>申述</Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ marginLeft: 5, justifyContent: "flex-start" }}>
-                  <Text style={{ fontSize: 15, }}>{name}</Text>
-                </View>
-                <Image style={{ height: 40, width: 40, borderRadius: 30 }} source={require('../img/a.png')} />
-                {/* 用户信息 */}
-              </View>
-            </View>
-          </View>
-        </View>
-      )
-    }
   }
 
   return (
@@ -239,48 +164,57 @@ const trade = ({ navigation }) => {
           data={[
             {
               name: 'JK&妹',
-              type: 1,
+              finish: 0,
+              MyJob:1,
+              OtherJob:0,
               OplaceName:"杭州市宋城风景区",
               MplaceName:"横店影视城",
             },
             {
               name: 'JK&妹',
-              type: 2,
+              finish: 1,
+              MyJob:1,
+              OtherJob:0,
               OplaceName:"杭州市宋城风景区",
               MplaceName:"杭州市西湖风景区",
             },
             {
               name: 'JK&妹',
-              type: 2,
+              finish: 0,
+              MyJob:1,
+              OtherJob:1,
               OplaceName:"杭州市宋城风景区",
               MplaceName:"杭州市西湖风景区",
             },
             {
               name: 'JK&妹',
-              type: 1,
+              finish: 1,
+              MyJob:0,
+              OtherJob:1,
               OplaceName:"杭州市宋城风景区",
               MplaceName:"西溪国家湿地公园",
             },
             {
               name: 'JK&妹',
-              type: 1,
+              finish: 1,
+              MyJob:0,
+              OtherJob:1,
               OplaceName:"西溪国家湿地公园",
               MplaceName:"杭州市西湖风景区",
             },
             {
               name: 'JK&妹',
-              type: 2,
+              finish: 0,
+              MyJob:1,
+              OtherJob:1,
               OplaceName:"杭州市宋城风景区",
               MplaceName:"千岛湖风景区",
             },
           ]}
           renderItem={({ item }) =>
-            tradeBox(item.type, item.name,item.OplaceName,item.MplaceName)
+            tradeBox(item.finish,item.MyJob,item.OtherJob, item.name,item.OplaceName,item.MplaceName)
           } />
       </View>
-      {/* 中间的内容写在这里 */}
-
-      {/* 底部颜色 */}
     </View>
   )
 }
@@ -317,9 +251,10 @@ const styles = StyleSheet.create({
     width: "30%",
     fontSize: 10,
     textAlign: "center",
-    paddingTop: 2,
     borderRadius: 10,
     color: "#fff",
-    backgroundColor: "#6C9575",
+    backgroundColor: "#2F3843",
+    paddingHorizontal:2,
+    paddingVertical:2,
   }
 });
