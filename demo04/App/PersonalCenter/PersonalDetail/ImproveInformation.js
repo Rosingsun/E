@@ -49,43 +49,46 @@ export default class improveInformation extends Component {
     }
     componentDidMount() {
         storage.load('userInfo', (data) => {
-          this.setState({
-            username: data.username,
-            head: data.head,
-            token: data.token,
-            user_id: data.user_id
-          })
+            this.setState({
+                username: data.username,
+                head: data.head,
+                token: data.token,
+                user_id: data.user_id
+            })
         })
     }
     _onClickCreateroute = () => {
         var navigation = this.props.navigation;
-    fetch('http://192.168.1.151:3000/api/travels/route/create_route', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'token': this.state.token,
-        },
-        body: JSON.stringify({
-        choose_city: this.state.content,
-        user_id: this.state.user_id,
-        add_cityid: this.state.add_cityid,
-        route_name: this.state.username,
-        expected_duration:this.state.expected_duration,
-        remarks:this.state.remarks
+        fetch('http://192.168.1.151:3000/api/travels/route/create_route', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'token': this.state.token,
+            },
+            body: JSON.stringify({
+                choose_city: this.state.content,
+                user_id: this.state.user_id,
+                add_cityid: this.state.add_cityid,
+                route_name: this.state.username,
+                expected_duration: this.state.expected_duration,
+                remarks: this.state.remarks
 
+            })
+        }).then(function (res) {
+            return res.json();
+        }).then(function (json) {
+            if (json.errno == 0) {
+                alert("保存成功")
+            } else if (json.errno == -1) {
+                alert("保存失败")
+            }
         })
-      }).then(function (res) {
-        return res.json();
-      }).then(function (json) {
-        if (json.errno == 0) {
-          alert("保存成功")
-        } else if (json.errno == -1) {
-          alert("保存失败")
-        }
-      })
     }
     render() {
+        const { navigation, route } = this.props;
+        var choiceCity = route.params.choiceCity;
+        var selectMultiItem = route.params.selectMultiItem;
         return (
             <View style={styles.container}>
                 <View style={styles.Top}>

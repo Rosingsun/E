@@ -33,7 +33,7 @@ const queryScenic_Spots = (Name, City, Scenic_Spots, longitude,latitude) => {
 }
 
 const queryAllScenic_Spots = () => {
-    let sql = 'SELECT * FROM city'
+    let sql = 'SELECT * FROM city where id<10'
     // console.log(sql)
     return exec(sql).then(row => {
       return row || []

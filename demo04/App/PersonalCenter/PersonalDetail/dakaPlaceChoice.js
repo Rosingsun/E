@@ -29,51 +29,9 @@ let cityData = [
 ];
 let choiceType = ['人气最高', '历史气息', '情侣圣地'];
 export default class dakaPlaceChoice extends Component {
-  static defaultProps = {
-    multiList: [
-      {
-        id: 0,
-        "name": "西湖·一个小亭子",
-        select: false,
-
-      },
-      {
-        id: 1,
-        "name": "西湖·一个小亭子",
-        select: false
-      },
-      {
-        id: 2,
-        "name": "西湖·一个小亭子",
-        select: false
-      },
-      {
-        id: 3,
-        "name": "西湖·一个小亭子",
-        select: false
-      },
-      {
-        id: 4,
-        "name": "西湖·一个小亭子",
-        select: false
-      },
-      {
-        id: 5,
-        "name": "西湖·一个小亭子",
-        select: false
-      },
-      {
-        id: 6,
-        "name": "西湖·一个小亭子",
-        select: false
-      },
-      {
-        id: 7,
-        "name": "西湖·一个小亭子",
-        select: false
-      },
-    ]
-  };
+  // static defaultProps = {
+  //   multiList: []
+  // };
 
   constructor(props) {
     super(props);
@@ -84,7 +42,6 @@ export default class dakaPlaceChoice extends Component {
       choiceType: "人气最高",
       addPlace: 0,
       addOpacity: 0,
-
       multiData: [],
       // 存放用户选择数组
       selectMultiItem: [],
@@ -102,7 +59,6 @@ export default class dakaPlaceChoice extends Component {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        token:token
       },
 
     }).then((response) => response.json())
@@ -164,10 +120,10 @@ export default class dakaPlaceChoice extends Component {
   _selectMultiItemPress(item) {
     if (item.select) {
       this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
-        return x === item.id;
+        return x - 1 === item.id - 1;
       }), 1);
     } else {
-      this.state.selectMultiItem.push(item.name,item.select);
+      this.state.selectMultiItem.push(item.id);
     }
     this.state.multiData[item.id].select = !item.select;
     this.setState({ multiData: this.state.multiData });
@@ -193,7 +149,6 @@ export default class dakaPlaceChoice extends Component {
         )
       } else {
         menuArr.push(
-
           // 未选中状态
           <TouchableOpacity
             onPress={() => this._selectMultiItemPress(item)}>
@@ -210,31 +165,39 @@ export default class dakaPlaceChoice extends Component {
     );
   }
   render() {
+    const { navigation, route } = this.props;
+    //获取上个页面获取到的城市信息
+    var choiceCity = route.params.selectMultiItem;
     return (
       <View style={[styles.container]}>
         <View style={styles.Top}>
-        <View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: 'space-between', marginTop:'5%' }}>
-          <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
-            this.props.navigation.goBack()
-          }} />
-          <Text style={{ fontSize: 20, color: '#000000',position:"absolute",width:'100%',textAlign:"center" }}>选择城市</Text>
-          <View style={{backgroundColor: "#6C9575", borderRadius: 15,justifyContent:'center',paddingHorizontal:10,alignItems:'flex-start'}}>
-          <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, justifyContent:'center',alignItems:'center' }}
-            onPress={() => {
-              this.props.navigation.navigate("improveInformation")
-            }}
-          >下一步</Text>
-          <View style={{flexDirection:'row'}}>
-              <View style={{height:2,width:10,backgroundColor:'#FAAF3D',}}/>
-              <View style={{height:2,width:10,backgroundColor:'#FAAF3D',marginLeft:2}}/>
+          <View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: 'space-between', marginTop: '5%' }}>
+            <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
+              this.props.navigation.goBack()
+            }} />
+            <Text style={{ fontSize: 20, color: '#000000', position: "absolute", width: '100%', zIndex:-1,textAlign: "center" }}
+            >选择城市</Text>
+            <View style={{ backgroundColor: "#6C9575", borderRadius: 15, justifyContent: 'center', paddingHorizontal: 10, alignItems: 'flex-start' }}>
+              <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, justifyContent: 'center', alignItems: 'center' }}
+                onPress={() => {
+                  this.props.navigation.navigate("improveInformation", { choiceCity: choiceCity, selectMultiItem: this.state.selectMultiItem })
+                }}
+              >下一步</Text>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={{ height: 2, width: 10, backgroundColor: '#FAAF3D', }} />
+                <View style={{ height: 2, width: 10, backgroundColor: '#FAAF3D', marginLeft: 2 }} />
               </View>
-              </View>
-        </View>
+            </View>
+          </View>
         </View>
         <View>
           <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
             <View style={{ flexDirection: "row" }}>
-              <Ionicons name={'md-location-sharp'} size={30} color={'#000'} />
+              <Ionicons name={'md-location-sharp'} size={30} color={'#000'}
+                onPress={() => {
+                  this.setState({ choiceCitye: route.params.selectMultiItem })
+                }}
+              />
               <Text style={{ lineHeight: 30, marginLeft: 0, color: "#000", fontWeight: "bold" }}
                 onPress={() => {
                   Picker.init({
@@ -286,7 +249,7 @@ export default class dakaPlaceChoice extends Component {
           </View>
         </View>
         <ScrollView>
-        {this._renderMultiMark()}
+          {this._renderMultiMark()}
         </ScrollView>
         <View style={{ position: "absolute", justifyContent: "center", alignItems: "center", height: 60, width: 60, borderRadius: 100, right: 20, bottom: 40, backgroundColor: "#2F3843" }}>
           <View style={{ opacity: this.state.addOpacity, height: 20, position: "absolute", right: -1, top: -5, width: 20, borderRadius: 10, backgroundColor: "red" }}>
