@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const { SuccessModel, ErrorModel } = require("../model/resModel");
 const {
-   addLiuyan,addReply
+   addLiuyan,addReply,getAllmessage,getAllreply
 } =require('../controller/message');
 const { nowDate } = require("../public/utils/main")
 
@@ -36,4 +36,32 @@ router.post('/addReply', (req, res, next) => {
     })
   })
 
+  router.post('/getAllmessage', (req, res, next) => {
+    const {ly_name } = req.body
+    const result = getAllmessage(ly_name)
+    const resultData = result.then(data => {
+      if (data) {
+        return new SuccessModel(data)
+      }
+      return new ErrorModel('异常错误')
+    })
+    resultData.then(data => {
+      res.json(data)
+    })
+  })
+
+  router.post('/getAllreply', (req, res, next) => {
+    const {lr_name } = req.body
+    const result = getAllreply(lr_name)
+    const resultData = result.then(data => {
+      if (data) {
+        return new SuccessModel(data)
+      }
+      return new ErrorModel('异常错误')
+    })
+    resultData.then(data => {
+      res.json(data)
+    })
+  })
+  
 module.exports=router;

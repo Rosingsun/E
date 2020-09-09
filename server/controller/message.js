@@ -37,14 +37,26 @@ const addReply = (lr_name, lr_date, lr_content, lr_for_words) => {
  */
 const getAllmessage = (ly_name) => {
     let sql = `SELECT * FROM liuyan where ly_name='${ly_name}'`
-    console.log(sql)
     return exec(sql).then(row => {
       return row || []
     })
   }
+/**
+ * 获取当前用户所有私信信息
+ * @param {*} lr_name 当前用户id
+ */
+const getAllreply = (lr_name) => {
+  let sql = `SELECT * FROM reply where lr_name='${lr_name}'`
+  console.log(sql)
+  return exec(sql).then(row => {
+    return row || []
+  })
+}
+
 
 module.exports={
     addLiuyan,
     addReply,
-    getAllmessage
+    getAllmessage,
+    getAllreply
 }
