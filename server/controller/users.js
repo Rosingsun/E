@@ -1,7 +1,6 @@
 const {exec} = require('../db/mysql')
 
 const login = (uid,password) => {
-    let queryTable = 'user'
     let sql = `SELECT * FROM user where uid='${uid}' and password='${password}'`
     return exec(sql).then(row=>{
         return row[0] || {}

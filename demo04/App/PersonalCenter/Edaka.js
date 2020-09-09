@@ -10,6 +10,7 @@ import {
 //
 import StarRating from 'react-native-star-rating';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { storage } from '../Accessories/storage//index';
 // import { ScrollView } from 'react-native-gesture-handler';
 // import { Item } from 'react-native-paper/lib/typescript/src/components/List/List';
 
@@ -27,6 +28,33 @@ export default class Edaka extends Component {
       starCount: rating
     });
   }
+
+  componentDidMount() {
+    storage.load('userInfo', (data) => {
+      this.setState({
+        head: data.head,
+        token: data.token,
+        user_id: data.user_id
+      })
+    })
+    fetch('http://192.168.1.151:3000/api/clock/getAllClock', {
+      method: 'POST',
+      credentials: "include",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'token': this.state.token
+      },
+    }).then((response) => response.json())
+      .then((json) => {
+        console.log(json.data)
+        this.setState({ data: json.data });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+  };
   render() {
     return (
       <View style={[styles.container]}>

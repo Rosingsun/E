@@ -105,7 +105,6 @@ export default class changePersonalInfoMation extends Component {
                             }).then(image => {
                                 let source =(image.path);
                                 console.log(source)
-                                // console.log(images);
                                 this._onClickupdataPersonal;
                                 this.setState({
                                     avatarSource: source

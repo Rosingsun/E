@@ -38,7 +38,7 @@ export default class Register extends Component {
     };
     _onClickRegister = () => {
         var navigation = this.props.navigation;
-        fetch('http://192.168.56.1:3000/api/users/reg', {
+        fetch('http://192.168.1.151:3000/api/users/reg', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -54,7 +54,7 @@ export default class Register extends Component {
         }).then(function (json) {
             if (json.errno == 0) {
                 alert("注册成功")
-                navigation.navigate("Search");
+                navigation.navigate("load");
             } else if (json.errno == -1) {
                 alert("用户名或密码不符合规定")
             }

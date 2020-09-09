@@ -100,7 +100,7 @@ export default class wishlist extends Component {
       return (
         <View style={{ height: 120, backgroundColor: '#6C9575', width: width + 20, borderWidth: 10, borderColor: "#FFFFFF60", marginBottom: 20, borderRadius: 3 }}>
           {/* <View style={{height:20,width:20,borderWidth:1,backgroundColor:"red",borderColor:"#fff",borderRadius:20,}}/> */}
-          {/* <RadioButton value={'item3'}> */}
+
           <MapView
             zoomControlsVisible={false} //默认true,是否显示缩放控件,仅支持android
             trafficEnabled={true} //默认false,是否显示交通线
@@ -123,7 +123,6 @@ export default class wishlist extends Component {
               ]}
             />
           </MapView>
-          {/* </RadioButton> */}
           {/* <Image style={{ width: 371, height: 104 }} source={require('./photo/hangzhou.jpg')} /> */}
           <Text style={styles.placeStyle}>{place}</Text>
           <Text style={styles.idStyle}>{id}</Text>
@@ -162,16 +161,21 @@ export default class wishlist extends Component {
               thickness={1}
               color='#FAAF3D'
               selectedIndex={0}
-              onSelect={(index, value) => console.log(index)} >           
+              onSelect={(index, value) => console.log(index)} >
 
               {
                 Data.map((item) => {
                   return (
-                    drawLine(item.longitude, item.latitude, item.place, item.id, this.state.mapBoxWidth)
+                    <RadioButton value={'item3'}
+                    >
+                      {
+                      drawLine(item.longitude, item.latitude, item.place, item.id, this.state.mapBoxWidth)
+                    }
+                    </RadioButton>
                   )
                 })
               }
-</RadioGroup>
+            </RadioGroup>
           </ScrollView>
         </View>
 

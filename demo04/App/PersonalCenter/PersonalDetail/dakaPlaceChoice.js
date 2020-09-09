@@ -85,7 +85,8 @@ export default class dakaPlaceChoice extends Component {
       addPlace: 0,
       addOpacity: 0,
 
-      multiData: this.props.multiList,
+      multiData: [],
+      // 存放用户选择数组
       selectMultiItem: [],
     };
   }
@@ -94,19 +95,38 @@ export default class dakaPlaceChoice extends Component {
       starCount: rating,
     });
   }
+  componentDidMount() {
+    fetch('http://192.168.1.151:3000/api/travels/city/queryAllScenic_Spots', {
+      method: 'POST',
+      credentials: "include",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        token:token
+      },
+
+    }).then((response) => response.json())
+      .then((json) => {
+        this.setState({ multiData: json.data });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+  };
 
   _pointChoice(item, color) {
     return (
       <View style={[styles.userEBox]}>
         {/* pic box */}
         <View>
-          <Image style={{ height: '100%', width: 129 }} source={{ uri: "http://pic.51yuansu.com/backgd/cover/00/56/64/5d08a272e481e.jpg!/fw/780/quality/90/unsharp/true/compress/true" }}></Image>
+          <Image style={{ height: '100%', width: 129 }} source={{ uri: "file:///storage/emulated/0/Android/data/com.demo04/files/Pictures/f4f3680d-837d-4b96-8f80-e08033d8b299.jpg" }}></Image>
         </View>
         {/* user Word Box */}
         <View style={[styles.wordBox]}>
           {/* title */}
           <View>
-            <Text style={{ fontSize: 15 }}>西湖·一个小亭子</Text>
+            <Text style={{ fontSize: 15 }}>{item.Name}</Text>
           </View>
           {/* 评星 */}
           <View style={{ height: 20, width: 120 }}>
@@ -126,7 +146,7 @@ export default class dakaPlaceChoice extends Component {
             />
           </View>
           {/* <View> */}
-          <Text style={{ color: "#999999", fontSize: 10 }}>西湖景区</Text>
+          <Text style={{ color: "#999999", fontSize: 10 }}>{item.City}</Text>
           <Text style={{ color: "#999999", fontSize: 10, padding: 2, width: 160, backgroundColor: "#EFEFEF" }}>杜甫、李白、白居易也在这里打卡</Text>
           {/* </View> */}
           <View style={{ position: "absolute", right: -10, top: '45%' }}>
@@ -168,7 +188,7 @@ export default class dakaPlaceChoice extends Component {
           //选中状态
           <TouchableOpacity
             onPress={() => this._selectMultiItemPress(item)}>
-            {this._pointChoice({ item }, '#999')}
+            {this._pointChoice(item, '#999')}
           </TouchableOpacity>
         )
       } else {
@@ -177,7 +197,7 @@ export default class dakaPlaceChoice extends Component {
           // 未选中状态
           <TouchableOpacity
             onPress={() => this._selectMultiItemPress(item)}>
-            {this._pointChoice({ item }, '#6C9575')}
+            {this._pointChoice(item, '#6C9575')}
           </TouchableOpacity>
         )
       }

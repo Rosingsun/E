@@ -25,6 +25,7 @@ var imgUrl = [
     imgUrl: "http://pic.51yuansu.com/pic3/cover/03/99/56/5f1aa3a3387aa_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
   },
 ]
+
 function SwiperMainContainer(item) {
   return (
     <View style={[styles.mainBox]}>
@@ -79,7 +80,8 @@ function SwiperMainContainer(item) {
     </View>
   )
 }
-export default function Eline() {
+export default class Eline extends Component {
+render(){
   return (
     <View style={{ flex: 1 }}>
       <ScrollView style={{ backgroundColor: "#43949B28", height: 10 }}
@@ -98,7 +100,7 @@ export default function Eline() {
       </ScrollView>
     </View>
   );
-}
+}}
 const styles = StyleSheet.create({
   container: {
     // width: '100%',
