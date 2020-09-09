@@ -5,10 +5,14 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { storage } from '../../Accessories/storage/index'
+import Lightbox from 'react-native-lightbox';
+import Carousel from 'react-native-looped-carousel';
+import { storage } from '../../Accessories/storage/index';
 
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1080;
+const WINDOW_WIDTH = Dimensions.get('window').width;
+const BASE_PADDING = 10;
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -26,6 +30,7 @@ export default class MainText extends Component {
     this.state = {
       content: '',
       data: [],
+      isSplit:true,
       isLoading: true,
       selectMultiItem: [],
     }
@@ -60,12 +65,11 @@ export default class MainText extends Component {
 
   render() {
     const { route } = this.props;
-    console.log(route.params.data.showUserImg);
-    route.params.data.showUserImg.split(',').map((word) =>{
-      this.state.selectMultiItem.push(word);
-      console.log(this.state.selectMultiItem,this.state.selectMultiItem.length)
-    })  
-    // this.state.selectMultiItem.push(route.params.data.showUserImg);
+    if(this.state.isSplit){
+   route.params.data.showUserImg.split(',').map((word) =>{
+      this.state.selectMultiItem.push(word)
+      this.setState({isSplit:false})
+   })}
     var imgData = this.state.selectMultiItem
     const { data, isLoading } = this.state;
     const _onClickSendContent = () => {
@@ -93,6 +97,33 @@ export default class MainText extends Component {
         }
       })
     }
+
+    const renderCarousel = () => (
+      <Carousel style={{ width: WINDOW_WIDTH, height: WINDOW_WIDTH }}>
+        <Image
+          style={{ flex: 1 }}
+          resizeMode="contain"
+          source={{ uri: 'http://cdn.lolwot.com/wp-content/uploads/2015/07/20-pictures-of-animals-in-hats-to-brighten-up-your-day-1.jpg' }}
+        />
+        <Image
+          style={{ flex: 1 }}
+          resizeMode="contain"
+          source={{ uri: 'http://pic.51yuansu.com/pic3/cover/03/99/74/5f363c314fbc1_610.jpg' }}
+        />
+        <Image
+          style={{ flex: 1 }}
+          resizeMode="contain"
+          source={{ uri: 'http://cdn.lolwot.com/wp-content/uploads/2015/07/20-pictures-of-animals-in-hats-to-brighten-up-your-day-1.jpg' }}
+        />
+        <Image
+          style={{ flex: 1 }}
+          resizeMode="contain"
+          source={{ uri: 'http://pic.51yuansu.com/pic3/cover/03/99/74/5f363c314fbc1_610.jpg' }}
+        />
+      </Carousel>
+    )
+
+
 
     return (
       <View style={styles.container}>
@@ -139,6 +170,9 @@ export default class MainText extends Component {
                 <Text style={{ fontSize: 15 }}>{route.params.data.words}</Text>
               </View>
               <View style={{ backgroundColor: "pink", width: '96%', marginLeft: '2%', flexDirection: "row", flexWrap: "wrap" }}>
+              <Lightbox springConfig={{ tension: 15, friction: 7 }}
+      swipeToDismiss={false}
+      renderContent={renderCarousel}>
                 {
                   imgData.map((item) => {
                     return (
@@ -148,6 +182,7 @@ export default class MainText extends Component {
                     )
                   })
                 }
+                </Lightbox>
               </View>
               {/* 九宫格底部的定位 */}
               <View style={{ width: "100%", flexDirection: 'row', justifyContent: 'space-around' }}>

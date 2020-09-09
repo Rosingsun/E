@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
-const { SuccessModel, ErrorModel } = require("../../model/resModel");
+const { SuccessModel, ErrorModel } = require("../model/resModel");
 const {
-  create_route,
-  queryRouteId
-} =require('../../controller/travels/route');
+   addClock,
+   getAllClock,
+} =require('../controller/clock');
 
-router.post('/create_route', (req, res, next) => {
-  const { choose_city,add_cityid,route_name,expected_duration,remarks,user_id} = req.body
-  const result = create_route(choose_city,add_cityid,route_name,expected_duration,remarks,user_id)
+router.post('/addClock', (req, res, next) => {
+  const {user_id,city_id} = req.body
+  const result = addClock(user_id,city_id)
   const resultData = result.then(data => {
     if (data) {
       return new SuccessModel(data)
@@ -20,10 +20,9 @@ router.post('/create_route', (req, res, next) => {
   })
 })
 
-
-router.post('/queryRouteId',function(req,res,next){
+router.post('/getAllClock', (req, res, next) => {
   const { user_id } = req.body
-  const result = queryRouteId(user_id)
+  const result = getAllClock(user_id)
   const resultData = result.then(data => {
     if (data) {
       return new SuccessModel(data)
@@ -35,4 +34,5 @@ router.post('/queryRouteId',function(req,res,next){
   })
 })
 
-module.exports=router;
+
+module.exports = router;

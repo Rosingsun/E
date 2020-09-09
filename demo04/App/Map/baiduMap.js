@@ -190,7 +190,7 @@ export default class BaiduMap extends Component {
     get gradient() {
         return (
             <LinearGradient
-                colors={['#fff', '#fff']}
+                colors={['#fff', '#000']}
                 startPoint={{ x: 1, y: 0 }}
                 endPoint={{ x: 0, y: 1 }}
                 style={styles.gradient}
@@ -274,12 +274,8 @@ export default class BaiduMap extends Component {
                     }}>{this.state.index}</Text>
                     {/* 这下面的东西很重要 */}
                     <SafeAreaView style={styles.safeArea}>
-                        {/* {this.gradient} */}
                         {Example1}
                     </SafeAreaView>
-
-
-                    {/* 到这里为止 */}
                 </View>
             </ScrollView>
         );
