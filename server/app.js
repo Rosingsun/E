@@ -46,7 +46,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
-  if (req.url !== '/api/users/login' && req.url !== '/api/users/reg'&& req.url !== '/api/travels/travel/queryAllRelease' && req.url !=='/api/travels/comment/queryCommentId' && req.url !=='/api/travels/city/queryScenic_Spots' ){
+  if (req.url !== '/api/users/login' && req.url !== '/api/users/reg'&& req.url !== '/api/travels/travel/queryAllRelease' && req.url !=='/api/travels/comment/queryCommentId' && req.url !=='/api/travels/city/queryAllScenic_Spots' ){
       let token = req.headers.token;
       let jwt = new JwtUtil(token);
       let result = jwt.verifyToken();
