@@ -33,7 +33,7 @@ export default class topic extends Component {
         super(props);
         this.state = {
             multiData: this.props.topicLine,
-            selectMultiItem: [],
+            selectMultiItem: 0,
         };
     }
 
@@ -79,15 +79,52 @@ export default class topic extends Component {
     }
      //多选
      _selectMultiItemPress(item) {
-        if (item.select) {
-            this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
-                return x === item.id;
-            }), 1);
+         //单击不是选中状态
+         
+            //不是选中状态 
+            //1/遍历，查询到选中后变
+            let multiData = this.state.multiData;
+            let len = multiData.length;
+            let menuArr = [];
+           
+        if (true) {
+            let multiData = multiData[i];
+            for (let i = 0; i < len; i++) {
+                if (multiData.select) {
+                        menuArr.push(
+                            
+                <TouchableOpacity
+                onPress={() => this._selectMultiItemPress(multiData)}
+                style={[styles.markRow, styles.markUnCheck]}>
+                 <View style={{ justifyContent: "center", backgroundColor: "#fff", marginTop: 10, height: 70, width: 70, borderRadius: 50, }}>
+                                    <Text style={{ textAlign: "center" }}>{multiData.topicName}</Text>
+                                </View>
+            </TouchableOpacity>
+                            //未选中状态
+                    )
+                }}
         } else {
-            this.state.selectMultiItem.push(item.id);
+            menuArr.push(
+                // 中状态
+                <TouchableOpacity
+                onPress={() => this._selectMultiItemPress(multiData)}
+                style={[styles.markRow, styles.markChecked]}>
+                <View style={{ justifyContent: "center", backgroundColor: "red", marginTop: 10, height: 70, width: 70, borderRadius: 50, }}>
+                                    <Text style={{ textAlign: "center" }}>{multiData.topicName}</Text>
+                                </View>
+            </TouchableOpacity>
+            )
+            // this.state.selectMultiItem.push(item.id);
+            this.setState({selectMultiItem:item})
         }
         this.state.multiData[item.id].select = !item.select;
         this.setState({ multiData: this.state.multiData });
+        return (
+            //讲各类状态框输出到前端页面
+            <View style={styles.multiBox}>
+                {menuArr}
+            </View>
+        );
     }
     //递交 选中 
     _submitMultiPress() {
@@ -142,7 +179,11 @@ export default class topic extends Component {
                                 this.props.navigation.goBack();
                             }}
                         />
-                        <Text style={{ color: "#000" }}>你他妈关老子</Text>
+                        <Text style={{ color: "#000" }}
+                            onPress={()=>{
+                                console.log(this.state.selectMultiItem)
+                            }}
+                        >你他妈关老子</Text>
                         <Text >  </Text>
                     </View>
                 </View>
@@ -168,7 +209,10 @@ export default class topic extends Component {
                                     )
                                 })
                             } */}
-                            {this._renderMultiMark()}
+                            {/* {this._renderMultiMark()} */}
+                            {
+                                this._selectMultiItemPress()
+                            }
                         </ScrollView>
                     </View>
                     {/* 第二列 */}
