@@ -6,13 +6,7 @@ import { Transition } from 'react-native-reanimated';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-var userDate = [
-  {
-    key: "日落的色彩给向日葵镀上了一层金色，相间的小道日落的色彩给向日葵镀上了一层金色，相间的小道日落的色彩给向日葵镀上了一层金色，相间的小道日落的色彩给向日葵镀上了一层金色，相间的小道",
-  },
-  { key: "日落的色彩给向日葵镀上了一层金色，相间的小道02" },
-  { key: "日落的色彩给向日葵镀上了一层金色，相间的小道03" },
-]
+import { storage } from '../Accessories/storage//index';
 var imgUrl = [
   {
     key: "1",
@@ -56,7 +50,7 @@ function SwiperMainContainer(item) {
       </View>
       <View style={{ width: '100%', backgroundColor: "#fff", paddingVertical: 10, paddingHorizontal: 10 }}>
         <View>
-          <Text style={[styles.userWord]}>{item.key}</Text>
+          <Text style={[styles.userWord]}>{item.words}</Text>
           <View style={{ width: '100%', flexDirection: "row", paddingBottom: 10, }}>
             <Text style={[styles.activeSign]}>#种豆南山下</Text>
             <Text style={[styles.activeSign]}>#种豆南山下</Text>
@@ -71,7 +65,7 @@ function SwiperMainContainer(item) {
               <AntDesign name={'message1'} size={30} color={'#484848'} />
               <View style={{ flexDirection: "row", alignItems: "center", borderWidth: 1, borderColor: "#000000", borderRadius: 20, paddingHorizontal: 5 }}>
                 <AntDesign name={'like2'} size={20} color={'#484848'} />
-                <Text style={{ fontSize: 12 }}>123</Text>
+                <Text style={{ fontSize: 12 }}>{item.prase_count}</Text>
               </View>
             </View>
           </View>
@@ -81,7 +75,46 @@ function SwiperMainContainer(item) {
   )
 }
 export default class Eline extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      data:[],
+    }
+  }
+  fetchDate() {
+    fetch('http://192.168.1.151:3000/api/travels/travel/queryReleaseId', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'token':this.state.token
+      },
+      body: JSON.stringify({
+        user_id: this.state.user_id
+      })
+    }).then((response) => response.json())
+      .then((json) => {
+        // console.log(json)
+        this.setState({ data: json.data });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+  }
+  componentDidMount() {
+    storage.load('userInfo', (data) => {
+      this.setState({
+          username: data.username,
+          head: data.head,
+          token: data.token,
+          user_id: data.user_id
+      })
+      this.fetchDate()
+  })
+  };
 render(){
+  var data=this.state.data;
   return (
     <View style={{ flex: 1 }}>
       <ScrollView style={{ backgroundColor: "#43949B28", height: 10 }}
@@ -90,7 +123,7 @@ render(){
       >
         <View style={[styles.container]}>
           {
-            userDate.map((item) => {
+            data.map((item) => {
               return (
                 SwiperMainContainer(item)
               )

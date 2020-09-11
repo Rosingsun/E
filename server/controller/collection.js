@@ -30,7 +30,7 @@ const unCollect = (id) => {
  */
 const getAllCollects = (user_id) => {
     let sql = `SELECT a.*,b.* FROM collection AS a LEFT JOIN travels AS b ON a.answer_id = b.answer_id where a.user_id=${user_id}`
-    console.log(sql)
+    // console.log(sql)
     return exec(sql).then(row => {
       return row || []
     })

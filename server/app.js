@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const JwtUtil = require('./public/utils/jwt');
+var FileUpload = require('express-fileupload')
 
 var usersRouter = require('./routes/users');
 var followRouter = require('./routes/follow');
@@ -40,14 +41,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
+app.use(FileUpload());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/serverImage',express.static(path.join(__dirname,'serverImage')));
 
 app.use(function (req, res, next) {
-  if (req.url !== '/api/users/login' && req.url !== '/api/users/reg'&& req.url !== '/api/travels/travel/queryAllRelease' && req.url !=='/api/travels/comment/queryCommentId' && req.url !=='/api/travels/city/queryAllScenic_Spots' 
-  && req.url !=='/api/travels/route/queryRouteId' && req.url !=='/api/travels/route/queryAllRoute' && req.url !=='/api/travels/city/queryScenic_Spots' && req.url !=='/api/clock/getAllClock'){
+  if (req.url !== '/api/users/login' && req.url !== '/api/users/reg'&& req.url !=='/api/travels/comment/queryCommentId' 
+  && req.url !=='/api/travels/route/queryAllRoute' && req.url !=='/api/travels/city/queryScenic_Spots'){
       let token = req.headers.token;
       let jwt = new JwtUtil(token);
       let result = jwt.verifyToken();

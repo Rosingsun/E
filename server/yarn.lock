@@ -952,7 +952,7 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-express-fileupload@^1.1.6:
+express-fileupload@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/express-fileupload/download/express-fileupload-1.2.0.tgz#356c4dfd645be71ab9fb2f4e6d84eeb00d247979"
   integrity sha1-NWxN/WRb5xq5+y9ObYTusA0keXk=

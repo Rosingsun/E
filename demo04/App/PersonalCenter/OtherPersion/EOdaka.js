@@ -32,15 +32,16 @@ export default class Edaka extends Component {
   componentDidMount() {
     fetch('http://192.168.1.151:3000/api/clock/getAllClock', {
       method: 'POST',
-      credentials: "include",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-
+      body: JSON.stringify({
+        user_id: this.state.user_id,
+    })
     }).then((response) => response.json())
       .then((json) => {
-        console.log(json)
+        console(json)
         this.setState({ data: json.data });
       })
       .catch((error) => console.error(error))

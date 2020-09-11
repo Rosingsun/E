@@ -38,7 +38,7 @@ const queryAllRoute = () => {
 const queryRouteId = (user_id) => {
   let sql = `SELECT a.* , b.username ,c.longitude,c.latitude FROM create_route AS a 
   LEFT JOIN user AS b ON a.user_id=b.user_id
-  LEFT JOIN city AS c ON a.add_cityid=c.id WHERE a.user_id='${user_id}'`
+  LEFT JOIN city AS c ON a.add_cityid=c.id WHERE a.user_id=${user_id}`
   // console.log(sql)
   return exec(sql).then(row => {
     return row || []

@@ -20,7 +20,7 @@ const addClock = (user_id,city_id) => {
  */
 const getAllClock = (user_id) => {
     let sql = `SELECT a.*,b.* FROM clock AS a LEFT JOIN city AS b ON a.city_id = b.id where a.user_id=${user_id}`
-    console.log(sql)
+    // console.log(sql)
     return exec(sql).then(row => {
       return row || []
     })

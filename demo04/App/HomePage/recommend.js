@@ -30,24 +30,34 @@ export default class recommend extends Component {
       selectMultiItem:[],
     }
   }
-
-  componentDidMount() {
+  fetchDate() {
     fetch('http://192.168.1.151:3000/api/travels/travel/queryAllRelease', {
       method: 'POST',
-      credentials: "include",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'token': this.state.token
+        'token':this.state.token
       },
     }).then((response) => response.json())
       .then((json) => {
+        console.log(json)
         this.setState({ data: json.data });
       })
       .catch((error) => console.error(error))
       .finally(() => {
         this.setState({ isLoading: false });
       });
+  }
+  componentDidMount() {
+    storage.load('userInfo', (data) => {
+      this.setState({
+          username: data.username,
+          head: data.head,
+          token: data.token,
+          user_id: data.user_id
+      })
+      this.fetchDate()
+  })
   };
   render() {
     const { data, isLoading } = this.state;

@@ -18,6 +18,7 @@ import {
 import StarRating from 'react-native-star-rating';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { storage } from '../../Accessories/storage/index'
 // 用ART来画顶部的圆
 import {
     Surface, //  一个矩形可渲染的区域，是其他元素的容器
@@ -37,27 +38,6 @@ const biLi = width * scale / 1125;
 // 定义路径
 
 export default class dakaAll extends Component {
-
-    //全部打卡点
-    componentDidMount() {
-        fetch('http://192.168.1.151:3000/api/travels/city/queryAllScenic_Spots', {
-          method: 'POST',
-          credentials: "include",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-    
-        }).then((response) => response.json())
-          .then((json) => {
-            this.setState({ multiData: json.data });
-          })
-          .catch((error) => console.error(error))
-          .finally(() => {
-            this.setState({ isLoading: false });
-          });
-      };
-
     static defaultProps = {
         multiList: [
             {
@@ -104,7 +84,36 @@ export default class dakaAll extends Component {
             selectMultiItem: [],
         }
     };
-
+    //全部打卡点
+      fetchDate() {
+        fetch('http://192.168.1.151:3000/api/travels/city/queryAllScenic_Spots', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'token':this.state.token
+          },
+        }).then((response) => response.json())
+          .then((json) => {
+            // console.log(json)
+            this.setState({ data: json.data });
+          })
+          .catch((error) => console.error(error))
+          .finally(() => {
+            this.setState({ isLoading: false });
+          });
+      }
+      componentDidMount() {
+        storage.load('userInfo', (data) => {
+          this.setState({
+              username: data.username,
+              head: data.head,
+              token: data.token,
+              user_id: data.user_id
+          })
+          this.fetchDate()
+      })
+      };
 
     //消息框收回
     fadeIn = () => {
@@ -229,7 +238,7 @@ export default class dakaAll extends Component {
     }
 
     render() {
-
+        var data=this.state.data;
         var circlePath = Path()
             .moveTo(0, 70)
             .arc(Dimensions.get('window').width, 0, this.state.circlePathHeight);
@@ -275,33 +284,14 @@ export default class dakaAll extends Component {
                 <FlatList
                     style={{ paddingTop: 10, }}
                     showsVerticalScrollIndicator={false}
-                    data={[
-                        {
-                            picture: "./img/a.jpg",
-                            title: '西湖·一个小亭子',
-                            scenicSpot: "西湖景区",
-                            clock: "杜甫、李白、白居易也曾在这里打过卡"
-                        },
-                        {
-                            picture: "./img/a.jpg",
-                            title: '西湖·一个小亭子',
-                            scenicSpot: "西湖景区",
-                            clock: "杜甫、李白、白居易也曾在这里打过卡"
-                        },
-                        {
-                            picture: "./img/a.jpg",
-                            title: '西湖·一个小亭子',
-                            scenicSpot: "西湖景区",
-                            clock: "杜甫、李白、白居易也曾在这里打过卡"
-                        },
-                    ]}
+                    data={data}
                     renderItem={({ item }) =>
                         <View style={[styles.mainBox]}>
                             <Image style={{ height: '100%', width: 118 * biLi,borderTopLeftRadius:3,borderTopRightRadius:3 }} source={{
                                 uri: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2399377501,2221360822&fm=26&gp=0.jpg'
                             }} />
                             <View style={{ flexDirection: "column", justifyContent: "space-around", marginLeft: 15 }}>
-                                <Text style={[styles.title]}>{item.title}</Text>
+                                <Text style={[styles.title]}>{item.Name}</Text>
                                 <View style={{ width: 115 }}>
                                     <StarRating
                                         disabled={false}
@@ -312,10 +302,10 @@ export default class dakaAll extends Component {
                                         emptyStarColor={"#ffffff"}
                                         selectedStar={(rating) => this.onStarRatingPress(rating)}
                                     /></View>
-                                <Text style={[styles.scenicSpot]}>{item.scenicSpot}</Text>
+                                <Text style={[styles.scenicSpot]}>{item.Scenic_Spot}</Text>
                                 <TouchableOpacity
                                     style={styles.button}>
-                                    <Text style={[styles.clock]}>{item.clock}</Text>
+                                    <Text style={[styles.clock]}>{item.City}</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>

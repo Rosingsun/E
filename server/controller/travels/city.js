@@ -21,10 +21,10 @@ const queryScenic_Spots = (Name, City, Scenic_Spots, longitude,latitude) => {
         sql += `WHERE Scenic_Spots like '%${Scenic_Spots}%' `
     }
     if (longitude !== undefined) {
-        sql += `WHERE longitude like '%${longitude}%' `
+        sql += `WHERE longitude like %${longitude}% `
     }
     if (latitude !== undefined) {
-        sql += `WHERE latitude like '%${latitude}%' `
+        sql += `WHERE latitude like %${latitude}% `
     }
     // console.log(sql)
     return exec(sql).then(row => {
