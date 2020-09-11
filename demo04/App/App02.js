@@ -396,7 +396,7 @@ function MyStack() {
       <Stack.Screen name="ChatRecord" component={ChatRecord} />
       {/* 首页 */}
 
-      {/* <Stack.Screen name="research" component={research} /> */}
+      <Stack.Screen name="research" component={research} />
       {/* 搜索 */}
       <Stack.Screen name="exchange" component={exchange} />
       <Stack.Screen name="Discovery" component={Discovery} />

@@ -13,6 +13,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import ModalComp from './motaikuang';
 
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
@@ -29,21 +30,21 @@ class trade extends Component {
         OtherJob 0 为未完成，1为完成
       */
   render() {
-    function tradeBox(finish, MyJob, OtherJob, name, OplaceName, MplaceName) {
+    function tradeBox(finish, MyJob, OtherJob, Mname,Oname, OplaceName, MplaceName) {
       //交易是否已完成
       function finishYet(finish) {
         if (finish == 1) {
           return (
             <View style={{ alignItems: "center", flexDirection: "row", width: '30%', justifyContent: "flex-end" }}>
               <AntDesign name={'sync'} size={20} color={'#999999'} />
-              <Text style={{ fontSize: 10, color: "#484848", paddingLeft: 10 }}>已完成</Text>
+              <Text style={{ fontSize: 10, color: "#484848", paddingLeft: 6}}>已完成</Text>
             </View>
           )
         } else {
           return (
             <View style={{ alignItems: "center", flexDirection: "row", width: '30%', justifyContent: "flex-end" }}>
-              <Entypo name={'back-in-time'} size={20} color={'#999999'} />
-              <Text style={{ fontSize: 10, color: "#484848", paddingLeft: 10 }}>未完成</Text>
+              <Entypo name={'back-in-time'} size={25} color={'#999999'} />
+              <Text style={{ fontSize: 10, color: "#484848", paddingLeft: 6 }}>未完成</Text>
             </View>
           )
         }
@@ -52,7 +53,8 @@ class trade extends Component {
         if (finish == 1) {
           return (
             <View>
-              <Text style={[styles.sealCost]}>订单评价</Text>
+              {/* <Text style={[styles.sealCost]}>订单评价</Text> */}
+              <ModalComp/>
             </View>
           )
         } else {
@@ -69,7 +71,7 @@ class trade extends Component {
         if (finish == 1 && MyJob == 1) {
           return (
             <View style={{ alignItems: "center", flexDirection: "row", width: "25%", justifyContent: "flex-end" }}>
-              <Text style={{ fontSize: 12, color: "#999999", paddingRight: 5, }}>已履约</Text>
+              <Text style={{ fontSize: 12, color: "#999999", paddingRight: 3, }}>已履约</Text>
               <AntDesign name={'checkcircleo'} size={12} color={'#999999'} />
             </View>
             //交易完成，自己未履约
@@ -123,12 +125,12 @@ class trade extends Component {
         <View style={[styles.tradeMainBox]}>
           {/* 第一个用户信息框 */}
           <View >
-            <View style={{ paddingHorizontal: 10, marginTop: 5, flexDirection: "row", justifyContent: "space-between" }}>
-              <View style={{ flexDirection: "row" }}>
-                <Image style={{ height: 40, width: 40, borderRadius: 30 }} source={require('../img/a.png')} />
+            <View style={{ paddingHorizontal: 10,  flexDirection: "row", justifyContent: "space-between" }}>
+              <View style={{ flexDirection: "row", }}>
+                <Image style={{ height: 40, width: 40, borderRadius: 30,borderWidth:1,borderColor:'#707070', }} source={require('../img/a.png')} />
                 {/* 用户信息 */}
                 <View style={{ marginLeft: 5, justifyContent: "flex-end" }}>
-                  <Text style={{ fontSize: 15 }}>{name}</Text>
+                  <Text style={{ fontSize: 15 }}>{Oname}</Text>
                 </View>
               </View>
               {
@@ -136,9 +138,9 @@ class trade extends Component {
               }
             </View>
             {/* 第二行消息详情框 */}
-            <View style={{ width: '100%', justifyContent: "space-between", marginTop: 5 }}>
+            <View style={{ width: '100%', justifyContent: "space-between", marginTop:7}}>
               <View style={styles.dealD}>
-                <View style={{ width: '75%', height: 40, backgroundColor: "#EFEFEF", justifyContent: "center" }}>
+                <View style={{ width: '75%', paddingVertical:10,paddingHorizontal:20, backgroundColor: "#EFEFEF", justifyContent: "center",borderRadius:3 }}>
                   <Text style={{ fontSize: 15, color: "#999999", marginLeft: 10, }}>{OplaceName}</Text>
                 </View>
                 {
@@ -148,7 +150,7 @@ class trade extends Component {
             </View>
           </View>
           {/* 将下面的符号旋转90度 */}
-          <View style={{ width: '100%', alignItems: "center", marginTop: 3 }}>
+          <View style={{ width: '100%', alignItems: "center",marginTop:5}}>
             <View style={{ width: 20, transform: [{ rotate: "90deg" }] }}>
               <FontAwesome5 name={'exchange-alt'} size={15} color={'#999999'} />
             </View>
@@ -161,13 +163,13 @@ class trade extends Component {
               {
                 OtherYet(finish, OtherJob)
               }
-              <View style={{ width: '75%', height: 40, backgroundColor: "#EFEFEF", justifyContent: "center", alignItems: "flex-end" }}>
-                <Text style={{ fontSize: 15, color: "#999999", marginRight: 10 }}>{MplaceName}</Text>
+              <View style={{ width: '75%',paddingVertical:10,paddingHorizontal:20,  backgroundColor: "#EFEFEF", justifyContent: "center", alignItems: "flex-end",borderRadius:5,borderRadius:3 }}>
+                <Text style={{ fontSize: 15, color: "#999999", marginRight: 10,  }}>{MplaceName}</Text>
               </View>
             </View>
             {/* 用户信息 */}
-            <View style={{ paddingHorizontal: 10, flexDirection: "row", justifyContent: "space-between", marginTop: 5 }}>
-              <View style={{ alignItems: "center", flexDirection: "row", width: '50%', justifyContent: "space-around" }}>
+            <View style={{ paddingHorizontal: 10, flexDirection: "row", justifyContent: "space-between", marginTop:7 }}>
+              <View style={{ alignItems: "center", flexDirection: "row", width: '45%', justifyContent: "space-around" }}>
                 {
                   textType(finish)
                 }
@@ -176,9 +178,9 @@ class trade extends Component {
               </View>
               <View style={{ flexDirection: "row" }}>
                 <View style={{ marginLeft: 5, justifyContent: "flex-start" }}>
-                  <Text style={{ fontSize: 15, }}>{name}</Text>
+                  <Text style={{ fontSize: 15,marginRight:5 }}>{Mname}</Text>
                 </View>
-                <Image style={{ height: 40, width: 40, borderRadius: 30 }} source={require('../img/a.png')} />
+                <Image style={{ height: 40, width: 40, borderRadius: 30,borderWidth:1,borderColor:'#707070' }} source={require('../img/a.png')} />
                 {/* 用户信息 */}
               </View>
             </View>
@@ -190,13 +192,14 @@ class trade extends Component {
     return (
       <View style={[styles.container]}>
         {/* flatlist渲染层从这开始 */}
-        <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
+        <View style={{ paddingTop: 10, height: '100%', paddingBottom: 20 }}>
           <FlatList
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
             data={[
               {
-                name: 'JK&妹',
+                Oname: '杰哥:',
+                Mname: 'JK&妹:',
                 finish: 0,
                 MyJob: 1,
                 OtherJob: 0,
@@ -204,7 +207,8 @@ class trade extends Component {
                 MplaceName: "横店影视城",
               },
               {
-                name: 'JK&妹',
+                Oname: '杰哥:',
+                Mname: 'JK&妹:',
                 finish: 1,
                 MyJob: 1,
                 OtherJob: 0,
@@ -212,7 +216,8 @@ class trade extends Component {
                 MplaceName: "杭州市西湖风景区",
               },
               {
-                name: 'JK&妹',
+                Oname: '杰哥:',
+                Mname: 'JK&妹:',
                 finish: 0,
                 MyJob: 1,
                 OtherJob: 1,
@@ -220,7 +225,8 @@ class trade extends Component {
                 MplaceName: "杭州市西湖风景区",
               },
               {
-                name: 'JK&妹',
+                Oname: '杰哥:',
+                Mname: 'JK&妹:',
                 finish: 1,
                 MyJob: 0,
                 OtherJob: 1,
@@ -228,7 +234,8 @@ class trade extends Component {
                 MplaceName: "西溪国家湿地公园",
               },
               {
-                name: 'JK&妹',
+                Oname: '杰哥:',
+                Mname: 'JK&妹:',
                 finish: 1,
                 MyJob: 0,
                 OtherJob: 1,
@@ -236,7 +243,8 @@ class trade extends Component {
                 MplaceName: "杭州市西湖风景区",
               },
               {
-                name: 'JK&妹',
+                Oname: '杰哥:',
+                Mname: 'JK&妹:',
                 finish: 0,
                 MyJob: 1,
                 OtherJob: 1,
@@ -245,7 +253,7 @@ class trade extends Component {
               },
             ]}
             renderItem={({ item }) =>
-              tradeBox(item.finish, item.MyJob, item.OtherJob, item.name, item.OplaceName, item.MplaceName)
+              tradeBox(item.finish, item.MyJob, item.OtherJob, item.Mname, item.Oname, item.OplaceName, item.MplaceName)
             } />
         </View>
       </View>
@@ -259,12 +267,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#EFEFEF",
   },
   tradeMainBox: {
-    width: '90%',
-    marginLeft: '5%',
+    width: '94%',
+    marginLeft: '3%',
     backgroundColor: "#ffffff",
     borderRadius: 15,
-    marginTop: 15,
-    paddingBottom: 5
+    marginTop: 18,
+    paddingVertical: 6,
+    paddingHorizontal:15,
   },
   dealD: {
     width: '100%',
@@ -272,14 +281,16 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   dealEndChoice: {
-    width: "20%",
+    // width: "20%",
     color: "#999999",
     fontSize: 10,
     textAlign: "center",
     borderWidth: 1,
-    paddingTop: 2,
+    paddingVertical: 3,
+    paddingHorizontal:6,
     borderRadius: 3,
     borderColor: "#999999",
+
   },
   sealCost: {
     fontSize: 10,
