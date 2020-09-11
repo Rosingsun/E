@@ -101,9 +101,6 @@ export default class ProductionRoute extends Component {
             },
         ]
     };
-
-
-
     constructor(props) {
         super(props);
         this.state = {
@@ -121,11 +118,11 @@ export default class ProductionRoute extends Component {
         //如果找到同样的ID，返回
         if (item.select) {
             this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
-                return x === item.id;
+                return x === item.CcityName;
             }), 1);
             //找不到同样的id，则将其存入数组。
         } else {
-            this.state.selectMultiItem.push(item.id);
+            this.state.selectMultiItem.push(item.CcityName);
         }
         this.state.multiData[item.id].select = !item.select;
         this.setState({ multiData: this.state.multiData });
@@ -166,7 +163,6 @@ export default class ProductionRoute extends Component {
                         style={[styles.markRow, styles.markChecked]}
                         activeOpacity={1}
                     >
-                        {/* <TouchableWithoutFeedback> */}
                             <View style={[styles.Citystyle, { borderColor: "#fff" }]} >
                                 <View style={{ height: '100%', width: '100%' }}>
                                     <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={item.backImgSrc} />
@@ -174,7 +170,6 @@ export default class ProductionRoute extends Component {
                                     <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
                                 </View>
                             </View>
-                        {/* </TouchableWithoutFeedback> */}
                     </TouchableOpacity>
                 )
             }
@@ -197,13 +192,13 @@ export default class ProductionRoute extends Component {
                         <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
                             this.props.navigation.goBack()
                         }} />
-                        <Text style={{ fontSize: 20, color: '#000000',position:"absolute",width:'100%',textAlign:"center"}}>选择城市</Text>
+                        <Text style={{ fontSize: 20, color: '#000000',position:"absolute",zIndex:-1,width:'100%',textAlign:"center"}}>选择城市</Text>
                         <View style={{backgroundColor: "#6C9575", borderRadius: 15,justifyContent:'center',paddingHorizontal:10,alignItems:'flex-start'}}>
                             
                         <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15,justifyContent:'center',alignItems:'center' }}
                             onPress={() => {
-                                this.props.navigation.navigate("dakaPlaceChoice",{})
-                                // this._submitMultiPress()
+                                this.props.navigation.navigate("dakaPlaceChoice",{selectMultiItem:this.state.selectMultiItem})
+                                this._submitMultiPress()
                             }}
                         >下一步</Text>
                         <View style={{height:2,width:10,backgroundColor:'#FAAF3D',}}/>

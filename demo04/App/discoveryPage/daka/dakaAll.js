@@ -38,6 +38,26 @@ const biLi = width * scale / 1125;
 
 export default class dakaAll extends Component {
 
+    //全部打卡点
+    componentDidMount() {
+        fetch('http://192.168.1.151:3000/api/travels/city/queryAllScenic_Spots', {
+          method: 'POST',
+          credentials: "include",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+    
+        }).then((response) => response.json())
+          .then((json) => {
+            this.setState({ multiData: json.data });
+          })
+          .catch((error) => console.error(error))
+          .finally(() => {
+            this.setState({ isLoading: false });
+          });
+      };
+
     static defaultProps = {
         multiList: [
             {

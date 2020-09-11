@@ -19,6 +19,8 @@ export default class Edaka extends Component {
     super(props);
     this.state = {
       starCount: '2',
+      data:[],
+      isLoading:false,
     };
   }
 
@@ -27,6 +29,25 @@ export default class Edaka extends Component {
       starCount: rating
     });
   }
+  componentDidMount() {
+    fetch('http://192.168.1.151:3000/api/clock/getAllClock', {
+      method: 'POST',
+      credentials: "include",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+
+    }).then((response) => response.json())
+      .then((json) => {
+        console.log(json)
+        this.setState({ data: json.data });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+  };
 
   EdakaDetails = () => {
     return (
@@ -68,6 +89,7 @@ export default class Edaka extends Component {
   }
 
   render() {
+    const { data, isLoading } = this.state;
     return (
       <View style={[styles.container]}>
         <ScrollView Style={{height:'100%',width:'100%',backgroundColor:"red"}}>

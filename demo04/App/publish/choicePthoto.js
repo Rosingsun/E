@@ -43,7 +43,6 @@ export default class choicePhoto extends Component {
 }
 
   render() {
-    
     return (
       <View style={[styles.container]}>
         <Image source={{ uri: this.state.avatarSource }} style={{ height: 200, width: 200, backgroundColor: "red" }} />
@@ -65,10 +64,7 @@ export default class choicePhoto extends Component {
                 avatarSource: source
             });
             })
-          }
-          
-
-        >
+          }>
           <Text>111</Text>
         </TouchableWithoutFeedback>
       </View>
