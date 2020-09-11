@@ -167,6 +167,7 @@ export default class wishlist extends Component {
                 Data.map((item) => {
                   return (
                     <RadioButton value={'item3'}
+                      style={{}}
                     >
                       {
                       drawLine(item.longitude, item.latitude, item.place, item.id, this.state.mapBoxWidth)

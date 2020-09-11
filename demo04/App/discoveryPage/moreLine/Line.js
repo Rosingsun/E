@@ -26,6 +26,13 @@ export default class Line extends Component {
     super(props);
     this.state = {
       oldPostion: 0,
+      markers: [
+        {
+          longitude: 1,
+          latitude: 1,
+          title: 'my name',
+        }
+      ],
     }
   }
 
@@ -54,96 +61,69 @@ export default class Line extends Component {
     const { cityName } = this.props.route.params;
     var Data = [
       {
+        id: 0,
         place: '杭州上城区到下城区',
-        id: 'By:石原里美',
-        longitude: 116.465175,
-        latitude: 39.938522
+        name: '石原里美',
+        pointName:"西湖",
+        location: [
+          {
+            longitude: 121.467177,
+            latitude: 39.937523,
+          },
+          {
+            longitude: 111.467177,
+            latitude: 39.937523,
+          },
+        ],
       },
       {
-        place: '杭州西湖区到拱宸桥',
-        id: 'By:新垣结衣',
-        longitude: 117.465175,
-        latitude: 39.938522
-      },
-      {
-        place: '杭州拱宸桥到江干区',
-        id: 'By:桥本环奈',
-        longitude: 118.465175,
-        latitude: 39.938522
-      },
-      {
-        place: '杭州拱宸桥到江干区',
-        id: 'By:桥本环奈',
-        longitude: 111.465175,
-        latitude: 20.938522
-      },
-      {
-        place: '杭州拱宸桥到江干区',
-        id: 'By:桥本环奈',
-        longitude: 118.414175,
-        latitude: 39.928592
-      },
-      {
+        id: 0,
         place: '杭州上城区到下城区',
-        id: 'By:石原里美',
-        longitude: 116.465175,
-        latitude: 39.938522
-      },
-      {
-        place: '杭州西湖区到拱宸桥',
-        id: 'By:新垣结衣',
-        longitude: 117.465175,
-        latitude: 39.938522
-      },
-      {
-        place: '杭州拱宸桥到江干区',
-        id: 'By:桥本环奈',
-        longitude: 118.465175,
-        latitude: 39.938522
-      },
-      {
-        place: '杭州拱宸桥到江干区',
-        id: 'By:桥本环奈',
-        longitude: 111.465175,
-        latitude: 20.938522
-      },
-      {
-        place: '杭州拱宸桥到江干区',
-        id: 'By:桥本环奈',
-        longitude: 118.414175,
-        latitude: 39.928592
+        name: '石原里美22',
+        pointName:"西湖",
+        location: [
+          {
+            longitude: 121.467177,
+            latitude: 39.937523,
+          },
+          {
+            longitude: 101.467111,
+            latitude: 39.93754,
+          },
+        ],
       },
     ]
 
-    function drawLine(longitude, latitude, place, id) {
+    function drawLine(location, place, name) {
       return (
         <View style={{ height: 110, justifyContent: 'center', backgroundColor: '#6C9575', borderWidth: 5, borderColor: "#6C9575", marginBottom: 20, borderRadius: 3 }}>
           <MapView
-            zoomControlsVisible={false} //默认true,是否显示缩放控件,仅支持android
+            zoomControlsVisible={true} //默认true,是否显示缩放控件,仅支持android
+
             trafficEnabled={true} //默认false,是否显示交通线
-            baiduHeatMapEnabled={false} //默认false,是否显示热力图
+            baiduHeatMapEnabled={true} //默认false,是否显示热力图
             mapType={MapTypes.NORMAL} //地图模式,NORMAL普通 SATELLITE卫星图
-            zoomGesturesEnabled={false}//允许手势缩放
-            scrollGesturesEnabled={false}//允许拖动
-            zoom={40} //缩放等级,默认为10
+            zoomGesturesEnabled={true}//允许手势缩放
+            scrollGesturesEnabled={true}//允许拖动
+            // markers={{longitude: location.longitude, latitude: location.longitude}}
+            zoom={20} //缩放等级,默认为10
             //根据不同传入值 更换地图中心位置
-            center={{ longitude: longitude, latitude: latitude }}
-            // center={20} // 地图中心位置
+            center={{ longitude: location[0].longitude, latitude: location[0].latitude }}
             style={{ width: width * 0.9, height: 100 }}>
-            <Polyline
-              stroke={{ width: 5, color: 'AA000000' }}
-              points={[
-                { longitude: longitude + 0.00001, latitude: latitude + 0.00002 },
-                { longitude: longitude + 0.00002, latitude: latitude + 0.00003 },
-                { longitude: longitude + 0.00003, latitude: latitude + 0.00001 },
-                { longitude: longitude + 0.00004, latitude: latitude + 0.00002 },
-              ]}
-            />
+            {
+              location.map((item) => {
+                return (
+                  <Marker
+                    title={item.pointName}
+                    location={{ longitude: item.longitude, latitude: item.latitude }} />
+                )
+              })
+            }
           </MapView>
 
           {/* <Image style={{ width: 371, height: 104 }} source={require('./photo/hangzhou.jpg')} /> */}
           <Text style={styles.placeStyle}>{place}</Text>
-          <Text style={styles.idStyle}>{id}</Text>
+          <Text style={styles.idStyle}>By:{name}</Text>
         </View>
       )
     }
@@ -151,24 +131,22 @@ export default class Line extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.Top}>
-          <View style={ styles.nav_container }>
-            <AntDesign name={'left'} size={25} color='#000000'  onPress={() => {
+          <View style={styles.nav_container}>
+            <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
               this.props.navigation.goBack()
             }} />
-            <Text style={{  color: "#000", fontSize: 20,position:"absolute",width:'100%',textAlign:"center"}}>线路</Text>
+            <Text style={{ color: "#000", fontSize: 20, position: "absolute", width: '100%', textAlign: "center" }}>线路</Text>
           </View>
         </View>
         <View style={styles.list}>
-
           <ScrollView
             style={{ paddingTop: 40, }}
             onScroll={(event) => this._onScroll(event)}
-            showsVerticalScrollIndicator={false}
-          >
+            showsVerticalScrollIndicator={false}>
             <FlatList
               data={Data}
               showsVerticalScrollIndicator={false}
-              renderItem={({ item }) => drawLine(item.longitude, item.latitude, item.place, item.id)}
+              renderItem={({ item }) => drawLine(item.location, item.place, item.name)}
             />
           </ScrollView>
 
@@ -188,13 +166,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#EFEFEF',
   },
   Top: {
-   
-      height: 78,
-      width: "100%",
-      backgroundColor: "#fff",
-      borderBottomLeftRadius: 15,
-      borderBottomRightRadius: 15,
-      elevation: 6,
+
+    height: 78,
+    width: "100%",
+    backgroundColor: "#fff",
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+    elevation: 6,
 
   },
   nav_container: {
@@ -202,7 +180,7 @@ const styles = StyleSheet.create({
     marginTop: '8%',
     flexDirection: "row",
     width: "94%",
-    marginLeft:'3%',
+    marginLeft: '3%',
     justifyContent: "space-between",
     alignItems: "center",
   },
@@ -233,7 +211,7 @@ const styles = StyleSheet.create({
     color: '#000',
     // fontWeight: '200',
     top: 3,
-    right:3,
+    right: 3,
   },
   topStyle: {
     height: 78,
@@ -241,8 +219,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     fontWeight: '200',
-    width:'60%',
-    backgroundColor:"red",
+    width: '60%',
+    backgroundColor: "red",
     borderBottomRightRadius: 15,
     borderBottomLeftRadius: 15,
     elevation: 10

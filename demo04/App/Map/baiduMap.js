@@ -114,18 +114,18 @@ export default class BaiduMap extends Component {
             baiduHeatMapEnabled: false,
             mapType: MapTypes.NORMAL,
             index: 0,
-            zoom: 19,
+            zoom: 1,
             center: {
-                longitude: ENTRIES1[0].longitude,
-                latitude: ENTRIES1[0].latitude,
+                longitude: 0,
+                latitude: 0,
             },
-            markers: [
-                {
-                    longitude: ENTRIES1[0].longitude,
-                    latitude: ENTRIES1[0].latitude,
-                    title: 'my name',
-                }
-            ],
+            // markers: [
+            //     {
+            //         longitude: ENTRIES1[0].longitude,
+            //         latitude: ENTRIES1[0].latitude,
+            //         title: 'my name',
+            //     }
+            // ],
             clickMessage: '10221',
             poiMessage: '109',
         };
@@ -225,18 +225,16 @@ export default class BaiduMap extends Component {
                     mapType={this.state.mapType} //地图模式,NORMAL普通 SATELLITE卫星图
                     zoom={this.state.zoom} //缩放等级,默认为10
                     center={this.state.center} // 地图中心位置
-                    markers={this.state.markers} //地图多个标记点
+                    // markers={this.state.markers} //地图多个标记点
                     onMarkerClick={(e) => { //标记点点击事件
                         console.log(e)
                     }}
-                    style={styles.map}
-                >
-                    {/* 用来画点 */}
+                    style={styles.map}>
                     {
                         ENTRIES1.map((item) => {
                             return (
                                 <Marker
-                                    title='中心4'
+                                    title={item.title}
                                     location={{ longitude: item.longitude, latitude: item.latitude }} />
                             )
                         })

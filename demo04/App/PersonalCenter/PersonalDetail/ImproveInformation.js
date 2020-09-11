@@ -37,6 +37,8 @@ let choiceTime = [
     },
 ];
 
+var choiceCity;
+var selectMultiItem;
 export default class improveInformation extends Component {
     constructor(props) {
         super(props);
@@ -45,8 +47,12 @@ export default class improveInformation extends Component {
             turnOff: false,
             preTime: "1天3",
             grandes: 50,
+            create_route:'',
+            remarks:'',
+
         }
     }
+
     componentDidMount() {
         storage.load('userInfo', (data) => {
             this.setState({
@@ -57,39 +63,40 @@ export default class improveInformation extends Component {
             })
         })
     }
-    _onClickCreateroute = () => {
-        var navigation = this.props.navigation;
-        fetch('http://192.168.1.151:3000/api/travels/route/create_route', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'token': this.state.token,
-            },
-            body: JSON.stringify({
-                choose_city: this.state.content,
-                user_id: this.state.user_id,
-                add_cityid: this.state.add_cityid,
-                route_name: this.state.username,
-                expected_duration: this.state.expected_duration,
-                remarks: this.state.remarks
-
-            })
-        }).then(function (res) {
-            return res.json();
-        }).then(function (json) {
-            if (json.errno == 0) {
-                alert("保存成功")
-            } else if (json.errno == -1) {
-                alert("保存失败")
-            }
-        })
-    }
     render() {
         const { navigation, route } = this.props;
-        var choiceCity = route.params.choiceCity;
-        var selectMultiItem = route.params.selectMultiItem;
+        choiceCity = route.params.choiceCity;
+        selectMultiItem = route.params.selectMultiItem;
+        const _onClickCreateroute = () => {
+            var navigation = this.props.navigation;
+            fetch('http://192.168.1.151:3000/api/travels/route/create_route', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'token': this.state.token,
+                },
+                body: JSON.stringify({
+                    choose_city: choiceCity,
+                    user_id: this.state.user_id,
+                    add_cityid: selectMultiItem,
+                    route_name: this.state.route_name,
+                    expected_duration: this.state.preTime,
+                    remarks: this.state.remarks
+                })
+            }).then(function (res) {
+                return res.json();
+            }).then(function (json) {
+                if (json.errno == 0) {
+                    alert("保存成功")
+                } else if (json.errno == -1) {
+                    alert("保存失败")
+                }
+            })
+        }
         return (
+
+
             <View style={styles.container}>
                 <View style={styles.Top}>
                     <AntDesign name={'left'} size={32} color='#000000' onPress={() => {
@@ -98,6 +105,7 @@ export default class improveInformation extends Component {
                     <Text style={{ fontSize: 20, color: '#000000', marginLeft: '12%' }}>完善信息</Text>
                     <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, padding: 2, paddingHorizontal: 5 }}
                         onPress={() => {
+                            _onClickCreateroute();
                             this.props.navigation.navigate("bottomTab")
                         }}
                     >完成(3/3)</Text>
@@ -107,6 +115,9 @@ export default class improveInformation extends Component {
                         <Text style={{ backgroundColor: "#2F3843", color: "#fff", lineHeight: 40, borderRadius: 20, paddingHorizontal: 12 }}>线路名称</Text>
                         <TextInput
                             style={{ width: '65%', height: 40, backgroundColor: "#fff", marginLeft: 10, borderRadius: 3 }}
+                            onChangeText={(text)=>{
+                                this.setState({route_name:text})
+                            }}
                         ></TextInput>
                     </View>
                     <View style={{ flexDirection: "row", width: '94%', marginTop: 15, marginLeft: '3%' }}>
@@ -160,6 +171,9 @@ export default class improveInformation extends Component {
                         <TextInput
                             placeholder="nini"
                             style={{ backgroundColor: "#efefef", height: 90 }}
+                            onChangeText={(text)=>{
+                                this.setState({remarks:text})
+                            }}
                         />
                     </View>
                 </View>
@@ -167,6 +181,8 @@ export default class improveInformation extends Component {
         );
     }
 }
+
+
 
 const styles = StyleSheet.create({
     container: {

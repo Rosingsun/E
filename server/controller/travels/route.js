@@ -17,29 +17,38 @@ const create_route = (choose_city,add_cityid,route_name,expected_duration,remark
     })
   }
 
-  /**
+ /**
+ * 查询全部路线坐标
+ * @param {Number} 路线坐标
+ */
+const queryAllRoute = () => {
+    let sql = `SELECT a.* , b.username ,c.longitude,c.latitude FROM create_route AS a 
+    LEFT JOIN user AS b ON a.user_id=b.user_id
+    LEFT JOIN city AS c ON a.add_cityid=c.id`
+    // console.log(sql)
+    return exec(sql).then(row => {
+      return row || []
+    })
+  }
+
+ /**
  * 根据路线user_id查询路线信息
  * @param {Number} 路线id
  */
 const queryRouteId = (user_id) => {
-    let sql = `SELECT a.* , b.username ,c.longitude,c.latitude FROM create_route AS a 
-    LEFT JOIN user AS b ON a.user_id=b.user_id
-    LEFT JOIN city AS c ON a.add_cityid=c.id WHERE a.user_id=${user_id}`
-    return exec(sql).then(row => {
-      return row[0] || []
-    })
-  }
-
-  /**
- * 查询全部路线坐标
- * @param {Number} 路线坐标
- */
-
-
+  let sql = `SELECT a.* , b.username ,c.longitude,c.latitude FROM create_route AS a 
+  LEFT JOIN user AS b ON a.user_id=b.user_id
+  LEFT JOIN city AS c ON a.add_cityid=c.id WHERE a.user_id='${user_id}'`
+  // console.log(sql)
+  return exec(sql).then(row => {
+    return row || []
+  })
+}
   
   
   
 module.exports={
     create_route,
     queryRouteId,
+    queryAllRoute,
 }
