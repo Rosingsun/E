@@ -97,6 +97,13 @@ const queryReleaseId = (user_id) => {
   })
 }
 
+const queryReleaseanswerId = (answer_id) => {
+  let sql = `SELECT * FROM travels WHERE answer_id=${answer_id}`
+  return exec(sql).then(row => {
+    return row || []
+  })
+}
+
 
   module.exports = {
     release,
@@ -105,5 +112,6 @@ const queryReleaseId = (user_id) => {
     queryAllRelease,
     queryReleaseLocation,
     queryReleaseUserId,
-    queryReleaseId
+    queryReleaseId,
+    queryReleaseanswerId
   }

@@ -8,7 +8,7 @@ const {exec} = require('../db/mysql')
  */
 
 const addFollow =(user_id,followed_user) =>{
-    let querySql = `SELECT * from follow where followed_user = '${followed_user}'`
+    let querySql = `SELECT * from follow where user_id = ${user_id} AND followed_user = ${followed_user}`
     let isHaveUid = exec(querySql).then(row=>{
         if(row.length > 0){
             return false
@@ -35,7 +35,7 @@ const addFollow =(user_id,followed_user) =>{
  */
 
 const unFollow = (followed_user) => {
-    let sql = `DELETE FROM follow WHERE followed_user = ${followed_user}`
+    let sql = `DELETE FROM follow WHERE user_id=${user_id} AND followed_user = ${followed_user}`
     return exec(sql).then(row => {
       return row || []
     })
@@ -58,7 +58,7 @@ const getFans = (followed_user) => {
     let rowData = row || []
     let resultData = {
       row: rowData,
-      count: count
+      count2: count
     }
     return resultData
   })
@@ -81,7 +81,7 @@ const getFollow = (user_id) => {
     let rowData = row || []
     let resultData = {
       row: rowData,
-      count: count
+      count1: count
     }
     return resultData
   })

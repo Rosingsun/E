@@ -36,6 +36,7 @@ export default class Edaka extends Component {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'token':this.state.token
       },
       body: JSON.stringify({
         user_id:this.state.user_id

@@ -26,8 +26,8 @@ export default class recommend extends Component {
     this.state = {
       isLoading: true,
       data: [],
-      imgData:[],
-      selectMultiItem:[],
+      imgData: [],
+      selectMultiItem: [],
     }
   }
   fetchDate() {
@@ -36,7 +36,7 @@ export default class recommend extends Component {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'token':this.state.token
+        'token': this.state.token
       },
     }).then((response) => response.json())
       .then((json) => {
@@ -51,13 +51,13 @@ export default class recommend extends Component {
   componentDidMount() {
     storage.load('userInfo', (data) => {
       this.setState({
-          username: data.username,
-          head: data.head,
-          token: data.token,
-          user_id: data.user_id
+        username: data.username,
+        head: data.head,
+        token: data.token,
+        user_id: data.user_id
       })
       this.fetchDate()
-  })
+    })
   };
   render() {
     const { data, isLoading } = this.state;
@@ -66,21 +66,22 @@ export default class recommend extends Component {
       let num = Math.random() * 150 + 110;
       return (num)
     }
-    function _picList(id, choice, username, head, title, location, showUserImg, prase_count) {
+    function _picList(id, choice, username, head, title, location, showUserImg, prase_count, item) {
       if (id % 2 == 0 & choice == 1) {
         return (
           <View style={[styles.showContainer]}>
             {/* 图片框 */}
             <TouchableWithoutFeedback
               onPress={() => {
-                navigation.push("MainText", { data: data[id] })
+                console.log(item.showUserImg)
+                navigation.navigate("MainText", { data: item })
               }}
             >
               <Image style={{ height: randomNum(), width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg.split(',')[0] }} />
-              </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback>
             {/* 定位 */}
             <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
-              <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'}/>
+              <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
               {location}
             </Text>
             {/* 用户发言 */}
@@ -111,7 +112,9 @@ export default class recommend extends Component {
             {/* 图片框 */}
             <TouchableWithoutFeedback
               onPress={() => {
-                navigation.push("MainText", { data: data[id] })
+                // console.log(item.showUserImg)
+                navigation.navigate("MainText", { data: item })
+
               }}>
               <Image style={{ height: randomNum(), width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg }} />
             </TouchableWithoutFeedback>
@@ -142,7 +145,7 @@ export default class recommend extends Component {
         )
       }
     }
-    
+
     return (
       <View style={{ backgroundColor: "#EFEFEF", borderRadius: 200, }}>
         <View style={{ flexDirection: "row", width: "94%", marginLeft: '3%' }}>
@@ -155,7 +158,7 @@ export default class recommend extends Component {
                 data={data}
                 keyExtractor={({ id }, index) => id}
                 renderItem={({ item }) =>
-                  _picList(item.answer_id, 1, item.username, item.head, item.title, item.location, item.showUserImg, item.prase_count)
+                  _picList(item.answer_id - 1, 1, item.username, item.head, item.title, item.location, item.showUserImg, item.prase_count, item)
                 }
               />
             </View>
@@ -167,7 +170,7 @@ export default class recommend extends Component {
                 numColumns={true}
                 data={data}
                 renderItem={({ item }) =>
-                  _picList(item.answer_id, 2, item.username, item.head, item.title, item.location, item.showUserImg, item.prase_count)
+                  _picList(item.answer_id - 1, 2, item.username, item.head, item.title, item.location, item.showUserImg, item.prase_count, item)
                 }
               />
             </View>
@@ -204,6 +207,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 8,
     color: "#484848",
-  }, 
+  },
 });
 

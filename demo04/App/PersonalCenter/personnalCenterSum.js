@@ -13,6 +13,7 @@ import { PersonalTab } from "../App02";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import {storage} from '../Accessories/storage/index'
+import { itemWidth } from '../discoveryPage/RowThings/SliderEntry';
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
@@ -21,21 +22,56 @@ export default class PersonalCenterSum extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: '',
-            PersonalSignature: '',
-            head: '',
             scrollowAble: true,
+            data:[],
+            data1:[]
         }
     }
 
+    fetchDate(){
+        fetch('http://192.168.1.151:3000/api/follow/getFollow', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'token':this.state.token
+          },
+          body: JSON.stringify({
+            user_id:this.state.user_id
+        })
+        }).then((response) => response.json())
+          .then((json) => {
+            // console.log(json)
+            this.setState({ data: json.data });
+          })
+          .catch((error) => console.error(error))
+      fetch('http://192.168.1.151:3000/api/follow/getFans', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'token':this.state.token
+          },
+          body: JSON.stringify({
+            followed_user:this.state.user_id
+        })
+        }).then((response) => response.json())
+          .then((json) => {
+            // console.log(json)
+            this.setState({ data1: json.data });
+          })
+          .catch((error) => console.error(error))
+        }
     componentDidMount() {
         storage.load('userInfo', (data) => {
             this.setState({
                 username:data.username,
                 PersonalSignature:data.PersonalSignature,
                 head:data.head,
+                user_id:data.user_id,
+                token:data.token
             })
-
+            this.fetchDate()
           })
         }
 
@@ -48,6 +84,8 @@ export default class PersonalCenterSum extends Component {
         }
     }
     render() {
+        const data = this.state.data
+        const data1 = this.state.data1
         return (
             <ScrollView
                 onScroll={(event) => this._onScroll(event)}
@@ -81,7 +119,7 @@ export default class PersonalCenterSum extends Component {
                                     }}
                                 />
                                 <Text style={{ fontSize: 20 }}>{this.state.username}</Text>
-                                <Text style={{ color: '#999999', fontSize: 15, }}>{this.state.PersonalSignature}2312</Text>
+                                <Text style={{ color: '#999999', fontSize: 15, }}>{this.state.PersonalSignature}</Text>
                             </View>
                             <View style={{ width: '60%', alignItems: "flex-end", paddingRight: 20, }}>
                                 <View style={{ position: "absolute", top: 5, right: 0, backgroundColor: "#999999", width: 65, paddingLeft: 5, paddingVertical: 5, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, }}>
@@ -98,8 +136,8 @@ export default class PersonalCenterSum extends Component {
                                         }}
                                     >LV2  查看收益</Text>
                                     <View style={{ flexDirection: "row" }}>
-                                        <Text style={[styles.textStyle]}>20关注</Text>
-                                        <Text style={[styles.textStyle]}>20粉丝</Text>
+                                    <Text style={[styles.textStyle]}>{data.count1}关注</Text>
+                                        <Text style={[styles.textStyle]}>{data1.count2}粉丝</Text>
                                     </View>
                                 </View>
                             </View>

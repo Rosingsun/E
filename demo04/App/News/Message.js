@@ -14,8 +14,10 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import { storage } from '../Accessories/storage//index';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
+
 // const Message = ({ navigation }) => {
 const Item = ({ item, onPress, style }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item]}>
@@ -68,8 +70,42 @@ export default class Message extends Component {
       selectedId: null,
       multiData: this.props.multiList,
       selectMultiItem: [],
+      data:[],
     }
   }
+
+  fetchDate(){
+    fetch('http://192.168.1.151:3000/api/message/getAllmessage', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'token':this.state.token
+      },
+      body: JSON.stringify({
+        ly_for_name:this.state.username
+    })
+    }).then((response) => response.json())
+      .then((json) => {
+        // console.log(json)
+        this.setState({ data: json.data });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+  }
+  componentDidMount() {
+    storage.load('userInfo', (data) => {
+      this.setState({
+          username: data.username,
+          head: data.head,
+          token: data.token,
+          user_id: data.user_id
+      })
+      this.fetchDate()
+  })
+  };
 
   //多选
   _selectMultiItemPress(item) {
@@ -150,38 +186,14 @@ export default class Message extends Component {
     );
   };
   render() {
+    const data = this.state.data
     return (
       <View style={[styles.container]}>
         {/* 顶部输入框 */}
         {/* flatlist渲染层从这开始 */}
         <View style={{ paddingTop: 0, height: '100%', paddingBottom: 10 }}>
           <FlatList
-            data={[
-              {
-                id: 1,
-                name: 'JK&妹',
-                time: "2020/08/12",
-                userHead: require('../img/a.png'),
-                sendContainer: "交个朋21321友吧",
-                messageNum: 13,
-              },
-              {
-                id: 2,
-                name: 'JK&妹',
-                time: "2020/08/12",
-                userHead: require('../img/a.png'),
-                sendContainer: "交个朋友吧",
-                messageNum: 13,
-              },
-              {
-                id: 3,
-                name: 'JK&妹',
-                time: "2020/08/12",
-                userHead: require('../img/a.png'),
-                sendContainer: "交个朋友吧",
-                messageNum: 13,
-              },
-            ]}
+            data={data}
             renderItem={({ item }) =>
               <TouchableNativeFeedback
                 onLongPress={() => {
@@ -203,7 +215,7 @@ export default class Message extends Component {
                 }}
 
                 onPress={() => {
-                  this.props.navigation.navigate("chating", { userName: item.name });
+                  this.props.navigation.navigate("chating", { userName: item.ly_name });
                 }}
               >
                 <View style={{ justifyContent: "center", }}>
@@ -228,12 +240,12 @@ export default class Message extends Component {
                       <Image style={{ height: 45, width: 45, borderRadius: 30 }} source={require('../img/a.png')} />
                       {/* 用户信息 */}
                       <View style={{ flexDirection: "column", marginLeft: 10, justifyContent: "space-between", width: '65%' }}>
-                        <Text style={{ fontSize: 15 }}>{item.name}</Text>
+                        <Text style={{ fontSize: 15 }}>{item.ly_name}</Text>
                         {/* 用户发送未读消息 */}
-                        <Text style={{ color: "#999999", width: '100%', fontSize: 12 }} numberOfLines={3}>{item.sendContainer}</Text>
+                        <Text style={{ color: "#999999", width: '100%', fontSize: 12 }} numberOfLines={3}>{item.ly_content}</Text>
                       </View>
                       <View style={{ position: "absolute", right: 30, top: 15, alignItems: "flex-end" }}>
-                        <Text style={{ fontSize: 10, color: "#999999" }}>{item.time}</Text>
+                        <Text style={{ fontSize: 10, color: "#999999" }}>{item.ly_date}</Text>
                         <Text style={[styles.userSend]}>1</Text>
                       </View>
                     </View>

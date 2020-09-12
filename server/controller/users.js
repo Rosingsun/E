@@ -101,10 +101,19 @@ const updataPassword = (oldPassword, newPassword) => {
     })
 } 
 
+//排行榜积分从大到小
+const integral =() =>{
+    let sql = 'SELECT * FROM  user WHERE 1 = 1 ORDER BY integral DESC'
+    return exec(sql).then(row=>{
+        return row || []
+    })
+}
+
 module.exports = {
     login,
     reg,
     queryAllUsers,
     updataPersonal,
     updataPassword,
+    integral,
 }

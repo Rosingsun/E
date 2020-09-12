@@ -7,9 +7,9 @@ const {
 const { nowDate } = require("../public/utils/main")
 
 router.post('/addLiuyan', (req, res, next) => {
-    const {ly_name,ly_content,ly_for_name} = req.body
+    const {ly_name,ly_content,ly_for_name,ly_head} = req.body
     const ly_date = nowDate()
-    const result = addLiuyan(ly_name, ly_date, ly_content, ly_for_name)
+    const result = addLiuyan(ly_name, ly_date, ly_content, ly_for_name,ly_head)
     const resultData = result.then(data => {
       if (data) {
         return new SuccessModel(data)
@@ -37,8 +37,8 @@ router.post('/addReply', (req, res, next) => {
   })
 
   router.post('/getAllmessage', (req, res, next) => {
-    const {ly_name } = req.body
-    const result = getAllmessage(ly_name)
+    const {ly_for_name } = req.body
+    const result = getAllmessage(ly_for_name)
     const resultData = result.then(data => {
       if (data) {
         return new SuccessModel(data)

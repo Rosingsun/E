@@ -54,7 +54,7 @@ export default class MainText extends Component {
       },
     }).then((response) => response.json())
       .then((json) => {
-        // console.log(json.data)
+        console.log(json.data)
         this.setState({ data: json.data });
       })
       .catch((error) => console.error(error))
@@ -170,9 +170,9 @@ export default class MainText extends Component {
                 <Text style={{ fontSize: 15 }}>{route.params.data.words}</Text>
               </View>
               <View style={{ backgroundColor: "pink", width: '96%', marginLeft: '2%', flexDirection: "row", flexWrap: "wrap" }}>
-              <Lightbox springConfig={{ tension: 15, friction: 7 }}
+              {/* <Lightbox springConfig={{ tension: 15, friction: 7 }}
       swipeToDismiss={false}
-      renderContent={renderCarousel}>
+      renderContent={renderCarousel}> */}
                 {
                   imgData.map((item) => {
                     return (
@@ -182,7 +182,7 @@ export default class MainText extends Component {
                     )
                   })
                 }
-                </Lightbox>
+                {/* </Lightbox> */}
               </View>
               {/* 九宫格底部的定位 */}
               <View style={{ width: "100%", flexDirection: 'row', justifyContent: 'space-around' }}>

@@ -111,7 +111,7 @@ export default class Exianlu extends Component {
       <View style={[styles.container]}>
         <TouchableWithoutFeedback
           onPress={() => {
-            // this.props.navigation.navigate("ProductionRoute")
+            this.props.navigation.navigate("ProductionRoute")
           }}
         >
           <View style={{ marginTop: 10, width: '100%', height: 20, flexDirection: "row", justifyContent: "center" }}>

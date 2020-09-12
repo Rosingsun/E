@@ -16,6 +16,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { storage } from '../../Accessories/storage//index';
 import Picker from 'react-native-picker';
 import { SceneView } from 'react-navigation';
 //底部选择框
@@ -52,24 +53,50 @@ export default class dakaPlaceChoice extends Component {
       starCount: rating,
     });
   }
-  componentDidMount() {
+
+  fetchData() {
     fetch('http://192.168.1.151:3000/api/travels/city/queryAllScenic_Spots', {
       method: 'POST',
       credentials: "include",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'token': this.state.token
       },
 
     }).then((response) => response.json())
       .then((json) => {
+        // console.log(json)
         this.setState({ multiData: json.data });
       })
       .catch((error) => console.error(error))
       .finally(() => {
         this.setState({ isLoading: false });
       });
-  };
+  }
+  componentDidMount() {
+    storage.load('userInfo', (data) => {
+      this.setState({
+          username: data.username,
+          head: data.head,
+          token: data.token,
+          user_id: data.user_id
+      })
+      this.fetchData()
+    })  
+  }
+    //多选
+   _selectMultiItemPress(item) {
+      if (item.select) {
+        this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
+          return x - 1 === item.id - 1;
+        }), 1);
+      } else {
+        this.state.selectMultiItem.push(item.id);
+      }
+      this.state.multiData[item.id].select = !item.select;
+      this.setState({ multiData: this.state.multiData });
+    }
 
   _pointChoice(item, color) {
     return (
@@ -116,18 +143,7 @@ export default class dakaPlaceChoice extends Component {
       </View>
     )
   }
-  //多选
-  _selectMultiItemPress(item) {
-    if (item.select) {
-      this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
-        return x - 1 === item.id - 1;
-      }), 1);
-    } else {
-      this.state.selectMultiItem.push(item.id);
-    }
-    this.state.multiData[item.id].select = !item.select;
-    this.setState({ multiData: this.state.multiData });
-  }
+
   //递交 选中 
   _submitMultiPress() {
     alert(`选中了${JSON.stringify(this.state.selectMultiItem)}`)
@@ -136,6 +152,8 @@ export default class dakaPlaceChoice extends Component {
   _renderMultiMark() {
     let multiData = this.state.multiData;
     let len = multiData.length;
+    // let len=0;
+    // console.log(multiData.length)
     let menuArr = [];
     for (let i = 0; i < len; i++) {
       let item = multiData[i];
@@ -143,7 +161,7 @@ export default class dakaPlaceChoice extends Component {
         menuArr.push(
           //选中状态
           <TouchableOpacity
-            onPress={() => this._selectMultiItemPress(item)}>
+            onPress={() => _selectMultiItemPress(item)}>
             {this._pointChoice(item, '#999')}
           </TouchableOpacity>
         )
@@ -151,7 +169,7 @@ export default class dakaPlaceChoice extends Component {
         menuArr.push(
           // 未选中状态
           <TouchableOpacity
-            onPress={() => this._selectMultiItemPress(item)}>
+            onPress={() => _selectMultiItemPress(item)}>
             {this._pointChoice(item, '#6C9575')}
           </TouchableOpacity>
         )
@@ -175,7 +193,7 @@ export default class dakaPlaceChoice extends Component {
             <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
               this.props.navigation.goBack()
             }} />
-            <Text style={{ fontSize: 20, color: '#000000', position: "absolute", width: '100%', zIndex:-1,textAlign: "center" }}
+            <Text style={{ fontSize: 20, color: '#000000', position: "absolute", width: '100%', zIndex: -1, textAlign: "center" }}
             >选择城市</Text>
             <View style={{ backgroundColor: "#6C9575", borderRadius: 15, justifyContent: 'center', paddingHorizontal: 10, alignItems: 'flex-start' }}>
               <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, justifyContent: 'center', alignItems: 'center' }}

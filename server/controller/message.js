@@ -6,11 +6,12 @@ const {exec} = require('../db/mysql')
  * @param {*} ly_content 留言内容
  * @param {*} ly_date 创建时间
  * @param {*} ly_for_name 被留言人name
+ * @param {*} ly_head 留言人头像
  */
 const addLiuyan = (ly_name, ly_date, ly_content, ly_for_name) => {
-    let sql = `INSERT INTO liuyan (ly_name,ly_for_name,ly_content,ly_date) 
-    VALUES ( '${ly_name}' , '${ly_for_name}', '${ly_content}', '${ly_date}')`
-    console.log(sql)
+    let sql = `INSERT INTO liuyan (ly_name,ly_for_name,ly_content,ly_date,ly_head) 
+    VALUES ( '${ly_name}' , '${ly_for_name}', '${ly_content}', '${ly_date}','${ly_head}')`
+    // console.log(sql)
       return exec(sql).then(row =>{
           return row || {}
       })
@@ -33,10 +34,10 @@ const addReply = (lr_name, lr_date, lr_content, lr_for_words) => {
 
 /**
  * 获取当前用户所有私信信息
- * @param {*} ly_name 当前用户id
+ * @param {*} ly_for_name 当前用户id
  */
-const getAllmessage = (ly_name) => {
-    let sql = `SELECT * FROM liuyan where ly_name='${ly_name}'`
+const getAllmessage = (ly_for_name) => {
+    let sql = `SELECT * FROM liuyan where ly_for_name='${ly_for_name}'`
     return exec(sql).then(row => {
       return row || []
     })

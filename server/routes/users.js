@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const JwtUtil = require('../public/utils/jwt');
 const { SuccessModel, ErrorModel } = require("../model/resModel");
-const {login,updataPassword,updataPersonal,reg } = require("../controller/users")
+const {login,updataPassword,updataPersonal,reg,integral } = require("../controller/users")
 
 /* GET users listing. */
 router.post('/login', function(req, res, next) {
@@ -79,6 +79,18 @@ router.post('/updataPassword', (req, res) => {
   })
 })
 
+router.post('/integral',(req,res) => {
+  const result = integral();
+  const resultData = result.then(data => {
+    if (data) {
+      return new SuccessModel(data)
+    }
+    return new ErrorModel('异常错误')
+  })
+  resultData.then(data => {
+    res.json(data)
+  })
+})
 
 
 module.exports = router;

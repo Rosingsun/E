@@ -96,10 +96,29 @@ export default class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            multiData: this.props.multiList,
+            multiData:this.props.multiList,
             selectMultiItem: [],
         }
     };
+
+    fetchDate() {
+        fetch('http://192.168.1.151:3000/api/users/integral', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'token':this.state.token
+          },
+        }).then((response) => response.json())
+          .then((json) => {
+            console.log(json)
+            this.setState({ multiData: json.data });
+          })
+          .catch((error) => console.error(error))
+          .finally(() => {
+            this.setState({ isLoading: false });
+          });
+      }
 
     //多选
     _selectMultiItemPress(item) {
@@ -134,10 +153,10 @@ export default class Search extends Component {
                                 uri: 'https://img2.woyaogexing.com/2020/07/20/385782310bca4d2896a91e58a5cd2f8c!400x400.jpeg'
                             }} />
                             <View style={{ marginLeft: 15 }}>
-                                <Text style={{ fontSize: 15, color: "#fff" }}>{item.userName}</Text>
+                                <Text style={{ fontSize: 15, color: "#fff" }}>{item.username}</Text>
                                 <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center",marginTop:5 }}>
                                     <FontAwesome5 name={'fire'} size={12} color={'#FAAF3D'} />
-                                    <Text style={{ color: "#FFFFFF", fontSize: 10,marginLeft:2 }}>121412</Text>
+                                    <Text style={{ color: "#FFFFFF", fontSize: 10,marginLeft:2 }}>{item.integral}</Text>
                                 </View>
                             </View>
                             <TouchableOpacity
@@ -188,6 +207,7 @@ export default class Search extends Component {
         );
     }
     render() {
+        const multiData = this.state.multiData
         return (
             <View style={[styles.container]}>
                 <View style={[styles.top]}>
