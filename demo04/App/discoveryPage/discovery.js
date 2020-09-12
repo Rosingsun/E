@@ -9,7 +9,8 @@ import {
   FlatList,
   Image,
   Alert,
-  StatusBar
+  StatusBar,
+  TouchableOpacity
 } from 'react-native';
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
@@ -43,7 +44,7 @@ function _showActive(pic, num, titleContain, newsTitle, newsTitleTow) {
   )
 };
 
-function activityUser(userBackGroundPic, userHeardImg, userName, lineNum, userLv) {
+function activityUser(userBackGroundPic, userHeardImg, userName, lineNum, userLv, select) {
   return (
 
     <View style={{ width: 260, height: 350, marginLeft: 20 }}>
@@ -57,7 +58,8 @@ function activityUser(userBackGroundPic, userHeardImg, userName, lineNum, userLv
         </View>
         <View style={{ marginLeft: '3%' }}>
           <Text style={{ fontSize: 10, color: "#999", marginTop: 10, marginTop: 6 }}>{userLv}</Text>
-          <Text style={{ borderWidth: 1, borderRadius: 2, alignSelf: "flex-start", borderColor: "#6C9575", color: '#6C9575', fontSize: 10, paddingHorizontal: 25, paddingVertical: 5, marginTop: 10 }}>关注</Text>
+          <Text style={{ borderWidth: 1, borderRadius: 2, alignSelf: "flex-start", borderColor: "#6C9575", color: select ? '#6C9575' : "#fff", backgroundColor: select ? '#fff' : "#6C9575", fontSize: 10, paddingHorizontal: 25, paddingVertical: 5, marginTop: 10 }}>
+            {select ? '关注' : '已关注'}</Text>
         </View>
       </View>
     </View>
@@ -84,76 +86,42 @@ var userMap = [
 ]
 
 
-var userInfo = [
-  {
-    userName: "Kali",
-    userHeardImg: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-    userBackGroundPic: "http://pic.51yuansu.com/pic3/cover/03/99/16/5ee9d6e6d996d_610.jpg",
-    nodeNum: "1",
-    lineNum: "2",
-    userLv: "Lv.1 资深游侠",
-  },
-  {
-    userName: "Kali",
-    userHeardImg: "http://pic.51yuansu.com/pic3/cover/01/79/99/596f3932bf9a8_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-    userBackGroundPic: "http://pic.51yuansu.com/pic3/cover/03/50/44/5bd146f2c29cc_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-    nodeNum: "3",
-    lineNum: "4",
-    userLv: "Lv.2 资深游侠",
-  },
-  {
-    userName: "Kali",
-    userHeardImg: "http://pic.51yuansu.com/pic3/cover/01/79/91/596f37567f1b8_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-    userBackGroundPic: "http://pic.51yuansu.com/pic3/cover/03/94/91/5cee49d4eaa59_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-    nodeNum: "5",
-    lineNum: "6",
-    userLv: "Lv.3 资深游侠",
-  },
-]
 
-// var ENTRIES1 = [
-//   {
-//     key: 'a',
-//     illustration: "http://pic.51yuansu.com/backgd/cover/00/57/18/5f180715640af.jpg!/fw/780/quality/90/unsharp/true/compress/true",
-//     subtitle1: "杭州西湖以茶会友，小阁相聚风景极好",
-//     subtitle2: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
-//     num: 1,
-//     title: "随白居易钱塘江春行",
-//   },
-//   {
-//     key: 'a',
-//     illustration: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2588053483,3183865902&fm=26&gp=0.jpg',
-//     subtitle1: "杭州西湖以茶会友，小阁相聚风景极好",
-//     subtitle2: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
-//     num: 2,
-//     title: "随李白登黄鹤楼",
-//   },
-//   {
-//     key: 'a',
-//     illustration:  'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2186063278,2492408580&fm=26&gp=0.jpg',
-//     subtitle1: "杭州西湖以茶会友，小阁相聚风景极好",
-//     subtitle2: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
-//     num: 3,
-//     title: "随李白登黄鹤楼",
-//   },
-//   {
-//     key: 'a',
-//     illustration:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2705126453,2771950995&fm=26&gp=0.jpg',
-//     subtitle1: "杭州西湖以茶会友，小阁相聚风景极好",
-//     subtitle2: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
-//     num: 4,
-//     title: "随李白登黄鹤楼",
-//   },
-//   {
-//     key: 'a',
-//     illustration:  'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2753143250,2580091861&fm=26&gp=0.jpg',
-//     subtitle1: "杭州西湖以茶会友，小阁相聚风景极好",
-//     subtitle2: "西湖国宾馆下午茶好吃bu'gui，纵享丝滑",
-//     num: 5,
-//     title: "随李白登黄鹤楼",
-//   },
-// ]
 export default class Discovery extends Component {
+  static defaultProps = {
+    multiList: [
+      {
+        id: 0,
+        userName: "Kali",
+        userHeardImg: "http://pic.51yuansu.com/backgd/cover/00/57/07/5e71973618d64.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        userBackGroundPic: "http://pic.51yuansu.com/pic3/cover/03/99/16/5ee9d6e6d996d_610.jpg",
+        nodeNum: "1",
+        lineNum: "2",
+        userLv: "Lv.1 资深游侠",
+        select: true
+      },
+      {
+        id: 1,
+        userName: "Kali",
+        userHeardImg: "http://pic.51yuansu.com/pic3/cover/01/79/99/596f3932bf9a8_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        userBackGroundPic: "http://pic.51yuansu.com/pic3/cover/03/50/44/5bd146f2c29cc_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        nodeNum: "3",
+        lineNum: "4",
+        userLv: "Lv.2 资深游侠",
+        select: false
+      },
+      {
+        id: 2,
+        userName: "Kali",
+        userHeardImg: "http://pic.51yuansu.com/pic3/cover/01/79/91/596f37567f1b8_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        userBackGroundPic: "http://pic.51yuansu.com/pic3/cover/03/94/91/5cee49d4eaa59_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        nodeNum: "5",
+        lineNum: "6",
+        userLv: "Lv.3 资深游侠",
+        select: true
+      },
+    ]
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -161,7 +129,62 @@ export default class Discovery extends Component {
       Two: '#6C957559',
       Three: '#6C957550',
       Four: '#6C957550',
+      multiData: this.props.multiList,
+      selectMultiItem: [],
     };
+  }
+
+
+  //多选
+  _selectMultiItemPress(item) {
+    if (!item.select) {
+      this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
+        return x === item.id;
+      }), 1);
+    } else {
+      this.state.selectMultiItem.push(item.id);
+    }
+    this.state.multiData[item.id].select = !item.select;
+    this.setState({ multiData: this.state.multiData });
+  }
+  //递交 选中 
+  _submitMultiPress() {
+    alert(`选中了${JSON.stringify(this.state.selectMultiItem)}`)
+  }
+  //渲染多选标记
+  _renderMultiMark() {
+    let multiData = this.state.multiData;
+    let len = multiData.length;
+    let menuArr = [];
+    for (let i = 0; i < len; i++) {
+      let item = multiData[i];
+      if (item.select) {
+        menuArr.push(
+          //选中状态
+          <TouchableOpacity
+            onPress={() => this._selectMultiItemPress(item)}>
+            {activityUser(item.userBackGroundPic, item.userHeardImg, item.userName, item.lineNum, item.userLv, true)}
+            {/* <View style={{backgroundColor:"red",height:100,width:100,borderRadius:100,}}></View> */}
+          </TouchableOpacity>
+        )
+      } else {
+        menuArr.push(
+
+          // 未选中状态
+          <TouchableOpacity
+            onPress={() => this._selectMultiItemPress(item)}>
+            {/* <View style={{backgroundColor:"green",height:100,width:100,borderRadius:100,}}></View> */}
+            {activityUser(item.userBackGroundPic, item.userHeardImg, item.userName, item.lineNum, item.userLv, false)}
+          </TouchableOpacity>
+        )
+      }
+    }
+    return (
+      //讲各类状态框输出到前端页面
+      <View style={{ flexDirection: "row" }}>
+        {menuArr}
+      </View>
+    );
   }
   render() {
     return (
@@ -187,21 +210,6 @@ export default class Discovery extends Component {
         >
           <View style={{ width: "100%", height: 198, marginTop: 20, paddingLeft: 5, }}>
             <Text style={{ marginLeft: 10, fontSize: 20 }}>每周专题</Text>
-
-
-
-            {/* <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-            >
-              {
-                weakMainTitle.map((item) => {
-                  return (
-                    _showActive(item.pic, item.num, item.titleContain, item.newsTitle, item.newsTitleTow)
-                  )
-                })
-              }
-            </ScrollView> */}
             <Example />
           </View>
 
@@ -254,10 +262,7 @@ export default class Discovery extends Component {
           {/* 竖向轮播 */}
           <View style={{ padding: 10, width: '94%', marginTop: 20, marginLeft: '3%', backgroundColor: "#fff", borderRadius: 15, }}>
 
-            {/* <View style={{ width: '100%', height: 20, alignItems: "flex-end", backgroundColor: "#fff" }}> */}
-            {/* <View style={{ flexDirection: "row", justifyContent: "space-between",paddingHorizontal: '5%',paddingVertical:'3%',}}>
-              <Text style={{ fontSize: 15 }}>活跃玩家</Text> */}
-            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: 'center',  }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: 'center', }}>
               <Text style={{ fontSize: 15 }}>浙E路线</Text>
               <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={{ fontSize: 12, color: "#999999", marginRight: 5 }}
@@ -268,26 +273,13 @@ export default class Discovery extends Component {
                   this.props.navigation.navigate("choiceCity")
                 }} />
               </View>
-              {/* </View> */}
             </View>
-            {/* {
-              userMap.map((item) => {
-                return (
-                  <Text style={{ backgroundColor: item.backgroundColor, height: '30%', width: 200, color: "#fff", marginLeft: 12 }}
-                    onPress={() => {
-                      this.props.navigation.navigate("BaiduMap")
-                    }}
-                  >{item.key}</Text>
-                )
-              })
-            } */}
-            {/* </ScrollView> */}
             <View style={{ backgroundColor: '#fff', borderRadius: 15, }}>
               <VerticalMyCarousel {...this.props} />
             </View>
 
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-  
+
               <View style={{ height: 1, width: '80%', backgroundColor: '#70707038' }} />
               <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 6 }}>
                 <Ionicons name={'add-circle-outline'} size={25} color={'#000000'}
@@ -323,11 +315,7 @@ export default class Discovery extends Component {
               style={{ height: '100%', width: '100%' }}
               horizontal={true}>
               {
-                userInfo.map((item) => {
-                  return (
-                    activityUser(item.userBackGroundPic, item.userHeardImg, item.userName, item.lineNum, item.userLv)
-                  )
-                })
+                this._renderMultiMark()
               }
             </ScrollView>
           </View>
