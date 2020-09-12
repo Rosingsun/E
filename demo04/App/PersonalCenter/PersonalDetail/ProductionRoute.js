@@ -110,22 +110,12 @@ export default class ProductionRoute extends Component {
             borderColor: "#FAAF3D",
             choiceFlag: true,
             multiData: this.props.multiList,
-            selectMultiItem: [],
+            selectMultiItem: 0,
         }
     }
     //多选
     _selectMultiItemPress(item) {
-        //如果找到同样的ID，返回
-        if (item.select) {
-            this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
-                return x === item.CcityName;
-            }), 1);
-            //找不到同样的id，则将其存入数组。
-        } else {
-            this.state.selectMultiItem.push(item.CcityName);
-        }
-        this.state.multiData[item.id].select = !item.select;
-        this.setState({ multiData: this.state.multiData });
+            this.setState({selectMultiItem:item.CcityName})
     }
     //递交 选中 
     _submitMultiPress() {
@@ -138,7 +128,7 @@ export default class ProductionRoute extends Component {
         let menuArr = [];
         for (let i = 0; i < len; i++) {
             let item = multiData[i];
-            if (item.select) {
+            if (item.CcityName == this.state.selectMultiItem) {
                 menuArr.push(
                     //选中状态
                     <TouchableOpacity

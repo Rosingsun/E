@@ -135,7 +135,7 @@ export default class Line extends Component {
             <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
               this.props.navigation.goBack()
             }} />
-            <Text style={{ color: "#000", fontSize: 20, position: "absolute", width: '100%', textAlign: "center" }}>线路</Text>
+            <Text style={{ color: "#000", fontSize: 20, position: "absolute", width: '100%',zIndex:-1,textAlign: "center" }}>线路</Text>
           </View>
         </View>
         <View style={styles.list}>

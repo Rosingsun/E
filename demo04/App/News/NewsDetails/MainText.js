@@ -30,7 +30,7 @@ export default class MainText extends Component {
     this.state = {
       content: '',
       data: [],
-      isSplit:true,
+      isSplit: true,
       isLoading: true,
       selectMultiItem: [],
     }
@@ -65,11 +65,12 @@ export default class MainText extends Component {
 
   render() {
     const { route } = this.props;
-    if(this.state.isSplit){
-   route.params.data.showUserImg.split(',').map((word) =>{
-      this.state.selectMultiItem.push(word)
-      this.setState({isSplit:false})
-   })}
+    if (this.state.isSplit) {
+      route.params.data.showUserImg.split(',').map((word) => {
+        this.state.selectMultiItem.push(word)
+        this.setState({ isSplit: false })
+      })
+    }
     var imgData = this.state.selectMultiItem
     const { data, isLoading } = this.state;
     const _onClickSendContent = () => {
@@ -100,26 +101,16 @@ export default class MainText extends Component {
 
     const renderCarousel = () => (
       <Carousel style={{ width: WINDOW_WIDTH, height: WINDOW_WIDTH }}>
-        <Image
-          style={{ flex: 1 }}
-          resizeMode="contain"
-          source={{ uri: 'http://cdn.lolwot.com/wp-content/uploads/2015/07/20-pictures-of-animals-in-hats-to-brighten-up-your-day-1.jpg' }}
-        />
-        <Image
-          style={{ flex: 1 }}
-          resizeMode="contain"
-          source={{ uri: 'http://pic.51yuansu.com/pic3/cover/03/99/74/5f363c314fbc1_610.jpg' }}
-        />
-        <Image
-          style={{ flex: 1 }}
-          resizeMode="contain"
-          source={{ uri: 'http://cdn.lolwot.com/wp-content/uploads/2015/07/20-pictures-of-animals-in-hats-to-brighten-up-your-day-1.jpg' }}
-        />
-        <Image
-          style={{ flex: 1 }}
-          resizeMode="contain"
-          source={{ uri: 'http://pic.51yuansu.com/pic3/cover/03/99/74/5f363c314fbc1_610.jpg' }}
-        />
+        {/* {
+          imgData.map((item)=>{ */}
+            <Image
+            style={{ flex: 1 }}
+            resizeMode="contain"
+            source={{ uri: imgData[0] }}
+          />
+        {/* //   })
+        // } */}
+
       </Carousel>
     )
 
@@ -169,20 +160,22 @@ export default class MainText extends Component {
                 <Text style={{ color: "#FFB16C", fontSize: 15 }}>#话题：论如何迷倒万千少女#</Text>
                 <Text style={{ fontSize: 15 }}>{route.params.data.words}</Text>
               </View>
-              <View style={{ backgroundColor: "pink", width: '96%', marginLeft: '2%', flexDirection: "row", flexWrap: "wrap" }}>
-              {/* <Lightbox springConfig={{ tension: 15, friction: 7 }}
-      swipeToDismiss={false}
-      renderContent={renderCarousel}> */}
+              <View style={{ width: '96%', marginLeft: '2%', flexDirection: "row", flexWrap: "wrap" }}>
+
                 {
                   imgData.map((item) => {
                     return (
-                      <View style={styles.photolist}>
-                        <Image style={styles.ninephoto} source={{ uri: item }} />
-                      </View>
+                      <Lightbox springConfig={{ tension: 15, friction: 7 }}
+                        swipeToDismiss={false}
+                        renderContent={renderCarousel}>
+                        <View style={styles.photolist}>
+                          <Image style={styles.ninephoto} source={{ uri: item }} />
+                        </View>
+                      </Lightbox>
                     )
                   })
                 }
-                {/* </Lightbox> */}
+
               </View>
               {/* 九宫格底部的定位 */}
               <View style={{ width: "100%", flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -238,15 +231,6 @@ export default class MainText extends Component {
                         <View style={{ marginLeft: 10, width: '85%' }}>
                           <Text style={{ fontSize: 12, color: '#4F4F4F' }}>{item.username}</Text>
                           <Text style={{ fontSize: 15 }}>{item.content}</Text>
-
-                          {/* {item.ddttaa.map((item) => {
-                            return (
-                              <View style={{ width: "92%", backgroundColor: '#EFEFEF', flexDirection: 'row', borderRadius: 5 }}>
-                                <Text style={{ marginLeft: '5%', color: '#FFB16C', fontSize: 10 }}>{item.idd}:</Text>
-                                <Text style={{ color: '#000000', fontSize: 10 }}>{item.wordd}</Text>
-                              </View>
-                            )
-                          })} */}
                           <View style={{ flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', width: "100%", marginBottom: 5 }}>
                             <Text style={{ fontSize: 10, color: '#999999' }}>{item.createTime}</Text>
                             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', }}>

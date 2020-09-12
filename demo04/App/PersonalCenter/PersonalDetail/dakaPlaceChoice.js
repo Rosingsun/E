@@ -89,12 +89,12 @@ export default class dakaPlaceChoice extends Component {
    _selectMultiItemPress(item) {
       if (item.select) {
         this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
-          return x - 1 === item.id - 1;
+          return x  === item.id;
         }), 1);
       } else {
-        this.state.selectMultiItem.push(item.id);
+        this.state.selectMultiItem.push(item.id-1);
       }
-      this.state.multiData[item.id].select = !item.select;
+      this.state.multiData[item.id-1].select = !item.select;
       this.setState({ multiData: this.state.multiData });
     }
 
@@ -161,7 +161,7 @@ export default class dakaPlaceChoice extends Component {
         menuArr.push(
           //选中状态
           <TouchableOpacity
-            onPress={() => _selectMultiItemPress(item)}>
+            onPress={() => this._selectMultiItemPress(item)}>
             {this._pointChoice(item, '#999')}
           </TouchableOpacity>
         )
@@ -169,7 +169,7 @@ export default class dakaPlaceChoice extends Component {
         menuArr.push(
           // 未选中状态
           <TouchableOpacity
-            onPress={() => _selectMultiItemPress(item)}>
+            onPress={() => this._selectMultiItemPress(item)}>
             {this._pointChoice(item, '#6C9575')}
           </TouchableOpacity>
         )
