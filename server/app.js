@@ -4,10 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const JwtUtil = require('./public/utils/jwt');
+var FileUpload = require('express-fileupload')
 
 var usersRouter = require('./routes/users');
+var followRouter = require('./routes/follow');
+var collectionRouter = require('./routes/collection')
+var clockRouter = require('./routes/clock');
+var messageRouter = require('./routes/message');
 var travelRouter = require('./routes/travels/travel');
 var commentRouter = require('./routes/travels/comment');
+var cityRouter = require('./routes/travels/city');
+var routeRouter = require('./routes/travels/route');
 
 var app = express();
 
@@ -34,13 +41,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
+app.use(FileUpload());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/serverImage',express.static(path.join(__dirname,'serverImage')));
 
 app.use(function (req, res, next) {
-  if (req.url !== '/api/users/login' && req.url !== '/api/users/reg'&& req.url !== '/api/travels/travel/queryAllRelease' && req.url !=='/api/travels/comment/queryAllcomment' ){
+  if (req.url !== '/api/users/login' && req.url !== '/api/users/reg'&& req.url !=='/api/travels/comment/queryCommentId' 
+  && req.url !=='/api/travels/route/queryAllRoute' && req.url !=='/api/travels/city/queryScenic_Spots'){
       let token = req.headers.token;
       let jwt = new JwtUtil(token);
       let result = jwt.verifyToken();
@@ -58,8 +68,14 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api/users', usersRouter);
+app.use('/api/follow', followRouter);
+app.use('/api/collection', collectionRouter);
+app.use('/api/clock', clockRouter);
+app.use('/api/message', messageRouter);
 app.use('/api/travels/travel',travelRouter);
 app.use('/api/travels/comment',commentRouter);
+app.use('/api/travels/city',cityRouter);
+app.use('/api/travels/route',routeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

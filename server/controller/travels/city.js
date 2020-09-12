@@ -1,40 +1,45 @@
 const { exec } = require('../../db/mysql')
 
 /**
+ * 模糊查询
  * 根据条件查询景点
  * @param {*} Name 景点名字
  * @param {*} City 城市
  * @param {*} Scenic_Spots 位置
- * @param {*} Position 坐标
+ * @param {*} longitude 坐标经度
  */
 
-const queryScenic_Spots = (Name, City, Scenic_Spots, Position) => {
-    let sql = 'SELECT Name,City,Scenic_Spots, Position,FROM city'
-    if (Name !== undefined) {
-        sql += `and a.Name like '%${Name}%' `
-    }
+const queryScenic_Spots = (Name, City, Scenic_Spots, longitude,latitude) => {
+    let sql = `SELECT * FROM city `
     if (City !== undefined) {
-        sql += `and a.City like '%${City}%' `
+        sql += `WHERE City like '%${City}%' `
+    }
+    if (Name !== undefined) {
+        sql += `WHERE Name like '%${Name}%' `
     }
     if (Scenic_Spots !== undefined) {
-        sql += `and a.Scenic_Spots like '%${Scenic_Spots}%' `
+        sql += `WHERE Scenic_Spots like '%${Scenic_Spots}%' `
     }
-    if (Position !== undefined) {
-        sql += `and a.Position like '%${Position}%' `
+    if (longitude !== undefined) {
+        sql += `WHERE longitude like %${longitude}% `
+    }
+    if (latitude !== undefined) {
+        sql += `WHERE latitude like %${latitude}% `
     }
     // console.log(sql)
     return exec(sql).then(row => {
-        return row || []
+        return row[0] || {}
     })
 }
 
-const queryAllScenic_Spots =()=>{
-  let sql = 'SELECT id,Name,City,Scenic_Spots, Position,imgView FROM city'
-  return exec(sql).then(row=>{
+const queryAllScenic_Spots = () => {
+    let sql = 'SELECT * FROM city where id<10'
+    // console.log(sql)
+    return exec(sql).then(row => {
       return row || []
-  })
-}
+    })
+  }
 module.exports={
-    queryScenic_Spots,  
-    queryAllScenic_Spots 
+    queryAllScenic_Spots,
+    queryScenic_Spots,
 }

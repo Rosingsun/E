@@ -20,7 +20,7 @@ const thumbs = ({ navigation }) => {
     <View style={[styles.container]}>
       {/* 顶部输入框 */}
       {/* flatlist渲染层从这开始 */}
-      <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
+      <View style={{paddingTop:5,height: '100%', paddingBottom:20}}>
         <FlatList
 
           data={[
@@ -44,26 +44,28 @@ const thumbs = ({ navigation }) => {
             },
           ]}
           renderItem={({ item }) =>
-            <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#ffffff", borderRadius: 15, marginTop: 15, paddingBottom: 8 }}>
-              <View style={{ padding: 10, flexDirection: "row" }}>
-                <Image style={{ height: 45, width: 45, borderRadius: 30 }} source={{ uri: item.userHead }} />
+            <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#ffffff", borderRadius: 15, marginTop: 15, paddingBottom:13 }}>
+              <View style={{ paddingHorizontal:'5%', flexDirection: "row",alignItems:'center',paddingVertical:'2%' }}>
+                
+                <Image style={{ height: 40, width: 40, borderRadius: 30,borderWidth:1,borderColor:'#707070' }} source={{ uri: item.userHead }} />
                 <View style={{ flexDirection: "column", marginLeft: 10 }}>
-                  <Text style={{ fontSize: 15 }}>{item.username}</Text>
-                  <Text style={{ color: "#999999" }}>20-07-01 22:00</Text>
+                  <Text style={{ fontSize: 15,color:'#000000' }}>{item.username}</Text>
+                  <Text style={{ color: "#999999",fontSize:10 }}>20-07-01 22:00</Text>
                 </View>
                 <View style={{ position: "absolute", right: 10, top: 15, alignItems: "center" }}>
                   <AntDesign name={'like1'} size={20} color={'#2F3843'} />
-                  <Text style={{ fontSize: 10, color: "#484848" }}>赞了你</Text>
+                  <Text style={{ fontSize: 10, color: "#484848",marginTop:3}}>赞了你</Text>
                 </View>
               </View>
               {/* 第二行消息详情框 */}
-              <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF50", borderRadius: 15, flexDirection: "row" }}>
-                <Image style={{ height: '100%', width: 132, borderRadius: 3 }} source={{ uri: item.userHead }} />
-                <View style={{ paddingVertical: 5, width: 190, }}>
-                  <Text style={{ fontSize: 15, }}>CRUEL_JACK</Text>
-                  <View >
-                    <Text style={{ fontSize: 12, color: "#FFBE84", }}>#欲把西湖比西子#</Text>
-                    <Text style={{ width: '100%', fontSize: 15 }}>{item.userSpeach}</Text>
+              <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF50", borderRadius: 15, flexDirection: "row", }}>
+                <Image style={{ height: '100%', width: 132,height:85, borderRadius:15 }} source={{ uri: item.userHead }} />
+                <View style={{ paddingVertical: 5, width: 190,marginLeft:5 }}>
+                  <Text style={{ fontSize: 15,color:'#000000' }}>CRUEL_JACK：</Text>
+                  <View style={{flexDirection:'column'}}>
+                    <Text style={{ fontSize: 12, color: "#FFBE84", }}>#欲把西湖比西子# </Text>
+                    <Text style={{ width: '100%', fontSize: 12,color:'#000000' }}>{item.userSpeach}</Text>
+                   
                   </View>
                 </View>
               </View>

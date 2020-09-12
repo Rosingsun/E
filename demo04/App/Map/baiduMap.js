@@ -114,18 +114,18 @@ export default class BaiduMap extends Component {
             baiduHeatMapEnabled: false,
             mapType: MapTypes.NORMAL,
             index: 0,
-            zoom: 19,
+            zoom: 1,
             center: {
-                longitude: ENTRIES1[0].longitude,
-                latitude: ENTRIES1[0].latitude,
+                longitude: 0,
+                latitude: 0,
             },
-            markers: [
-                {
-                    longitude: ENTRIES1[0].longitude,
-                    latitude: ENTRIES1[0].latitude,
-                    title: 'my name',
-                }
-            ],
+            // markers: [
+            //     {
+            //         longitude: ENTRIES1[0].longitude,
+            //         latitude: ENTRIES1[0].latitude,
+            //         title: 'my name',
+            //     }
+            // ],
             clickMessage: '10221',
             poiMessage: '109',
         };
@@ -148,11 +148,12 @@ export default class BaiduMap extends Component {
                     ref={c => this._slider1Ref = c}
                     data={ENTRIES1}
                     renderItem={this._renderItemWithParallax}
-                    sliderWidth={sliderWidth}
-                    itemWidth={sliderWidth / 1.5}
+                    sliderWidth={width}
+                    itemWidth={250}
+                    itemHeight={90}
                     hasParallaxImages={true}
                     firstItem={0}
-                    inactiveSlideScale={0.85}
+                    inactiveSlideScale={0.9}
                     inactiveSlideOpacity={0.5}
                     containerCustomStyle={styles.slider}
                     contentContainerCustomStyle={styles.sliderContentContainer}
@@ -189,7 +190,7 @@ export default class BaiduMap extends Component {
     get gradient() {
         return (
             <LinearGradient
-                colors={['#fff', '#fff']}
+                colors={['#fff', '#000']}
                 startPoint={{ x: 1, y: 0 }}
                 endPoint={{ x: 0, y: 1 }}
                 style={styles.gradient}
@@ -201,8 +202,8 @@ export default class BaiduMap extends Component {
         return (
             <ScrollView style={styles.container}>
                 <View style={[styles.top]}>
-                    <View style={{ flexDirection: "row", width: '90%', marginLeft: '5%', height: 39, marginTop: 30, justifyContent: "space-between" }}>
-                        <AntDesign name={'left'} size={20} color={'#000'}
+                    <View style={ styles.nav_container }>
+                        <AntDesign name={'left'} size={25} color={'#000'}
                             onPress={() => {
                                 this.props.navigation.goBack()
                             }} />
@@ -224,18 +225,16 @@ export default class BaiduMap extends Component {
                     mapType={this.state.mapType} //地图模式,NORMAL普通 SATELLITE卫星图
                     zoom={this.state.zoom} //缩放等级,默认为10
                     center={this.state.center} // 地图中心位置
-                    markers={this.state.markers} //地图多个标记点
+                    // markers={this.state.markers} //地图多个标记点
                     onMarkerClick={(e) => { //标记点点击事件
                         console.log(e)
                     }}
-                    style={styles.map}
-                >
-                    {/* 用来画点 */}
+                    style={styles.map}>
                     {
                         ENTRIES1.map((item) => {
                             return (
                                 <Marker
-                                    title='中心4'
+                                    title={item.title}
                                     location={{ longitude: item.longitude, latitude: item.latitude }} />
                             )
                         })
@@ -244,8 +243,8 @@ export default class BaiduMap extends Component {
 
                 {/* 底部地图滑动提示 */}
                 <View style={{ height: 140, width: "100%", position: "absolute", bottom: 0, }}>
-                    <View style={{ position: "absolute", height: 30, backgroundColor: "#2F3843", paddingVertical: 5, top: -35, left: 0 }}>
-                        <Text style={{ color: "#fff", fontSize: 20, lineHeight: 25 }}
+                    <View style={{ position: "absolute", backgroundColor: "#2F3843", top: -45, left:'3%' ,paddingHorizontal:10,paddingVertical:4,borderRadius:3}}>
+                        <Text style={{ color: "#fff", fontSize: 20, }}
                             onPress={() => {
                                 this.setState({
                                     center: {
@@ -259,8 +258,9 @@ export default class BaiduMap extends Component {
                                     }],
                                 })
                             }}
-                        >杭州西溪湿地风景区</Text>
-                    </View><Text style={{
+                        >杭州·西溪湿地风景区</Text>
+                    </View>
+                    <Text style={{
                         position: "absolute",
                         fontSize: 30,
                         fontWeight: 'bold',
@@ -272,12 +272,8 @@ export default class BaiduMap extends Component {
                     }}>{this.state.index}</Text>
                     {/* 这下面的东西很重要 */}
                     <SafeAreaView style={styles.safeArea}>
-                        {/* {this.gradient} */}
                         {Example1}
                     </SafeAreaView>
-
-
-                    {/* 到这里为止 */}
                 </View>
             </ScrollView>
         );
@@ -303,10 +299,9 @@ const styles = StyleSheet.create({
         height: 78,
         width: "100%",
         backgroundColor: "#fff",
-        borderBottomRightRadius: 15,
         borderBottomLeftRadius: 15,
-        elevation: 8,
-        flexDirection: "row"
+        borderBottomRightRadius: 15,
+        elevation:10,
     },
     safeArea: {
         height: '100%',
@@ -328,14 +323,14 @@ const styles = StyleSheet.create({
         overflow: 'visible' // for custom animations
         //自定义动画
     },
-    // 点点距离轮播的距离
-    sliderContentContainer: {
-        paddingVertical: 0,
-    },
-    // 点点距离轮播的距离
-    paginationContainer: {
-        paddingVertical: 0
-    },
+    // // 点点距离轮播的距离
+    // sliderContentContainer: {
+    //     paddingVertical: 0,
+    // },
+    // // 点点距离轮播的距离
+    // paginationContainer: {
+    //     paddingVertical: 0
+    // },
     counter: {
         position: "absolute",
         fontSize: 30,
@@ -344,4 +339,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
 
     },
+    nav_container: {
+        flex: 0.7,
+        marginTop: '8%',
+        flexDirection: "row",
+        width: "94%",
+        marginLeft:'3%',
+        justifyContent: "space-between",
+        alignItems: "center",
+      },
 });

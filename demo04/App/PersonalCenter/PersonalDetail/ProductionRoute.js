@@ -7,12 +7,6 @@ import {
     ScrollView,
     Image,
     StatusBar,
-    FlatList,
-    ItemDivideComponent,
-    TextInput,
-    Alert,
-    TouchableHighlight,
-    Button,
     TouchableOpacity
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -33,72 +27,80 @@ export default class ProductionRoute extends Component {
                 CcityName: "杭州",
                 EcityName: "Hang Zhou",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/hangzhou.jpg"),
+                select: false,
             },
             {
                 id: 1,
                 CcityName: "宁波",
                 EcityName: "Ning Bo",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/ningbo.jpg"),
+                select: false,
             },
             {
                 id: 2,
                 CcityName: "嘉兴",
                 EcityName: "Jia Xing",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/jiaxing.jpg"),
+                select: false,
             },
             {
                 id: 3,
                 CcityName: "绍兴",
                 EcityName: "Shao Xing",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/shaoxing.jpg"),
+                select: false,
             },
             {
                 id: 4,
                 CcityName: "舟山",
                 EcityName: "Zhou Shan",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/zhoushan.jpg"),
+                select: false,
             },
             {
                 id: 5,
                 CcityName: "温州",
                 EcityName: "Wen Zhou",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/wenzhou.jpg"),
+                select: false,
             },
             {
                 id: 6,
                 CcityName: "湖州",
                 EcityName: "Hu Zhou",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/huzhou.jpg"),
+                select: false,
             },
             {
                 id: 7,
                 CcityName: "丽水",
                 EcityName: "Li Shui",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/lishui.jpg"),
+                select: false,
             },
             {
                 id: 8,
                 CcityName: "金华",
                 EcityName: "Jin Hua",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/jinhua.jpg"),
+                select: false,
             },
             {
                 id: 9,
                 CcityName: "衢州",
                 EcityName: "Qu Zhou",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/quzhou.jpg"),
+                select: false,
             },
             {
                 id: 10,
                 CcityName: "台州",
                 EcityName: "Tai Zhou",
                 backImgSrc: require("../../discoveryPage/moreLine/photo/taizhou.jpg"),
+                select: false,
             },
         ]
     };
-
-
-
     constructor(props) {
         super(props);
         this.state = {
@@ -113,12 +115,14 @@ export default class ProductionRoute extends Component {
     }
     //多选
     _selectMultiItemPress(item) {
+        //如果找到同样的ID，返回
         if (item.select) {
             this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
-                return x === item.id;
+                return x === item.CcityName;
             }), 1);
+            //找不到同样的id，则将其存入数组。
         } else {
-            this.state.selectMultiItem.push(item.id);
+            this.state.selectMultiItem.push(item.CcityName);
         }
         this.state.multiData[item.id].select = !item.select;
         this.setState({ multiData: this.state.multiData });
@@ -140,6 +144,7 @@ export default class ProductionRoute extends Component {
                     <TouchableOpacity
                         onPress={() => this._selectMultiItemPress(item)}
                         style={[styles.markRow, styles.markChecked]}
+                        activeOpacity={1}
                     >
                         <View style={[styles.Citystyle, { borderColor: this.state.borderColor }]} >
                             <View style={{ height: '100%', width: '100%' }}>
@@ -156,8 +161,8 @@ export default class ProductionRoute extends Component {
                     <TouchableOpacity
                         onPress={() => this._selectMultiItemPress(item)}
                         style={[styles.markRow, styles.markChecked]}
+                        activeOpacity={1}
                     >
-                        <TouchableWithoutFeedback>
                             <View style={[styles.Citystyle, { borderColor: "#fff" }]} >
                                 <View style={{ height: '100%', width: '100%' }}>
                                     <MFImage style={{ height: '100%', width: '100%' }} touchBgColor={'#00000030'} source={item.backImgSrc} />
@@ -165,7 +170,6 @@ export default class ProductionRoute extends Component {
                                     <Text style={styles.photoEnglish} pointerEvents="none"> {item.EcityName}</Text>
                                 </View>
                             </View>
-                        </TouchableWithoutFeedback>
                     </TouchableOpacity>
                 )
             }
@@ -184,21 +188,25 @@ export default class ProductionRoute extends Component {
 
             <View style={styles.container}>
                 <View style={styles.Top}>
-                    <View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: "space-between", alignContent: "center" }}>
-                        <AntDesign name={'left'} size={32} color='#000000' onPress={() => {
+                    <View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: 'space-between', marginTop:'8%' }}>
+                        <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
                             this.props.navigation.goBack()
                         }} />
-                        <Text style={{ fontSize: 20, color: '#000000', marginLeft: '12%' }}>选择城市</Text>
-                        <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, padding: 2, paddingHorizontal: 5 }}
+                        <Text style={{ fontSize: 20, color: '#000000',position:"absolute",zIndex:-1,width:'100%',textAlign:"center"}}>选择城市</Text>
+                        <View style={{backgroundColor: "#6C9575", borderRadius: 15,justifyContent:'center',paddingHorizontal:10,alignItems:'flex-start'}}>
+                            
+                        <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15,justifyContent:'center',alignItems:'center' }}
                             onPress={() => {
-                                this.props.navigation.navigate("dakaPlaceChoice")
+                                this.props.navigation.navigate("dakaPlaceChoice",{selectMultiItem:this.state.selectMultiItem})
                                 this._submitMultiPress()
                             }}
-                        >下一步(1/3)</Text>
+                        >下一步</Text>
+                        <View style={{height:2,width:10,backgroundColor:'#FAAF3D',}}/>
+                        </View>
                     </View>
                 </View>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <View style={styles.someTouch}>
+                    <View style={[styles.someTouch,{paddingBottom:20}]}>
                         {this._renderMultiMark()}
                     </View>
                 </ScrollView>

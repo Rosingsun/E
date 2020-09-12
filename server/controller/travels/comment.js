@@ -30,7 +30,7 @@ const deleteComment = (comment_id) => {
 
 const queryCommentId = (answer_id)=>{
   let sql = `SELECT * FROM comment WHERE answer_id = '${answer_id}'`
-  console.log(sql)
+  // console.log(sql)
   return exec(sql).then(row=>{
     return row || []
   })

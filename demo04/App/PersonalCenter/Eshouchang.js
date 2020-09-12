@@ -3,21 +3,16 @@ import Swiper from 'react-native-swiper';
 import { Text, View, StyleSheet, FlatList, Image, Alert } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Transition } from 'react-native-reanimated';
+import { storage } from '../Accessories/storage//index';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-var userDate = [
-  {
-    key: "日落的色彩给向日葵镀上了一层金色，相间的小道日落的色彩给向日葵镀上了一层金色，相间的小道日落的色彩给向日葵镀上了一层金色，相间的小道日落的色彩给向日葵镀上了一层金色，相间的小道",
-  },
-  { key: "日落的色彩给向日葵镀上了一层金色，相间的小道02" },
-  { key: "日落的色彩给向日葵镀上了一层金色，相间的小道03" },
-]
 var imgUrl = [
   {
     key: "1",
     imgUrl: "http://pic.51yuansu.com/pic3/cover/03/99/56/5f1aa3a3387aa_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-  }, {
+  }, 
+  {
     key: "2",
     imgUrl: "http://pic.51yuansu.com/pic3/cover/03/99/56/5f1aa3a3387aa_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
   }, {
@@ -65,12 +60,12 @@ function SwiperMainContainer(item) {
             <View>
               <MaterialCommunityIcons name={'share-circle'} size={30} color={'#484848'} />
             </View>
-            <View style={{ flexDirection: "row" ,width:130,justifyContent:"space-between"}}>
+            <View style={{ flexDirection: "row", width: 130, justifyContent: "space-between" }}>
               <AntDesign name={'staro'} size={30} color={'#484848'} />
               <AntDesign name={'message1'} size={30} color={'#484848'} />
               <View style={{ flexDirection: "row", alignItems: "center", borderWidth: 1, borderColor: "#000000", borderRadius: 20, paddingHorizontal: 5 }}>
                 <AntDesign name={'like2'} size={20} color={'#484848'} />
-                <Text style={{ fontSize: 12 }}>123</Text>
+                <Text style={{ fontSize: 12 }}>{item.prase_count}</Text>
               </View>
             </View>
           </View>
@@ -79,26 +74,67 @@ function SwiperMainContainer(item) {
     </View>
   )
 }
-export default function Eshouchang() {
-  return (
-    <View style={{ flex: 1 }}>
-      <ScrollView style={{ backgroundColor: "#43949B28", height: 10 }}
-        scrollEnabled={true}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={[styles.container]}>
-          {
-            userDate.map((item) => {
-              return (
-                SwiperMainContainer(item)
-              )
-            })
-          }
-        </View>
-      </ScrollView>
+export default class Eshouchang extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      data:[],
+    }
+  }
+  fetchDate() {
+    fetch('http://192.168.1.151:3000/api/collection/getAllCollects', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'token':this.state.token
+      },
+      body: JSON.stringify({
+        user_id: this.state.user_id
+      })
+    }).then((response) => response.json())
+      .then((json) => {
+        // console.log(json)
+        this.setState({ data: json.data });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+  }
+  componentDidMount() {
+    storage.load('userInfo', (data) => {
+      this.setState({
+          username: data.username,
+          head: data.head,
+          token: data.token,
+          user_id: data.user_id
+      })
+      this.fetchDate()
+  })
+  };
+
+  render(){
+    var data=this.state.data;
+  return(
+    <View style = {{ flex: 1 }}>
+  <ScrollView style={{ backgroundColor: "#43949B28", height: 10 }}
+    scrollEnabled={true}
+    showsVerticalScrollIndicator={false}
+  >
+    <View style={[styles.container]}>
+      {
+        data.map((item) => {
+          return (
+            SwiperMainContainer(item)
+          )
+        })
+      }
     </View>
+  </ScrollView>
+    </View >
   );
-}
+}} 
 const styles = StyleSheet.create({
   container: {
     // width: '100%',

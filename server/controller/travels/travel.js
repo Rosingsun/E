@@ -71,7 +71,7 @@ const queryAllRelease = () => {
 const queryReleaseLocation = (location) => {
   let sql = `SELECT * FROM travels WHERE location=${location}`
   return exec(sql).then(row => {
-    return row || {}
+    return row || []
   })
 }
 
@@ -82,9 +82,21 @@ const queryReleaseLocation = (location) => {
 const queryReleaseUserId = (user_id) => {
   let sql = `SELECT a.*, b.followed_user FROM travels as a LEFT JOIN follow as b ON a.user_id=b.follow_user WHERE a.user_id=${user_id}`
   return exec(sql).then(row => {
-    return row || {}
+    return row || []
   })
 }
+
+/**
+ * 根据id查询文章
+ * @param {*} user_id
+ */
+const queryReleaseId = (user_id) => {
+  let sql = `SELECT * FROM travels WHERE user_id=${user_id}`
+  return exec(sql).then(row => {
+    return row || []
+  })
+}
+
 
   module.exports = {
     release,
@@ -92,5 +104,6 @@ const queryReleaseUserId = (user_id) => {
     updataRelease,
     queryAllRelease,
     queryReleaseLocation,
-    queryReleaseUserId
+    queryReleaseUserId,
+    queryReleaseId
   }

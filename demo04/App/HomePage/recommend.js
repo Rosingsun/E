@@ -26,32 +26,44 @@ export default class recommend extends Component {
     this.state = {
       isLoading: true,
       data: [],
+      imgData:[],
+      selectMultiItem:[],
     }
   }
-
-  componentDidMount() {
+  fetchDate() {
     fetch('http://192.168.1.151:3000/api/travels/travel/queryAllRelease', {
       method: 'POST',
-      credentials: "include",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'token': this.state.token
+        'token':this.state.token
       },
     }).then((response) => response.json())
       .then((json) => {
+        console.log(json)
         this.setState({ data: json.data });
       })
       .catch((error) => console.error(error))
       .finally(() => {
         this.setState({ isLoading: false });
       });
+  }
+  componentDidMount() {
+    storage.load('userInfo', (data) => {
+      this.setState({
+          username: data.username,
+          head: data.head,
+          token: data.token,
+          user_id: data.user_id
+      })
+      this.fetchDate()
+  })
   };
   render() {
     const { data, isLoading } = this.state;
     const { navigation } = this.props;
     function randomNum() {
-      let num =Math.random() * 180 + 120;
+      let num = Math.random() * 150 + 110;
       return (num)
     }
     function _picList(id, choice, username, head, title, location, showUserImg, prase_count) {
@@ -64,14 +76,16 @@ export default class recommend extends Component {
                 navigation.push("MainText", { data: data[id] })
               }}
             >
-              <Image style={{ height: randomNum(), width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg }} /></TouchableWithoutFeedback>
+              <Image style={{ height: randomNum(), width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg.split(',')[0] }} />
+              </TouchableWithoutFeedback>
             {/* 定位 */}
             <Text style={{ fontSize: 10, color: "#999999", padding: 5, paddingVertical: 8 }}>
-              <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'} />
+              <FontAwesome name={'location-arrow'} size={13} color={'#6C6C6C'}/>
               {location}
             </Text>
             {/* 用户发言 */}
-            <Text style={{ fontSize: 16, color: "#000000", lineHeight: 20, paddingHorizontal: 5 }}>
+            <Text style={{ fontSize: 16, color: "#000000", lineHeight: 20, paddingHorizontal: 5 }}
+            >
               {title}
             </Text>
             {/* 用户信息框 */}
@@ -79,8 +93,7 @@ export default class recommend extends Component {
               <Image style={{ height: 20, width: 20, borderRadius: 25, }} source={{ uri: head }} />
               <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>{username}</Text>
               <View style={{ position: "absolute", right: 10, bottom: 5 }}>
-                <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
-                >
+                <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}>
                   <AntDesign name={'like2'} size={12} color={"#000"}
                     onPress={() => {
                       prase_count++;
@@ -99,8 +112,7 @@ export default class recommend extends Component {
             <TouchableWithoutFeedback
               onPress={() => {
                 navigation.push("MainText", { data: data[id] })
-              }}
-            >
+              }}>
               <Image style={{ height: randomNum(), width: '100%', borderTopLeftRadius: 3, borderTopRightRadius: 3 }} source={{ uri: showUserImg }} />
             </TouchableWithoutFeedback>
             {/* 定位 */}
@@ -119,8 +131,7 @@ export default class recommend extends Component {
               <View style={{ position: "absolute", right: 10, bottom: 5 }}>
                 <Text style={{ fontSize: 12, color: "#999999", lineHeight: 20 }}
                   onPress={() => {
-                  }}
-                >
+                  }}>
                   <AntDesign name={'like2'} size={12} color={"red"} />
                   {prase_count}
 
@@ -131,6 +142,7 @@ export default class recommend extends Component {
         )
       }
     }
+    
     return (
       <View style={{ backgroundColor: "#EFEFEF", borderRadius: 200, }}>
         <View style={{ flexDirection: "row", width: "94%", marginLeft: '3%' }}>
@@ -192,6 +204,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 8,
     color: "#484848",
-  },
+  }, 
 });
 

@@ -76,7 +76,7 @@ export default class load extends Component {
                                 this.props.navigation.goBack()
                             }} />
                         </View>
-                        <Text style={{ color: "#000", fontSize: 20 }}>登陆</Text>
+                        <Text style={{ color: "#000", fontSize: 20 }}>登录</Text>
                         <View>
                             <Entypo name={'home'} size={25} color={'#000'} onPress={() => {
                                 this.props.navigation.navigate("dengru");
@@ -104,8 +104,8 @@ export default class load extends Component {
 
                         <View style={[styles.inputBox]}>
                             <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>密码</Text>
-                            <View style={{ flexDirection: "row" }}>
-                                <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 18 }} name={'lock'} size={25} color={'#999999'} />
+                            <View style={{ flexDirection: "row",}}>
+                                <FontAwesome style={{ alignItems: "center",marginLeft: 15, marginTop: 15 }} name={'lock'} size={25} color={'#999999'} />
                                 <TextInput
                                     style={styles.password}
                                     placeholder='请输入密码'
@@ -168,9 +168,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff"
     },
     top: {
-        // position: "absolute",
-
-        height: (78) * biLi,
+        height:78,
         width: "100%",
         backgroundColor: "#FFFFFF",
         borderBottomRightRadius: 15,
@@ -179,7 +177,7 @@ const styles = StyleSheet.create({
     },
     nav_container: {
         flex: 0.7,
-        marginTop: '5%',
+        marginTop: '8%',
         flexDirection: "row",
         width: "90%",
         justifyContent: "space-between",

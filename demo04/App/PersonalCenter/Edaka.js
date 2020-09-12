@@ -10,15 +10,18 @@ import {
 //
 import StarRating from 'react-native-star-rating';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { storage } from '../Accessories/storage//index';
 // import { ScrollView } from 'react-native-gesture-handler';
 // import { Item } from 'react-native-paper/lib/typescript/src/components/List/List';
-
+var xuanranFlag=1;
 export default class Edaka extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       starCount: '2',
+      user_id:103,
+      data:[],
     };
   }
 
@@ -27,20 +30,49 @@ export default class Edaka extends Component {
       starCount: rating
     });
   }
+  fetchDate(){
+    fetch('http://192.168.1.151:3000/api/clock/getAllClock', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_id:this.state.user_id
+    })
+    }).then((response) => response.json())
+      .then((json) => {
+        // console.log(json)
+        this.setState({ data: json.data });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+  }
+  componentDidMount() {
+    storage.load('userInfo', (data) => {
+      this.setState({
+          username: data.username,
+          head: data.head,
+          token: data.token,
+          user_id: data.user_id
+      })
+      this.fetchDate()
+  })
+  };
+
   render() {
+    // const { data, isLoading } = this.state;
+    var data=this.state.data;
     return (
       <View style={[styles.container]}>
+        <ScrollView>
         <FlatList
           style={{ height: '80%' }}
+          extraData={this.state}
           scrollEnabled={false}
-          data={[
-            { key: "1.5" },
-            { key: "2" },
-            { key: "3" },
-            { key: "4" },
-            { key: "5" },
-            { key: "4" },
-          ]}
+          data={data}
           renderItem={({ item }) =>
             <View style={[styles.userEBox]}>
               {/* pic box */}
@@ -51,7 +83,10 @@ export default class Edaka extends Component {
               <View style={[styles.wordBox]}>
                 {/* title */}
                 <View>
-                  <Text style={{ fontSize: 15 }}>西湖·一个小亭子</Text>
+                  <Text style={{ fontSize: 15 }}
+                    onPress={()=>{
+                    }}
+                  >{item.Name}</Text>
                 </View>
                 {/* 评星 */}
                 <View style={{ height: 20, width: 120 }}>
@@ -71,13 +106,14 @@ export default class Edaka extends Component {
                   />
                 </View>
                 {/* <View> */}
-                <Text style={{ color: "#999999", fontSize: 10 }}>西湖景区</Text>
+                <Text style={{ color: "#999999", fontSize: 10 }}>{item.Scenic_Spot}</Text>
                 <Text style={{ color: "#999999", fontSize: 10, padding: 2, width: 160, backgroundColor: "#EFEFEF" }}>杜甫、李白、白居易也在这里打卡</Text>
                 {/* </View> */}
               </View>
             </View>
           }
         />
+        </ScrollView>
       </View>
     );
   }

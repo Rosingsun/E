@@ -8,53 +8,38 @@ import {
     TextInput,
     ScrollView,
     Image,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-var topicLine = [
-    {
-        key: 1,
-        topicName: "最近使用",
-    },
-    {
-        key: 2,
-        topicName: "热门",
-    },
-    {
-        key: 3,
-        topicName: "美食",
-    },
-    {
-        key: 3,
-        topicName: "美食",
-    },
-    {
-        key: 3,
-        topicName: "美食",
-    },
-    {
-        key: 3,
-        topicName: "美食",
-    },
-    {
-        key: 3,
-        topicName: "美食",
-    },
-    {
-        key: 3,
-        topicName: "美食",
-    },
-]
+import * as Animatable from 'react-native-animatable';
 var topicChoice = [
     {
-        key: 1,
+        id: 1,
         topicWords: "123",
         image: "http://pic.51yuansu.com/pic3/cover/03/99/65/5f2a755de1856_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
         talkNum: 1433,
 
     },
     {
-        key: 2,
+        id: 2,
+        topicWords: "345",
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/65/5f2a755de1856_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        talkNum: 143323,
+    },
+    {
+        id: 3,
+        topicWords: "345",
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/65/5f2a755de1856_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        talkNum: 143323,
+    },
+    {
+        id: 4,
+        topicWords: "345",
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/65/5f2a755de1856_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        talkNum: 143323,
+    },
+    {
+        id: 5,
         topicWords: "345",
         image: "http://pic.51yuansu.com/pic3/cover/03/99/65/5f2a755de1856_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
         talkNum: 143323,
@@ -64,8 +49,105 @@ export default class topic extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            multiData: this.props.topicLine,
+            selectMultiItem: 0,
         };
+    }
+
+    static defaultProps = {
+        topicLine: [
+            {
+                id: 0,
+                topicName: "最近使用",
+            },
+            {
+                id: 1,
+                topicName: "最近使用",
+            },
+            {
+                id: 2,
+                topicName: "热门",
+            },
+            {
+                id: 3,
+                topicName: "美食",
+            },
+            {
+                id: 4,
+                topicName: "美食",
+            },
+            {
+                id: 5,
+                topicName: "美食",
+            },
+            {
+                id: 6,
+                topicName: "美食",
+            },
+            {
+                id: 7,
+                topicName: "美食",
+            },
+            {
+                id: 8,
+                topicName: "美食",
+            },
+        ]
+    }
+    //多选
+    _selectMultiItemPress(item) {
+        this.setState({ selectMultiItem: item.id })
+    }
+    //递交 选中 
+    _submitMultiPress() {
+        alert(`选中了${JSON.stringify(this.state.selectMultiItem)}`)
+    }
+
+    handleViewRef = ref => this.view = ref;
+
+    bounce = () => this.view.bounceIn(1000);
+    //渲染多选标记
+    _renderMultiMark() {
+        let multiData = this.state.multiData;
+        let len = multiData.length;
+        let menuArr = [];
+        for (let i = 0; i < len; i++) {
+            let item = multiData[i];
+            if (item.id == this.state.selectMultiItem) {
+                menuArr.push(
+                    //选中状态
+                    <TouchableWithoutFeedback onPress={
+                        console.log(this.state.selectMultiItem),
+                        this.bounce
+                        // this._selectMultiItemPress(item)
+                    }>
+                        <Animatable.View ref={this.handleViewRef} style={{ justifyContent: "center", backgroundColor: "#2F3843", paddingHorizontal: 15, marginTop: 10, height: 70, width: 70, borderRadius: 100 }}>
+                            <Text style={{ textAlign: "center", color: "#fff", fontSize: 15 }}>{item.topicName}</Text>
+                        </Animatable.View>
+                    </TouchableWithoutFeedback>
+                )
+            } else {
+                menuArr.push(
+                    // 未选中状态
+                    <TouchableWithoutFeedback
+                        onPress={() =>
+                            this._selectMultiItemPress(item)
+                        }
+                        style={[styles.markRow, styles.markUnCheck]}>
+                        <View style={{ justifyContent: "center", backgroundColor: "#fff", paddingHorizontal: 15, marginTop: 10, height: 70, width: 70, borderRadius: 100 }}>
+                            <Text style={{ textAlign: "center", color: "#000", fontSize: 15 }}
+                            >{item.topicName}</Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                )
+            }
+        }
+        return (
+            //讲各类状态框输出到前端页面
+            <View style={styles.multiBox}>
+                {menuArr}
+            </View>
+        );
     }
     render() {
         return (
@@ -73,11 +155,15 @@ export default class topic extends Component {
                 <View style={[styles.top]}>
                     <View style={[styles.top_container]}>
                         <FontAwesome name='angle-left' size={32} color="#000"
-                            onPress={()=>{
+                            onPress={() => {
                                 this.props.navigation.goBack();
                             }}
                         />
-                        <Text style={{ color: "#000" }}>你他妈关老子</Text>
+                        <Text style={{ color: "#000",fontSize:18,}}
+                            onPress={() => {
+                                console.log(this.state.selectMultiItem)
+                            }}
+                        >话题</Text>
                         <Text >  </Text>
                     </View>
                 </View>
@@ -94,15 +180,7 @@ export default class topic extends Component {
                         <ScrollView
                             showsVerticalScrollIndicator={false}
                         >
-                            {
-                                topicLine.map((item) => {
-                                    return (
-                                        <View style={{ justifyContent: "center", backgroundColor: "#fff", marginTop: 10, height: 70, width: 70, borderRadius: 50, }}>
-                                            <Text style={{ textAlign: "center" }}>{item.topicName}</Text>
-                                        </View>
-                                    )
-                                })
-                            }
+                            {this._renderMultiMark()}
                         </ScrollView>
                     </View>
                     {/* 第二列 */}
@@ -112,17 +190,17 @@ export default class topic extends Component {
                                 topicChoice.map((item) => {
                                     return (
                                         <TouchableWithoutFeedback
-                                            onPress={()=>{
-                                                this.props.navigation.navigate("spread",{topicWords:item.topicWords});
+                                            onPress={() => {
+                                                this.props.navigation.navigate("spread", { topicWords: item.topicWords });
                                             }}
                                         >
-                                        <View style={{ flexDirection: "row", width: '100%', height: 62, borderRadius: 3, marginTop: 10, backgroundColor: "#fff" }}>
-                                            <Image style={{ height: '100%', width: 62 }} source={{ uri: item.image }} />
-                                            <View style={{ justifyContent: "center", marginLeft: 10, }}>
-                                                <Text style={{ fontSize: 15, textAlign: "center", textAlign: "center", width: '100%' }}>#{item.topicWords}#</Text>
-                                                <Text style={{ textAlign: "center", fontSize: 12 }}>讨论{item.talkNum}</Text>
+                                            <View style={{ flexDirection: "row", width: '100%', height: 62, borderRadius: 3, marginTop: 20, backgroundColor: "#fff" }}>
+                                                <Image style={{ height: '100%', width: 62 }} source={{ uri: item.image }} />
+                                                <View style={{ justifyContent: "center", marginLeft: 10, }}>
+                                                    <Text style={{ fontSize: 15, textAlign: "center", textAlign: "center", width: '100%' }}>#{item.topicWords}#</Text>
+                                                    <Text style={{ textAlign: "center", fontSize: 12 }}>讨论{item.talkNum}</Text>
+                                                </View>
                                             </View>
-                                        </View>
                                         </TouchableWithoutFeedback>
                                     )
                                 })
@@ -154,6 +232,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         backgroundColor: "#fff",
-        alignItems: "center"
+        alignItems: "center",
+        width:'94%',
+        marginLeft:'3%',
     },
 });

@@ -38,7 +38,7 @@ export default class Register extends Component {
     };
     _onClickRegister = () => {
         var navigation = this.props.navigation;
-        fetch('http://192.168.56.1:3000/api/users/reg', {
+        fetch('http://192.168.1.151:3000/api/users/reg', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -54,7 +54,7 @@ export default class Register extends Component {
         }).then(function (json) {
             if (json.errno == 0) {
                 alert("注册成功")
-                navigation.navigate("Search");
+                navigation.navigate("load");
             } else if (json.errno == -1) {
                 alert("用户名或密码不符合规定")
             }
@@ -127,7 +127,7 @@ export default class Register extends Component {
                         <View style={[styles.inputBox]}>
                             <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>密码</Text>
                             <View style={{ flexDirection: "row" }}>
-                                <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 18 }} name={'lock'} size={25} color={'#999999'} />
+                                <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 15 }} name={'lock'} size={25} color={'#999999'} />
                                 <TextInput
                                     password={true}
                                     style={styles.password}
@@ -143,9 +143,9 @@ export default class Register extends Component {
                             </View>
                         </View>
                         <View style={[styles.inputBox]}>
-                            <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>密码</Text>
+                            <Text style={{ position: "absolute", top: -30, fontSize: 20 }}>确定密码</Text>
                             <View style={{ flexDirection: "row" }}>
-                                <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 18 }} name={'lock'} size={25} color={'#999999'} />
+                                <FontAwesome style={{ alignItems: "center", marginLeft: 15, marginTop: 15 }} name={'lock'} size={25} color={'#999999'} />
                                 <TextInput
                                     style={styles.password}
                                     placeholder='请输入密码'
@@ -164,7 +164,7 @@ export default class Register extends Component {
                                     }} ></TextInput>
                             </View>
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center',marginTop:20 }}>
                             <View style={{ display: this.state.tipsShowKey }}>
                                 <View style={{ width: 250, height: 25, backgroundColor: "#999999", alignItems: 'center', justifyContent: 'center', borderRadius: 3, marginTop: 10 }}>
                                     <Text style={{ color: '#FFFFFF' }}>两次密码请保持一致</Text>
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff"
     },
     top: {
-        height: (78) * biLi,
+        height:78,
         width: "100%",
         backgroundColor: "#FFFFFF",
         borderBottomRightRadius: 15,
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     },
     nav_container: {
         flex: 0.7,
-        marginTop: '5%',
+        marginTop: '8%',
         flexDirection: "row",
         width: "90%",
         justifyContent: "space-between",
@@ -216,10 +216,10 @@ const styles = StyleSheet.create({
     },
     userShopBox: {
         width: "90%",
-        marginTop: 20 * biLi,
+        marginTop: 20 ,
         backgroundColor: "#ffffff",
         borderRadius: 15,
-        height: 350 * biLi,
+        height: 350 ,
         // justifyContent: "center",
         alignItems: "center",
         marginLeft: "5%",
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: "#6C9575",
         borderRadius: 10,
-        marginTop: 10
+        marginTop: 5
     },
     inputBox: {
         height:50   ,

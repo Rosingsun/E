@@ -8,6 +8,7 @@ const {
   queryAllRelease,
   queryReleaseLocation,
   queryReleaseUserId,
+  queryReleaseId
 } = require("../../controller/travels/travel");
 
 const { nowDate } = require("../../public/utils/main")
@@ -97,5 +98,17 @@ router.post('/queryAllRelease', (req, res, next) => {
     })
   })
 
-  
+  router.post('/queryReleaseId', (req, res, next) => {
+    const { user_id } = req.body
+    const result =  queryReleaseId(user_id)
+    const resultData = result.then(data => {
+      if (data) {
+        return new SuccessModel(data)
+      }
+      return new ErrorModel('异常错误')
+    })
+    resultData.then(data => {
+      res.json(data)
+    })
+  })
 module.exports = router;

@@ -21,7 +21,7 @@ const biLi = width * scale / 1125;
     render(){
   return (
     <View style={[styles.container]}>
-      <View style={{ paddingTop: 10, height: '100%', paddingBottom: 10 }}>
+      <View style={{ paddingTop:5, height: '100%', paddingBottom: 20 }}>
         <FlatList
           data={[
             {
@@ -36,19 +36,25 @@ const biLi = width * scale / 1125;
               key: "1",
               name: 'JK&妹'
             },
+            {
+              key: "1",
+              name: 'JK&妹'
+            },
+            
           ]}
           renderItem={({ item }) =>
-            <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#ffffff", borderRadius: 15, marginTop: 15, paddingBottom: 8, }}>
+            <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#ffffff", borderRadius: 15, marginTop: 15, paddingBottom: 13, }}>
               {/* 第一行用户信息框 */}
-              <View style={{ padding: 10, flexDirection: "row", }}>
-                <Image style={{ height: 45, width: 45, borderRadius: 30 }} source={require('../img/a.png')} />
+              <View style={{ paddingHorizontal:'5%', flexDirection: "row",alignItems:'center',paddingVertical:'2%'  }}>
+                <Image style={{  height: 40, width: 40, borderRadius: 30,borderWidth:1,borderColor:'#707070'}} source={require('../img/a.png')} />
                 {/* 用户信息 */}
                 <View style={{ flexDirection: "column", marginLeft: 10 }}>
-                  <Text style={{ fontSize: 15 }}>{item.name}</Text>
-                  <Text style={{ color: "#999999" }}>20-07-01 22:00</Text>
+                  <Text style={{ fontSize: 15,color:'#000000' }}>{item.name}</Text>
+                  <Text style={{ color: "#999999",fontSize:10 }}>20-07-01 22:00</Text>
                 </View>
-                <View style={{ position: "absolute", borderRadius: 10, right: 10, top: 10, height: 24, width: 50, backgroundColor: "#6C9575", alignItems: "center" }}>
-                  <Text style={{ fontSize: 15, color: "#ffffff" }}
+                <View style={{ position: "absolute", borderRadius: 10, right: 15, top: 15,  backgroundColor: "#6C9575", alignItems: "center",paddingHorizontal:10,paddingVertical:3 }}>
+                {/* <View style={{ position: "absolute", right: 10, top: 15, alignItems: "center" }}> */}
+                  <Text style={{ fontSize:12, color: "#ffffff" }}
                     onPress={() => {
                       this.props.navigation.navigate('MainText');
                     }}
@@ -62,13 +68,13 @@ const biLi = width * scale / 1125;
                 </Text>
               </View>
               {/* 第二行消息详情框 */}
-              <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF50", borderRadius: 15, flexDirection: "row" }}>
-                <Image style={{ height: '100%', width: 132, borderRadius: 3 }} source={require('../img/a.png')} />
-                <View style={{ paddingVertical: 5, width: 190, }}>
-                  <Text style={{ fontSize: 15, }}>CRUEL_JACK</Text>
-                  <View >
+              <View style={{ width: '90%', marginLeft: '5%', backgroundColor: "#EFEFEF50", borderRadius: 15, flexDirection: "row",marginTop:5 }}>
+                <Image style={{ height: '100%', width: 132, borderRadius:15,height:85,  }} source={require('../img/a.png')} />
+                <View style={{ paddingVertical: 5, width: 190,marginLeft:5 }}>
+                  <Text style={{ fontSize: 15,color:'#000000' }}>CRUEL_JACK</Text>
+                  <View style={{flexDirection:"column"}}>
                     <Text style={{ fontSize: 12, color: "#FFBE84", }}>#欲把西湖比西子#</Text>
-                    <Text style={{ width: '100%', fontSize: 12 }}>2222222222222222222222222</Text>
+                    <Text style={{ width: '100%', fontSize: 12,color:'#000000' }}>2222222222222222222222222</Text>
                   </View>
                 </View>
               </View>

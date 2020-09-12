@@ -11,11 +11,12 @@ import {
 StatusBar.setBackgroundColor("transparent");
 StatusBar.setTranslucent(true);
 StatusBar.setBarStyle('dark-content');
+var timeChange;
 export default class Splash extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            time: 3,
+            time: 5,
         }
     }
     componentWillMount() {
@@ -23,9 +24,9 @@ export default class Splash extends Component {
         this.startTimer()
     }
     startTimer() {
-        let timeChange;
+       
         //关键在于用time取代state中的time，进行计算和判断，因为state中的time在render里不断刷新，但在方法中不会进行刷新
-        let time = this.state.time;
+        var time = this.state.time;
         const clock = () => {
             if (time > 0) {
                 //当time>0时执行更新方法
@@ -37,7 +38,7 @@ export default class Splash extends Component {
                 //当time=0时执行终止循环方法
                 clearInterval(timeChange);
                 //当倒计时时间=0时，进入项目，这里使用了路由跳转
-                // this.props.navigation.navigate('dengru');
+                this.props.navigation.navigate('dengru');
             }
         };
         //每隔一秒执行一次clock方法
@@ -54,6 +55,10 @@ export default class Splash extends Component {
                         width: 60,
                         height: 25,
                         alignItems: 'center',
+                    }}
+                    onPress={()=>{
+                        clearInterval(timeChange);
+                        this.props.navigation.navigate("dengru");
                     }}
                 >
                     <Text style={{ fontSize: 14, color: '#fff' }}>跳过{this.state.time}s</Text>

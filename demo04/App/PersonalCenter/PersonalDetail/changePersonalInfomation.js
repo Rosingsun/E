@@ -44,8 +44,11 @@ export default class changePersonalInfoMation extends Component {
         })
     }
 
-    _onClickupdataPersonal = () => {
+    _onClickupdataPersonal = (image) => {
         var navigation=this.props.navigation; 
+        let file = {uri:this.state.avatarSource, type: 'multipart/form-data', name:'image.png' } ; // file 中这三个元素缺一不可。 type 必须为 multipart/form-data。
+        let formData = new FormData();
+        formData.append('file', file); // 这里的 file 要与后台名字对应。
         fetch('http://192.168.1.151:3000/api/users/updataPersonal', {
                 method: 'POST',
                 credentials: "include",
@@ -58,7 +61,8 @@ export default class changePersonalInfoMation extends Component {
                   username:this.state.username,
                   PersonalSignature: this.state.PersonalSignature,
                   head:this.state.avatarSource,
-              })
+                 
+              }, formData)
             }).then(function (res) {
                 return res.json();
             }).then(function (json) {
@@ -68,13 +72,27 @@ export default class changePersonalInfoMation extends Component {
                 } else if (json.errno == -1) {
                     alert("保存失败")
                 }
-                    //  let obj = {}
-                    //  obj.username = this.state.username
-                    //  obj.PersonalSignature = this.state.PersonalSignature
-                    //  storage.save('userInfo',obj)
-                    //     navigation.goBack();
             })  
       };
+
+    //   _fetchImage(image) {
+    //     // let url = “http:。。。。。。。。”; // 接口地址
+    //     let file = {uri: image.path, type: 'multipart/form-data', name:'image.png' } ; // file 中这三个元素缺一不可。 type 必须为 multipart/form-data。
+    
+    //     let formData = new FormData();
+    //     formData.append('file', file); // 这里的 file 要与后台名字对应。
+    
+    //     fetch(url,{
+    //         method:'POST',
+    //         headers:{
+    //             'Content-Type':'multipart/form-data',
+    //         },
+    //         body:formData,
+    //     }).then(function (response) {
+    //         console.log("response",response);
+    //         return response.json();
+    //     })
+    // }
     render() {
         return (
             <View style={[styles.container]}>
@@ -89,7 +107,6 @@ export default class changePersonalInfoMation extends Component {
                         <Text style={{ color: "#000", fontSize: 15, marginRight: 25 }} 
                         onPress={()=>{
                             this._onClickupdataPersonal();
-
                         }}>保存</Text>
                         {/* <View>
 
@@ -111,8 +128,8 @@ export default class changePersonalInfoMation extends Component {
                             }).then(image => {
                                 let source =(image.path);
                                 console.log(source)
-                                // console.log(images);
-                                this._onClickupdataPersonal;
+                                this._onClickupdataPersonal(image);
+                                // _fetchImage(image);
                                 this.setState({
                                     avatarSource: source
                                 });
