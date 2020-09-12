@@ -156,27 +156,23 @@ export default class wishlist extends Component {
             style={{ paddingTop: 10 }}
             showsVerticalScrollIndicator={false}
           >
-            <RadioGroup
+            {/* <RadioGroup
               size={20}
               thickness={1}
               color='#FAAF3D'
               selectedIndex={0}
-              onSelect={(index, value) => console.log(index)} >
+              onSelect={(index, value) => console.log(index)} > */}
 
               {
                 Data.map((item) => {
                   return (
-                    <RadioButton value={'item3'}
-                      style={{}}
-                    >
-                      {
+                      
                       drawLine(item.longitude, item.latitude, item.place, item.id, this.state.mapBoxWidth)
-                    }
-                    </RadioButton>
+                    
                   )
                 })
               }
-            </RadioGroup>
+            {/* </RadioGroup> */}
           </ScrollView>
         </View>
 
