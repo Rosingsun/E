@@ -8,11 +8,10 @@ import {
     TextInput,
     ScrollView,
     Image,
-    TouchableOpacity,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-
+import * as Animatable from 'react-native-animatable';
 var topicChoice = [
     {
         id: 1,
@@ -79,21 +78,16 @@ export default class topic extends Component {
     }
     //多选
     _selectMultiItemPress(item) {
-        // if (item.select) {
-        //     this.state.selectMultiItem.splice(this.state.selectMultiItem.findIndex(function (x) {
-        //         return x === item.id;
-        //     }), 1);
-        // } else {
-        // this.state.selectMultiItem.push(item.id);
         this.setState({ selectMultiItem: item.id })
-        // }
-        // this.state.multiData[item.id].select = !item.select;
-        // this.setState({ multiData: this.state.multiData });
     }
     //递交 选中 
     _submitMultiPress() {
         alert(`选中了${JSON.stringify(this.state.selectMultiItem)}`)
     }
+
+    handleViewRef = ref => this.view = ref;
+
+    bounce = () => this.view.bounceIn(1000);
     //渲染多选标记
     _renderMultiMark() {
         let multiData = this.state.multiData;
@@ -104,24 +98,24 @@ export default class topic extends Component {
             if (item.id == this.state.selectMultiItem) {
                 menuArr.push(
                     //选中状态
-                    <TouchableOpacity
-                        onPress={() => this._selectMultiItemPress(item)}
-                        style={[styles.markRow, styles.markChecked]}>
-                        <View style={{ justifyContent: "center", backgroundColor: "#2F3843",paddingHorizontal:15, marginTop: 10, height:70, width: 70,borderRadius:100}}>
-                            <Text style={{ textAlign: "center", color: "#fff" ,fontSize:15}}>{item.topicName}</Text>
-                        </View>
-                    </TouchableOpacity>
+                    <TouchableWithoutFeedback onPress={this.bounce
+                        // this._selectMultiItemPress(item)
+                    }>
+                        <Animatable.View ref={this.handleViewRef} style={{ justifyContent: "center", backgroundColor: "#2F3843", paddingHorizontal: 15, marginTop: 10, height: 70, width: 70, borderRadius: 100 }}>
+                            <Text style={{ textAlign: "center", color: "#fff", fontSize: 15 }}>{item.topicName}</Text>
+                        </Animatable.View>
+                    </TouchableWithoutFeedback>
                 )
             } else {
                 menuArr.push(
                     // 未选中状态
-                    <TouchableOpacity
+                    <TouchableWithoutFeedback
                         onPress={() => this._selectMultiItemPress(item)}
                         style={[styles.markRow, styles.markUnCheck]}>
-                        <View style={{ justifyContent: "center", backgroundColor: "#fff",paddingHorizontal:15, marginTop: 10, height:70, width: 70,borderRadius:100  }}>
-                            <Text style={{ textAlign: "center", color: "#000",fontSize:15 }}>{item.topicName}</Text>
+                        <View style={{ justifyContent: "center", backgroundColor: "#fff", paddingHorizontal: 15, marginTop: 10, height: 70, width: 70, borderRadius: 100 }}>
+                            <Text style={{ textAlign: "center", color: "#000", fontSize: 15 }}>{item.topicName}</Text>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableWithoutFeedback>
                 )
             }
         }
