@@ -108,6 +108,8 @@ export default class Section extends React.Component {
                         }}
                         sectionItemViewStyle={{ marginTop: 4, borderRadius: 20, width: '90%', padding: 10, height: 36, }}
                         sectionHeaderViewStyle={{ color: "red", width: '10%' }}
+                        sectionHeaderTextStyle={{width:'90%'}}
+                        letterViewStyle={{backgroundColor:"#efefef"}}
                         otherAlphabet="#"
                     /></View>
                 {/* </ScrollView> */}

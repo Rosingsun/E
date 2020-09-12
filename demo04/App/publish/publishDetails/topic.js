@@ -26,6 +26,24 @@ var topicChoice = [
         image: "http://pic.51yuansu.com/pic3/cover/03/99/65/5f2a755de1856_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
         talkNum: 143323,
     },
+    {
+        id: 3,
+        topicWords: "345",
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/65/5f2a755de1856_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        talkNum: 143323,
+    },
+    {
+        id: 4,
+        topicWords: "345",
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/65/5f2a755de1856_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        talkNum: 143323,
+    },
+    {
+        id: 5,
+        topicWords: "345",
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/65/5f2a755de1856_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
+        talkNum: 143323,
+    },
 ]
 export default class topic extends Component {
     constructor(props) {
@@ -98,7 +116,9 @@ export default class topic extends Component {
             if (item.id == this.state.selectMultiItem) {
                 menuArr.push(
                     //选中状态
-                    <TouchableWithoutFeedback onPress={this.bounce
+                    <TouchableWithoutFeedback onPress={
+                        console.log(this.state.selectMultiItem),
+                        this.bounce
                         // this._selectMultiItemPress(item)
                     }>
                         <Animatable.View ref={this.handleViewRef} style={{ justifyContent: "center", backgroundColor: "#2F3843", paddingHorizontal: 15, marginTop: 10, height: 70, width: 70, borderRadius: 100 }}>
@@ -110,10 +130,13 @@ export default class topic extends Component {
                 menuArr.push(
                     // 未选中状态
                     <TouchableWithoutFeedback
-                        onPress={() => this._selectMultiItemPress(item)}
+                        onPress={() =>
+                            this._selectMultiItemPress(item)
+                        }
                         style={[styles.markRow, styles.markUnCheck]}>
                         <View style={{ justifyContent: "center", backgroundColor: "#fff", paddingHorizontal: 15, marginTop: 10, height: 70, width: 70, borderRadius: 100 }}>
-                            <Text style={{ textAlign: "center", color: "#000", fontSize: 15 }}>{item.topicName}</Text>
+                            <Text style={{ textAlign: "center", color: "#000", fontSize: 15 }}
+                            >{item.topicName}</Text>
                         </View>
                     </TouchableWithoutFeedback>
                 )
@@ -136,11 +159,11 @@ export default class topic extends Component {
                                 this.props.navigation.goBack();
                             }}
                         />
-                        <Text style={{ color: "#000" }}
+                        <Text style={{ color: "#000",fontSize:18,}}
                             onPress={() => {
                                 console.log(this.state.selectMultiItem)
                             }}
-                        >你他妈关老子</Text>
+                        >话题</Text>
                         <Text >  </Text>
                     </View>
                 </View>
@@ -171,7 +194,7 @@ export default class topic extends Component {
                                                 this.props.navigation.navigate("spread", { topicWords: item.topicWords });
                                             }}
                                         >
-                                            <View style={{ flexDirection: "row", width: '100%', height: 62, borderRadius: 3, marginTop: 10, backgroundColor: "#fff" }}>
+                                            <View style={{ flexDirection: "row", width: '100%', height: 62, borderRadius: 3, marginTop: 20, backgroundColor: "#fff" }}>
                                                 <Image style={{ height: '100%', width: 62 }} source={{ uri: item.image }} />
                                                 <View style={{ justifyContent: "center", marginLeft: 10, }}>
                                                     <Text style={{ fontSize: 15, textAlign: "center", textAlign: "center", width: '100%' }}>#{item.topicWords}#</Text>
@@ -209,6 +232,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         backgroundColor: "#fff",
-        alignItems: "center"
+        alignItems: "center",
+        width:'94%',
+        marginLeft:'3%',
     },
 });
