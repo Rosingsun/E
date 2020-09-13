@@ -11,7 +11,7 @@ const { exec } = require('../../db/mysql')
 const addComment = (answer_id, user_id, content, createTime) => {
       let sql = `INSERT INTO comment (answer_id, user_id ,content, createTime) 
       VALUES ( ${answer_id} , ${user_id}, '${content}', '${createTime}')`
-      console.log(sql)
+      // console.log(sql)
         return exec(sql).then(row =>{
             return row || {}
         })

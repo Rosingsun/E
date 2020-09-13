@@ -13,15 +13,15 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { storage } from '../Accessories/storage//index';
 // import { ScrollView } from 'react-native-gesture-handler';
 // import { Item } from 'react-native-paper/lib/typescript/src/components/List/List';
-var xuanranFlag=1;
+var xuanranFlag = 1;
 export default class Edaka extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       starCount: '2',
-      user_id:103,
-      data:[],
+      user_id: 103,
+      data: [],
     };
   }
 
@@ -30,17 +30,17 @@ export default class Edaka extends Component {
       starCount: rating
     });
   }
-  fetchDate(){
+  fetchDate() {
     fetch('http://192.168.1.151:3000/api/clock/getAllClock', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'token':this.state.token
+        'token': this.state.token
       },
       body: JSON.stringify({
-        user_id:this.state.user_id
-    })
+        user_id: this.state.user_id
+      })
     }).then((response) => response.json())
       .then((json) => {
         // console.log(json)
@@ -54,66 +54,58 @@ export default class Edaka extends Component {
   componentDidMount() {
     storage.load('userInfo', (data) => {
       this.setState({
-          username: data.username,
-          head: data.head,
-          token: data.token,
-          user_id: data.user_id
+        username: data.username,
+        head: data.head,
+        token: data.token,
+        user_id: data.user_id
       })
       this.fetchDate()
-  })
+    })
   };
 
   render() {
     // const { data, isLoading } = this.state;
-    var data=this.state.data;
+    var data = this.state.data;
     return (
       <View style={[styles.container]}>
         <ScrollView>
-        <FlatList
-          style={{ height: '80%' }}
-          extraData={this.state}
-          scrollEnabled={false}
-          data={data}
-          renderItem={({ item }) =>
-            <View style={[styles.userEBox]}>
-              {/* pic box */}
-              <View>
-                <Image style={{ height: '100%', width: 129 }} source={{ uri: "http://pic.51yuansu.com/backgd/cover/00/56/64/5d08a272e481e.jpg!/fw/780/quality/90/unsharp/true/compress/true" }}></Image>
-              </View>
-              {/* user Word Box */}
-              <View style={[styles.wordBox]}>
-                {/* title */}
-                <View>
-                  <Text style={{ fontSize: 15 }}
-                    onPress={()=>{
-                    }}
-                  >{item.Name}</Text>
+          {
+            data.map((item) => {
+              return (
+                <View style={[styles.userEBox]}>
+                  <View>
+                    <Image style={{ height: '100%', width: 129 }} source={{ uri: "http://pic.51yuansu.com/backgd/cover/00/56/64/5d08a272e481e.jpg!/fw/780/quality/90/unsharp/true/compress/true" }}></Image>
+                  </View>
+                  <View style={[styles.wordBox]}>
+                    <View>
+                      <Text style={{ fontSize: 15 }}
+                        onPress={() => {
+                        }}
+                      >{item.Name}</Text>
+                    </View>
+                    <View style={{ height: 20, width: 120 }}>
+                      <StarRating
+                        disabled={false}
+                        emptyStar={'star-o'}
+                        fullStar={'star'}
+                        halfStar={'star-half'}
+                        iconSet={'FontAwesome'}
+                        maxStars={5}
+                        rating={item.key}
+                        selectedStar={(rating) => this.onStarRatingPress(rating)}
+                        fullStarColor={'#EA9518'}
+                        starStyle={{
+                          fontSize: 20,
+                        }}
+                      />
+                    </View>
+                    <Text style={{ color: "#999999", fontSize: 10 }}>{item.Scenic_Spot}</Text>
+                    <Text style={{ color: "#999999", fontSize: 10, padding: 2, width: 160, backgroundColor: "#EFEFEF" }}>杜甫、李白、白居易也在这里打卡</Text>
+                  </View>
                 </View>
-                {/* 评星 */}
-                <View style={{ height: 20, width: 120 }}>
-                  <StarRating
-                    disabled={false}
-                    emptyStar={'star-o'}
-                    fullStar={'star'}
-                    halfStar={'star-half'}
-                    iconSet={'FontAwesome'}
-                    maxStars={5}
-                    rating={item.key}
-                    selectedStar={(rating) => this.onStarRatingPress(rating)}
-                    fullStarColor={'#EA9518'}
-                    starStyle={{
-                      fontSize: 20,
-                    }}
-                  />
-                </View>
-                {/* <View> */}
-                <Text style={{ color: "#999999", fontSize: 10 }}>{item.Scenic_Spot}</Text>
-                <Text style={{ color: "#999999", fontSize: 10, padding: 2, width: 160, backgroundColor: "#EFEFEF" }}>杜甫、李白、白居易也在这里打卡</Text>
-                {/* </View> */}
-              </View>
-            </View>
+              )
+            })
           }
-        />
         </ScrollView>
       </View>
     );

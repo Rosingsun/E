@@ -47,8 +47,8 @@ export default class improveInformation extends Component {
             turnOff: false,
             preTime: "1天3",
             grandes: 50,
-            create_route:'',
-            remarks:'',
+            create_route: '',
+            remarks: '',
 
         }
     }
@@ -99,24 +99,30 @@ export default class improveInformation extends Component {
 
             <View style={styles.container}>
                 <View style={styles.Top}>
-                    <AntDesign name={'left'} size={32} color='#000000' onPress={() => {
-                        this.props.navigation.goBack()
-                    }} />
-                    <Text style={{ fontSize: 20, color: '#000000', marginLeft: '12%' }}>完善信息</Text>
-                    <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, padding: 2, paddingHorizontal: 5 }}
-                        onPress={() => {
-                            _onClickCreateroute();
-                            this.props.navigation.navigate("bottomTab")
-                        }}
-                    >完成(3/3)</Text>
+                    <View style={{ width: '94%', marginLeft: '3%', flexDirection: "row", justifyContent: 'space-between', marginTop: '5%' }}>
+                        <AntDesign name={'left'} size={25} color='#000000' onPress={() => {
+                            this.props.navigation.goBack()
+                        }} />
+                        <Text style={{ fontSize: 20, color: '#000000', position: "absolute", width: '100%', zIndex: -1, textAlign: "center" }}
+                        >完善信息</Text>
+                        <View style={{ backgroundColor: "#6C9575", borderRadius: 15, justifyContent: 'center', paddingHorizontal: 10, alignItems: 'flex-start' }}>
+                            <Text style={{ fontSize: 12, color: '#fff', backgroundColor: "#6C9575", borderRadius: 15, paddingHorizontal: 3, paddingVertical: 1 }}
+                                onPress={() => {
+                                    _onClickCreateroute();
+                                    this.props.navigation.navigate("bottomTab")
+                                }}
+                            >完成(3/3)</Text>
+
+                        </View>
+                    </View>
                 </View>
                 <View>
                     <View style={{ flexDirection: "row", width: '94%', marginTop: 15, marginLeft: '3%' }}>
                         <Text style={{ backgroundColor: "#2F3843", color: "#fff", lineHeight: 40, borderRadius: 20, paddingHorizontal: 12 }}>线路名称</Text>
                         <TextInput
                             style={{ width: '65%', height: 40, backgroundColor: "#fff", marginLeft: 10, borderRadius: 3 }}
-                            onChangeText={(text)=>{
-                                this.setState({route_name:text})
+                            onChangeText={(text) => {
+                                this.setState({ route_name: text })
                             }}
                         ></TextInput>
                     </View>
@@ -170,9 +176,9 @@ export default class improveInformation extends Component {
                         <Text style={{ width: '100%', textAlign: "center" }}>备注</Text>
                         <TextInput
                             placeholder="nini"
-                            style={{ backgroundColor: "#efefef", height: 90 }}
-                            onChangeText={(text)=>{
-                                this.setState({remarks:text})
+                            style={{ backgroundColor: "#efefef", height: 90,backgroundColor:"red" }}
+                            onChangeText={(text) => {
+                                this.setState({ remarks: text })
                             }}
                         />
                     </View>

@@ -31,20 +31,13 @@ export default class MainText extends Component {
       content: '',
       data: [],
       isSplit: true,
-      isLoading: true,
       selectMultiItem: [],
+      username:'',
+      token:'',
     }
   }
-  componentDidMount() {
-    storage.load('userInfo', (data) => {
-      this.setState({
-        username: data.username,
-        head: data.head,
-        token: data.token,
-        user_id: data.user_id
-      })
-    })
-    fetch('http://192.168.1.151:3000/api/travels/comment/queryAllcomment', {
+  fetchDate(){
+  fetch('http://192.168.1.151:3000/api/travels/comment/queryAllcomment', {
       method: 'POST',
       credentials: "include",
       headers: {
@@ -54,14 +47,22 @@ export default class MainText extends Component {
       },
     }).then((response) => response.json())
       .then((json) => {
-        console.log(json.data)
+        console.log(json)
         this.setState({ data: json.data });
       })
       .catch((error) => console.error(error))
-      .finally(() => {
-        this.setState({ isLoading: false });
-      });
   };
+  componentDidMount() {
+    storage.load('userInfo', (data) => {
+      this.setState({
+        username: data.username,
+        head: data.head,
+        token: data.token,
+        user_id: data.user_id
+      })
+      this.fetchDate()
+    })
+  }
 
   render() {
     const { route } = this.props;
@@ -72,7 +73,7 @@ export default class MainText extends Component {
       })
     }
     var imgData = this.state.selectMultiItem
-    const { data, isLoading } = this.state;
+    const data = this.state;
     const _onClickSendContent = () => {
       fetch('http://192.168.1.151:3000/api/travels/comment/addComment', {
         method: 'POST',
@@ -86,7 +87,6 @@ export default class MainText extends Component {
           user_id: this.state.user_id,
           answer_id: route.params.data.answer_id,
           username: this.state.username,
-
         })
       }).then(function (res) {
         return res.json();
@@ -238,7 +238,7 @@ export default class MainText extends Component {
                               <AntDesign name="like2" size={15} color="#999999" onPress={() => {
                                 Alert.alert("点赞")
                               }}></AntDesign>
-                              <Text style={{ fontSize: 12, color: '#999999', marginLeft: 2 }}>200</Text>
+                              <Text style={{ fontSize: 12, color: '#999999', marginLeft: 2 }}>{item.prase_count}</Text>
                             </View>
                           </View>
                         </View>

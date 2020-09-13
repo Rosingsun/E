@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Text, View, StyleSheet, Dimensions, ScrollView, Image, StatusBar, FlatList, RefreshControl, ActivityIndicator,
+  Text, View, StyleSheet, Dimensions, ScrollView, Image, TouchableOpacity, StatusBar, FlatList, RefreshControl, ActivityIndicator,
   Alert
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -22,18 +22,8 @@ StatusBar.setBarStyle('dark-content');
 // export default function Line({ route, navigation }) {
 
 export default class wishlist extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      oldPostion: 0,
-      stateName: "管理",
-      stateFlag: true,
-      mapBoxWidth: width * 0.9,
-    }
-  }
-  render() {
-    // const { cityName } = this.props.route.params;
-    var Data = [
+  static defaultProps = {
+    localdata: [
       {
         place: '杭州上城区到下城区',
         id: 'By:石原里美1',
@@ -95,41 +85,103 @@ export default class wishlist extends Component {
         latitude: 39.928592
       },
     ]
-
-    function drawLine(longitude, latitude, place, id, width) {
-      return (
-        <View style={{ height: 120, backgroundColor: '#6C9575', width: width + 20, borderWidth: 10, borderColor: "#FFFFFF60", marginBottom: 20, borderRadius: 3 }}>
-          {/* <View style={{height:20,width:20,borderWidth:1,backgroundColor:"red",borderColor:"#fff",borderRadius:20,}}/> */}
-
-          <MapView
-            zoomControlsVisible={false} //默认true,是否显示缩放控件,仅支持android
-            trafficEnabled={true} //默认false,是否显示交通线
-            baiduHeatMapEnabled={false} //默认false,是否显示热力图
-            mapType={MapTypes.NORMAL} //地图模式,NORMAL普通 SATELLITE卫星图
-            zoomGesturesEnabled={false}//允许手势缩放
-            scrollGesturesEnabled={false}//允许拖动
-            zoom={40} //缩放等级,默认为10
-            //根据不同传入值 更换地图中心位置
-            center={{ longitude: longitude, latitude: latitude }}
-            // center={20} // 地图中心位置
-            style={{ width: width, height: 100 }}>
-            <Polyline
-              stroke={{ width: 5, color: 'AA000000' }}
-              points={[
-                { longitude: longitude + 0.00001, latitude: latitude + 0.00002 },
-                { longitude: longitude + 0.00002, latitude: latitude + 0.00003 },
-                { longitude: longitude + 0.00003, latitude: latitude + 0.00001 },
-                { longitude: longitude + 0.00004, latitude: latitude + 0.00002 },
-              ]}
-            />
-          </MapView>
-          {/* <Image style={{ width: 371, height: 104 }} source={require('./photo/hangzhou.jpg')} /> */}
-          <Text style={styles.placeStyle}>{place}</Text>
-          <Text style={styles.idStyle}>{id}</Text>
-        </View>
-      )
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      oldPostion: 0,
+      stateName: "管理",
+      stateFlag: true,
+      mapBoxWidth: width * 0.9,
+      //用来做单选
+      multiData: this.props.localdata,
+      selectMultiItem: 0,
     }
+  }
 
+  //单选
+  _selectMultiItemPress(item) {
+    this.setState({ selectMultiItem: item.CcityName })
+  }
+  //递交 选中 
+  _submitMultiPress() {
+    alert(`选中了${JSON.stringify(this.state.selectMultiItem)}`)
+  }
+  //渲染多选标记
+  _renderMultiMark() {
+    let multiData = this.state.multiData;
+    let len = multiData.length;
+    let menuArr = [];
+    for (let i = 0; i < len; i++) {
+      let item = multiData[i];
+      if (item.CcityName == this.state.selectMultiItem) {
+        menuArr.push(
+          //选中状态
+          <TouchableOpacity
+            onPress={() => this._selectMultiItemPress(item)}
+            activeOpacity={1}
+          >
+            <View style={{ height: 120, backgroundColor: '#6C9575', width: width + 20, borderWidth: 10, borderColor: "#FFFFFF60", marginBottom: 20, borderRadius: 3 }}>
+              <MapView
+                zoomControlsVisible={false} //默认true,是否显示缩放控件,仅支持android
+                trafficEnabled={true} //默认false,是否显示交通线
+                baiduHeatMapEnabled={false} //默认false,是否显示热力图
+                mapType={MapTypes.NORMAL} //地图模式,NORMAL普通 SATELLITE卫星图
+                zoomGesturesEnabled={false}//允许手势缩放
+                scrollGesturesEnabled={false}//允许拖动
+                zoom={40} //缩放等级,默认为10
+                //根据不同传入值 更换地图中心位置
+                center={{ longitude: item.longitude, latitude: item.latitude }}
+                // center={20} // 地图中心位置
+                style={{ width: width, height: 100 }}>
+                <Marker
+                  title={item.id}
+                  location={{ longitude: item.longitude, latitude: item.latitude }} />
+              </MapView>
+              <Text style={styles.placeStyle}>{item.place}</Text>
+              <Text style={[styles.idStyle],{color:"red"}}>{item.id}</Text>
+            </View>
+          </TouchableOpacity>
+        )
+      } else {
+        menuArr.push(
+          // 未选中状态
+          <TouchableOpacity
+            onPress={() => this._selectMultiItemPress(item)}
+            activeOpacity={1}
+          >
+            <View style={{ height: 120, backgroundColor: '#6C9575', width: width + 20, borderWidth: 10, borderColor: "#FFFFFF60", marginBottom: 20, borderRadius: 3 }}>
+              <MapView
+                zoomControlsVisible={false} //默认true,是否显示缩放控件,仅支持android
+                trafficEnabled={true} //默认false,是否显示交通线
+                baiduHeatMapEnabled={false} //默认false,是否显示热力图
+                mapType={MapTypes.NORMAL} //地图模式,NORMAL普通 SATELLITE卫星图
+                zoomGesturesEnabled={false}//允许手势缩放
+                scrollGesturesEnabled={false}//允许拖动
+                zoom={40} //缩放等级,默认为10
+                //根据不同传入值 更换地图中心位置
+                center={{ longitude: item.longitude, latitude: item.latitude }}
+                // center={20} // 地图中心位置
+                style={{ width: width, height: 100 }}>
+                <Marker
+                  title={item.id}
+                  location={{ longitude: item.longitude, latitude: item.latitude }} />
+              </MapView>
+              <Text style={styles.placeStyle}>{item.place}</Text>
+              <Text style={styles.idStyle}>{item.id}</Text>
+            </View>
+          </TouchableOpacity>
+        )
+      }
+    }
+    return (
+      //讲各类状态框输出到前端页面
+      <View style={styles.multiBox}>
+        {menuArr}
+      </View>
+    );
+  }
+  render() {
     return (
       <View style={styles.container}>
         <View style={styles.Top}>
@@ -156,27 +208,17 @@ export default class wishlist extends Component {
             style={{ paddingTop: 10 }}
             showsVerticalScrollIndicator={false}
           >
-            <RadioGroup
-              size={20}
-              thickness={1}
-              color='#FAAF3D'
-              selectedIndex={0}
-              onSelect={(index, value) => console.log(index)} >
 
-              {
+            {/* {
                 Data.map((item) => {
                   return (
-                    <RadioButton value={'item3'}
-                      style={{}}
-                    >
-                      {
                       drawLine(item.longitude, item.latitude, item.place, item.id, this.state.mapBoxWidth)
-                    }
-                    </RadioButton>
                   )
                 })
-              }
-            </RadioGroup>
+              } */}
+            {
+              this._renderMultiMark()
+            }
           </ScrollView>
         </View>
 

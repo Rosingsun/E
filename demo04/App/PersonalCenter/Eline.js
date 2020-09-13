@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Swiper from 'react-native-swiper';
-import { Text, View, StyleSheet, FlatList, Image, Alert } from 'react-native';
+import { Text, View, StyleSheet, FlatList, Image, Alert, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Transition } from 'react-native-reanimated';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -41,7 +41,7 @@ function SwiperMainContainer(item) {
             imgUrl.map((item) => {
               return (
                 <View style={{ height: '100%', width: "100%" }}>
-                  <Image style={{ height: '100%', width: '100%', backgroundColor: "yellow" }} source={{ uri: item.imgUrl }} />
+                  <Image style={{ height: '100%', width: '100%', backgroundColor: "#fff" }} source={{ uri: item.imgUrl }} />
                 </View>
               )
             })
@@ -75,10 +75,10 @@ function SwiperMainContainer(item) {
   )
 }
 export default class Eline extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state={
-      data:[],
+    this.state = {
+      data: [],
     }
   }
   fetchDate() {
@@ -87,7 +87,7 @@ export default class Eline extends Component {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'token':this.state.token
+        'token': this.state.token
       },
       body: JSON.stringify({
         user_id: this.state.user_id
@@ -105,41 +105,43 @@ export default class Eline extends Component {
   componentDidMount() {
     storage.load('userInfo', (data) => {
       this.setState({
-          username: data.username,
-          head: data.head,
-          token: data.token,
-          user_id: data.user_id
+        username: data.username,
+        head: data.head,
+        token: data.token,
+        user_id: data.user_id
       })
       this.fetchDate()
-  })
+    })
   };
-render(){
-  var data=this.state.data;
-  return (
-    <View style={{ flex: 1 }}>
-      <ScrollView style={{ backgroundColor: "#43949B28", height: 10 }}
-        scrollEnabled={true}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={[styles.container]}>
-          {
-            data.map((item) => {
-              return (
-                SwiperMainContainer(item)
-              )
-            })
-          }
-        </View>
-      </ScrollView>
-    </View>
-  );
-}}
+  render() {
+    var data = this.state.data;
+    return (
+      <View style={{ flex: 1 }}>
+        <ScrollView style={{ backgroundColor: "#ddd", height: Dimensions.get('window').height-350}}
+          scrollEnabled={true}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={[styles.container]}>
+            {
+              data.map((item) => {
+                return (
+                  SwiperMainContainer(item)
+                )
+              })
+            }
+          </View>
+        </ScrollView>
+      </View>
+    );
+  }
+}
 const styles = StyleSheet.create({
   container: {
     // width: '100%',
-    height: '60%',
+    // height: '60%',
     backgroundColor: "#6C9575",
     padding: 10,
+    // paddingBottom: 100,
   },
   mainBox: {
     width: '100%',

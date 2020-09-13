@@ -1,4 +1,5 @@
 const { exec } = require('../../db/mysql')
+// const fs = require('../../public/utils//uploadIng')
 
 /**
  * 发布文章
@@ -13,6 +14,7 @@ const { exec } = require('../../db/mysql')
 const release = (title, words, username, createTime, showUserImg,user_id,location) => {
     let sql = `INSERT INTO travels (title, words ,username, createTime,showUserImg,user_id,location) 
               VALUES ( '${title}' , '${words}', '${username}', '${createTime}', '${showUserImg}',${user_id},'${location}')`
+              console.log(sql)
     return exec(sql).then(row => {
       return row || {}
     })

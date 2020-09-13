@@ -113,7 +113,7 @@ export default class ProductionRoute extends Component {
             selectMultiItem: 0,
         }
     }
-    //多选
+    //单选
     _selectMultiItemPress(item) {
             this.setState({selectMultiItem:item.CcityName})
     }

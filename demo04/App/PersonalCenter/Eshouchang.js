@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Swiper from 'react-native-swiper';
-import { Text, View, StyleSheet, FlatList, Image, Alert } from 'react-native';
+import { Text, View, StyleSheet, FlatList, Image, Alert, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Transition } from 'react-native-reanimated';
 import { storage } from '../Accessories/storage//index';
@@ -11,7 +11,7 @@ var imgUrl = [
   {
     key: "1",
     imgUrl: "http://pic.51yuansu.com/pic3/cover/03/99/56/5f1aa3a3387aa_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
-  }, 
+  },
   {
     key: "2",
     imgUrl: "http://pic.51yuansu.com/pic3/cover/03/99/56/5f1aa3a3387aa_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
@@ -75,10 +75,10 @@ function SwiperMainContainer(item) {
   )
 }
 export default class Eshouchang extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state={
-      data:[],
+    this.state = {
+      data: [],
     }
   }
   fetchDate() {
@@ -87,7 +87,7 @@ export default class Eshouchang extends Component {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'token':this.state.token
+        'token': this.state.token
       },
       body: JSON.stringify({
         user_id: this.state.user_id
@@ -105,39 +105,39 @@ export default class Eshouchang extends Component {
   componentDidMount() {
     storage.load('userInfo', (data) => {
       this.setState({
-          username: data.username,
-          head: data.head,
-          token: data.token,
-          user_id: data.user_id
+        username: data.username,
+        head: data.head,
+        token: data.token,
+        user_id: data.user_id
       })
       this.fetchDate()
-  })
+    })
   };
 
-  render(){
-    var data=this.state.data;
-  return(
-    <View style = {{ flex: 1 }}>
-  <ScrollView style={{ backgroundColor: "#43949B28", height: 10 }}
-    scrollEnabled={true}
-    showsVerticalScrollIndicator={false}
-  >
-    <View style={[styles.container]}>
-      {
-        data.map((item) => {
-          return (
-            SwiperMainContainer(item)
-          )
-        })
-      }
-    </View>
-  </ScrollView>
-    </View >
-  );
-}} 
+  render() {
+    var data = this.state.data;
+    return (
+      <View style={{ flex: 1 }}>
+        <ScrollView style={{ backgroundColor: "#6C9575", height: Dimensions.get('window').height - 350 }}
+          scrollEnabled={true}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={[styles.container]}>
+            {
+              data.map((item) => {
+                return (
+                  SwiperMainContainer(item)
+                )
+              })
+            }
+          </View>
+        </ScrollView>
+      </View >
+    );
+  }
+}
 const styles = StyleSheet.create({
   container: {
-    // width: '100%',
     height: '60%',
     backgroundColor: "#6C9575",
     padding: 10,
@@ -145,7 +145,6 @@ const styles = StyleSheet.create({
   mainBox: {
     width: '100%',
     marginTop: 10,
-    // height: 310,
     backgroundColor: "#fff",
     borderRadius: 3,
   },

@@ -144,7 +144,7 @@ export default class PersonalCenterSum extends Component {
                         </View>
                     </ImageBackground>
 
-                    <View style={{ width: '100%', height: '80%', backgroundColor: "skyblue" }}>
+                    <View style={{ width: '100%', height: '10%', backgroundColor: "red" }}>
                         <PersonalTab />
                     </View>
                 </View>
