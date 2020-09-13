@@ -7,6 +7,7 @@ const JwtUtil = require('./public/utils/jwt');
 var FileUpload = require('express-fileupload')
 
 var usersRouter = require('./routes/users');
+var utilsApiRouter = require('./routes/utilsApi');
 var followRouter = require('./routes/follow');
 var collectionRouter = require('./routes/collection')
 var clockRouter = require('./routes/clock');
@@ -67,10 +68,12 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api/users', usersRouter);
+app.use('/api/utilsApi', utilsApiRouter);
 app.use('/api/follow', followRouter);
 app.use('/api/collection', collectionRouter);
 app.use('/api/clock', clockRouter);
 app.use('/api/message', messageRouter);
+
 app.use('/api/travels/travel',travelRouter);
 app.use('/api/travels/comment',commentRouter);
 app.use('/api/travels/city',cityRouter);

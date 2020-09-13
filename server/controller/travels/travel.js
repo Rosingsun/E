@@ -1,5 +1,8 @@
 const { exec } = require('../../db/mysql')
-// const fs = require('../../public/utils//uploadIng')
+const fs = require('fs');
+const path = require('path');
+/* formidable用于解析表单数据，特别是文件上传 */
+const formidable = require('formidable');
 
 /**
  * 发布文章
@@ -14,10 +17,11 @@ const { exec } = require('../../db/mysql')
 const release = (title, words, username, createTime, showUserImg,user_id,location) => {
     let sql = `INSERT INTO travels (title, words ,username, createTime,showUserImg,user_id,location) 
               VALUES ( '${title}' , '${words}', '${username}', '${createTime}', '${showUserImg}',${user_id},'${location}')`
-              console.log(sql)
+              console.log(sql) 
     return exec(sql).then(row => {
       return row || {}
     })
+  
   }
 
   /**

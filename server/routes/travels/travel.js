@@ -1,5 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const fs = require('fs');
+const path = require('path');
+/* formidable用于解析表单数据，特别是文件上传 */
+const formidable = require('formidable');
 const { SuccessModel, ErrorModel } = require("../../model/resModel");
 const {
     release,
@@ -15,7 +19,8 @@ const {
 const { nowDate } = require("../../public/utils/main")
 
 router.post('/release', (req, res, next) => {
-  const { title, words, username,showUserImg,user_id,location} = req.body
+  const showUserImg = req.files
+  const { title, words, username,user_id,location} = req.body
   const createTime = nowDate()
   const result = release(title, words, username, createTime, showUserImg,user_id,location)
   const resultData = result.then(data => {
