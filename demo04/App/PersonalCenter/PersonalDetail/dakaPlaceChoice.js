@@ -17,7 +17,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { storage } from '../../Accessories/storage//index';
-import Picker from 'react-native-picker';
+// import Picker from 'react-native-picker';
 import { SceneView } from 'react-navigation';
 //底部选择框
 let cityData = [

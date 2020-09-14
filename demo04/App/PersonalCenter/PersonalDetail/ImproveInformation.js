@@ -10,7 +10,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1080;
-import Picker from 'react-native-picker';
+// import Picker from 'react-native-picker';
 import { storage } from '../../Accessories/storage/index';
 var choiceGrades = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300]
 let choiceTime = [
@@ -131,22 +131,22 @@ export default class improveInformation extends Component {
                         <Text
                             style={{ width: '65%', height: 40, lineHeight: 40, textAlign: "center", backgroundColor: "#fff", marginLeft: 10, borderRadius: 3 }}
                             onPress={() => {
-                                Picker.init({
-                                    pickerData: choiceTime,
-                                    pickerTitleText: "时间",
-                                    pickerConfirmBtnText: "确定",
-                                    pickerCancelBtnText: "取消",
-                                    onPickerConfirm: data => {
-                                        this.setState({ preTime: data })
-                                    },
-                                    onPickerCancel: data => {
-                                        console.log(data);
-                                    },
-                                    onPickerSelect: data => {
-                                        this.setState({ preTime: data })
-                                    }
-                                });
-                                Picker.show();
+                                // Picker.init({
+                                //     pickerData: choiceTime,
+                                //     pickerTitleText: "时间",
+                                //     pickerConfirmBtnText: "确定",
+                                //     pickerCancelBtnText: "取消",
+                                //     onPickerConfirm: data => {
+                                //         this.setState({ preTime: data })
+                                //     },
+                                //     onPickerCancel: data => {
+                                //         console.log(data);
+                                //     },
+                                //     onPickerSelect: data => {
+                                //         this.setState({ preTime: data })
+                                //     }
+                                // });
+                                // Picker.show();
                             }}>{this.state.preTime} 小时</Text>
                     </View>
                     <View style={{ flexDirection: "row", width: '94%', marginTop: 15, marginLeft: '3%' }}>
@@ -154,22 +154,22 @@ export default class improveInformation extends Component {
                         <Text
                             style={{ width: '65%', height: 40, lineHeight: 40, textAlign: "center", backgroundColor: "#fff", marginLeft: 10, borderRadius: 3 }}
                             onPress={() => {
-                                Picker.init({
-                                    pickerData: choiceGrades,
-                                    pickerTitleText: "时间",
-                                    pickerConfirmBtnText: "确定",
-                                    pickerCancelBtnText: "取消",
-                                    onPickerConfirm: data => {
-                                        this.setState({ grandes: data })
-                                    },
-                                    onPickerCancel: data => {
-                                        console.log(data);
-                                    },
-                                    onPickerSelect: data => {
-                                        this.setState({ grandes: data })
-                                    }
-                                });
-                                Picker.show();
+                                // Picker.init({
+                                //     pickerData: choiceGrades,
+                                //     pickerTitleText: "时间",
+                                //     pickerConfirmBtnText: "确定",
+                                //     pickerCancelBtnText: "取消",
+                                //     onPickerConfirm: data => {
+                                //         this.setState({ grandes: data })
+                                //     },
+                                //     onPickerCancel: data => {
+                                //         console.log(data);
+                                //     },
+                                //     onPickerSelect: data => {
+                                //         this.setState({ grandes: data })
+                                //     }
+                                // });
+                                // Picker.show();
                             }}>{this.state.grandes} 分</Text>
                     </View>
                     <View style={{ width: '94%', marginLeft: '3%', backgroundColor: "#fff", marginTop: 15, padding: 8 }}>

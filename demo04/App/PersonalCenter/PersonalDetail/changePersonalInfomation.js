@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ImagePicker from 'react-native-image-crop-picker';
-import Picker from 'react-native-picker';
+// import Picker from 'react-native-picker';
 import { storage } from '../../Accessories/storage/index'
 const { width, scale } = Dimensions.get("window");
 const biLi = width * scale / 1125;
@@ -148,22 +148,22 @@ export default class changePersonalInfoMation extends Component {
                         </View>
                     </View>
                     <TouchableNativeFeedback
-                        onPress={() => {
-                            Picker.init({
-                                pickerData: data,
-                                onPickerConfirm: data => {
-                                    this.setState({ userSex: data })
-                                },
-                                onPickerCancel: data => {
-                                    console.log(data);
-                                },
-                                onPickerSelect: data => {
-                                    this.setState({ userSex: data })
-                                }
-                            });
-                            Picker.show();
-                            // Alert.alert("1");
-                        }}
+                        // onPress={() => {
+                        //     Picker.init({
+                        //         pickerData: data,
+                        //         onPickerConfirm: data => {
+                        //             this.setState({ userSex: data })
+                        //         },
+                        //         onPickerCancel: data => {
+                        //             console.log(data);
+                        //         },
+                        //         onPickerSelect: data => {
+                        //             this.setState({ userSex: data })
+                        //         }
+                        //     });
+                        //     Picker.show();
+                        //     // Alert.alert("1");
+                        // }}
                     >
                         <View style={styles.button}>
                             <Text style={{ fontSize: 15, color: "#000", marginLeft: 14 }}>性别</Text>
