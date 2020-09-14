@@ -59,7 +59,7 @@ export default class spread extends Component {
                 showUserImg: this.state.avatarSource,
                 username: this.state.username,
                 user_id: this.state.user_id,
-
+                head:this.state.head
             })
         }).then(function (res) {
             return res.json();

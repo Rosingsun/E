@@ -63,61 +63,61 @@ export default class ChatRecord extends Component {
                             {
                                 userName: 'aboutJOY',
                                 userWord: '好突然',
-                                userHead: './img/a.jpg',
+                                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                                 create_Data: '7月18日'
                             },
                             {
                                 userName: 'aboutJOY',
                                 userWord: '好突然',
-                                userHead: './img/a.jpg',
+                                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                                 create_Data: '7月18日'
                             },
                             {
                                 userName: 'aboutJOY',
                                 userWord: '好突然',
-                                userHead: './img/a.jpg',
+                                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                                 create_Data: '7月18日'
                             },
                             {
                                 userName: 'aboutJOY',
                                 userWord: '好突然',
-                                userHead: './img/a.jpg',
+                                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                                 create_Data: '7月18日'
                             },
                             {
                                 userName: 'aboutJOY',
                                 userWord: '好突然',
-                                userHead: './img/a.jpg',
+                                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                                 create_Data: '7月18日'
                             },
                             {
                                 userName: 'aboutJOY',
                                 userWord: '好突然',
-                                userHead: './img/a.jpg',
+                                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                                 create_Data: '7月18日'
                             },
                             {
                                 userName: 'aboutJOY',
                                 userWord: '好突然',
-                                userHead: './img/a.jpg',
+                                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                                 create_Data: '7月18日'
                             },
                             {
                                 userName: 'aboutJOY',
                                 userWord: '好突然',
-                                userHead: './img/a.jpg',
+                                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                                 create_Data: '7月18日'
                             },
                             {
                                 userName: 'aboutJOY',
                                 userWord: '好突然',
-                                userHead: './img/a.jpg',
+                                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                                 create_Data: '7月18日'
                             },
                             {
                                 userName: 'aboutJOY',
                                 userWord: '好突然',
-                                userHead: './img/a.jpg',
+                                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                                 create_Data: '7月18日'
                             },
                         ]}

@@ -24,9 +24,9 @@ const App = () => {
 Picker.show();
   return (
     <View><Text
-      onPress={()=>{
-        Picker.show();
-      }}
+      // onPress={()=>{
+      //   Picker.show();
+      // }}
     >111</Text></View>
   );
 };

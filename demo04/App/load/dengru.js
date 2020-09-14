@@ -73,13 +73,13 @@ const styles = StyleSheet.create({
     },
 
     word: {
-        marginLeft: 24 * biLi,
-        marginTop: 119 * biLi,
+        marginLeft: 24 ,
+        marginTop: 119 ,
 
     },
     touchButtonup: {
-        height: 35 * biLi,
-        width: 90 * biLi,
+        height: 35 ,
+        width: 90 ,
         borderRadius: 3,
         backgroundColor: "#fff",
         borderWidth:3,
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
 
     },
     touchButtonnew: {
-        height: 35 * biLi,
-        width: 90 * biLi,
+        height: 35 ,
+        width: 90 ,
         borderRadius: 3,
         backgroundColor: "#fff",
         borderWidth:3,

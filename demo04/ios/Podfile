@@ -10,6 +10,7 @@ target 'demo04' do
 
   pod 'react-native-amap-geolocation', :path => '../node_modules/react-native-amap-geolocation'
 
+
   target 'demo04Tests' do
     inherit! :complete
     # Pods for testing

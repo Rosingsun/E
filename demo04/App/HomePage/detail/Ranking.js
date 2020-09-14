@@ -24,67 +24,67 @@ export default class Search extends Component {
             {
                 id: 0,
                 userName: 'aboutJOY',
-                userHead: './img/a.jpg',
+                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                 sort: '1'
             },
             {
                 id: 1,
                 userName: 'aboutJOY',
-                userHead: './img/a.jpg',
+                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                 sort: '2'
             },
             {
                 id: 2,
                 userName: 'aboutJOY',
-                userHead: './img/a.jpg',
+                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                 sort: '3'
             },
             {
                 id: 3,
                 userName: 'aboutJOY',
-                userHead: './img/a.jpg',
+                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                 sort: '4'
             },
             {
                 id: 4,
                 userName: 'aboutJOY',
-                userHead: './img/a.jpg',
+                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                 sort: '5'
             },
             {
                 id: 5,
                 userName: 'aboutJOY',
-                userHead: './img/a.jpg',
+                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                 sort: '6'
             },
             {
                 id: 6,
                 userName: 'aboutJOY',
-                userHead: './img/a.jpg',
+                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                 sort: '7'
             },
             {
                 id: 7,
                 userName: 'aboutJOY',
-                userHead: './img/a.jpg',
+                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                 sort: '8'
             },
             {
                 id: 8,
                 userName: 'aboutJOY',
-                userHead: './img/a.jpg',
+                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                 sort: '9'
             },
             {
                 id: 9,
                 userName: 'aboutJOY',
-                userHead: './img/a.jpg',
+                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                 sort: '10'
             },
             {
                 id: 10,
                 userName: 'aboutJOY',
-                userHead: './img/a.jpg',
+                userHead: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
                 sort: '11'
             },
         ]
