@@ -180,7 +180,7 @@ class trade extends Component {
                 <View style={{ marginLeft: 5, justifyContent: "flex-start" }}>
                   <Text style={{ fontSize: 15,marginRight:5 }}>{Mname}</Text>
                 </View>
-                <Image style={{ height: 40, width: 40, borderRadius: 30,borderWidth:1,borderColor:'#707070' }} source={require('../img/a.png')} />
+                <Image style={{ height: 40, width: 40, borderRadius: 30,borderWidth:1,borderColor:'#707070' }} source={{uri:"http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true"}} />
                 {/* 用户信息 */}
               </View>
             </View>

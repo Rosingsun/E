@@ -79,7 +79,7 @@ class ProjectsScreen extends React.Component {
                 >
                     <Project
                         title={Projects[this.state.index].title}
-                        image={Projects[this.state.index].image}
+                        image={{uri:Projects[this.state.index].image}}
                         author={Projects[this.state.index].author}
                         // text={Projects[this.state.index].text}
                         canOpen={true}
@@ -101,7 +101,7 @@ class ProjectsScreen extends React.Component {
                 }}>
                     <Project
                         title={Projects[getNextIndex(this.state.index)].title}
-                        image={Projects[getNextIndex(this.state.index)].image}
+                        image={{uri:Projects[getNextIndex(this.state.index)].image}}
                         author={Projects[getNextIndex(this.state.index)].author}
                     // text={Projects[getNextIndex(this.state.index)].text}
 
@@ -123,7 +123,7 @@ class ProjectsScreen extends React.Component {
                     }}>
                     <Project
                         title={Projects[getNextIndex(this.state.index + 1)].title}
-                        image={Projects[getNextIndex(this.state.index + 1)].image}
+                        image={{uri:Projects[getNextIndex(this.state.index + 1)].image}}
                         author={Projects[getNextIndex(this.state.index + 1)].author}
                     // text={Projects[getNextIndex(this.state.index + 1)].text}
 
@@ -156,7 +156,7 @@ const Text = styled.Text``;
 const Projects = [
     {
         title: "Price Tag1",
-        image: require("./img/a.jpg"),
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
         author: "Liu Yi",
         text:
             "Thanks to Design+Code.3242342....................Thanks to Design+Code.3242342...................." +
@@ -166,49 +166,49 @@ const Projects = [
     },
     {
         title: "Price Tag2",
-        image: require("./img/a.jpg"),
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
         author: "Liu Yi",
         text:
             "Thanks to Design+Code....4324242................."
     },
     {
         title: "Price Tag3",
-        image: require("./img/a.jpg"),
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
         author: "Liu Yi",
         text:
             "Thanks to Design+Code..........57676768..........."
     },
     {
         title: "Price Tag4",
-        image: require("./img/a.jpg"),
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
         author: "Liu Yi",
         text:
             "Thanks to Design+Code..........57676768..........."
     },
     {
         title: "Price Tag5",
-        image: require("./img/a.jpg"),
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
         author: "Liu Yi",
         text:
             "Thanks to Design+Code..........57676768..........."
     },
     {
         title: "Price Tag6",
-        image: require("./img/a.jpg"),
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
         author: "Liu Yi",
         text:
             "Thanks to Design+Code..........57676768..........."
     },
     {
         title: "Price Tag7",
-        image: require("./img/a.jpg"),
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
         author: "Liu Yi",
         text:
             "Thanks to Design+Code..........57676768..........."
     },
     {
         title: "Price Tag8",
-        image: require("./img/a.jpg"),
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
         author: "Liu Yi",
         text:
             `Thanks to Design+Code.......21412156........
@@ -216,7 +216,7 @@ const Projects = [
     },
     {
         title: "猪头妹",
-        image: require("./img/a.jpg"),
+        image: "http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true",
         author: "天才少年",
         text:
             "Thanks to Design+Code.......21412156........" +

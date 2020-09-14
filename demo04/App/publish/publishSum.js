@@ -83,7 +83,7 @@ function Main({navigation}) {
         <View style={[styles.firstBox]}>
           <View style={[styles.imgShow]}>
             <View style={[styles.imgShowBox]}>
-              <Image style={{ height: 123 * biLi, width: "94%", marginLeft: "3%" }} source={require('../../img/a.jpg')} />
+              <Image style={{ height: 123 * biLi, width: "94%", marginLeft: "3%" }} source={{uri:"http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true"}} />
               <View style={{ width: "100%", flexDirection: "row", padding: 6, justifyContent: "center" }}>
                 <Text style={{ fontSize: 15, }}>今日热议：</Text>
                 <TouchableWithoutFeedback
@@ -101,7 +101,7 @@ function Main({navigation}) {
               <View style={[styles.list]}>
                 {/* 用户头像 */}
                 <View>
-                  <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../../img/a.jpg')} />
+                  <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={{uri:"http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true"}} />
                 </View>
                 <View style={{ alignItems: "center", marginHorizontal: 10 }}>
                   <Text>每周活跃用户</Text>
@@ -112,7 +112,7 @@ function Main({navigation}) {
               <View style={[styles.list]}>
                 {/* 用户头像 */}
                 <View>
-                  <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../../img/a.png')} />
+                  <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={{uri:"http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true"}} />
                 </View>
                 <View style={{ alignItems: "center", marginHorizontal: 10 }}>
                   <Text>每周活跃用户</Text>

@@ -315,7 +315,6 @@ function bottomTab() {
           tabBarIcon: ({ color }) => (
             <View style={{ backgroundColor: "#2F3843", borderRadius: 20, paddingVertical: 5, width: '135%', alignItems: "center", marginTop: -10, position: "absolute", justifyContent: "center" }}>
               <AntDesign name={'plus'} size={50} color={color} />
-              {/* <Image source={require("./img/1.jpg")} style={{height:50,width:50}}/> */}
             </View>
           ),
         }} />

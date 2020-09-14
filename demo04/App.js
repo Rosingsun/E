@@ -68,19 +68,19 @@ export default class dakaAll extends Component {
                     showsVerticalScrollIndicator={false}
                     data={[
                         {
-                            picture: "./img/a.jpg",
+                            picture: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2399377501,2221360822&fm=26&gp=0.jpg",
                             title: '西湖·一个小亭子',
                             scenicSpot: "西湖景区",
                             clock: "杜甫、李白、白居易也曾在这里打过卡"
                         },
                         {
-                            picture: "./img/a.jpg",
+                            picture: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2399377501,2221360822&fm=26&gp=0.jpg",
                             title: '西湖·一个小亭子',
                             scenicSpot: "西湖景区",
                             clock: "杜甫、李白、白居易也曾在这里打过卡"
                         },
                         {
-                            picture: "./img/a.jpg",
+                            picture: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2399377501,2221360822&fm=26&gp=0.jpg",
                             title: '西湖·一个小亭子',
                             scenicSpot: "西湖景区",
                             clock: "杜甫、李白、白居易也曾在这里打过卡"
@@ -89,7 +89,7 @@ export default class dakaAll extends Component {
                     renderItem={({ item }) =>
                         <View style={[styles.mainBox]}>
                             <Image style={{ height: '100%', width: 118 * biLi }} source={{
-                                uri: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2399377501,2221360822&fm=26&gp=0.jpg'
+                                uri: item.picture
                             }} />
                             <View style={{ flexDirection: "column", justifyContent: "space-around", marginLeft: 15 }}>
                                 <Text style={[styles.title]}>{item.title}</Text>

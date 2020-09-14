@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Picker from 'react-native-picker';
+// import Picker from 'react-native-picker';
 
 const App = () => {
 
@@ -8,25 +8,25 @@ const App = () => {
   // for(var i=0;i<100;i++){
   //     data.push(i);
   // }
-  Picker.init({
-    pickerData: data,
-    selectedValue: [59],
-    onPickerConfirm: data => {
-        console.log(data);
-    },
-    onPickerCancel: data => {
-        console.log(data);
-    },
-    onPickerSelect: data => {
-        console.log(data);
-    }
-});
-Picker.show();
+//   Picker.init({
+//     pickerData: data,
+//     selectedValue: [59],
+//     onPickerConfirm: data => {
+//         console.log(data);
+//     },
+//     onPickerCancel: data => {
+//         console.log(data);
+//     },
+//     onPickerSelect: data => {
+//         console.log(data);
+//     }
+// });
+// Picker.show();
   return (
     <View><Text
-      onPress={()=>{
-        Picker.show();
-      }}
+      // onPress={()=>{
+      //   Picker.show();
+      // }}
     >111</Text></View>
   );
 };

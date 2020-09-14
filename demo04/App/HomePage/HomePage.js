@@ -80,7 +80,7 @@ export default class Home extends Component {
           <View style={[styles.firstBox]}>
             <View style={[styles.imgShow]}>
               <View style={[styles.imgShowBox]}>
-                <Image style={{ height: 140 , width: "94%", marginLeft: "3%" }} source={require('../img/a.jpg')} />
+                <Image style={{ height: 140 , width: "94%", marginLeft: "3%" }} source={{uri:"http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true"}} />
                 <View style={{ width: "100%", flexDirection: "row", padding: 6, justifyContent: "center" }}>
                   <Text style={{ fontSize: 15, }}>今日热E：</Text>
                   <Text style={{ fontSize: 12, lineHeight: 20, color: "#FFB16C" }}>#横看成岭侧成峰，远近高低各不同#</Text>
@@ -108,7 +108,7 @@ export default class Home extends Component {
                   >
                     <View style={[styles.list]}>
                       {/* 用户头像 */}
-                      <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={require('../img/a.jpg')} />
+                      <Image style={{ height: 34, width: 34, borderRadius: 25, }} source={{uri:"http://pic.51yuansu.com/pic3/cover/03/99/78/5f3c962fb56c6_610.jpg!/fw/260/quality/90/unsharp/true/compress/true"}} />
                       <View style={{ alignItems: "center", marginHorizontal: 10 }}>
                         <Text style={{fontSize:12}}>每周活跃用户</Text>
                         <Text style={{fontSize:12}}>排行榜</Text>
