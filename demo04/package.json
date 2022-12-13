@@ -23,7 +23,7 @@
     "aurora-imui-react-native": "^0.14.0",
     "cross-env": "^7.0.2",
     "es6-promise": "^4.2.8",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "fetch": "^1.1.0",
     "mongodb": "^3.5.9",
     "react": "16.13.1",
